@@ -1,0 +1,2364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clase 1 - Seguridad y Salud en el Trabajo (D.E. 2393)</title>
+<meta name="description" content="Material educativo interactivo sobre el Decreto Ejecutivo 2393 del Ecuador: reglamento, caso de estudio, taller práctico, banco de evaluación y tarea asincrónica. Arts. 9, 13, 14 y 15.">
+<style>
+/* =================== RESET Y BASE =================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  color: #0f172a;
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+}
+@media (prefers-color-scheme: dark) {
+  body { background: linear-gradient(135deg, #020617 0%, #0f172a 100%); color: #e2e8f0; }
+}
+img { max-width: 100%; height: auto; display: block; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+ul, ol { list-style: none; }
+a { color: inherit; text-decoration: none; }
+
+/* =================== VARIABLES =================== */
+:root {
+  --emerald-50: #ecfdf5; --emerald-100: #d1fae5; --emerald-200: #a7f3d0;
+  --emerald-500: #10b981; --emerald-600: #059669; --emerald-700: #047857;
+  --emerald-800: #065f46; --emerald-900: #064e3b;
+  --sky-50: #f0f9ff; --sky-100: #e0f2fe; --sky-200: #bae6fd;
+  --sky-500: #0ea5e9; --sky-600: #0284c7; --sky-700: #0369a1; --sky-900: #0c4a6e;
+  --violet-50: #f5f3ff; --violet-100: #ede9fe; --violet-200: #ddd6fe;
+  --violet-500: #8b5cf6; --violet-600: #7c3aed; --violet-700: #6d28d9; --violet-900: #4c1d95;
+  --rose-50: #fff1f2; --rose-100: #ffe4e6; --rose-200: #fecdd3;
+  --rose-500: #f43f5e; --rose-600: #e11d48; --rose-700: #be123c; --rose-900: #881337;
+  --amber-50: #fffbeb; --amber-100: #fef3c7; --amber-200: #fde68a;
+  --amber-500: #f59e0b; --amber-600: #d97706; --amber-700: #b45309; --amber-900: #78350f;
+  --slate-50: #f8fafc; --slate-100: #f1f5f9; --slate-200: #e2e8f0; --slate-300: #cbd5e1;
+  --slate-400: #94a3b8; --slate-500: #64748b; --slate-600: #475569; --slate-700: #334155;
+  --slate-800: #1e293b; --slate-900: #0f172a;
+  --white: #ffffff; --black: #000000;
+  --radius: 12px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.05);
+  --shadow: 0 4px 6px -1px rgba(0,0,0,.08), 0 2px 4px -2px rgba(0,0,0,.05);
+  --shadow-md: 0 10px 15px -3px rgba(0,0,0,.10), 0 4px 6px -4px rgba(0,0,0,.05);
+}
+
+/* =================== HEADER =================== */
+.header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--slate-200);
+  box-shadow: 0 1px 3px rgba(0,0,0,.04);
+}
+.header-inner {
+  max-width: 1280px; margin: 0 auto;
+  padding: 16px 20px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+@media (min-width: 768px) { .header-inner { flex-direction: row; align-items: center; justify-content: space-between; } }
+.header-brand { display: flex; align-items: center; gap: 12px; }
+.header-logo {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: linear-gradient(135deg, var(--emerald-500), var(--emerald-800));
+  display: flex; align-items: center; justify-content: center;
+  color: white; flex-shrink: 0; box-shadow: var(--shadow-md);
+}
+.header-title { font-size: 1.05rem; font-weight: 700; line-height: 1.2; color: var(--slate-900); }
+@media (min-width: 768px) { .header-title { font-size: 1.25rem; } }
+.header-subtitle { font-size: 0.78rem; color: var(--slate-500); margin-top: 2px; }
+@media (min-width: 768px) { .header-subtitle { font-size: 0.875rem; } }
+.header-badges { display: flex; gap: 8px; flex-wrap: wrap; }
+.badge-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 12px; border-radius: 999px;
+  font-size: 0.75rem; font-weight: 500;
+}
+.badge-emerald { background: var(--emerald-100); color: var(--emerald-700); }
+.badge-amber { background: var(--amber-100); color: var(--amber-700); }
+
+/* =================== MAIN =================== */
+.main { flex: 1; max-width: 1280px; width: 100%; margin: 0 auto; padding: 24px 20px 40px; }
+
+/* =================== TABS NAV =================== */
+.tabs-list {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px;
+  background: white; padding: 8px; border-radius: 14px;
+  border: 1px solid var(--slate-200); box-shadow: var(--shadow-sm);
+  margin-bottom: 24px;
+}
+@media (min-width: 768px) { .tabs-list { grid-template-columns: repeat(5, 1fr); } }
+.tab-btn {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 4px;
+  padding: 12px 14px; text-align: left;
+  border-radius: 8px; font-weight: 600;
+  transition: all .15s ease;
+  border: 1px solid transparent;
+}
+.tab-btn:hover { background: var(--slate-50); }
+.tab-btn .tab-num { font-size: 0.78rem; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+@media (min-width: 768px) { .tab-btn .tab-num { font-size: 0.875rem; } }
+.tab-btn .tab-label { font-size: 0.68rem; color: var(--slate-500); font-weight: 400; padding-left: 22px; line-height: 1.2; }
+@media (min-width: 768px) { .tab-btn .tab-label { font-size: 0.75rem; } }
+.tab-btn.active[data-tab="reglamento"] { background: var(--emerald-50); color: var(--emerald-700); border-color: var(--emerald-200); }
+.tab-btn.active[data-tab="caso"] { background: var(--sky-50); color: var(--sky-700); border-color: var(--sky-200); }
+.tab-btn.active[data-tab="taller"] { background: var(--violet-50); color: var(--violet-700); border-color: var(--violet-200); }
+.tab-btn.active[data-tab="evaluacion"] { background: var(--emerald-50); color: var(--emerald-700); border-color: var(--emerald-200); }
+.tab-btn.active[data-tab="tarea"] { background: var(--rose-50); color: var(--rose-700); border-color: var(--rose-200); }
+.tab-icon { width: 18px; height: 18px; flex-shrink: 0; }
+
+/* =================== TAB PANELS =================== */
+.tab-panel { display: none; animation: fadeIn .25s ease; }
+.tab-panel.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+/* =================== HERO CARDS (HEADER per section) =================== */
+.hero {
+  border-radius: 16px; padding: 24px;
+  margin-bottom: 24px;
+  border: 1px solid;
+}
+.hero-reglamento { background: linear-gradient(135deg, var(--emerald-50), var(--emerald-100)); border-color: var(--emerald-200); }
+.hero-caso { background: linear-gradient(135deg, var(--sky-50), var(--sky-100)); border-color: var(--sky-200); }
+.hero-taller { background: linear-gradient(135deg, var(--violet-50), var(--violet-100)); border-color: var(--violet-200); }
+.hero-evaluacion { background: linear-gradient(135deg, var(--emerald-50), var(--emerald-100)); border-color: var(--emerald-200); }
+.hero-tarea { background: linear-gradient(135deg, var(--rose-50), var(--rose-100)); border-color: var(--rose-200); }
+.hero-row { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 8px; }
+.hero-icon { width: 32px; height: 32px; flex-shrink: 0; margin-top: 4px; }
+.hero h2 { font-size: 1.5rem; font-weight: 700; line-height: 1.2; }
+@media (min-width: 768px) { .hero h2 { font-size: 1.875rem; } }
+.hero p { font-size: 0.875rem; font-weight: 500; margin-top: 4px; }
+.hero p.main-text { font-size: 0.95rem; font-weight: 400; margin-top: 12px; line-height: 1.6; color: var(--slate-700); }
+
+.hero-reglamento h2, .hero-reglamento p { color: var(--emerald-800); }
+.hero-caso h2, .hero-caso p { color: var(--sky-800); }
+.hero-taller h2, .hero-taller p { color: var(--violet-800); }
+.hero-evaluacion h2, .hero-evaluacion p { color: var(--emerald-800); }
+.hero-tarea h2, .hero-tarea p { color: var(--rose-800); }
+
+/* =================== CARDS =================== */
+.card {
+  background: white; border: 1px solid var(--slate-200);
+  border-radius: 12px; padding: 20px; margin-bottom: 20px;
+  box-shadow: var(--shadow-sm);
+}
+.card-header { margin-bottom: 12px; }
+.card-title { font-size: 1.1rem; font-weight: 600; color: var(--slate-900); display: flex; align-items: center; gap: 8px; }
+@media (min-width: 768px) { .card-title { font-size: 1.25rem; } }
+.card-title-lg { font-size: 1.1rem; }
+@media (min-width: 768px) { .card-title-lg { font-size: 1.25rem; } }
+.card-title-md { font-size: 1rem; }
+.card-desc { font-size: 0.875rem; color: var(--slate-500); margin-top: 4px; }
+.card-l-amber { border-left: 4px solid var(--amber-400); }
+.card-l-rose { border-left: 4px solid var(--rose-400); }
+.card-l-emerald { border-left: 4px solid var(--emerald-400); }
+.card-l-violet { border-left: 4px solid var(--violet-400); }
+.card-l-sky { border-left: 4px solid var(--sky-400); }
+
+/* =================== SECTION HEADINGS =================== */
+.section-h3 {
+  font-size: 1.25rem; font-weight: 600; margin-bottom: 16px;
+  display: flex; align-items: center; gap: 8px; color: var(--slate-900);
+}
+@media (min-width: 768px) { .section-h3 { font-size: 1.5rem; } }
+.section-h4 { font-size: 1rem; font-weight: 600; margin-bottom: 12px; }
+@media (min-width: 768px) { .section-h4 { font-size: 1.1rem; } }
+p.text { font-size: 0.95rem; color: var(--slate-700); line-height: 1.7; margin-bottom: 12px; }
+p.text-lead { font-size: 0.95rem; color: var(--slate-700); line-height: 1.7; }
+
+/* =================== OEE FORMULA =================== */
+.formula-box {
+  background: var(--slate-100); border: 1px solid var(--slate-200);
+  border-radius: 8px; padding: 16px; margin: 16px 0;
+  overflow-x: auto;
+}
+.formula-label { font-size: 0.7rem; font-weight: 600; color: var(--slate-500); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+.formula-text { font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; font-size: 0.85rem; white-space: pre-wrap; color: var(--slate-900); }
+@media (min-width: 768px) { .formula-text { font-size: 0.95rem; } }
+
+/* =================== ACCORDION =================== */
+.acc-item {
+  background: white; border: 1px solid var(--slate-200);
+  border-radius: 10px; margin-bottom: 12px; overflow: hidden;
+  transition: box-shadow .15s;
+}
+.acc-item.open { box-shadow: var(--shadow); }
+.acc-trigger {
+  width: 100%; padding: 16px 20px; text-align: left;
+  display: flex; align-items: center; gap: 12px;
+  font-weight: 600; font-size: 0.95rem;
+  transition: background .15s;
+}
+@media (min-width: 768px) { .acc-trigger { font-size: 1.05rem; } }
+.acc-trigger:hover { background: var(--slate-50); }
+.acc-icon-wrap {
+  width: 36px; height: 36px; border-radius: 999px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; color: white;
+}
+.acc-icon-9 { background: var(--emerald-600); }
+.acc-icon-13 { background: var(--amber-500); }
+.acc-icon-14 { background: var(--rose-500); }
+.acc-icon-15 { background: var(--sky-500); }
+.acc-content { display: none; padding: 0 20px 20px; }
+.acc-item.open .acc-content { display: block; }
+.acc-desc { font-size: 0.9rem; color: var(--slate-700); line-height: 1.6; font-style: italic; border-left: 2px solid var(--slate-200); padding-left: 12px; margin-bottom: 16px; }
+.acc-list { display: grid; gap: 10px; }
+.acc-list-item {
+  display: flex; gap: 12px; padding: 12px;
+  background: var(--slate-50); border-radius: 6px;
+  transition: background .15s;
+}
+.acc-list-item:hover { background: var(--slate-100); }
+.acc-num {
+  width: 24px; height: 24px; border-radius: 999px;
+  background: var(--emerald-600); color: white;
+  font-size: 0.75rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.acc-item-title { font-size: 0.9rem; font-weight: 600; color: var(--slate-900); }
+.acc-item-text { font-size: 0.875rem; color: var(--slate-600); margin-top: 4px; }
+
+.acc-chevron { margin-left: auto; width: 18px; height: 18px; transition: transform .2s; color: var(--slate-400); }
+.acc-item.open .acc-chevron { transform: rotate(180deg); }
+
+/* Secciones dentro del acordeón */
+.acc-subsection { background: var(--slate-50); border-radius: 6px; padding: 16px; margin-top: 8px; margin-bottom: 8px; }
+.acc-subsection-title { font-size: 0.85rem; font-weight: 600; margin-bottom: 8px; display: inline-block; padding: 4px 8px; background: var(--slate-200); color: var(--slate-700); border-radius: 4px; font-size: 0.75rem; }
+.acc-subsection ul { list-style: none; padding: 0; }
+.acc-subsection ul li { font-size: 0.875rem; color: var(--slate-700); padding: 6px 0; padding-left: 22px; position: relative; line-height: 1.6; }
+.acc-subsection ul li::before { content: "▸"; position: absolute; left: 0; color: var(--emerald-500); font-weight: bold; }
+
+/* =================== TABLES =================== */
+.table-wrap { overflow-x: auto; border: 1px solid var(--slate-200); border-radius: 8px; margin: 8px 0; }
+table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+@media (min-width: 768px) { table { font-size: 0.875rem; } }
+thead { background: var(--slate-100); }
+thead th {
+  padding: 12px 14px; text-align: left; font-weight: 600;
+  font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.03em;
+  color: var(--slate-700); border-bottom: 1px solid var(--slate-200);
+  min-width: 160px;
+}
+thead th:first-child { min-width: 140px; }
+tbody td { padding: 12px 14px; border-bottom: 1px solid var(--slate-100); color: var(--slate-700); vertical-align: top; line-height: 1.6; }
+tbody tr:hover { background: var(--slate-50); }
+tbody td.first-col { background: var(--slate-50); font-weight: 500; color: var(--slate-900); }
+
+/* =================== ALERTS =================== */
+.alert { border-radius: 8px; padding: 16px; margin: 12px 0; border: 1px solid; }
+.alert-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+.alert-desc { font-size: 0.875rem; line-height: 1.6; color: var(--slate-700); }
+.alert-amber { background: var(--amber-50); border-color: var(--amber-300); }
+.alert-amber .alert-title { color: var(--amber-800); }
+.alert-emerald { background: var(--emerald-50); border-color: var(--emerald-300); }
+.alert-emerald .alert-title { color: var(--emerald-800); }
+.alert-rose { background: var(--rose-50); border-color: var(--rose-300); }
+.alert-rose .alert-title { color: var(--rose-800); }
+.alert-violet { background: var(--violet-50); border-color: var(--violet-300); }
+.alert-violet .alert-title { color: var(--violet-800); }
+.alert-info { background: var(--emerald-50); border-color: var(--emerald-300); }
+.alert-info .alert-title { color: var(--emerald-800); }
+
+/* =================== BADGES =================== */
+.badge { display: inline-flex; align-items: center; padding: 4px 10px; border-radius: 999px; font-size: 0.75rem; font-weight: 500; }
+.badge-sec { background: var(--slate-100); color: var(--slate-700); }
+.badge-amber { background: var(--amber-500); color: white; }
+.badge-rose { background: var(--rose-500); color: white; }
+.badge-emerald { background: var(--emerald-500); color: white; }
+.badge-amber-light { background: var(--amber-100); color: var(--amber-700); }
+.badge-rose-light { background: var(--rose-100); color: var(--rose-700); }
+.badge-outline { background: transparent; border: 1px solid currentColor; padding: 3px 8px; font-size: 0.7rem; }
+
+/* =================== GRID =================== */
+.grid-2 { display: grid; gap: 16px; grid-template-columns: 1fr; }
+.grid-3 { display: grid; gap: 16px; grid-template-columns: 1fr; }
+.grid-4 { display: grid; gap: 16px; grid-template-columns: 1fr; }
+@media (min-width: 768px) { .grid-2 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 768px) { .grid-3 { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 768px) { .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .grid-4 { grid-template-columns: repeat(4, 1fr); } }
+
+/* =================== HALLAZGO CARD =================== */
+.hallazgo-card {
+  background: white; border-radius: 10px;
+  border-left: 4px solid; padding: 16px;
+  transition: box-shadow .15s;
+}
+.hallazgo-card:hover { box-shadow: var(--shadow-md); }
+.hallazgo-amber { border-left-color: var(--amber-400); background: var(--amber-50); }
+.hallazgo-rose { border-left-color: var(--rose-400); background: var(--rose-50); }
+.hallazgo-violet { border-left-color: var(--violet-400); background: var(--violet-50); }
+.hallazgo-sky { border-left-color: var(--sky-400); background: var(--sky-50); }
+.hallazgo-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; padding-bottom: 8px; }
+.hallazgo-icon-wrap { width: 36px; height: 36px; border-radius: 999px; display: flex; align-items: center; justify-content: center; color: white; flex-shrink: 0; }
+.hallazgo-icon-amber { background: var(--amber-500); }
+.hallazgo-icon-rose { background: var(--rose-500); }
+.hallazgo-icon-violet { background: var(--violet-500); }
+.hallazgo-icon-sky { background: var(--sky-500); }
+.hallazgo-icon-emerald { background: var(--emerald-500); }
+.hallazgo-title { font-weight: 600; font-size: 0.95rem; color: var(--slate-900); }
+.hallazgo-text { font-size: 0.875rem; color: var(--slate-700); line-height: 1.6; }
+
+/* =================== STATS / DATA BOXES =================== */
+.stat-row { display: grid; gap: 12px; grid-template-columns: 1fr; margin: 16px 0; }
+@media (min-width: 640px) { .stat-row { grid-template-columns: repeat(3, 1fr); } }
+.stat-box { background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: 8px; padding: 12px; }
+.stat-box-rose { background: var(--rose-50); border-color: var(--rose-200); }
+.stat-box-emerald { background: var(--emerald-50); border-color: var(--emerald-200); }
+.stat-box-amber { background: var(--amber-50); border-color: var(--amber-200); }
+.stat-label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; color: var(--slate-500); margin-bottom: 4px; }
+.stat-box-rose .stat-label { color: var(--rose-700); }
+.stat-box-emerald .stat-label { color: var(--emerald-700); }
+.stat-box-amber .stat-label { color: var(--amber-700); }
+.stat-value { font-family: "SFMono-Regular", Consolas, monospace; font-size: 1.1rem; font-weight: 700; color: var(--slate-900); }
+.stat-box-rose .stat-value { color: var(--rose-700); }
+.stat-box-emerald .stat-value { color: var(--emerald-700); }
+.stat-box-amber .stat-value { color: var(--amber-700); }
+.stat-row-wide { grid-column: 1 / -1; }
+
+/* =================== CALC STEPS =================== */
+.calc-step {
+  border-radius: 8px; padding: 12px; margin-bottom: 8px;
+  display: flex; flex-direction: column; gap: 4px;
+  background: var(--slate-50); border: 1px solid var(--slate-200);
+}
+@media (min-width: 640px) { .calc-step { flex-direction: row; align-items: center; } }
+.calc-step-total { background: var(--rose-100); border-color: var(--rose-300); }
+.calc-step-label { font-size: 0.875rem; font-weight: 600; color: var(--slate-900); flex: 1; }
+.calc-step-total .calc-step-label { color: var(--rose-800); font-size: 0.95rem; }
+.calc-step-formula { font-family: monospace; font-size: 0.78rem; color: var(--slate-500); word-break: break-all; }
+.calc-step-result { text-align: right; flex-shrink: 0; }
+.calc-step-result .pct { font-family: monospace; font-weight: 700; font-size: 1rem; color: var(--slate-900); }
+.calc-step-total .calc-step-result .pct { font-size: 1.25rem; color: var(--rose-700); }
+.calc-step-result .val { font-family: monospace; font-size: 0.75rem; color: var(--slate-500); }
+
+/* =================== NUMBERED CIRCLE =================== */
+.num-circle {
+  width: 28px; height: 28px; border-radius: 999px;
+  background: var(--emerald-600); color: white;
+  font-size: 0.78rem; font-weight: 700;
+  display: inline-flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.num-circle-amber { background: var(--amber-500); }
+.num-circle-violet { background: var(--violet-600); }
+.num-circle-rose { background: var(--rose-600); }
+.num-circle-sky { background: var(--sky-500); }
+
+/* =================== EVALUACIÓN INTERACTIVA =================== */
+.eval-section {
+  background: white; border: 1px solid var(--slate-200);
+  border-radius: 10px; overflow: hidden; margin-bottom: 12px;
+}
+.eval-trigger {
+  width: 100%; padding: 16px 20px; text-align: left;
+  display: flex; align-items: center; gap: 12px;
+  font-weight: 600; font-size: 0.95rem;
+  transition: background .15s;
+}
+.eval-trigger:hover { background: var(--slate-50); }
+.eval-icon-wrap { width: 36px; height: 36px; border-radius: 999px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.eval-icon-emerald { background: var(--emerald-100); color: var(--emerald-700); }
+.eval-icon-amber { background: var(--amber-100); color: var(--amber-700); }
+.eval-icon-violet { background: var(--violet-100); color: var(--violet-700); }
+.eval-icon-rose { background: var(--rose-100); color: var(--rose-700); }
+.eval-trigger-text { flex: 1; }
+.eval-trigger-title { font-size: 0.95rem; }
+.eval-trigger-sub { font-size: 0.75rem; color: var(--slate-500); margin-top: 2px; font-weight: 400; }
+.eval-content { display: none; padding: 0 20px 20px; }
+.eval-section.open .eval-content { display: block; }
+.eval-chevron { transition: transform .2s; color: var(--slate-400); }
+.eval-section.open .eval-chevron { transform: rotate(180deg); }
+
+/* Pregunta SM */
+.pregunta-card { background: white; border: 1px solid var(--slate-200); border-radius: 8px; padding: 16px; margin-bottom: 12px; }
+.pregunta-head { display: flex; gap: 8px; margin-bottom: 12px; }
+.pregunta-text { font-size: 0.9rem; font-weight: 500; line-height: 1.6; }
+.opciones { display: grid; gap: 8px; grid-template-columns: 1fr; margin-bottom: 8px; }
+@media (min-width: 640px) { .opciones { grid-template-columns: 1fr 1fr; } }
+.opcion-btn {
+  text-align: left; padding: 10px 12px;
+  border: 1px solid var(--slate-200); border-radius: 6px;
+  font-size: 0.85rem; display: flex; gap: 8px;
+  transition: all .15s; background: white;
+}
+.opcion-btn:hover:not(.locked) { background: var(--slate-50); }
+.opcion-btn.locked { cursor: default; }
+.opcion-btn.correct { border-color: var(--emerald-400); background: var(--emerald-50); }
+.opcion-btn.incorrect { border-color: var(--rose-400); background: var(--rose-50); }
+.opcion-btn.dimmed { opacity: 0.55; }
+.opcion-letra { font-weight: 700; text-transform: uppercase; }
+.feedback { border-radius: 6px; padding: 12px; margin-top: 8px; border: 1px solid; font-size: 0.85rem; }
+.feedback-correct { background: var(--emerald-50); border-color: var(--emerald-300); }
+.feedback-incorrect { background: var(--amber-50); border-color: var(--amber-300); }
+.feedback-title { font-weight: 600; margin-bottom: 4px; font-size: 0.85rem; }
+.feedback-correct .feedback-title { color: var(--emerald-800); }
+.feedback-incorrect .feedback-title { color: var(--amber-800); }
+.pregunta-hint { font-size: 0.78rem; color: var(--slate-500); font-style: italic; margin-top: 8px; }
+
+/* Pregunta V/F */
+.vf-btns { display: flex; gap: 8px; margin-bottom: 8px; }
+.vf-btn {
+  padding: 6px 16px; border-radius: 6px; font-size: 0.85rem; font-weight: 500;
+  border: 1px solid var(--slate-300); background: white; transition: all .15s;
+}
+.vf-btn:hover:not(:disabled) { background: var(--slate-50); }
+.vf-btn:disabled { cursor: default; }
+.vf-btn.correct { background: var(--emerald-600); color: white; border-color: var(--emerald-600); }
+.vf-btn.incorrect { background: var(--rose-600); color: white; border-color: var(--rose-600); }
+
+/* Pregunta desarrollo */
+.desarrollo-card { background: white; border: 1px solid var(--slate-200); border-radius: 8px; padding: 16px; margin-bottom: 12px; }
+.desarrollo-textarea {
+  width: 100%; min-height: 60px; margin-top: 12px; padding: 8px;
+  border: 1px dashed var(--slate-400); border-radius: 6px;
+  background: var(--slate-50); font-family: inherit; font-size: 0.85rem;
+  resize: vertical; outline: none; color: var(--slate-800);
+}
+.desarrollo-textarea:focus { border-color: var(--violet-400); background: white; }
+.desarrollo-textarea::placeholder { color: var(--slate-400); }
+
+/* =================== FASES =================== */
+.fase-card {
+  border-radius: 10px; padding: 16px;
+  border: 2px solid;
+}
+.fase-emerald { background: var(--emerald-50); border-color: var(--emerald-200); }
+.fase-amber { background: var(--amber-50); border-color: var(--amber-200); }
+.fase-rose { background: var(--rose-50); border-color: var(--rose-200); }
+.fase-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 8px; }
+.fase-title { font-weight: 600; font-size: 0.95rem; }
+.fase-emerald .fase-title, .fase-emerald .badge-outline { color: var(--emerald-700); }
+.fase-amber .fase-title, .fase-amber .badge-outline { color: var(--amber-700); }
+.fase-rose .fase-title, .fase-rose .badge-outline { color: var(--rose-700); }
+.fase-text { font-size: 0.875rem; color: var(--slate-700); line-height: 1.6; }
+
+/* =================== FOOTER =================== */
+.footer {
+  margin-top: auto;
+  border-top: 1px solid var(--slate-200);
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(8px);
+}
+.footer-inner { max-width: 1280px; margin: 0 auto; padding: 16px 20px; }
+.footer-row { display: flex; flex-direction: column; gap: 8px; font-size: 0.78rem; color: var(--slate-500); }
+@media (min-width: 768px) { .footer-row { flex-direction: row; align-items: center; justify-content: space-between; } }
+.footer-item { display: flex; align-items: center; gap: 6px; }
+
+/* =================== BLOQUE =================== */
+.bloque-card {
+  border-radius: 10px; padding: 16px; border: 2px solid; margin-bottom: 16px;
+}
+.bloque-violet { background: var(--violet-50); border-color: var(--violet-200); }
+.bloque-emerald { background: var(--emerald-50); border-color: var(--emerald-200); }
+.bloque-amber { background: var(--amber-50); border-color: var(--amber-200); }
+.bloque-rose { background: var(--rose-50); border-color: var(--rose-200); }
+.bloque-head { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; }
+.bloque-icon-wrap { width: 40px; height: 40px; border-radius: 999px; display: flex; align-items: center; justify-content: center; color: white; flex-shrink: 0; }
+.bloque-violet .bloque-icon-wrap { background: var(--violet-500); }
+.bloque-emerald .bloque-icon-wrap { background: var(--emerald-500); }
+.bloque-amber .bloque-icon-wrap { background: var(--amber-500); }
+.bloque-rose .bloque-icon-wrap { background: var(--rose-500); }
+.bloque-violet .bloque-card-title { color: var(--violet-700); }
+.bloque-emerald .bloque-card-title { color: var(--emerald-700); }
+.bloque-amber .bloque-card-title { color: var(--amber-700); }
+.bloque-rose .bloque-card-title { color: var(--rose-700); }
+.bloque-card-title { font-weight: 600; font-size: 0.95rem; }
+.bloque-desc { font-size: 0.875rem; color: var(--slate-700); margin-top: 4px; }
+.bloque-list { counter-reset: bloque-counter; }
+.bloque-list li { font-size: 0.875rem; color: var(--slate-700); padding: 6px 0; display: flex; gap: 8px; line-height: 1.6; }
+.bloque-list li::before { content: counter(bloque-counter) "."; counter-increment: bloque-counter; font-weight: 700; }
+.bloque-violet .bloque-list li::before { color: var(--violet-700); }
+.bloque-emerald .bloque-list li::before { color: var(--emerald-700); }
+.bloque-amber .bloque-list li::before { color: var(--amber-700); }
+.bloque-rose .bloque-list li::before { color: var(--rose-700); }
+
+/* Lista simple con flecha */
+.arrow-list { list-style: none; padding: 0; }
+.arrow-list li { padding: 4px 0; padding-left: 22px; position: relative; font-size: 0.875rem; color: var(--slate-700); line-height: 1.6; }
+.arrow-list li::before { content: "▸"; position: absolute; left: 0; color: var(--emerald-500); font-weight: bold; }
+.arrow-list-rose li::before { color: var(--rose-500); }
+.arrow-list-rose-rose li::before { color: var(--rose-500); }
+
+/* Lista numerada personalizada */
+.num-list { counter-reset: num-counter; padding: 0; list-style: none; }
+.num-list li { counter-increment: num-counter; padding: 8px 0 8px 32px; position: relative; font-size: 0.875rem; color: var(--slate-700); line-height: 1.6; }
+.num-list li::before {
+  content: counter(num-counter);
+  position: absolute; left: 0; top: 8px;
+  width: 22px; height: 22px; border-radius: 999px;
+  background: var(--violet-600); color: white;
+  font-size: 0.7rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* =================== SOLUCIONARIO =================== */
+.sol-item { background: white; border: 1px solid var(--slate-200); border-radius: 6px; padding: 16px; margin-bottom: 8px; }
+.sol-item-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 8px; }
+.sol-item-num { background: var(--emerald-600); color: white; width: 28px; height: 28px; border-radius: 999px; font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+.sol-item-text { font-size: 0.85rem; color: var(--slate-700); line-height: 1.6; }
+.sol-item-text strong { color: var(--slate-900); }
+
+/* =================== EMPTY CELL =================== */
+.empty-cell { color: var(--slate-400); font-size: 0.75rem; font-style: italic; }
+
+/* =================== ICONOS SVG (simple) =================== */
+.icon { width: 18px; height: 18px; flex-shrink: 0; }
+.icon-lg { width: 24px; height: 24px; }
+.icon-sm { width: 14px; height: 14px; }
+
+/* Referencias */
+.ref-list { list-style: none; padding: 0; }
+.ref-list li {
+  font-size: 0.875rem; color: var(--slate-700);
+  padding: 8px 0 8px 16px; border-left: 2px solid var(--slate-200);
+  margin-bottom: 8px; line-height: 1.6; transition: border-color .15s;
+}
+.ref-list li:hover { border-left-color: var(--emerald-400); }
+.ref-list li strong { font-weight: 600; color: var(--slate-900); }
+.ref-list li em { font-style: italic; }
+
+/* Print */
+@media print {
+  .header, .tabs-list, .footer { display: none; }
+  .tab-panel { display: block !important; page-break-after: always; }
+  .acc-content, .eval-content { display: block !important; }
+  body { background: white; }
+}
+
+/* =================== SECCIONES PROTEGIDAS =================== */
+.protected-wrap {
+  position: relative;
+  margin-top: 20px;
+}
+.protected-content {
+  filter: blur(8px);
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.35;
+  transition: filter .2s, opacity .2s;
+}
+.protected-content.unlocked {
+  filter: none;
+  pointer-events: auto;
+  user-select: auto;
+  opacity: 1;
+}
+.protected-lock-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 24px 16px;
+  z-index: 10;
+  pointer-events: auto;
+  background: linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.7) 60%, rgba(255,255,255,0.4) 100%);
+  border-radius: 12px;
+}
+.protected-content.unlocked + .protected-lock-overlay { display: none; }
+.protected-lock-card {
+  background: white;
+  border: 2px solid var(--amber-300);
+  border-radius: 12px;
+  padding: 24px 28px;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.15);
+  text-align: center;
+  margin-top: 32px;
+}
+.protected-lock-icon {
+  width: 56px; height: 56px;
+  border-radius: 999px;
+  background: var(--amber-100);
+  color: var(--amber-600);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+}
+.protected-lock-title { font-size: 1.1rem; font-weight: 700; color: var(--slate-900); margin-bottom: 6px; }
+.protected-lock-text { font-size: 0.875rem; color: var(--slate-600); line-height: 1.6; margin-bottom: 16px; }
+.protected-unlock-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--amber-500); color: white;
+  padding: 10px 20px; border-radius: 8px;
+  font-weight: 600; font-size: 0.9rem;
+  transition: background .15s;
+  border: none; cursor: pointer;
+}
+.protected-unlock-btn:hover { background: var(--amber-600); }
+.protected-status {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--emerald-100); color: var(--emerald-700);
+  padding: 4px 12px; border-radius: 999px;
+  font-size: 0.75rem; font-weight: 500;
+  margin-left: 8px;
+}
+
+/* =================== MODAL CONTRASEÑA =================== */
+.password-modal {
+  display: none;
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 9999;
+  align-items: center; justify-content: center;
+  padding: 16px;
+}
+.password-modal.open { display: flex; }
+.password-modal-card {
+  background: white;
+  border-radius: 16px;
+  padding: 28px;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.4);
+  animation: modalIn .25s ease;
+}
+@keyframes modalIn { from { opacity: 0; transform: translateY(8px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+.password-modal-icon {
+  width: 56px; height: 56px;
+  border-radius: 999px;
+  background: var(--amber-100); color: var(--amber-600);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+}
+.password-modal-title { font-size: 1.15rem; font-weight: 700; color: var(--slate-900); margin-bottom: 6px; text-align: center; }
+.password-modal-text { font-size: 0.85rem; color: var(--slate-600); line-height: 1.6; margin-bottom: 18px; text-align: center; }
+.password-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--slate-300);
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  outline: none;
+  transition: border-color .15s;
+  font-family: inherit;
+}
+.password-input:focus { border-color: var(--amber-400); box-shadow: 0 0 0 3px rgba(245,158,11,0.15); }
+.password-error {
+  display: none;
+  background: var(--rose-50);
+  color: var(--rose-700);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+  border: 1px solid var(--rose-200);
+}
+.password-btns { display: flex; gap: 10px; justify-content: flex-end; }
+.btn-cancel {
+  padding: 9px 18px; border: 1px solid var(--slate-300);
+  background: white; color: var(--slate-700);
+  border-radius: 8px; font-size: 0.875rem; font-weight: 500;
+  cursor: pointer; transition: background .15s;
+}
+.btn-cancel:hover { background: var(--slate-50); }
+.btn-submit {
+  padding: 9px 20px; background: var(--amber-500);
+  color: white; border: none; border-radius: 8px;
+  font-size: 0.875rem; font-weight: 600;
+  cursor: pointer; transition: background .15s;
+}
+.btn-submit:hover { background: var(--amber-600); }
+
+/* Solucionario Banco de Evaluación (Tab 4) */
+.eval-solucionario-section {
+  background: white;
+  border: 2px solid var(--amber-300);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.eval-solucionario-trigger {
+  width: 100%; padding: 16px 20px; text-align: left;
+  display: flex; align-items: center; gap: 12px;
+  font-weight: 600; font-size: 0.95rem;
+  background: var(--amber-50);
+  transition: background .15s;
+}
+.eval-solucionario-trigger:hover { background: var(--amber-100); }
+.eval-solucionario-icon { width: 36px; height: 36px; border-radius: 999px; background: var(--amber-500); color: white; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.eval-solucionario-content { display: none; padding: 20px; }
+.eval-solucionario-section.open .eval-solucionario-content { display: block; }
+
+.sol-block {
+  background: var(--slate-50);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+  border-left: 4px solid var(--emerald-400);
+}
+.sol-block-amber { border-left-color: var(--amber-400); }
+.sol-block-rose { border-left-color: var(--rose-400); }
+.sol-block-violet { border-left-color: var(--violet-400); }
+.sol-block-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.sol-block-num { background: var(--emerald-600); color: white; width: 28px; height: 28px; border-radius: 999px; font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.sol-block-amber .sol-block-num { background: var(--amber-500); }
+.sol-block-rose .sol-block-num { background: var(--rose-500); }
+.sol-block-violet .sol-block-num { background: var(--violet-500); }
+.sol-block-q { font-size: 0.85rem; color: var(--slate-700); font-weight: 500; }
+.sol-block-a { font-size: 0.85rem; color: var(--slate-700); line-height: 1.65; margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--slate-200); }
+.sol-block-a strong { color: var(--slate-900); }
+.sol-block-a-mark { display: inline-block; padding: 2px 8px; background: var(--emerald-100); color: var(--emerald-700); border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin-right: 6px; }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="header">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="header-logo">
+        <svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>
+        </svg>
+      </div>
+      <div>
+        <h1 class="header-title">Clase 1: Seguridad y Salud en el Trabajo</h1>
+        <p class="header-subtitle">Decreto Ejecutivo 2393 — Ecuador · Arts. 9, 13, 14 y 15</p>
+      </div>
+    </div>
+    <div class="header-badges">
+      <span class="badge-pill badge-emerald">
+        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        Ingeniería de Plantas
+      </span>
+      <span class="badge-pill badge-amber">
+        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6l9 4 9-4M3 18l9-4 9 4"/><path d="M3 12l9 4 9-4"/></svg>
+        Derecho Laboral
+      </span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ MAIN ============ -->
+<main class="main">
+
+  <!-- TABS NAV -->
+  <div class="tabs-list" role="tablist">
+    <button class="tab-btn active" data-tab="reglamento" role="tab">
+      <span class="tab-num"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg> Pestaña 1</span>
+      <span class="tab-label">Reglamento D.E. 2393</span>
+    </button>
+    <button class="tab-btn" data-tab="caso" role="tab">
+      <span class="tab-num"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M4 20V8l8-5 8 5v12M9 20v-7h6v7"/></svg> Pestaña 2</span>
+      <span class="tab-label">Caso de Estudio</span>
+    </button>
+    <button class="tab-btn" data-tab="taller" role="tab">
+      <span class="tab-num"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 2h6l2 4H7l2-4zM5 6h14l-1 14H6L5 6zM9 11h6M9 15h4"/></svg> Pestaña 3</span>
+      <span class="tab-label">Taller Práctico</span>
+    </button>
+    <button class="tab-btn" data-tab="evaluacion" role="tab">
+      <span class="tab-num"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> Pestaña 4</span>
+      <span class="tab-label">Banco de Evaluación</span>
+    </button>
+    <button class="tab-btn" data-tab="tarea" role="tab">
+      <span class="tab-num"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2M9 12l2 2 4-4"/></svg> Pestaña 5</span>
+      <span class="tab-label">Tarea Asincrónica</span>
+    </button>
+  </div>
+
+  <!-- ===================== PESTAÑA 1: REGLAMENTO ===================== -->
+  <div class="tab-panel active" id="reglamento">
+
+    <div class="hero hero-reglamento">
+      <div class="hero-row">
+        <svg class="hero-icon" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+        <div>
+          <h2>Reglamentos de Seguridad y Salud</h2>
+          <p>Decreto Ejecutivo 2393 — Reglamento de Seguridad y Salud de los Trabajadores</p>
+        </div>
+      </div>
+      <p class="main-text">El Decreto Ejecutivo 2393 (Reglamento de Seguridad y Salud de los Trabajadores y Mejoramiento del Medio Ambiente de Trabajo) constituye el núcleo técnico-jurídico de la prevención de riesgos laborales en el Ecuador. Los artículos 9, 13, 14 y 15 articulan la estructura operativa, legal y técnica obligatoria que toda organización debe implementar para garantizar la integridad psicofísica de los trabajadores y la continuidad del proceso productivo.</p>
+    </div>
+
+    <!-- 1. Introducción Motivadora -->
+    <div class="card card-l-amber">
+      <div class="card-header">
+        <h3 class="card-title">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-7 7c0 2.5 1.5 4.5 3 6v2h8v-2c1.5-1.5 3-3.5 3-6a7 7 0 0 0-7-7z"/></svg>
+          1. Introducción Motivadora
+        </h3>
+      </div>
+      <p class="text">En el diseño y gestión de plantas industriales, la seguridad no es un compartimento aislado de la producción; es un vector crítico de la Efectividad Global de los Equipos (OEE - <em>Overall Equipment Effectiveness</em>). La falta de estructura preventiva se traduce directamente en accidentes de trabajo, pérdidas por ausentismo, daños a la maquinaria y paros no programados que destruyen la disponibilidad (A), reducen el rendimiento (P) y comprometen la calidad (Q).</p>
+      <p class="text">El Decreto Ejecutivo 2393 no opera únicamente como un marco punitivo, sino como una herramienta de ingeniería de sistemas organizacionales: define responsabilidades ineludibles para la alta dirección y los operadores, y establece los órganos técnicos internos (Comités Paritarios, Unidades de Seguridad y Servicios Médicos) que blindan la planta contra la variabilidad del riesgo operacional.</p>
+      <div class="formula-box">
+        <p class="formula-label">Fórmula de Efectividad Global de los Equipos (OEE)</p>
+        <p class="formula-text">OEE = A × P × Q = (t_operativo / t_planificado) × (Producción_Total × t_ciclo_teorico / t_operativo) × (Unidades_Conformes / Producción_Total)</p>
+      </div>
+    </div>
+
+    <!-- 2. Análisis Técnico-Jurídico -->
+    <h3 class="section-h3">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      2. Análisis Técnico-Jurídico (Arts. 9, 13, 14 y 15)
+    </h3>
+
+    <!-- Art 9 -->
+    <div class="acc-item open" data-acc="art9">
+      <button class="acc-trigger">
+        <span class="acc-icon-wrap acc-icon-9">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M4 20V8l8-5 8 5v12M9 20v-7h6v7"/></svg>
+        </span>
+        <span>Artículo 9: Obligaciones Principales de los Empleadores</span>
+        <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="acc-content">
+        <p class="acc-desc">El Art. 9 sitúa la responsabilidad civil, administrativa y técnica en la cúspide de la empresa. Establece la obligación de garantizar condiciones seguras de trabajo mediante un enfoque preventivo en el origen del riesgo.</p>
+        <div class="acc-list">
+          <div class="acc-list-item"><div class="acc-num">1</div><div><div class="acc-item-title">Adopción de medidas técnicas</div><div class="acc-item-text">Implementar soluciones colectivas sobre las individuales (jerarquía de control de riesgos: eliminación, sustitución, controles de ingeniería, señalización y EPP - Equipos de Protección Personal).</div></div></div>
+          <div class="acc-list-item"><div class="acc-num">2</div><div><div class="acc-item-title">Instrucción y capacitación</div><div class="acc-item-text">Proporcionar inducción inicial y formación continua a los trabajadores sobre los riesgos específicos de sus puestos de trabajo y el uso correcto de resguardos, dispositivos de parada de emergencia y procedimientos de trabajo seguro.</div></div></div>
+          <div class="acc-list-item"><div class="acc-num">3</div><div><div class="acc-item-title">Control médico preventivo</div><div class="acc-item-text">Gestionar reconocimientos médicos pre-empleo, periódicos y de reintegro conforme a los riesgos físico-químicos, ergonómicos y biológicos de la tarea.</div></div></div>
+          <div class="acc-list-item"><div class="acc-num">4</div><div><div class="acc-item-title">Suministro gratuito de EPP</div><div class="acc-item-text">Dotar de medios de protección individual certificados, homologados y específicos para cada tarea, asumiendo el mantenimiento y reposición sin costo alguno para el trabajador.</div></div></div>
+          <div class="acc-list-item"><div class="acc-num">5</div><div><div class="acc-item-title">Facilitar la inspección</div><div class="acc-item-text">Permitir el libre acceso y proveer información fidedigna a los inspectores del Ministerio del Trabajo y del Instituto Ecuatoriano de Seguridad Social (IESS).</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Art 13 -->
+    <div class="acc-item" data-acc="art13">
+      <button class="acc-trigger">
+        <span class="acc-icon-wrap acc-icon-13">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 22h20M5 22V8l7-5 7 5v14M9 12v6M15 12v6M9 16h6"/></svg>
+        </span>
+        <span>Artículo 13: Obligaciones y Derechos de los Trabajadores</span>
+        <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="acc-content">
+        <p class="acc-desc">El Art. 13 descentraliza la prevención, convirtiendo al operario en un agente activo de control bajo responsabilidades legales y disciplinarias específicas.</p>
+        <div class="acc-list">
+          <div class="acc-list-item"><div class="acc-num">1</div><div><div class="acc-item-title">Cumplimiento estricto de normas</div><div class="acc-item-text">Respetar los procedimientos de trabajo seguro, advertencias de señalización y manuales de operación de maquinaria.</div></div></div>
+          <div class="acc-list-item"><div class="acc-num">2</div><div><div class="acc-item-title">Uso obligatorio de resguardos y EPP</div><div class="acc-item-text">Prohibición expresa de anular, modificar o retirar protecciones mecánicas, enclavamientos y dispositivos de seguridad sin orden técnica expresa.</div></div></div>
+          <div class="acc-list-item"><div class="acc-num">3</div><div><div class="acc-item-title">Reporte inmediato de condiciones subestándar</div><div class="acc-item-text">Notificar de inmediato al superior jerárquico o al Comité Paritario toda anomalía, avería o condición que represente un riesgo inminente para las personas o las instalaciones.</div></div></div>
+          <div class="acc-list-item"><div class="acc-num">4</div><div><div class="acc-item-title">Colaboración en emergencias</div><div class="acc-item-text">Integrar brigadas contra incendios, evacuación y primeros auxilios cuando la organización lo asigne legalmente.</div></div></div>
+          <div class="acc-list-item"><div class="acc-num">5</div><div><div class="acc-item-title">Derecho de resistencia / abstención</div><div class="acc-item-text">Interrumpir sus labores y retirarse de la zona de trabajo cuando exista un peligro grave e inminente para su vida o salud, sin que ello genere represalias laborales.</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Art 14 -->
+    <div class="acc-item" data-acc="art14">
+      <button class="acc-trigger">
+        <span class="acc-icon-wrap acc-icon-14">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 7a4 4 0 0 0-4 4M9 7a4 4 0 0 1 4 4M9 7v6M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </span>
+        <span>Artículo 14: Comités Paritarios y Subcomités de Seguridad e Higiene</span>
+        <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="acc-content">
+        <p class="acc-desc">El Art. 14 estructura el órgano de control bipartito que canaliza la participación de empleadores y trabajadores en la gestión del riesgo.</p>
+        <div class="acc-subsection">
+          <span class="acc-subsection-title">Criterio de conformación</span>
+          <ul>
+            <li>En todo centro de trabajo con <strong>más de 15 trabajadores</strong>, es obligatoria la conformación de un Comité Paritario de Seguridad e Higiene.</li>
+            <li>Si una empresa tiene sucursales o centros de trabajo satélites con más de 10 trabajadores cada uno, se deberán conformar Subcomités.</li>
+          </ul>
+        </div>
+        <div class="acc-subsection">
+          <span class="acc-subsection-title">Estructura orgánica</span>
+          <ul>
+            <li>Conformado por 3 representantes del empleador y 3 de los trabajadores (con sus respectivos suplentes).</li>
+            <li>La presidencia y secretaría se eligen por votación; el Presidente y el Secretario no pueden pertenecer a la misma parte (si la presidencia recae en la patronal, la secretaría debe ser de los trabajadores, alternándose anualmente).</li>
+            <li>Los técnicos de la Unidad de Seguridad y los Médicos Ocupacionales actúan como asesores técnicos permanentes con voz pero sin voto.</li>
+          </ul>
+        </div>
+        <div class="acc-subsection">
+          <span class="acc-subsection-title">Funciones sustantivas</span>
+          <ul>
+            <li>Aprobar y velar por el cumplimiento del Reglamento Interno de Seguridad y Salud.</li>
+            <li>Realizar inspecciones periódicas a las instalaciones y puestos de trabajo.</li>
+            <li>Investigar las causas de todos los accidentes de trabajo y enfermedades profesionales ocurridos en el centro.</li>
+            <li>Promover la formación, divulgación y cultura preventiva dentro de la planta.</li>
+            <li>Sesionar obligatoriamente de forma mensual y de manera extraordinaria ante emergencias o accidentes graves.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Art 15 -->
+    <div class="acc-item" data-acc="art15">
+      <button class="acc-trigger">
+        <span class="acc-icon-wrap acc-icon-15">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+        </span>
+        <span>Artículo 15: Unidades Técnicas de Seguridad e Higiene</span>
+        <svg class="acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="acc-content">
+        <p class="acc-desc">El Art. 15 establece la exigencia de un órgano técnico especializado con capacidad técnica y autonomía funcional para el diseño e implementación del Sistema de Gestión de Seguridad y Salud en el Trabajo (SGSST).</p>
+        <div class="acc-subsection">
+          <span class="acc-subsection-title">Parámetros de obligatoriedad</span>
+          <ul>
+            <li>Empresas con 100 o más trabajadores.</li>
+            <li>Empresas de alto riesgo (minería, química pesada, construcción, fundiciones, etc.) con más de 50 trabajadores, previa disposición de la autoridad competente.</li>
+          </ul>
+        </div>
+        <div class="acc-subsection">
+          <span class="acc-subsection-title">Requisitos del Responsable</span>
+          <ul>
+            <li>Profesional con formación técnica de cuarto nivel o registro profesional en Seguridad e Higiene del Trabajo debidamente avalado ante los entes de control laboral.</li>
+          </ul>
+        </div>
+        <div class="acc-subsection">
+          <span class="acc-subsection-title">Responsabilidades operativas</span>
+          <ul>
+            <li>Identificación, medición cuantitativa y evaluación de riesgos físico-químicos, mecánicos, biológicos, ergonómicos y psicosociales.</li>
+            <li>Diseño del plan anual de prevención y control de siniestros.</li>
+            <li>Elaboración del Reglamento Interno de Seguridad y Salud de la empresa.</li>
+            <li>Inspecciones técnicas programadas y no programadas a plantas y sistemas mecánicos (sistemas presurizados, calderas, grúas, líneas de mecanizado).</li>
+            <li>Determinación técnica y especificación de los Equipos de Protección Individual y Colectiva.</li>
+            <li>Liderazgo técnico en la investigación de accidentes laborales mediante métodos causa-raíz (ej. Árbol de Causas, Diagrama de Ishikawa).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Matriz comparativa -->
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Matriz Comparativa de los Artículos Analizados</h3>
+        <p class="card-desc">Comparación operativa y de impacto en OEE entre los cuatro artículos clave</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Parámetro</th>
+              <th>Art. 9: Empleador</th>
+              <th>Art. 13: Trabajador</th>
+              <th>Art. 14: Comité Paritario</th>
+              <th>Art. 15: Unidad de Seguridad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="first-col">Rol Principal</td>
+              <td>Garante legal y financiero</td>
+              <td>Ejecutor operativo y de autocuidado</td>
+              <td>Auditor bipartito y veedor interno</td>
+              <td>Asesor técnico e integrador de ingeniería</td>
+            </tr>
+            <tr>
+              <td class="first-col">Exigibilidad</td>
+              <td>Desde 1 trabajador</td>
+              <td>Desde 1 trabajador</td>
+              <td>&gt; 15 trabajadores (Subcomités: &gt; 10)</td>
+              <td>≥ 100 trabajadores (o &gt; 50 en alto riesgo)</td>
+            </tr>
+            <tr>
+              <td class="first-col">Alcance</td>
+              <td>Provisión de recursos, EPP y formación</td>
+              <td>Cumplimiento normativo y reporte de fallos</td>
+              <td>Reuniones mensuales e investigación conjunta</td>
+              <td>Mediciones, matrices IPERC, planes técnicos</td>
+            </tr>
+            <tr>
+              <td class="first-col">Impacto en OEE</td>
+              <td>Asignación de CAPEX/OPEX de seguridad</td>
+              <td>Reducción de paradas por imprudencia</td>
+              <td>Detección temprana de condiciones inseguras</td>
+              <td>Optimización de ingeniería de protecciones</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 3. ACTIVIDAD PRÁCTICA: AUDITORÍA Y ANÁLISIS DE CASO REAL -->
+    <div class="card card-l-emerald">
+      <div class="card-header">
+        <h3 class="card-title">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          3. Actividad Práctica: Auditoría y Análisis de Caso Real
+        </h3>
+      </div>
+
+      <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: 8px; color: var(--slate-900);">Caso de Estudio:</h4>
+      <p class="text">Una empresa de mecanizado y manufactura metalmecánica cuenta con <strong>125 trabajadores</strong> en su planta central. Durante el último semestre, la línea principal de torneado CNC experimentó múltiples paros no programados debido a que los operadores anulan frecuentemente los microinterruptores de seguridad de las puertas para acelerar la medición de piezas.</p>
+      <p class="text">La empresa no ha renovado su Comité Paritario en dos años, no dispone de un técnico de seguridad registrado a tiempo completo (los contratos se hacen por honorarios eventuales cada 4 meses) y la entrega de EPP no cuenta con registros de entrega ni certificados técnicos de homologación.</p>
+
+      <h4 style="font-size: 1rem; font-weight: 600; margin: 16px 0 8px; color: var(--slate-900);">Consigna:</h4>
+      <ol class="num-list" style="margin-bottom: 0;">
+        <li>Identifique y clasifique los incumplimientos directos de los Arts. 9, 13, 14 y 15 del D.E. 2393.</li>
+        <li>Determine cómo la anulación de los enclavamientos mecánicos afecta directamente las variables del OEE.</li>
+        <li>Plantee las acciones de ingeniería y organizacionales correctivas de aplicación inmediata.</li>
+      </ol>
+    </div>
+
+    <!-- 4. Retroalimentación -->
+    <div class="card card-l-rose">
+      <div class="card-header">
+        <h3 class="card-title">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#e11d48" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0zM12 9v4M12 17h.01"/></svg>
+          4. Retroalimentación — Incumplimientos Normativos
+        </h3>
+      </div>
+      <div class="grid-2" style="margin-bottom: 16px;">
+        <div style="border: 1px solid var(--rose-200); background: rgba(255,241,242,0.5); border-radius: 6px; padding: 12px;">
+          <span class="badge badge-rose" style="margin-bottom: 8px;">Art. 9</span>
+          <p style="font-size: 0.875rem; color: var(--slate-700); line-height: 1.6; margin-top: 8px;">Falta de suministro formal, registro y capacitación en EPP certificado; omisión patronal en mantener operativos los dispositivos de seguridad de los tornos CNC.</p>
+        </div>
+        <div style="border: 1px solid var(--rose-200); background: rgba(255,241,242,0.5); border-radius: 6px; padding: 12px;">
+          <span class="badge badge-rose" style="margin-bottom: 8px;">Art. 13</span>
+          <p style="font-size: 0.875rem; color: var(--slate-700); line-height: 1.6; margin-top: 8px;">Falta grave del operador al violar y alterar deliberadamente los enclavamientos de seguridad de las máquinas, exponiéndose a atrapamiento y proyección de viruta.</p>
+        </div>
+        <div style="border: 1px solid var(--rose-200); background: rgba(255,241,242,0.5); border-radius: 6px; padding: 12px;">
+          <span class="badge badge-rose" style="margin-bottom: 8px;">Art. 14</span>
+          <p style="font-size: 0.875rem; color: var(--slate-700); line-height: 1.6; margin-top: 8px;">Inexistencia legal del Comité Paritario (mandato vencido), incumpliendo las sesiones mensuales y las inspecciones paritarias de las máquinas.</p>
+        </div>
+        <div style="border: 1px solid var(--rose-200); background: rgba(255,241,242,0.5); border-radius: 6px; padding: 12px;">
+          <span class="badge badge-rose" style="margin-bottom: 8px;">Art. 15</span>
+          <p style="font-size: 0.875rem; color: var(--slate-700); line-height: 1.6; margin-top: 8px;">Con 125 operarios en una industria de riesgo mecánico medio-alto, la empresa está obligada por ley a contar con una Unidad de Seguridad e Higiene dirigida por un técnico calificado con estabilidad y dedicación permanente.</p>
+        </div>
+      </div>
+      <div class="alert alert-amber">
+        <div class="alert-title">
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0zM12 9v4M12 17h.01"/></svg>
+          Impacto en el OEE
+        </div>
+        <p class="alert-desc">La anulación de los resguardos genera la ilusión de ahorro de ciclo de tiempo, pero destruye la Disponibilidad (A): ante un siniestro por atrapamiento, la línea sufre una detención total por inspección policial/judicial, peritaje del IESS y paralización de la máquina (pérdidas de cientos de horas de máquina disponible).</p>
+      </div>
+      <div class="alert alert-emerald">
+        <div class="alert-title">
+          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+          Solución Técnica Recomendada
+        </div>
+        <p class="alert-desc">Implementar relés de seguridad con bloqueo por solenoide de enclavamiento supervisado (categoría 4 / PLe según ISO 13849-1), regularizar de inmediato la conformación paritaria del Comité ante el Ministerio del Trabajo y contratar al Director de la Unidad Técnica de Seguridad según el Art. 15.</p>
+      </div>
+    </div>
+
+    <!-- Referencias -->
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          Referencias Bibliográficas (Normas APA 7ª Edición)
+        </h3>
+      </div>
+      <ul class="ref-list">
+        <li><strong>Instituto Ecuatoriano de Seguridad Social.</strong> (2016). <em>Reglamento del seguro general de riesgos del trabajo (Resolución C.D. 513)</em>. Registro Oficial Edición Especial 632.</li>
+        <li><strong>Organización Internacional del Trabajo.</strong> (2001). <em>Directrices relativas a los sistemas de gestión de la seguridad y la salud en el trabajo (ILO-OSH 2001)</em>. OIT.</li>
+        <li><strong>Presidencia de la República del Ecuador.</strong> (1986). <em>Reglamento de seguridad y salud de los trabajadores y mejoramiento del medio ambiente de trabajo (Decreto Ejecutivo 2393)</em>. Registro Oficial 565.</li>
+        <li><strong>Real Academia de Ingeniería.</strong> (2020). <em>Seguridad de las máquinas: Principios de diseño e integración de sistemas de mando (ISO 13849-1:2015)</em>. AENOR.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===================== PESTAÑA 2: CASO DE ESTUDIO ===================== -->
+  <div class="tab-panel" id="caso">
+
+    <div class="hero hero-caso">
+      <div class="hero-row">
+        <svg class="hero-icon" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h20M4 20V8l8-5 8 5v12M9 20v-7h6v7"/></svg>
+        <div>
+          <h2>Caso de Estudio de Aplicación Técnica y Legal</h2>
+          <p>Decreto Ejecutivo 2393 — Análisis integral de una planta metalmecánica real</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contexto de la Planta -->
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2"><path d="M2 20h20M4 20V8l8-5 8 5v12M9 20v-7h6v7"/></svg>
+          Contexto de la Planta
+        </h3>
+      </div>
+      <div class="grid-2" style="gap: 16px;">
+        <div><p style="font-size: 0.7rem; font-weight: 600; color: var(--slate-500); text-transform: uppercase;">Empresa</p><p style="font-size: 0.875rem; font-weight: 500;">Mecanizados y Montajes del Pacífico S.A.</p></div>
+        <div><p style="font-size: 0.7rem; font-weight: 600; color: var(--slate-500); text-transform: uppercase;">Dotación total</p><p style="font-size: 0.875rem;">138 trabajadores en nómina (112 en planta de producción, 14 en logística/almacén y 12 en administración técnica).</p></div>
+        <div style="grid-column: 1 / -1;"><p style="font-size: 0.7rem; font-weight: 600; color: var(--slate-500); text-transform: uppercase;">Actividad</p><p style="font-size: 0.875rem; color: var(--slate-700);">Fabricación y rectificado de piezas de transmisión de potencia para el sector naval e industrial.</p></div>
+        <div><p style="font-size: 0.7rem; font-weight: 600; color: var(--slate-500); text-transform: uppercase;">Distribución de turnos</p><p style="font-size: 0.875rem; color: var(--slate-700);">2 turnos operativos de 8 horas.</p></div>
+        <div style="grid-column: 1 / -1;"><p style="font-size: 0.7rem; font-weight: 600; color: var(--slate-500); text-transform: uppercase;">Parque de maquinaria principal</p><p style="font-size: 0.875rem; color: var(--slate-700);">Tornos paralelos, centros de mecanizado CNC de 3 y 5 ejes, rectificadoras tangenciales, cizallas hidráulicas y cabinas de soldadura SMAW/GMAW.</p></div>
+      </div>
+    </div>
+
+    <!-- Hallazgos -->
+    <h3 class="section-h3">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#e11d48" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0zM12 9v4M12 17h.01"/></svg>
+      Situación Operativa y Hallazgos de Planta
+    </h3>
+    <p class="text">Durante el último trimestre, la jefatura de producción reportó un deterioro progresivo en la productividad, marcado por paradas de emergencia frecuentes y un incremento en el ausentismo laboral. Una inspección técnica preliminar levantó los siguientes datos de campo:</p>
+    <div class="grid-2">
+      <div class="hallazgo-card hallazgo-amber">
+        <div class="hallazgo-head">
+          <div class="hallazgo-icon-wrap hallazgo-icon-amber"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 22h20M5 22V8l7-5 7 5v14M9 12v6M15 12v6"/></svg></div>
+          <div class="hallazgo-title">1. Gestión de Equipos de Protección Personal (EPP)</div>
+        </div>
+        <p class="hallazgo-text">Los operadores de las fresadoras universales y centros CNC utilizan gafas de seguridad de policarbonato estándar adquiridas sin certificación técnica (ANSI Z87.1 o EN 166). Se registraron 4 eventos de proyección de viruta incandescente con quemaduras menores en córnea. El empleador dispuso verbalmente que el reemplazo de las pantallas faciales deterioradas debe ser asumido en un 50% por el trabajador mediante descuento de rol, argumentando "falta de cuidado individual".</p>
+      </div>
+      <div class="hallazgo-card hallazgo-rose">
+        <div class="hallazgo-head">
+          <div class="hallazgo-icon-wrap hallazgo-icon-rose"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+          <div class="hallazgo-title">2. Intervención de Sistemas de Seguridad en Máquinas</div>
+        </div>
+        <p class="hallazgo-text">En la celda automatizada de torneado CNC (Torno horizontal Mazak Quick Turn), los operadores del segundo turno anularon el microinterruptor de seguridad electromecánico de la puerta corrediza mediante un puente eléctrico directo al PLC. La justificación de los operarios fue "reducir el tiempo de ciclo en 8 segundos por pieza al no esperar la desaceleración del husillo para verificar las cotas de acabado". Hace dos semanas, un operario sufrió una contusión grave en el antebrazo izquierdo al intentar retirar una rebaba enredada con la pieza girando a 1800 rpm.</p>
+      </div>
+      <div class="hallazgo-card hallazgo-violet">
+        <div class="hallazgo-head">
+          <div class="hallazgo-icon-wrap hallazgo-icon-violet"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 7a4 4 0 0 0-4 4M9 7a4 4 0 0 1 4 4M9 7v6M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div class="hallazgo-title">3. Estructura Preventiva y Comités</div>
+        </div>
+        <p class="hallazgo-text">La empresa cuenta con un Comité Paritario conformado hace 3 años, cuyo período legal de registro ante el Ministerio del Trabajo venció hace 18 meses. No se han levantado actas de sesión ordinaria durante el año en curso. Tras el accidente en el torno CNC, los delegados de los trabajadores exigieron una reunión extraordinaria de investigación de accidentes; sin embargo, la gerencia de planta no concedió las horas laborales correspondientes, aduciendo que "las reuniones gremiales deben realizarse fuera de la jornada de trabajo sin remuneración".</p>
+      </div>
+      <div class="hallazgo-card hallazgo-sky">
+        <div class="hallazgo-head">
+          <div class="hallazgo-icon-wrap hallazgo-icon-sky"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg></div>
+          <div class="hallazgo-title">4. Gestión de la Unidad Técnica de Seguridad</div>
+        </div>
+        <p class="hallazgo-text">La empresa contrata los servicios de un asesor externo en prevención de riesgos únicamente bajo modalidad de servicios profesionales por 4 horas quincenales. No existe un técnico de seguridad residente registrado en la plataforma del Ministerio del Trabajo. No se dispone de matrices de evaluación de riesgos IPERC actualizadas, ni de registros dosimétricos de ruido en el área de corte y desbaste, a pesar de que los niveles sonoros continuos equivalentes superan los 89 dBA en jornada de 8 horas.</p>
+      </div>
+    </div>
+
+    <!-- Cálculo OEE -->
+    <div class="card card-l-amber" style="margin-top: 24px;">
+      <div class="card-header">
+        <h3 class="card-title">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="12" y2="18"/></svg>
+          Impacto en la Efectividad Global de los Equipos (OEE)
+        </h3>
+        <p class="card-desc">El accidente con tiempo perdido en el centro de torneado CNC provocó la detención inmediata de la máquina por peritaje interno y posterior clausura cautelar del puesto por el inspector del IESS durante 48 horas laborales.</p>
+      <p class="text" style="margin-top: 12px;"><strong>Para un lote planificado de 1200 ejes de transmisión en el mes:</strong></p>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-box"><div class="stat-label">Tiempo de carga planificado</div><div class="stat-value">t_planificado = 160 h</div></div>
+        <div class="stat-box stat-box-rose"><div class="stat-label">Tiempo de paradas no programadas por accidente, peritaje y reparaciones</div><div class="stat-value">t_paro = 54 h</div></div>
+        <div class="stat-box stat-box-emerald"><div class="stat-label">Tiempo operativo neto</div><div class="stat-value">t_operativo = 106 h</div></div>
+        <div class="stat-box stat-row-wide">
+          <div class="stat-label">Velocidad teórica</div><div class="stat-value" style="font-size: 0.95rem;">10 piezas/hora (t_ciclo_teorico = 0.1 h/pieza)</div>
+          <div class="stat-label" style="margin-top: 8px;">Producción total obtenida</div><div class="stat-value" style="font-size: 0.95rem;">850 piezas (de las cuales 65 fueron rechazadas por defectos dimensionales causados durante la operación forzada con resguardos puenteados)</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 12px;">
+        <div class="calc-step">
+          <div class="calc-step-label">A — Disponibilidad</div>
+          <div class="calc-step-formula">106 / 160 = 0.6625</div>
+          <div class="calc-step-result"><span class="pct">66.25%</span></div>
+        </div>
+        <div class="calc-step">
+          <div class="calc-step-label">P — Rendimiento</div>
+          <div class="calc-step-formula">(850 × 0.1) / 106 = 85 / 106 = 0.8019</div>
+          <div class="calc-step-result"><span class="pct">80.19%</span></div>
+        </div>
+        <div class="calc-step">
+          <div class="calc-step-label">Q — Calidad</div>
+          <div class="calc-step-formula">(850 − 65) / 850 = 785 / 850 = 0.9235</div>
+          <div class="calc-step-result"><span class="pct">92.35%</span></div>
+        </div>
+        <div class="calc-step calc-step-total">
+          <div class="calc-step-label">OEE Total</div>
+          <div class="calc-step-formula">0.6625 × 0.8019 × 0.9235 = 0.4906</div>
+          <div class="calc-step-result"><span class="pct">49.06%</span></div>
+        </div>
+      </div>
+
+      <div class="alert alert-rose" style="margin-top: 16px;">
+        <div class="alert-title">Conclusión técnica</div>
+        <p class="alert-desc">La degradación de la seguridad redujo el OEE a menos de la mitad del estándar industrial recomendado (&gt; 85%), demostrando que la omisión de los protocolos preventivos no generó ahorro de tiempo, sino una caída crítica de disponibilidad y rendimiento.</p>
+      </div>
+    </div>
+
+    <!-- Guía de trabajo -->
+    <h3 class="section-h3" style="margin-top: 24px;">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2M9 12l2 2 4-4"/></svg>
+      Guía de Trabajo para la Sesión de Clase
+    </h3>
+    <div class="grid-3">
+      <div class="fase-card fase-emerald">
+        <div class="fase-head"><span class="badge badge-outline">Fase 1</span><span style="font-size: 0.75rem; color: var(--emerald-700); font-weight: 500;">40 minutos</span></div>
+        <div class="fase-title">Diagnóstico Legal y Cruce de Artículos</div>
+        <p class="fase-text" style="margin-top: 8px;">Los estudiantes, divididos en mesas de trabajo técnico, completan la matriz analítica cruzando cada hallazgo con el artículo vulnerado del D.E. 2393.</p>
+      </div>
+      <div class="fase-card fase-amber">
+        <div class="fase-head"><span class="badge badge-outline">Fase 2</span><span style="font-size: 0.75rem; color: var(--amber-700); font-weight: 500;">30 minutos</span></div>
+        <div class="fase-title">Debate Técnico-Operativo</div>
+        <p class="fase-text" style="margin-top: 8px;">Discusión sobre el derecho de abstención del trabajador (Art. 13), la legalidad de la Unidad Técnica (Art. 15) y el análisis financiero del accidente frente a la inversión en seguridad.</p>
+      </div>
+      <div class="fase-card fase-rose">
+        <div class="fase-head"><span class="badge badge-outline">Fase 3</span><span style="font-size: 0.75rem; color: var(--rose-700); font-weight: 500;">30 minutos</span></div>
+        <div class="fase-title">Plan de Remediación Inmediato</div>
+        <p class="fase-text" style="margin-top: 8px;">Cada equipo estructura el plan de acción correctivo en tres niveles: ingeniería, organizacional-legal y operativa-administrativa.</p>
+      </div>
+    </div>
+
+    <!-- Matriz Diagnóstico -->
+    <div class="card" style="margin-top: 20px;">
+      <div class="card-header">
+        <h3 class="card-title">Matriz Analítica — Diagnóstico Legal (Fase 1)</h3>
+        <p class="card-desc">Cruce de hallazgos de planta con los artículos del D.E. 2393</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Hecho Identificado</th><th>Artículo Vulnerado</th><th>Sujeto Responsable</th><th>Tipificación de la Falta</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="first-col">Cobro y falta de certificación en EPP</td><td><span class="badge badge-sec">Art. 9 (Obligaciones Empleador)</span></td><td>Gerencia / Empleador</td><td>Infracción grave: el EPP debe ser gratuito, homologado y adecuado al riesgo.</td></tr>
+            <tr><td class="first-col">Puenteo de microinterruptores de seguridad</td><td><span class="badge badge-sec">Art. 13 (Obligaciones Trabajador)</span></td><td>Operadores involucrados</td><td>Falta grave del trabajador: manipulación no autorizada de dispositivos de protección.</td></tr>
+            <tr><td class="first-col">Comité vencido y negativa de facilidades</td><td><span class="badge badge-sec">Art. 14 (Comités Paritarios)</span></td><td>Empleador y Trabajadores</td><td>Incumplimiento de renovación, periodicidad de reuniones e investigación conjunta.</td></tr>
+            <tr><td class="first-col">Asesor externo de 4 h/quincena para 138 trabajadores</td><td><span class="badge badge-sec">Art. 15 (Unidad de Seguridad)</span></td><td>Empleador / Alta Dirección</td><td>Violación legal: plantas con ≥ 100 operarios exigen Unidad Técnica permanente y formal.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Preguntas de debate -->
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-7 7c0 2.5 1.5 4.5 3 6v2h8v-2c1.5-1.5 3-3.5 3-6a7 7 0 0 0-7-7z"/></svg>
+          Fase 2: Debate Técnico-Operativo
+        </h3>
+      </div>
+      <div style="display: grid; gap: 12px;">
+        <div style="background: var(--slate-50); padding: 16px; border-radius: 6px; display: flex; gap: 12px;">
+          <div class="num-circle num-circle-amber">1</div>
+          <div>
+            <p style="font-size: 0.9rem; font-weight: 500;">¿El trabajador tenía el derecho de detener el torno CNC cuando detectó que la máquina no frenaba a tiempo o cuando el resguardo estaba puenteado?</p>
+            <p style="font-size: 0.78rem; color: var(--slate-500); font-style: italic; margin-top: 4px;">Sustente con el Art. 13 (derecho a la interrupción de labores ante riesgo inminente).</p>
+          </div>
+        </div>
+        <div style="background: var(--slate-50); padding: 16px; border-radius: 6px; display: flex; gap: 12px;">
+          <div class="num-circle num-circle-amber">2</div>
+          <div>
+            <p style="font-size: 0.9rem; font-weight: 500;">Si la empresa tiene 138 trabajadores, ¿cuál es el estatus legal y orgánico que debe tener la Unidad Técnica de Seguridad según el Art. 15, y cuáles son sus facultades frente a la jefatura de producción para detener líneas inseguras?</p>
+          </div>
+        </div>
+        <div style="background: var(--slate-50); padding: 16px; border-radius: 6px; display: flex; gap: 12px;">
+          <div class="num-circle num-circle-amber">3</div>
+          <div>
+            <p style="font-size: 0.9rem; font-weight: 500;">Analice el impacto financiero del accidente: contraste el costo de instalar un interruptor de seguridad de enclavamiento supervisado por solenoide (con llave trampa, nivel de rendimiento PL d / PL e) frente a las pérdidas por caída del OEE al 49.06% y las responsabilidades patronales por recargo de prestaciones ante el IESS.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Plan de remediación -->
+    <h3 class="section-h3" style="margin-top: 24px;">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+      Fase 3: Plan de Remediación Inmediato
+    </h3>
+    <div class="grid-3">
+      <div class="fase-card fase-emerald">
+        <div class="fase-head"><span class="badge badge-outline">Nivel 1</span></div>
+        <div class="fase-head">
+          <div style="width: 40px; height: 40px; border-radius: 999px; background: var(--emerald-500); color: white; display: flex; align-items: center; justify-content: center;"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+          <div class="fase-title">Acción de Ingeniería</div>
+        </div>
+        <p class="fase-text">Retiro de los puentes en los circuitos de control, instalación de relés de seguridad redundantes y protocolización de procedimientos LOTO (Lockout/Tagout) para ajustes y mantenimiento.</p>
+      </div>
+      <div class="fase-card fase-amber">
+        <div class="fase-head"><span class="badge badge-outline">Nivel 2</span></div>
+        <div class="fase-head">
+          <div style="width: 40px; height: 40px; border-radius: 999px; background: var(--amber-500); color: white; display: flex; align-items: center; justify-content: center;"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 7a4 4 0 0 0-4 4M9 7a4 4 0 0 1 4 4M9 7v6"/></svg></div>
+          <div class="fase-title">Acción Organizacional / Legal</div>
+        </div>
+        <p class="fase-text">Convocatoria inmediata a elecciones paritarias de los 3 representantes de los trabajadores y 3 del empleador (Art. 14) y apertura de la vacante para la contratación del Técnico de Seguridad e Higiene titular a tiempo completo (Art. 15).</p>
+      </div>
+      <div class="fase-card fase-rose">
+        <div class="fase-head"><span class="badge badge-outline">Nivel 3</span></div>
+        <div class="fase-head">
+          <div style="width: 40px; height: 40px; border-radius: 999px; background: var(--rose-500); color: white; display: flex; align-items: center; justify-content: center;"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2M9 12l2 2 4-4"/></svg></div>
+          <div class="fase-title">Acción Operativa / Administrativa</div>
+        </div>
+        <p class="fase-text">Creación de registros de entrega individual de EPP con fichas técnicas de homologación archivadas y firma de compromiso de uso obligatorio (Arts. 9 y 13).</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== PESTAÑA 3: TALLER PRÁCTICO ===================== -->
+  <div class="tab-panel" id="taller">
+
+    <div class="hero hero-taller">
+      <div class="hero-row">
+        <svg class="hero-icon" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2h6l2 4H7l2-4zM5 6h14l-1 14H6L5 6zM9 11h6M9 15h4"/></svg>
+        <div>
+          <h2>Taller Práctico: Auditoría de Conformidad Legal</h2>
+          <p>D.E. 2393 — ABP exprés con auditoría cruzada en parejas (30 minutos cronometrados)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Información general -->
+    <div class="grid-3">
+      <div class="card card-l-violet" style="margin-bottom: 0;">
+        <div class="card-header"><h4 class="section-h4" style="display: flex; align-items: center; gap: 8px;"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg> Método Pedagógico</h4></div>
+        <p class="text">Aprendizaje Basado en Problemas (ABP) exprés combinado con auditoría cruzada en parejas. Maximiza la tasa de retención y elimina tiempos muertos al enfocar la actividad en una matriz de decisión binaria y técnica.</p>
+      </div>
+      <div class="card card-l-violet" style="margin-bottom: 0;">
+        <div class="card-header"><h4 class="section-h4" style="display: flex; align-items: center; gap: 8px;"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Tiempo Total</h4></div>
+        <p style="font-size: 1.5rem; font-weight: 700; color: var(--violet-700); margin: 8px 0;">30 minutos cronometrados</p>
+      </div>
+      <div class="card card-l-violet" style="margin-bottom: 0;">
+        <div class="card-header"><h4 class="section-h4" style="display: flex; align-items: center; gap: 8px;"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 7a4 4 0 0 0-4 4M9 7a4 4 0 0 1 4 4M9 7v6"/></svg> Modalidad</h4></div>
+        <p class="text">Parejas de trabajo (Rol 1: Auditor Técnico / Rol 2: Auditor Legal).</p>
+      </div>
+    </div>
+
+    <!-- Cronograma -->
+    <div class="card" style="margin-top: 20px;">
+      <div class="card-header">
+        <h3 class="card-title"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Cronograma de Ejecución (30 minutos)</h3>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Bloque</th><th>Duración</th><th>Actividad del Estudiante</th><th>Rol del Docente</th></tr></thead>
+          <tbody>
+            <tr><td class="first-col" style="font-family: monospace; white-space: nowrap;">00 – 05 min</td><td><span class="badge badge-sec">5 min</span></td><td>Lectura individual de la micro-cédula del caso y asignación de roles.</td><td>Enmarque de reglas y control del cronómetro.</td></tr>
+            <tr><td class="first-col" style="font-family: monospace; white-space: nowrap;">05 – 20 min</td><td><span class="badge badge-sec">15 min</span></td><td>Resolución colaborativa de la Matriz de No Conformidades Técnicas.</td><td>Asesoría en dudas de tipificación de artículos.</td></tr>
+            <tr><td class="first-col" style="font-family: monospace; white-space: nowrap;">20 – 28 min</td><td><span class="badge badge-sec">8 min</span></td><td>Plenaria de contraste rápido: contrastación de dictámenes entre parejas.</td><td>Moderación técnica y validación de criterios.</td></tr>
+            <tr><td class="first-col" style="font-family: monospace; white-space: nowrap;">28 – 30 min</td><td><span class="badge badge-sec">2 min</span></td><td>Cierre de síntesis y entrega de la hoja de dictamen.</td><td>Retroalimentación de puntos ciegos comunes.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Hoja de trabajo - Matriz vacía -->
+    <div class="card" style="border: 2px dashed var(--violet-400);">
+      <div class="card-header">
+        <h3 class="card-title"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><path d="M9 2h6l2 4H7l2-4zM5 6h14l-1 14H6L5 6zM9 11h6M9 15h4"/></svg> Hoja de Trabajo para el Estudiante</h3>
+        <p class="card-desc">Instrucciones: Analicen las 4 evidencias recolectadas en la planta metalmecánica y determinen el incumplimiento legal exacto según el D.E. 2393 (Artículos 9, 13, 14 o 15), el nivel de criticidad y la medida correctiva inmediata.</p>
+      </div>
+      <p style="font-size: 0.7rem; font-weight: 600; color: var(--slate-500); text-transform: uppercase; margin-bottom: 12px;">Matriz de No Conformidades Técnicas</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr style="background: var(--violet-50);">
+              <th style="width: 40px;">#</th>
+              <th>Hallazgo de Auditoría en Planta</th>
+              <th>Artículo Vulnerado</th>
+              <th>Responsable Legal/Operativo</th>
+              <th>Nivel de Riesgo</th>
+              <th>Acción Correctiva</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="first-col" style="font-weight: 700; text-align: center;">1</td><td>Se descuenta del rol de pagos el 50% del valor de pantallas faciales deterioradas; se compran gafas sin certificación ANSI/EN.</td><td><span class="empty-cell">[ A completar ]</span></td><td><span class="empty-cell">[ A completar ]</span></td><td><span class="empty-cell">[ A completar ]</span></td><td><span class="empty-cell">[ A completar ]</span></td></tr>
+            <tr><td class="first-col" style="font-weight: 700; text-align: center;">2</td><td>Operador puentea el microinterruptor de la puerta del torno CNC al PLC para ganar 8 segundos por ciclo; ocurre atrapamiento.</td><td><span class="empty-cell">[ A completar ]</span></td><td><span class="empty-cell">[ A completar ]</span></td><td><span class="empty-cell">[ A completar ]</span></td><td><span class="empty-cell">[ A completar ]</span></td></tr>
+            <tr><td class="first-col" style="font-weight: 700; text-align: center;">3</td><td>Planta con 138 trabajadores mantiene el registro del Comité Paritario vencido hace 18 meses y niega horas laborales para sesionar.</td><td><span class="empty-cell">[ A completar ]</span></td><td><span class="empty-cell">[ A completar ]</span></td><td><span class="empty-cell">[ A completar ]</span></td><td><span class="empty-cell">[ A completar ]</span></td></tr>
+            <tr><td class="first-col" style="font-weight: 700; text-align: center;">4</td><td>El empleador cubre la gestión de seguridad únicamente con un asesor externo contratado por 4 horas quincenales.</td><td><span class="empty-cell">[ A completar ]</span></td><td><span class="empty-cell">[ A completar ]</span></td><td><span class="empty-cell">[ A completar ]</span></td><td><span class="empty-cell">[ A completar ]</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Pregunta crítica -->
+    <div class="alert alert-violet" style="margin-top: 20px;">
+      <div class="alert-title">
+        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        Pregunta de Decisión Crítica (Resolución Rápida: 3 minutos)
+      </div>
+      <p class="alert-desc" style="margin-bottom: 8px;">Con base en el impacto del paro no programado (t_paro = 54 h) que degradó la disponibilidad operacional a un 66.25%, respondan técnicamente:</p>
+      <p class="alert-desc" style="font-style: italic;">¿Qué facultad otorga el Art. 13 al trabajador respecto a la abstención de labores ante un riesgo inminente, y cómo debió actuar la supervisión de turno frente al puenteo del sistema de seguridad de la máquina?</p>
+    </div>
+
+    <!-- Solucionario PROTEGIDO -->
+    <div class="protected-wrap">
+      <div class="protected-content" id="solucionario-taller">
+        <div class="card card-l-emerald" style="background: rgba(236,253,245,0.4);">
+          <div class="card-header">
+            <h3 class="card-title"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Pauta de Evaluación Rápida para el Docente (Solucionario)</h3>
+            <p class="card-desc">Respuestas modelo para validar los dictámenes de las parejas durante la plenaria de contraste.</p>
+          </div>
+          <div style="display: grid; gap: 8px;">
+            <div class="sol-item">
+              <div class="sol-item-head"><div class="sol-item-num">Ítem 1</div><span class="badge badge-sec">Art. 9 (Obligaciones del Empleador)</span><span class="badge badge-amber-light">Riesgo Medio</span></div>
+              <p class="sol-item-text"><strong>Acción: </strong>Adquisición inmediata de EPP con certificación técnica oficial y cese total de cobros a los trabajadores (provisión 100% gratuita por ley).</p>
+            </div>
+            <div class="sol-item">
+              <div class="sol-item-head"><div class="sol-item-num">Ítem 2</div><span class="badge badge-sec">Art. 13 (Obligaciones del Trabajador)</span><span class="badge badge-rose-light">Riesgo Crítico</span></div>
+              <p class="sol-item-text"><strong>Acción: </strong>Retiro inmediato de puentes eléctricos en el PLC, reposición de relé de seguridad con bloqueo por solenoide de enclavamiento supervisado e inducción disciplinaria.</p>
+            </div>
+            <div class="sol-item">
+              <div class="sol-item-head"><div class="sol-item-num">Ítem 3</div><span class="badge badge-sec">Art. 14 (Comités Paritarios)</span><span class="badge badge-amber-light">Riesgo Medio</span></div>
+              <p class="sol-item-text"><strong>Acción: </strong>Convocatoria a elecciones paritarias de los 3 delegados patronales y 3 laborales, regularización en la plataforma ministerial y asignación obligatoria de horas laborables para las sesiones mensuales.</p>
+            </div>
+            <div class="sol-item">
+              <div class="sol-item-head"><div class="sol-item-num">Ítem 4</div><span class="badge badge-sec">Art. 15 (Unidad de Seguridad)</span><span class="badge badge-rose-light">Riesgo Crítico</span></div>
+              <p class="sol-item-text"><strong>Acción: </strong>Apertura del proceso de selección y contratación formal de un profesional técnico de Seguridad e Higiene con dedicación permanente por superar el umbral de 100 trabajadores.</p>
+            </div>
+            <div style="background: var(--amber-50); border: 1px solid var(--amber-200); border-radius: 6px; padding: 16px; margin-top: 8px;">
+              <p style="font-size: 0.7rem; font-weight: 600; color: var(--amber-800); text-transform: uppercase; margin-bottom: 4px;">Respuesta — Pregunta Crítica</p>
+              <p class="sol-item-text">El Art. 13 faculta al operario a suspender la actividad si constata que no existen las condiciones mínimas de seguridad sin temor a represalias; la supervisión debió consignar la máquina de inmediato bajo procedimiento LOTO (Lockout/Tagout) y no priorizar el tiempo de ciclo sobre la integridad operativa.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="protected-lock-overlay" id="solucionario-taller-lock">
+        <div class="protected-lock-card">
+          <div class="protected-lock-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <h3 class="protected-lock-title">Solucionario protegido</h3>
+          <p class="protected-lock-text">La <strong>Pauta de Evaluación Rápida para el Docente (Solucionario)</strong> está reservada para uso exclusivo del cuerpo docente. Ingrese la contraseña para visualizar el contenido.</p>
+          <button class="protected-unlock-btn" onclick="requestUnlock('solucionario-taller')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Desbloquear solucionario
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== PESTAÑA 4: BANCO DE EVALUACIÓN ===================== -->
+  <div class="tab-panel" id="evaluacion">
+
+    <div class="hero hero-evaluacion">
+      <div class="hero-row">
+        <svg class="hero-icon" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        <div>
+          <h2>Banco de Evaluación Asincrónica</h2>
+          <p>D.E. 2393 — Arts. 9, 13, 14 y 15 — 30 reactivos en 4 secciones</p>
+        </div>
+      </div>
+      <div class="alert alert-info" style="background: rgba(255,255,255,0.6); margin-top: 12px;">
+        <div class="alert-title"><svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg> Instrucciones generales</div>
+        <p class="alert-desc">Responda de manera individual y fundamentada cada uno de los siguientes reactivos con base técnica y jurídica en el Decreto Ejecutivo 2393 del Ecuador y su impacto en la ingeniería de operaciones. Las preguntas de selección múltiple y verdadero/falso son interactivas; haga clic en una opción para ver la justificación.</p>
+      </div>
+    </div>
+
+    <!-- Sección 1: Selección Múltiple -->
+    <div class="eval-section open" data-eval="sm">
+      <button class="eval-trigger">
+        <div class="eval-icon-wrap eval-icon-emerald"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+        <div class="eval-trigger-text">
+          <div class="eval-trigger-title">Sección 1: Selección Múltiple con Justificación Técnica</div>
+          <div class="eval-trigger-sub">8 preguntas interactivas</div>
+        </div>
+        <svg class="eval-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="eval-content" id="sm-content"></div>
+    </div>
+
+    <!-- Sección 2: V/F -->
+    <div class="eval-section" data-eval="vf">
+      <button class="eval-trigger">
+        <div class="eval-icon-wrap eval-icon-amber"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="22" height="12" rx="2"/><circle cx="8" cy="12" r="2"/><circle cx="16" cy="12" r="2"/></svg></div>
+        <div class="eval-trigger-text">
+          <div class="eval-trigger-title">Sección 2: Verdadero o Falso con Argumentación Técnica</div>
+          <div class="eval-trigger-sub">7 preguntas interactivas</div>
+        </div>
+        <svg class="eval-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="eval-content" id="vf-content"></div>
+    </div>
+
+    <!-- Sección 3: Desarrollo -->
+    <div class="eval-section" data-eval="desarrollo">
+      <button class="eval-trigger">
+        <div class="eval-icon-wrap eval-icon-violet"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3zM18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5zM2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></div>
+        <div class="eval-trigger-text">
+          <div class="eval-trigger-title">Sección 3: Preguntas de Desarrollo Técnico y Análisis de Causa Raíz</div>
+          <div class="eval-trigger-sub">7 preguntas abiertas</div>
+        </div>
+        <svg class="eval-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="eval-content" id="desarrollo-content"></div>
+    </div>
+
+    <!-- Sección 4: Cálculo -->
+    <div class="eval-section" data-eval="calculo">
+      <button class="eval-trigger">
+        <div class="eval-icon-wrap eval-icon-rose"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="12" y2="18"/></svg></div>
+        <div class="eval-trigger-text">
+          <div class="eval-trigger-title">Sección 4: Cálculo Aplicado de Ingeniería y Resolución de Escenarios</div>
+          <div class="eval-trigger-sub">8 problemas de ingeniería y dictamen legal</div>
+        </div>
+        <svg class="eval-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="eval-content" id="calculo-content"></div>
+    </div>
+
+    <!-- ============ SOLUCIONARIO PROTEGIDO - BANCO DE EVALUACIÓN ============ -->
+    <div class="protected-wrap" style="margin-top: 24px;">
+      <div class="protected-content" id="solucionario-evaluacion">
+        <div class="eval-solucionario-section open">
+          <button class="eval-solucionario-trigger">
+            <div class="eval-solucionario-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M21 12c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C8.5 19.5 5 17 5 12V5a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C15.51 3.81 18 5 20 5a1 1 0 0 1 1 1z"/></svg>
+            </div>
+            <div style="flex: 1; text-align: left;">
+              <div style="font-size: 0.95rem;">Solucionario Completo — Solo Docente (30 reactivos)</div>
+              <div style="font-size: 0.75rem; color: var(--slate-500); font-weight: 400; margin-top: 2px;">Respuestas y justificaciones de las 4 secciones del Banco de Evaluación</div>
+            </div>
+            <span class="protected-status" style="background: var(--emerald-100); color: var(--emerald-700);">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Desbloqueado
+            </span>
+          </button>
+          <div class="eval-solucionario-content">
+            <!-- Sección 1 - SM -->
+            <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--slate-900); margin-bottom: 8px;">Sección 1: Selección Múltiple (8 preguntas)</h4>
+            <div id="sol-sm-container"></div>
+
+            <!-- Sección 2 - VF -->
+            <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--slate-900); margin: 20px 0 8px;">Sección 2: Verdadero o Falso (7 preguntas)</h4>
+            <div id="sol-vf-container"></div>
+
+            <!-- Sección 3 - Desarrollo -->
+            <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--slate-900); margin: 20px 0 8px;">Sección 3: Preguntas de Desarrollo (7 preguntas)</h4>
+            <div id="sol-desarrollo-container"></div>
+
+            <!-- Sección 4 - Cálculo -->
+            <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--slate-900); margin: 20px 0 8px;">Sección 4: Cálculo Aplicado (8 preguntas)</h4>
+            <div id="sol-calculo-container"></div>
+          </div>
+        </div>
+      </div>
+      <div class="protected-lock-overlay" id="solucionario-evaluacion-lock">
+        <div class="protected-lock-card">
+          <div class="protected-lock-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <h3 class="protected-lock-title">Respuestas protegidas</h3>
+          <p class="protected-lock-text">Las <strong>respuestas y justificaciones del Banco de Evaluación Asincrónica</strong> están reservadas para el cuerpo docente. Ingrese la contraseña para visualizar el solucionario completo de los 30 reactivos.</p>
+          <button class="protected-unlock-btn" onclick="requestUnlock('solucionario-evaluacion')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Desbloquear respuestas
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== PESTAÑA 5: TAREA ASINCRÓNICA ===================== -->
+  <div class="tab-panel" id="tarea">
+
+    <div class="hero hero-tarea">
+      <div class="hero-row">
+        <svg class="hero-icon" viewBox="0 0 24 24" fill="none" stroke="#be123c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2M9 12l2 2 4-4"/></svg>
+        <div>
+          <h2>Tarea Asincrónica: Caso de Estudio</h2>
+          <p>Auditoría Técnica y Legal de Seguridad Operacional (D.E. 2393)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Datos Generales -->
+    <div class="card">
+      <div class="card-header"><h3 class="card-title">Datos Generales</h3></div>
+      <div class="grid-3" style="gap: 12px;">
+        <div style="background: var(--slate-50); border-radius: 6px; padding: 12px;"><p style="font-size: 0.7rem; font-weight: 600; color: var(--slate-500); text-transform: uppercase; margin-bottom: 4px;">Nivel</p><p style="font-size: 0.875rem;">Medio</p></div>
+        <div style="background: var(--slate-50); border-radius: 6px; padding: 12px;"><p style="font-size: 0.7rem; font-weight: 600; color: var(--slate-500); text-transform: uppercase; margin-bottom: 4px;">Modalidad</p><p style="font-size: 0.875rem;">Asincrónica (Individual o parejas técnicas)</p></div>
+        <div style="background: var(--slate-50); border-radius: 6px; padding: 12px;"><p style="font-size: 0.7rem; font-weight: 600; color: var(--slate-500); text-transform: uppercase; margin-bottom: 4px;">Entregable</p><p style="font-size: 0.875rem;">Informe Técnico de Dictamen Legal y Cálculo de Disponibilidad Operacional (PDF / documento técnico)</p></div>
+      </div>
+    </div>
+
+    <!-- Descripción del Escenario -->
+    <div class="card card-l-rose">
+      <div class="card-header">
+        <h3 class="card-title"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#e11d48" stroke-width="2"><path d="M2 20h20M4 20V8l8-5 8 5v12M9 20v-7h6v7"/></svg> Descripción del Escenario</h3>
+      </div>
+      <div class="grid-2" style="gap: 12px; margin-bottom: 16px;">
+        <div style="background: rgba(255,241,242,0.4); border: 1px solid var(--rose-100); border-radius: 6px; padding: 12px;"><p style="font-size: 0.7rem; font-weight: 600; color: var(--rose-700); text-transform: uppercase; margin-bottom: 4px;">Empresa</p><p style="font-size: 0.875rem; font-weight: 500;">AgroIndustrias del Litoral S.A.</p></div>
+        <div style="background: rgba(255,241,242,0.4); border: 1px solid var(--rose-100); border-radius: 6px; padding: 12px;"><p style="font-size: 0.7rem; font-weight: 600; color: var(--rose-700); text-transform: uppercase; margin-bottom: 4px;">Nómina activa</p><p style="font-size: 0.875rem; font-weight: 500;">115 trabajadores</p></div>
+      </div>
+      <div style="margin-bottom: 12px;"><p style="font-size: 0.7rem; font-weight: 600; color: var(--slate-500); text-transform: uppercase; margin-bottom: 4px;">Actividad</p><p class="text">Planta de procesamiento y ensacado de balanceado de soya y maíz.</p></div>
+      <div style="margin-bottom: 12px;">
+        <p style="font-size: 0.7rem; font-weight: 600; color: var(--slate-500); text-transform: uppercase; margin-bottom: 4px;">Distribución de la nómina</p>
+        <ul class="arrow-list">
+          <li>85 operarios en planta (molienda, mezclado, peletizado y ensacado).</li>
+          <li>18 trabajadores en bodegas de materia prima y producto terminado.</li>
+          <li>12 personas en áreas técnicas y administrativas.</li>
+        </ul>
+      </div>
+      <div><p style="font-size: 0.7rem; font-weight: 600; color: var(--slate-500); text-transform: uppercase; margin-bottom: 4px;">Operación</p><p class="text">La planta opera en 2 turnos de trabajo de 8 horas cada uno, 5 días a la semana.</p></div>
+    </div>
+
+    <!-- Evidencias -->
+    <h3 class="section-h3">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#e11d48" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0zM12 9v4M12 17h.01"/></svg>
+      Evidencias Levantadas en Auditoría de Campo
+    </h3>
+    <p style="font-size: 0.875rem; color: var(--slate-500); margin-bottom: 16px;">Durante la inspección no anunciada realizada el último mes, se documentaron los siguientes hechos:</p>
+    <div class="grid-2">
+      <div class="hallazgo-card hallazgo-rose">
+        <div class="hallazgo-head">
+          <div class="hallazgo-icon-wrap hallazgo-icon-rose"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+          <div class="hallazgo-title"><span style="font-size: 0.7rem; font-weight: 700; color: var(--slate-500); margin-right: 8px;">EVIDENCIA 1</span>Celda de Peletizado y Ensacado Automatizado</div>
+        </div>
+        <p class="hallazgo-text">En la línea semiautomática de ensacado, la tolva principal cuenta con un tornillo sinfín alimentador. Para agilizar el desatasco de grumos de harina, dos operadores retiraron la rejilla de seguridad superior (guarda fija atornillada) e instalaron una varilla metálica manual para empujar el material con el sinfín en marcha. Hace tres semanas, un operador resbaló y sufrió la amputación traumática de dos falanges al hacer contacto su mano derecha con el sinfín. El operador declaró: <em>"Si deteníamos la máquina para desatascar, perdíamos el bono de producción del turno"</em>.</p>
+      </div>
+      <div class="hallazgo-card hallazgo-amber">
+        <div class="hallazgo-head">
+          <div class="hallazgo-icon-wrap hallazgo-icon-amber"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0zM12 9v4M12 17h.01"/></svg></div>
+          <div class="hallazgo-title"><span style="font-size: 0.7rem; font-weight: 700; color: var(--slate-500); margin-right: 8px;">EVIDENCIA 2</span>Dotación y Gestión de EPP</div>
+        </div>
+        <p class="hallazgo-text">En el área de molienda, donde la concentración de polvo orgánico respirable supera los límites permisibles y el ruido continuo equivalente alcanza los 91 dBA, la empresa entrega mascarillas quirúrgicas de tela desechables y tapones auditivos de espuma genéricos sin ficha técnica ni sello de homologación (sin certificación ANSI S3.19 o EN 352). Además, se comprobó mediante recibos de nómina que el costo de las botas con puntera de acero entregadas hace cuatro meses se descuenta en cuotas mensuales del 10% del salario de los trabajadores.</p>
+      </div>
+      <div class="hallazgo-card hallazgo-violet">
+        <div class="hallazgo-head">
+          <div class="hallazgo-icon-wrap hallazgo-icon-violet"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M4 20V8l8-5 8 5v12M9 20v-7h6v7"/></svg></div>
+          <div class="hallazgo-title"><span style="font-size: 0.7rem; font-weight: 700; color: var(--slate-500); margin-right: 8px;">EVIDENCIA 3</span>Estructura del Comité Paritario</div>
+        </div>
+        <p class="hallazgo-text">El centro de trabajo constituyó un Comité Paritario hace tres años. Al solicitar las carpetas de gestión, se constató: el nombramiento del Comité está vencido hace 14 meses y no se ha renovado ante el Ministerio del Trabajo; no existen actas de sesiones ordinarias en lo que va del año; la presidencia y la secretaría fueron asignadas simultáneamente al Gerente de Planta y al Jefe de Mantenimiento (ambos representantes de la parte empleadora); tras el accidente del sinfín, los delegados de los operarios solicitaron una reunión extraordinaria para investigar el evento, pero la administración negó los permisos en horario laboral indicando que <em>"la reunión debe ser en domingo y por iniciativa propia"</em>.</p>
+      </div>
+      <div class="hallazgo-card hallazgo-sky">
+        <div class="hallazgo-head">
+          <div class="hallazgo-icon-wrap hallazgo-icon-sky"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2M9 12l2 2 4-4"/></svg></div>
+          <div class="hallazgo-title"><span style="font-size: 0.7rem; font-weight: 700; color: var(--slate-500); margin-right: 8px;">EVIDENCIA 4</span>Organización de la Unidad Técnica de Seguridad</div>
+        </div>
+        <p class="hallazgo-text">La empresa no tiene contratado un Responsable Técnico de Seguridad e Higiene interno. El Director de Operaciones argumenta que la empresa cumple la ley mediante un contrato de asesoría externa por honorarios profesionales con una consultora ambiental, la cual realiza una visita bimestral de 3 horas para revisar extintores. No se dispone de matrices de riesgo IPERC actualizadas ni mediciones de higiene industrial (dosimetrías, sonometrías, material particulado).</p>
+      </div>
+    </div>
+
+    <!-- Datos de producción -->
+    <div class="card card-l-emerald" style="margin-top: 20px;">
+      <div class="card-header">
+        <h3 class="card-title"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/></svg> Registro de Producción del Día del Accidente (Línea de Ensacado)</h3>
+        <p class="card-desc">Datos cronometrados necesarios para el cálculo del OEE en el Bloque 2.</p>
+      </div>
+      <p class="text" style="margin-bottom: 12px;">El día del siniestro en el tornillo sinfín, la línea de ensacado programó un turno de 8 horas (t_planificado = 480 min):</p>
+      <ul class="arrow-list" style="margin-bottom: 16px;">
+        <li><strong>Paradas no programadas:</strong> El accidente obligó a la detención total de la línea por atención del herido, inspección ocular y aseguramiento durante <strong>150 min</strong>. Adicionalmente, se registraron <strong>45 min</strong> por microparos de atascos previos.</li>
+        <li><strong>Velocidad estándar de diseño:</strong> 10 sacos/minuto (t_ciclo_teorico = 0.1 min/saco).</li>
+        <li><strong>Producción total obtenida en el turno:</strong> <strong>2200 sacos</strong>.</li>
+        <li><strong>Sacos no conformes (rotos o con peso fuera de tolerancia):</strong> <strong>110 sacos</strong>.</li>
+      </ul>
+    </div>
+
+    <!-- Consignas - Bloques -->
+    <h3 class="section-h3" style="margin-top: 24px;">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#be123c" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+      Consignas de la Tarea Asincrónica
+    </h3>
+    <p class="text">El estudiante deberá estructurar y entregar su informe técnico resolviendo los siguientes 4 bloques de trabajo:</p>
+
+    <div class="bloque-card bloque-violet">
+      <div class="bloque-head">
+        <div class="bloque-icon-wrap"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+        <div><div class="bloque-card-title">Bloque 1: Matriz de No Conformidades Legales (D.E. 2393)</div><div class="bloque-desc">Elabore una tabla analítica donde desglosará cada uno de los 4 hallazgos de planta, completando obligatoriamente:</div></div>
+      </div>
+      <ol class="bloque-list">
+        <li>Hecho fáctico auditado.</li>
+        <li>Artículo(s) y numeral(es) específicos del Decreto Ejecutivo 2393 vulnerados (Art. 9, Art. 13, Art. 14 o Art. 15).</li>
+        <li>Sujeto legal responsable (Empleador, Trabajador o Ambos).</li>
+        <li>Tipificación de la gravedad del incumplimiento (Leve, Grave o Muy Grave) con justificación técnica.</li>
+      </ol>
+    </div>
+
+    <div class="bloque-card bloque-emerald">
+      <div class="bloque-head">
+        <div class="bloque-icon-wrap"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/></svg></div>
+        <div><div class="bloque-card-title">Bloque 2: Análisis Cuantitativo de Disponibilidad y Eficiencia</div><div class="bloque-desc">A partir de los datos cronometrados de la línea de ensacado el día del siniestro:</div></div>
+      </div>
+      <ol class="bloque-list">
+        <li>Calcule el tiempo operativo real (t_operativo).</li>
+        <li>Determine la Disponibilidad (A), el Rendimiento (P) y la Calidad (Q).</li>
+        <li>Calcule la Efectividad Global de los Equipos (OEE) de la línea para ese turno.</li>
+        <li>Redacte un párrafo técnico explicando cómo la anulación de la guarda de seguridad para "ahorrar tiempo" terminó provocando una pérdida neta en la disponibilidad de la máquina.</li>
+      </ol>
+    </div>
+
+    <div class="bloque-card bloque-amber">
+      <div class="bloque-head">
+        <div class="bloque-icon-wrap"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6l9 4 9-4M3 18l9-4 9 4M3 12l9-4 9 4"/></svg></div>
+        <div><div class="bloque-card-title">Bloque 3: Dictamen Jurídico y Derechos del Trabajador</div><div class="bloque-desc">Responda de manera fundamentada las siguientes preguntas de criterio legal:</div></div>
+      </div>
+      <ol class="bloque-list">
+        <li>Con base en el Art. 13, ¿incurrió el trabajador amputado en una violación reglamentaria al retirar la guarda fija e introducir la varilla? ¿Qué debió haber hecho legal y operativamente ante los continuos atascos?</li>
+        <li>Ante la negativa de la gerencia de dar facilidades para la investigación del accidente, ¿qué obligaciones específicas del Art. 14 incumplió el empleador respecto a las sesiones del Comité Paritario y el uso de horas laborables?</li>
+        <li>De acuerdo con el Art. 15, ¿es legal la figura de la asesoría externa bimestral de 3 horas para una empresa agroindustrial de 115 trabajadores? Justifique el requisito técnico de titulación y dedicación que exige la ley.</li>
+      </ol>
+    </div>
+
+    <div class="bloque-card bloque-rose">
+      <div class="bloque-head">
+        <div class="bloque-icon-wrap"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+        <div><div class="bloque-card-title">Bloque 4: Plan de Remediación Técnica Inmediata</div><div class="bloque-desc">Formule:</div></div>
+      </div>
+      <ol class="bloque-list">
+        <li>3 acciones correctivas prioritarias de ingeniería para la tolva de ensacado (aplicando la jerarquía de controles).</li>
+        <li>2 acciones administrativas organizacionales para regularizar la estructura paritaria y técnica de la planta.</li>
+      </ol>
+    </div>
+
+    <!-- Rúbrica -->
+    <div class="card" style="margin-top: 20px;">
+      <div class="card-header">
+        <h3 class="card-title"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg> Rúbrica de Calificación</h3>
+        <p class="card-desc">Criterios de evaluación con niveles de logro y ponderación para el informe técnico entregable.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Criterio</th><th>Excelente (5.0 – 4.5)</th><th>Aceptable (4.4 – 3.5)</th><th>Insuficiente (&lt; 3.5)</th><th>Ponderación</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="first-col">Identificación Normativa (Arts. 9, 13, 14, 15)</td><td>Tipifica con precisión cada artículo e incrimina con exactitud la responsabilidad legal de las partes.</td><td>Identifica los artículos principales pero omite numerales clave o confunde responsabilidades.</td><td>Cita artículos incorrectos o no fundamenta con el D.E. 2393.</td><td><span class="badge badge-amber">30%</span></td></tr>
+            <tr><td class="first-col">Cálculo de Variables Operacionales (OEE)</td><td>Deducción matemática rigurosa de A, P, Q y OEE, con análisis crítico del tiempo perdido.</td><td>Cálculos correctos pero sin análisis de causa-raíz sobre la caída de disponibilidad.</td><td>Errores en las fórmulas o en la conversión de tiempos operativos.</td><td><span class="badge badge-amber">25%</span></td></tr>
+            <tr><td class="first-col">Criterio Técnico-Jurídico</td><td>Argumentación sólida en derechos de abstención, conformación paritaria y funciones de la Unidad Técnica.</td><td>Respuestas correctas pero superficiales en el sustento reglamentario.</td><td>Confusión conceptual sobre las obligaciones de ley.</td><td><span class="badge badge-amber">25%</span></td></tr>
+            <tr><td class="first-col">Ingeniería de Remediación</td><td>Medidas de control de ingeniería aplicadas a maquinaria (enclavamientos, LOTO) y organización formal.</td><td>Propuestas genéricas limitadas únicamente al uso de EPP.</td><td>No plantea controles de ingeniería viables ni acciones organizacionales.</td><td><span class="badge badge-amber">20%</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Entregable -->
+    <div class="alert alert-rose">
+      <div class="alert-title"><svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="#be123c" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Entregable Esperado</div>
+      <p class="alert-desc">El informe técnico final debe presentarse en formato PDF o documento técnico estructurado, incluyendo: matriz de no conformidades, cálculos numéricos del OEE con análisis, dictamen jurídico fundamentado y plan de remediación con jerarquía de controles. La argumentación legal debe citar textualmente los artículos y numerales del D.E. 2393.</p>
+    </div>
+
+    <!-- ============ SOLUCIONARIO PROTEGIDO - TAREA ASINCRÓNICA ============ -->
+    <div class="protected-wrap" style="margin-top: 24px;">
+      <div class="protected-content" id="solucionario-tarea">
+        <div class="card card-l-emerald" style="background: rgba(236,253,245,0.4);">
+          <div class="card-header">
+            <h3 class="card-title">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              Solucionario — Tarea Asincrónica: Caso de Estudio
+              <span class="protected-status" style="background: var(--emerald-100); color: var(--emerald-700); margin-left: 4px;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                Desbloqueado
+              </span>
+            </h3>
+            <p class="card-desc">Solución modelo de los 4 bloques de la tarea asincrónica (AgroIndustrias del Litoral S.A.) — exclusivo para el cuerpo docente.</p>
+          </div>
+
+          <!-- BLOQUE 1: Matriz de No Conformidades -->
+          <h4 style="font-size: 1rem; font-weight: 700; color: var(--violet-700); margin-bottom: 12px; margin-top: 8px;">Bloque 1: Matriz de No Conformidades Legales (D.E. 2393)</h4>
+          <div class="table-wrap" style="margin-bottom: 24px;">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width: 28px;">#</th>
+                  <th>Hecho fáctico auditado</th>
+                  <th>Artículo y numeral vulnerado</th>
+                  <th>Sujeto legal responsable</th>
+                  <th>Gravedad y justificación técnica</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="first-col" style="font-weight: 700; text-align: center;">1</td>
+                  <td>Retiro de la rejilla de seguridad superior (guarda fija) de la tolva de ensacado e introducción de varilla metálica manual con el tornillo sinfín en marcha, culminando con la amputación traumática de dos falanges del operador. Bono de producción condicionado a no detener la máquina para desatascar.</td>
+                  <td><strong>Art. 9</strong> (Obligaciones del Empleador — proveer protecciones colectivas en el origen del riesgo, no delegar al trabajador el desatasco con máquina en marcha) y <strong>Art. 13</strong> (Obligaciones del Trabajador — prohibición de retirar resguardos mecánicos sin orden técnica expresa; obligación de interrumpir labores ante riesgo inminente).</td>
+                  <td><strong>Ambos</strong>: Empleador (diseño inseguro del puesto y de los incentivos) y Trabajador (anular la guarda fija e introducir la varilla).</td>
+                  <td><strong>Muy Grave</strong>. La empresa omitió el principio de jerarquía de controles (eliminación → ingeniería → administrativos → EPP) al no instalar un sistema de desatasco autónomo, y condicionó económicamente al operario para forzar la operación. El trabajador violentó el Art. 13 al anular un resguardo fijo y exponerse a un riesgo evidente de atrapamiento.</td>
+                </tr>
+                <tr>
+                  <td class="first-col" style="font-weight: 700; text-align: center;">2</td>
+                  <td>Entrega de mascarillas quirúrgicas de tela desechables (no certificadas NIOSH/EN) en zona con polvo orgánico respirable sobre el límite permisibible; tapones auditivos de espuma genéricos sin certificación ANSI S3.19 o EN 352 en zona con 91 dBA. Cobro del 10% del salario en cuotas por las botas con puntera de acero entregadas.</td>
+                  <td><strong>Art. 9</strong> numerales sobre provisión gratuita, certificación y homologación del EPP; y prohibición expresa de cobro al trabajador.</td>
+                  <td><strong>Empleador</strong>.</td>
+                  <td><strong>Muy Grave</strong>. Triple violación: (a) EPP no certificado para el riesgo específico (polvo orgánico y ruido); (b) EPP inadecuado (mascarilla quirúrgica no es respirador particular); (c) cobro al trabajador, lo que vulnera la gratuidad obligatoria. Riesgos a la salud: neumoconiosis (bagazosis) por polvo orgánico y hipoacusia inducida por ruido ocupacional.</td>
+                </tr>
+                <tr>
+                  <td class="first-col" style="font-weight: 700; text-align: center;">3</td>
+                  <td>Comité Paritario vencido hace 14 meses; sin actas ordinarias en el año; presidencia y secretaría asignadas simultáneamente al Gerente de Planta y al Jefe de Mantenimiento (ambos de la parte empleadora); negativa de la administración de conceder horas laborables para sesión extraordinaria de investigación del accidente.</td>
+                  <td><strong>Art. 14</strong>: renovación del registro, periodicidad mensual de sesiones, alternancia obligatoria de cargos (Presidente y Secretario no pueden pertenecer a la misma parte), horas laborales para sesionar y obligación de investigar accidentes.</td>
+                  <td><strong>Empleador</strong> (con responsabilidad solidaria de los delegados de los trabajadores por no exigir la renovación).</td>
+                  <td><strong>Grave</strong>. La violación de la alternancia de cargos (presidente y secretario ambos patronales) desnaturaliza el carácter bipartito del órgano, dejándolo sin legitimidad legal. La negativa de horas laborables es infracción directa al Art. 14 e impide la investigación obligatoria del accidente del sinfín.</td>
+                </tr>
+                <tr>
+                  <td class="first-col" style="font-weight: 700; text-align: center;">4</td>
+                  <td>Sin Responsable Técnico de Seguridad e Higiene interno; asesoría externa bimestral de 3 horas (visita cada 2 meses) únicamente para revisar extintores; sin matriz IPERC, sin dosimetrías, sin sonometrías, sin evaluación de material particulado.</td>
+                  <td><strong>Art. 15</strong>: exigencia de Unidad Técnica de Seguridad e Higiene permanente para empresas con ≥ 100 trabajadores (115 en este caso), con responsable titular de cuarto nivel o registro profesional, dedicación exclusiva y autonomía funcional.</td>
+                  <td><strong>Empleador / Alta Dirección</strong>.</td>
+                  <td><strong>Muy Grave</strong>. La asesoría externa bimestral de 3 horas (≈ 18 h/año) no sustituye la obligación legal. La empresa carece de instrumentación, matrices IPERC y mediciones de higiene industrial, incumpliendo de forma flagrante el Art. 15. La contingencia sancionatoria incluye clausura cautelar por el IESS y recargo de prestaciones en caso de accidente.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- BLOQUE 2: Cálculo OEE -->
+          <h4 style="font-size: 1rem; font-weight: 700; color: var(--emerald-700); margin-bottom: 12px;">Bloque 2: Análisis Cuantitativo de Disponibilidad y Eficiencia (OEE)</h4>
+          <div style="background: var(--slate-50); border-radius: 8px; padding: 16px; margin-bottom: 16px;">
+            <p style="font-size: 0.85rem; color: var(--slate-700); font-weight: 600; margin-bottom: 8px;">Paso 1 — Cálculo del tiempo operativo (t_operativo):</p>
+            <p style="font-family: monospace; font-size: 0.85rem; color: var(--slate-900); margin-left: 16px;">t_operativo = t_planificado − (t_accidente + t_microparos)</p>
+            <p style="font-family: monospace; font-size: 0.85rem; color: var(--slate-900); margin-left: 16px;">t_operativo = 480 min − (150 min + 45 min) = 480 − 195 = <strong>285 min</strong></p>
+          </div>
+
+          <div class="calc-step">
+            <div class="calc-step-label">A — Disponibilidad</div>
+            <div class="calc-step-formula">A = t_operativo / t_planificado = 285 / 480 = 0.5937</div>
+            <div class="calc-step-result"><span class="pct">59.37%</span></div>
+          </div>
+          <div class="calc-step">
+            <div class="calc-step-label">P — Rendimiento</div>
+            <div class="calc-step-formula">P = (Producción_total × t_ciclo_teorico) / t_operativo = (2200 × 0.1) / 285 = 220 / 285 = 0.7719</div>
+            <div class="calc-step-result"><span class="pct">77.19%</span></div>
+          </div>
+          <div class="calc-step">
+            <div class="calc-step-label">Q — Calidad</div>
+            <div class="calc-step-formula">Q = (Producción_total − No_conformes) / Producción_total = (2200 − 110) / 2200 = 2090 / 2200 = 0.9500</div>
+            <div class="calc-step-result"><span class="pct">95.00%</span></div>
+          </div>
+          <div class="calc-step calc-step-total">
+            <div class="calc-step-label">OEE Total = A × P × Q</div>
+            <div class="calc-step-formula">OEE = 0.5937 × 0.7719 × 0.9500 = 0.4355</div>
+            <div class="calc-step-result"><span class="pct">43.55%</span></div>
+          </div>
+
+          <div class="alert alert-rose" style="margin-top: 16px;">
+            <div class="alert-title">Análisis de causa-raíz del OEE</div>
+            <p class="alert-desc">La anulación de la guarda fija para "ahorrar tiempo" de desatasco destruyó la Disponibilidad (A = 59.37%, estándar &gt; 90%): el paro total por atención del herido (150 min) superó ampliamente el "ahorro" acumulado que pretendía obtenerse evitando la detención programada del sinfín. El Rendimiento (P = 77.19%) también cayó por atascos previos (45 min) que obligaron a operar por debajo de la velocidad estándar. La Calidad (Q = 95%) se mantuvo relativamente estable, pero el OEE total del <strong>43.55%</strong> queda muy por debajo del estándar industrial del 85%, demostrando que atajar el tiempo de ciclo sacrificando la seguridad genera una pérdida neta seis veces superior al "ahorro" perseguido.</p>
+          </div>
+
+          <!-- BLOQUE 3: Dictamen Jurídico -->
+          <h4 style="font-size: 1rem; font-weight: 700; color: var(--amber-700); margin: 24px 0 12px;">Bloque 3: Dictamen Jurídico y Derechos del Trabajador</h4>
+
+          <div class="sol-block">
+            <div class="sol-block-head"><div class="sol-block-num">1</div><div class="sol-block-q">¿Incurrió el trabajador amputado en una violación reglamentaria al retirar la guarda fija e introducir la varilla? ¿Qué debió haber hecho legal y operativamente?</div></div>
+            <div class="sol-block-a">
+              <span class="sol-block-a-mark">Respuesta</span><strong>Sí, incurrió en infracción del Art. 13</strong> (prohibición de anular, modificar o retirar protecciones mecánicas sin orden técnica expresa). El trabajador también omitió su obligación de reportar inmediatamente la condición subestándar (atascos recurrentes) al Comité Paritario o al superior jerárquico, y de ejercer su derecho de abstención ante el riesgo inminente de atrapamiento. <strong>Lo que debió hacer:</strong> (a) detener la máquina antes de cualquier intervención de desatasco (procedimiento LOTO); (b) reportar formalmente los atascos recurrentes como condición subestándar; (c) exigir a la empresa el diseño de un sistema de desatasco autónomo (vibrador, paso de inspección con máquina detenida, rediseño de tolva); (d) invocar el Art. 13 para abstenerse si la empresa negaba la solución técnica. <strong>La responsabilidad patronal</strong> persiste por crear un esquema de incentivos (bono) que forzó la conducta insegura, lo que constituye circunstancia agravante para la empresa.
+            </div>
+          </div>
+
+          <div class="sol-block sol-block-amber">
+            <div class="sol-block-head"><div class="sol-block-num">2</div><div class="sol-block-q">¿Qué obligaciones específicas del Art. 14 incumplió el empleador al negar facilidades para la investigación del accidente?</div></div>
+            <div class="sol-block-a">
+              <span class="sol-block-a-mark">Respuesta</span>El empleador incumplió, al menos, cuatro obligaciones del <strong>Art. 14</strong>: (1) <strong>Renovación del Comité</strong> — el registro venció hace 14 meses y no se regularizó ante el Ministerio del Trabajo; (2) <strong>Periodicidad mensual</strong> de las sesiones ordinarias — no existen actas en lo que va del año; (3) <strong>Alternancia de cargos</strong> — Presidente y Secretario son ambos representantes patronales (Gerente de Planta y Jefe de Mantenimiento), violando el carácter bipartito; (4) <strong>Horas laborables para sesionar</strong> — el Art. 14 obliga al empleador a conceder horas pagadas dentro de la jornada para las sesiones del Comité, así como para las reuniones extraordinarias derivadas de accidentes. La negativa ("la reunión debe ser en domingo y por iniciativa propia") es infracción grave y deja a la empresa en contingencia sancionatoria (multa y posible clausura cautelar por el IESS).
+            </div>
+          </div>
+
+          <div class="sol-block sol-block-rose">
+            <div class="sol-block-head"><div class="sol-block-num">3</div><div class="sol-block-q">¿Es legal la asesoría externa bimestral de 3 horas para una empresa agroindustrial de 115 trabajadores?</div></div>
+            <div class="sol-block-a">
+              <span class="sol-block-a-mark">Respuesta</span><strong>No, no es legal.</strong> El <strong>Art. 15</strong> exige una Unidad Técnica de Seguridad e Higiene con responsable titular cuando la empresa cuenta con <strong>100 o más trabajadores</strong> (115 en este caso). La modalidad de asesoría externa bimestral de 3 horas (≈ 18 h/año, centrada solo en extintores) no cumple los requisitos de: <strong>(a) Titulación</strong> — profesional con formación técnica de cuarto nivel o registro profesional en Seguridad e Higiene del Trabajo avalado ante los entes de control; <strong>(b) Dedicación</strong> — el Art. 15 exige una unidad técnica operativa con dedicación permanente (no honorarios eventuales); <strong>(c) Cobertura</strong> — debe incluir identificación y evaluación de riesgos físico-químicos, mecánicos, biológicos, ergonómicos y psicosociales, IPERC, plan anual de prevención, Reglamento Interno, inspecciones técnicas y liderazgo en investigación de accidentes. La empresa <strong>debe</strong> contratar un Responsable Técnico a tiempo completo y mantener la asesoría externa solo como complemento, nunca como sustituto.
+            </div>
+          </div>
+
+          <!-- BLOQUE 4: Plan de Remediación -->
+          <h4 style="font-size: 1rem; font-weight: 700; color: var(--rose-700); margin: 24px 0 12px;">Bloque 4: Plan de Remediación Técnica Inmediata</h4>
+
+          <p style="font-size: 0.85rem; font-weight: 600; color: var(--slate-900); margin-bottom: 8px;">Tres acciones correctivas prioritarias de ingeniería para la tolva de ensacado (jerarquía de controles):</p>
+          <ol class="num-list" style="margin-bottom: 16px;">
+            <li><strong>Eliminación / Rediseño (control en el origen):</strong> Rediseñar la tolva con un sistema de desatasco autónomo mediante vibrador neumático de baja frecuencia o impulsor de aire a presión, eliminando la necesidad de intervención manual del operador. Ajustar la geometría de la tolva (ángulo de pared ≥ 60°) para evitar la formación de puentes de grumos.</li>
+            <li><strong>Control de ingeniería:</strong> Instalar enclavamiento electromecánico supervisado por solenoide con bloqueo de llave trampa (categoría 4 / PLe según ISO 13849-1) en las tapas de la tolva, de modo que el sinfín no pueda operar con la tapa abierta y la tapa no pueda abrirse mientras el sinfín esté girando. Incluir cortina de luz de seguridad perimetral.</li>
+            <li><strong>Control administrativo + procedimiento LOTO:</strong> Implementar protocolo escrito Lockout/Tagout para cualquier intervención de inspección, desatasco o limpieza; capacitación obligatoria documentada; tarjeta de bloqueo individual por operador; eliminación inmediata del bono de producción condicionado a no detener la máquina (sustituirlo por bono de calidad y cero accidentes).</li>
+          </ol>
+
+          <p style="font-size: 0.85rem; font-weight: 600; color: var(--slate-900); margin-bottom: 8px;">Dos acciones administrativas organizacionales para regularizar la estructura paritaria y técnica:</p>
+          <ol class="num-list" start="4">
+            <li><strong>Regularización del Comité Paritario (Art. 14):</strong> Convocatoria inmediata a elecciones paritarias de los 3 delegados patronales y 3 laborales (con suplentes), renovación del registro ante el Ministerio del Trabajo, elección de Presidente y Secretario con alternancia obligatoria (uno patronal y otro laboral), y programación de las sesiones mensuales dentro del horario laboral con horas pagadas. Elaborar el acta de investigación del accidente del sinfín en sesión extraordinaria.</li>
+            <li><strong>Constitución de la Unidad Técnica de Seguridad (Art. 15):</strong> Apertura del proceso de selección y contratación formal de un Responsable Técnico de Seguridad e Higiene a tiempo completo, con título de cuarto nivel o registro profesional vigente. Elaboración de la matriz IPERC, plan anual de prevención, Reglamento Interno de Seguridad y Salud, y protocolos de medición (dosimetría, sonometría, material particulado). La asesoría externa pasa a ser complementaria, no sustitutiva.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="protected-lock-overlay" id="solucionario-tarea-lock">
+        <div class="protected-lock-card">
+          <div class="protected-lock-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <h3 class="protected-lock-title">Solucionario protegido</h3>
+          <p class="protected-lock-text">El <strong>Solucionario de la Tarea Asincrónica: Caso de Estudio</strong> está reservado para uso exclusivo del cuerpo docente. Ingrese la contraseña para visualizar la solución modelo de los 4 bloques (Matriz de No Conformidades, cálculo OEE, dictamen jurídico y plan de remediación).</p>
+          <button class="protected-unlock-btn" onclick="requestUnlock('solucionario-tarea')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Desbloquear solucionario
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-row">
+      <div class="footer-item">
+        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+        <span>Material educativo basado en el D.E. 2393 — Reglamento de Seguridad y Salud de los Trabajadores (Ecuador, 1986).</span>
+      </div>
+      <div style="display: flex; gap: 12px;">
+        <span style="color: var(--slate-500);">Arts. 9 · 13 · 14 · 15</span>
+        <span style="color: var(--slate-300);">·</span>
+        <span style="color: var(--slate-500);">Referencias: OIT-ILO-OSH 2001 · ISO 13849-1 · Resolución C.D. 513</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============ TABS ============ */
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.dataset.tab;
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    const panel = document.getElementById(target);
+    if (panel) panel.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
+/* ============ ACORDEÓN ARTÍCULOS (Tab 1) ============ */
+document.querySelectorAll('.acc-trigger').forEach(trig => {
+  trig.addEventListener('click', () => {
+    const item = trig.parentElement;
+    item.classList.toggle('open');
+  });
+});
+
+/* ============ ACORDEÓN EVALUACIÓN (Tab 4) ============ */
+document.querySelectorAll('.eval-trigger').forEach(trig => {
+  trig.addEventListener('click', () => {
+    const section = trig.parentElement;
+    section.classList.toggle('open');
+  });
+});
+
+/* ============ PREGUNTAS DE SELECCIÓN MÚLTIPLE ============ */
+const SM_QUESTIONS = [
+  { id: 1, enunciado: 'Según el Art. 9, la provisión de Equipos de Protección Personal (EPP) por parte del empleador:',
+    opciones: [
+      { letra: 'a', texto: 'Puede ser subsidiada al 50% si el desgaste es acelerado.' },
+      { letra: 'b', texto: 'Debe ser enteramente gratuita, adecuada al riesgo y debidamente homologada.' },
+      { letra: 'c', texto: 'Se cobra al costo de adquisición mediante descuentos programados de nómina.' },
+      { letra: 'd', texto: 'Es opcional si la empresa ya instaló protecciones colectivas.' }],
+    respuesta: 'b',
+    justificacion: 'El Art. 9 establece expresamente que el empleador debe suministrar EPP de manera gratuita, certificado y homologado al riesgo. Cualquier cobro o deducción constituye infracción grave.',
+    justifique: 'Justifique su respuesta citando el precepto legal aplicable.' },
+  { id: 2, enunciado: 'Conforme al Art. 13, la anulación o modificación deliberada de un resguardo mecánico por parte de un operador sin causa técnica justificada:',
+    opciones: [
+      { letra: 'a', texto: 'Es permitida si incrementa el rendimiento del equipo (P > 85%).' },
+      { letra: 'b', texto: 'Constituye una infracción grave a las obligaciones laborales y de seguridad del trabajador.' },
+      { letra: 'c', texto: 'Es una sugerencia válida para la mejora continua del puesto.' },
+      { letra: 'd', texto: 'Queda exenta de sanción si no ocurre un accidente incapacitante.' }],
+    respuesta: 'b',
+    justificacion: 'El Art. 13 prohíbe expresamente al trabajador anular, modificar o retirar protecciones mecánicas y enclavamientos sin orden técnica expresa, sin importar si hubo o no accidente.',
+    justifique: 'Justifique su respuesta desde la perspectiva de la seguridad en el trabajo.' },
+  { id: 3, enunciado: '¿Cuál es el umbral de trabajadores a partir del cual es jurídicamente obligatoria la conformación de un Comité Paritario de Seguridad e Higiene en el centro de trabajo según el Art. 14?',
+    opciones: [
+      { letra: 'a', texto: 'Más de 10 trabajadores.' },
+      { letra: 'b', texto: 'Más de 15 trabajadores.' },
+      { letra: 'c', texto: 'A partir de 50 trabajadores.' },
+      { letra: 'd', texto: 'Estrictamente 100 trabajadores o más.' }],
+    respuesta: 'b',
+    justificacion: 'El Art. 14 establece el umbral en más de 15 trabajadores para el Comité Paritario. El umbral de más de 10 trabajadores se refiere a los Subcomités en sucursales o centros de trabajo satélites.',
+    justifique: 'Justifique su respuesta especificando la diferencia respecto a los Subcomités.' },
+  { id: 4, enunciado: 'La conformación orgánica del Comité Paritario de Seguridad e Higiene (Art. 14) está estipulada por:',
+    opciones: [
+      { letra: 'a', texto: '2 representantes del empleador y 4 de los trabajadores.' },
+      { letra: 'b', texto: '3 representantes principales del empleador y 3 de los trabajadores, con sus respectivos suplentes.' },
+      { letra: 'c', texto: '4 directores técnicos designados directamente por la gerencia general.' },
+      { letra: 'd', texto: 'Todos los supervisores de línea junto al médico ocupacional con voto dirimente.' }],
+    respuesta: 'b',
+    justificacion: 'El Art. 14 establece 3+3 representantes principales con suplentes. La regla de alternancia exige que el Presidente y el Secretario no pertenezcan a la misma parte, alternándose anualmente.',
+    justifique: 'Justifique su respuesta indicando la regla de alternancia en los cargos de Presidente y Secretario.' },
+  { id: 5, enunciado: 'De acuerdo con el Art. 14, ¿cuál es el rol formal del Técnico de Seguridad y del Médico de la empresa dentro de las sesiones del Comité Paritario?',
+    opciones: [
+      { letra: 'a', texto: 'Miembros con derecho a voz y voto dirimente.' },
+      { letra: 'b', texto: 'Asesores técnicos permanentes con voz, pero sin voto.' },
+      { letra: 'c', texto: 'Secretarios natos con potestad sancionatoria.' },
+      { letra: 'd', texto: 'Auditores externos con facultad de veto absoluto.' }],
+    respuesta: 'b',
+    justificacion: 'El Art. 14 establece que los técnicos de la Unidad de Seguridad y Médicos Ocupacionales actúan como asesores permanentes con voz pero sin voto, preservando la naturaleza bipartita del órgano.',
+    justifique: 'Justifique su respuesta considerando la naturaleza bipartita del órgano.' },
+  { id: 6, enunciado: 'El Art. 15 exige la creación obligatoria de una Unidad Técnica de Seguridad e Higiene dirigida por un técnico especializado cuando la empresa cuenta con:',
+    opciones: [
+      { letra: 'a', texto: 'Más de 20 trabajadores en actividades comerciales.' },
+      { letra: 'b', texto: '100 o más trabajadores, o más de 50 en actividades catalogadas de alto riesgo.' },
+      { letra: 'c', texto: 'Al menos 15 trabajadores en doble turno operativo.' },
+      { letra: 'd', texto: 'Un índice de frecuencia de accidentes superior a 50 eventos/año.' }],
+    respuesta: 'b',
+    justificacion: 'El Art. 15 fija el umbral general en ≥ 100 trabajadores y la excepción de > 50 trabajadores para actividades de alto riesgo (minería, química, construcción, fundiciones, etc.).',
+    justifique: 'Justifique su respuesta analizando la criticidad del riesgo frente al tamaño de la nómina.' },
+  { id: 7, enunciado: 'Si un operario identifica que el freno de emergencia de una prensa excéntrica no responde mecánicamente, el Art. 13 le confiere el derecho a:',
+    opciones: [
+      { letra: 'a', texto: 'Continuar la operación a velocidad reducida informando al final del turno.' },
+      { letra: 'b', texto: 'Reparar el circuito eléctrico por su cuenta sin autorización formal.' },
+      { letra: 'c', texto: 'Interrumpir la tarea y retirarse del área de peligro inminente sin represalias laborales.' },
+      { letra: 'd', texto: 'Ceder la máquina a un compañero con mayor experiencia operativa.' }],
+    respuesta: 'c',
+    justificacion: 'El Art. 13 reconoce el derecho de abstención del trabajador ante un peligro grave e inminente, sin que ello genere represalias laborales. Es el principio de autocuidado.',
+    justifique: 'Justifique su respuesta bajo el principio de autocuidado y riesgo grave e inminente.' },
+  { id: 8, enunciado: 'Entre las funciones sustantivas asignadas a la Unidad Técnica de Seguridad e Higiene en el Art. 15 se encuentra:',
+    opciones: [
+      { letra: 'a', texto: 'Fijar las escalas salariales del personal operativo.' },
+      { letra: 'b', texto: 'Realizar la identificación, medición cuantitativa y evaluación de riesgos físico-químicos y mecánicos.' },
+      { letra: 'c', texto: 'Tramitar despidos intempestivos por faltas al reglamento interno.' },
+      { letra: 'd', texto: 'Administrar el presupuesto comercial de la organización.' }],
+    respuesta: 'b',
+    justificacion: 'El Art. 15 incluye expresamente la identificación, medición cuantitativa y evaluación de riesgos. Dos metodologías aplicables: matriz IPERC y método de análisis causa-raíz (Ishikawa / Árbol de Causas).',
+    justifique: 'Justifique su respuesta indicando dos metodologías de evaluación técnica aplicables.' }
+];
+
+/* ============ PREGUNTAS V/F ============ */
+const VF_QUESTIONS = [
+  { id: 9, enunciado: 'El empleador puede condicionar la entrega de un arnés de seguridad contra caídas a que el trabajador demuestre al menos 6 meses de permanencia continua en la planta (Art. 9).',
+    respuesta: false,
+    argumentacion: 'Falso. El Art. 9 obliga al empleador a suministrar EPP desde el primer día de trabajo, sin condiciones de antigüedad. La entrega debe ser inmediata, gratuita y adecuada al riesgo.' },
+  { id: 10, enunciado: 'Si una empresa opera con centros de trabajo satélites o sucursales que albergan a 12 trabajadores cada una, el Art. 14 exige la constitución de Subcomités Paritarios de Seguridad e Higiene en cada sede.',
+    respuesta: true,
+    argumentacion: 'Verdadero. El Art. 14 establece el umbral de > 10 trabajadores para los Subcomités en sucursales o centros de trabajo satélites, garantizando la cobertura preventiva en cada sede.' },
+  { id: 11, enunciado: 'Las reuniones ordinarias del Comité Paritario de Seguridad e Higiene deben ejecutarse obligatoriamente fuera del horario regular de trabajo para evitar pérdidas en la disponibilidad (A) de la planta (Art. 14).',
+    respuesta: false,
+    argumentacion: 'Falso. El Art. 14 exige que las sesiones del Comité se realicen dentro del horario laboral y las horas utilizadas deben ser remuneradas. Negar horas laborales para sesionar constituye infracción.' },
+  { id: 12, enunciado: 'El personal operativo tiene la potestad de elegir libremente si utiliza o no la protección auditiva provista por la empresa en zonas donde el nivel de presión sonora continuo equivalente supera los 85 dBA (Art. 13).',
+    respuesta: false,
+    argumentacion: 'Falso. El Art. 13 hace obligatorio el uso de EPP por parte del trabajador. Donde se superan los 85 dBA, el uso de protección auditiva es de cumplimiento estricto y no opcional.' },
+  { id: 13, enunciado: 'En una empresa de 140 trabajadores, la contratación de un consultor externo por honorarios de 2 horas al mes exime legalmente a la organización de implementar la Unidad de Seguridad del Art. 15.',
+    respuesta: false,
+    argumentacion: 'Falso. El Art. 15 exige una Unidad Técnica de Seguridad con responsable titular a tiempo completo para empresas con ≥ 100 trabajadores. La asesoría externa intermitente no sustituye la obligación legal.' },
+  { id: 14, enunciado: 'La investigación sistemática de las causas de todos los accidentes de trabajo ocurridos en el centro productivo es una competencia asignada explícitamente al Comité Paritario en el Art. 14.',
+    respuesta: true,
+    argumentacion: 'Verdadero. El Art. 14 incluye entre las funciones sustantivas del Comité Paritario la investigación de las causas de todos los accidentes de trabajo y enfermedades profesionales del centro.' },
+  { id: 15, enunciado: 'El Art. 9 responsabiliza solidariamente a la empresa por la instrucción periódica del personal en materia de riesgos específicos inherentes al puesto de trabajo.',
+    respuesta: true,
+    argumentacion: 'Verdadero. El Art. 9 impone al empleador la obligación de instrucción y capacitación inicial y continua, no delegable. La omisión de formación genera responsabilidad directa de la empresa.' }
+];
+
+/* ============ PREGUNTAS DESARROLLO ============ */
+const DESARROLLO_QUESTIONS = [
+  { id: 16, enunciado: 'Detalle la jerarquía de control operacional de riesgos (eliminación, sustitución, controles de ingeniería, señalización/administrativos, EPP) y explique cómo el Art. 9 del D.E. 2393 prioriza las soluciones colectivas por sobre las individuales.' },
+  { id: 17, enunciado: 'Explique el procedimiento legal de alternancia exigido por el Art. 14 para la designación de la Presidencia y Secretaría del Comité Paritario, detallando por qué el Presidente y el Secretario no pueden pertenecer simultáneamente a la parte empleadora.' },
+  { id: 18, enunciado: 'Analice desde la ingeniería de métodos qué consecuencias operativas y disciplinarias acarrea para un operario alterar el sensor de presencia (cortina óptica de seguridad) de una cizalla hidráulica según lo prescrito en el Art. 13.' },
+  { id: 19, enunciado: 'Establezca tres diferencias sustanciales entre el perfil, alcance y responsabilidades del Comité Paritario de Seguridad e Higiene (Art. 14) y la Unidad Técnica de Seguridad e Higiene (Art. 15).' },
+  { id: 20, enunciado: 'Conforme al Art. 15, precise qué tipo de instrumentación de higiene industrial debe utilizar la Unidad Técnica para evaluar el ambiente de trabajo frente a riesgos por ruido ocupacional y estrés térmico, indicando las unidades de medida normadas.' },
+  { id: 21, enunciado: 'Describa las atribuciones de fiscalización e inspección que el Art. 9 obliga al empleador a conceder a los inspectores de trabajo y técnicos del Seguro General de Riesgos del Trabajo del IESS.' },
+  { id: 22, enunciado: 'Desglose las causales bajo las cuales el Comité Paritario debe autoconvocarse a una sesión de carácter extraordinario según las disposiciones del Art. 14.' }
+];
+
+/* ============ PREGUNTAS CÁLCULO ============ */
+const CALCULO_QUESTIONS = [
+  { id: 23, enunciado: 'Una celda de manufactura opera 8 horas al día (t_planificado = 480 min). Debido a que un operario retiró la guarda de protección del cabezal de fresado (violación del Art. 13), ocurrió un microatrapamiento que obligó a detener la celda durante 120 min para atención de primeros auxilios y peritaje. Si la celda debía producir 360 piezas en el turno y únicamente completó 240 unidades (de las cuales 30 salieron defectuosas), calcule paso a paso:',
+    items: ['a) Disponibilidad (A).', 'b) Rendimiento (P) considerando t_ciclo_teorico = 1.0 min/pieza.', 'c) Calidad (Q).', 'd) Efectividad Global de los Equipos (OEE).'] },
+  { id: 24, enunciado: 'En una fundición con 65 trabajadores clasificada como actividad de "alto riesgo", la gerencia argumenta que no requiere una Unidad Técnica de Seguridad porque no alcanza los 100 empleados. Dictamine la legalidad de esta decisión basándose textualmente en las excepciones del Art. 15.' },
+  { id: 25, enunciado: 'Un supervisor de línea exige a un operario tornear una pieza de acero AISI 4140 sin refrigerante y con las compuertas abiertas porque el sensor de corte automático falló. El operario apaga el torno y rehúsa continuar. Con base en el Art. 13, redacte el fundamento legal con el que el operario defiende su decisión ante Recursos Humanos.' },
+  { id: 26, enunciado: 'Diseñe la estructura orgánica (cargos, representaciones principales y suplentes) para el Comité Paritario de una empresa naval con 85 trabajadores conforme al Art. 14, especificando quiénes ocupan la voz sin voto.' },
+  { id: 27, enunciado: 'Una fábrica textil adquiere 50 respiradores para material particulado sin sello de certificación NIOSH o norma EN, argumentando reducción de costos. Determine la vulneración del Art. 9 y señale dos riesgos a la salud ocupacional derivados del uso de EPP no certificado.' },
+  { id: 28, enunciado: 'Si en una planta de 200 trabajadores ocurre un accidente grave con fractura de fémur en la zona de almacenamiento, detalle el flujo secuencial de intervención conjunta que deben seguir el Comité Paritario (Art. 14) y la Unidad de Seguridad (Art. 15) desde el minuto cero hasta la emisión del informe causal.' },
+  { id: 29, enunciado: 'Durante una auditoría interna, se comprueba que el Comité Paritario no ha sesionado en los últimos 4 meses porque el empleador no justificó las horas de los delegados. Calcule el número de actas mensuales faltantes en el año según el Art. 14 y determine la contingencia sancionatoria para la empresa.' },
+  { id: 30, enunciado: 'Una empresa metalmecánica tiene 120 trabajadores. El Director de Operaciones propone que el Jefe de Mantenimiento asuma simultáneamente la dirección de la Unidad Técnica de Seguridad (Art. 15) como función secundaria. Emita un informe técnico de rechazo a esta propuesta, fundamentando la incompatibilidad de funciones y los requisitos de competencia técnica y dedicación exigidos por ley.' }
+];
+
+/* ============ RENDERIZADO SM ============ */
+function renderSM() {
+  const container = document.getElementById('sm-content');
+  if (!container) return;
+  container.innerHTML = SM_QUESTIONS.map(p => `
+    <div class="pregunta-card" data-pregunta="${p.id}">
+      <div class="pregunta-head">
+        <span class="num-circle">${p.id}</span>
+        <p class="pregunta-text">${p.enunciado}</p>
+      </div>
+      <div class="opciones">
+        ${p.opciones.map(o => `
+          <button class="opcion-btn" data-letra="${o.letra}" data-correcta="${o.letra === p.respuesta}">
+            <span class="opcion-letra">${o.letra})</span>
+            <span>${o.texto}</span>
+          </button>
+        `).join('')}
+      </div>
+      <p class="pregunta-hint">*${p.justifique}*</p>
+    </div>
+  `).join('');
+
+  container.querySelectorAll('.pregunta-card').forEach(card => {
+    const id = parseInt(card.dataset.pregunta);
+    const pregunta = SM_QUESTIONS.find(p => p.id === id);
+    const btns = card.querySelectorAll('.opcion-btn');
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (card.querySelector('.feedback')) return; // ya respondida
+        const correcta = btn.dataset.correcta === 'true';
+        const letra = btn.dataset.letra;
+        btns.forEach(b => {
+          b.classList.add('locked');
+          if (b.dataset.correcta === 'true') b.classList.add('correct');
+          else if (b === btn) b.classList.add('incorrect');
+          else b.classList.add('dimmed');
+        });
+        const fb = document.createElement('div');
+        fb.className = 'feedback ' + (correcta ? 'feedback-correct' : 'feedback-incorrect');
+        fb.innerHTML = `
+          <div class="feedback-title">${correcta ? '✓ Respuesta correcta' : '✗ Respuesta incorrecta'}</div>
+          <div><strong>Justificación: </strong>${pregunta.justificacion}</div>
+        `;
+        card.appendChild(fb);
+      });
+    });
+  });
+}
+
+/* ============ RENDERIZADO VF ============ */
+function renderVF() {
+  const container = document.getElementById('vf-content');
+  if (!container) return;
+  container.innerHTML = `
+    <p style="font-size: 0.8rem; color: var(--slate-500); font-style: italic; margin-bottom: 16px;">
+      Escriba en el paréntesis (V) si es Verdadero o (F) si es Falso. En caso de ser Falso, desvirtúe la afirmación con el argumento técnico-normativo correspondiente.
+    </p>
+  ` + VF_QUESTIONS.map(p => `
+    <div class="pregunta-card" data-pregunta="${p.id}">
+      <div class="pregunta-head">
+        <span class="num-circle">${p.id}</span>
+        <p class="pregunta-text"><span style="color: var(--slate-400); margin-right: 6px;">(&nbsp;&nbsp;)</span>${p.enunciado}</p>
+      </div>
+      <p style="font-size: 0.78rem; color: var(--slate-500); font-style: italic; margin: 8px 0;">Argumentación:</p>
+      <div class="vf-btns">
+        <button class="vf-btn" data-vf="true">Verdadero</button>
+        <button class="vf-btn" data-vf="false">Falso</button>
+      </div>
+    </div>
+  `).join('');
+
+  container.querySelectorAll('.pregunta-card').forEach(card => {
+    const id = parseInt(card.dataset.pregunta);
+    const pregunta = VF_QUESTIONS.find(p => p.id === id);
+    const btns = card.querySelectorAll('.vf-btn');
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (card.querySelector('.feedback')) return;
+        const correcta = (btn.dataset.vf === 'true') === pregunta.respuesta;
+        btns.forEach(b => {
+          b.disabled = true;
+          const bVal = (b.dataset.vf === 'true');
+          if (bVal === pregunta.respuesta) b.classList.add('correct');
+          else if (b === btn) b.classList.add('incorrect');
+        });
+        const fb = document.createElement('div');
+        fb.className = 'feedback ' + (correcta ? 'feedback-correct' : 'feedback-incorrect');
+        fb.innerHTML = `
+          <div class="feedback-title">${correcta ? '✓ Correcto' : '✗ Incorrecto'}</div>
+          <div>${pregunta.argumentacion}</div>
+        `;
+        card.appendChild(fb);
+      });
+    });
+  });
+}
+
+/* ============ RENDERIZADO DESARROLLO ============ */
+function renderDesarrollo() {
+  const container = document.getElementById('desarrollo-content');
+  if (!container) return;
+  container.innerHTML = DESARROLLO_QUESTIONS.map(p => `
+    <div class="desarrollo-card" data-pregunta="${p.id}">
+      <div class="pregunta-head">
+        <span class="num-circle num-circle-violet">${p.id}</span>
+        <p class="pregunta-text">${p.enunciado}</p>
+      </div>
+      <textarea class="desarrollo-textarea" placeholder="Escriba aquí su respuesta fundamentada…"></textarea>
+    </div>
+  `).join('');
+}
+
+/* ============ RENDERIZADO CÁLCULO ============ */
+function renderCalculo() {
+  const container = document.getElementById('calculo-content');
+  if (!container) return;
+  container.innerHTML = CALCULO_QUESTIONS.map(p => `
+    <div class="pregunta-card" data-pregunta="${p.id}">
+      <div class="pregunta-head">
+        <span class="num-circle num-circle-rose">${p.id}</span>
+        <p class="pregunta-text">${p.enunciado}</p>
+      </div>
+      ${p.items ? `
+        <ul class="arrow-list" style="margin-left: 8px;">
+          ${p.items.map(it => `<li>${it}</li>`).join('')}
+        </ul>
+      ` : ''}
+    </div>
+  `).join('');
+}
+
+/* Inicializar todo al cargar */
+document.addEventListener('DOMContentLoaded', () => {
+  renderSM();
+  renderVF();
+  renderDesarrollo();
+  renderCalculo();
+});
+
+/* ============================================================
+   SISTEMA DE PROTECCIÓN POR CONTRASEÑA — SOLUCIONARIOS
+   Contraseña del docente: 1980
+   ============================================================ */
+
+const DOCENTE_PASSWORD = '1980';
+let docenteUnlocked = false;
+let pendingUnlockTarget = null;
+
+/* Datos completos de respuestas para el Solucionario del Banco de Evaluación */
+const SOL_DESARROLLO_ANSWERS = [
+  { id: 16, respuesta: 'La jerarquía de control de riesgos, según NIOSH y OSHA, ordena de mayor a menor eficacia: (1) Eliminación — quitar el riesgo en el origen; (2) Sustitución — reemplazar por un agente menos peligroso; (3) Controles de ingeniería — enclavamientos, resguardos, aislamiento; (4) Controles administrativos y señalización — procedimientos, rotación, capacitación; (5) EPP — protección individual, último recurso. El Art. 9 prioriza las soluciones colectivas porque exige al empleador adoptar "medidas técnicas" en el origen del riesgo (enclavamientos, rediseño de máquina, ventilación localizada), lo que corresponde a los niveles 1-3 de la jerarquía, dejando el EPP (nivel 5) como complemento, nunca como sustituto. La racionalidad es que un control colectivo protege a todos los trabajadores sin requerir su cooperación activa, mientras que el EPP depende del uso correcto y permanente por cada operario.' },
+  { id: 17, respuesta: 'El Art. 14 establece que el Comité Paritario se conforma por 3 representantes del empleador y 3 de los trabajadores, con sus respectivos suplentes. La Presidencia y la Secretaría se eligen por votación interna, pero deben alternarse anualmente: si el Presidente corresponde a la parte empleadora, el Secretario debe ser de los trabajadores, y viceversa. Esta regla de alternancia garantiza el carácter bipartito del órgano: si Presidente y Secretario fueran ambos patronales, el Comité perdería su naturaleza de control recíproco y se convertiría en un apéndice de la gerencia, invalidando su función de veedor interno y desnaturalizando la investigación conjunta de accidentes. La alternancia también impide que la parte con mayor poderío jerárquico imponga sus decisiones administrativas y de agenda.' },
+  { id: 18, respuesta: 'La alteración de la cortina óptica de seguridad de una cizalla hidráulica constituye falta grave del Art. 13: (a) infracción directa al deber de no anular o modificar resguardos mecánicos sin orden técnica expresa; (b) expone al operario a la zona de peligro de la cuchilla sin la detección automática de presencia. Consecuencias operativas: la cizalla debe ser consignada (LOTO), retirada de operación hasta reposición del dispositivo y certificación de la función de seguridad (PL e según ISO 13849-1). Consecuencias disciplinarias: amonestación escrita, suspensión temporal según el Reglamento Interno, y registro en el expediente del trabajador. Además, si ocurre un accidente, la manipulación se considera "falta grave del trabajador" y puede eximir al empleador de recargo de prestaciones del IESS, aunque la responsabilidad patronal persiste si no se demuestra supervisión adecuada.' },
+  { id: 19, respuesta: 'Tres diferencias sustanciales entre el Comité Paritario (Art. 14) y la Unidad Técnica de Seguridad (Art. 15): (1) Naturaleza — el Comité es un órgano bipartito de control y veeduría (representa empleadores y trabajadores), mientras que la Unidad Técnica es un órgano técnico-profesional de la línea jerárquica del empleador. (2) Composición — el Comité se integra por 3+3 representantes paritarios con voz y voto; la Unidad Técnica la dirige un profesional de cuarto nivel o con registro profesional, asistido por técnicos. (3) Función — el Comité aprueba, inspecciona e investiga, pero no ejecuta el sistema de gestión; la Unidad Técnica diseña, mide, evalúa y lidera técnicamente el SGSST, y tiene autoridad técnica para detener líneas inseguras. El umbral también difiere: Comité &gt; 15 trabajadores; Unidad Técnica ≥ 100 (o &gt; 50 en alto riesgo).' },
+  { id: 20, respuesta: 'Para ruido ocupacional: sonómetro integrador clase 1 (cumpliendo IEC 61672-1) para mediciones puntuales, y dosímetro personal calibrado (ANSI S1.25 / IEC 61252) para la exposición personal en jornada de 8 horas. La unidad de medida es el decibelio ponderado A y el nivel continuo equivalente (LAeq,8h), comparado contra el límite de 85 dBA del Reglamento del IESS. Para estrés térmico: medidor de bulbo húmedo (WBGT) con termómetros de globo, seco y húmedo (cumpliendo ISO 7243). La unidad de medida es el índice WBGT (°C), comparado contra los límites por carga de trabajo (ligero 30°C, moderado 27.5°C, pesado 25°C) según la ACGIH. También deben registrarse la temperatura de globo, la velocidad del aire (anemómetro) y la humedad relativa (higrómetro).' },
+  { id: 21, respuesta: 'El Art. 9 obliga al empleador a: (a) permitir el libre y expedito acceso de los inspectores del Ministerio del Trabajo y del IESS a todas las áreas de la planta, sin previo aviso; (b) proveer información fidedigna y completa sobre condiciones de trabajo, nómina, registros de accidentes y enfermedades profesionales, actas del Comité Paritario y matrices IPERC; (c) facilitar copias de la documentación técnica (planos, certificados de calderas y recipientes a presión, fichas técnicas de EPP, manuales de máquinas); (d) no obstaculizar las entrevistas a los trabajadores, en privado si así lo solicita el inspector; (e) aceptar las órdenes de suspensión o clausura cautelar sin represalias contra los trabajadores que presten declaración. El incumplimiento de estas atribuciones es infracción grave sancionable con multa y eventual clausura.' },
+  { id: 22, respuesta: 'El Comité Paritario debe autoconvocarse a sesión extraordinaria en los siguientes casos: (a) cuando ocurra un accidente grave o fatal en el centro de trabajo (la sesión debe realizarse dentro de las 24 horas siguientes); (b) ante una enfermedad profesional calificada como grave por el IESS; (c) ante la verificación de una condición insegura que ponga en riesgo inminente la integridad de los trabajadores; (d) ante la notificación de una clausura cautelar por parte del IESS o del Ministerio del Trabajo; (e) ante la negativa del empleador a corregir una observación previamente notificada; (f) cuando lo solicite formalmente cualquiera de las dos partes (empleador o trabajadores) por circunstancias excepcionales. La autoconvocatoria se realiza por escrito al Presidente y al Secretario, con copia al empleador, sin necesidad de autorización patronal para sesionar.' }
+];
+
+const SOL_CALCULO_ANSWERS = [
+  { id: 23, respuesta: 'a) A = (480 − 120) / 480 = 360 / 480 = 0.750 → <strong>75.00%</strong>. b) P = (240 × 1.0) / 360 = 240 / 360 = 0.6667 → <strong>66.67%</strong>. c) Q = (240 − 30) / 240 = 210 / 240 = 0.875 → <strong>87.50%</strong>. d) OEE = 0.750 × 0.6667 × 0.875 = 0.4375 → <strong>43.75%</strong>. Conclusión: retirar la guarda de protección del cabezal de fresado (Art. 13) redujo el OEE al 43.75%, muy por debajo del estándar del 85%. El microatrapamiento y la detención de 120 min destruyeron la disponibilidad; la operación forzada produjo 30 piezas defectuosas que destruyeron la calidad.' },
+  { id: 24, respuesta: 'La decisión de la gerencia es <strong>ILEGAL</strong>. El Art. 15 establece explícitamente la excepción: para actividades catalogadas de "alto riesgo" (minería, química pesada, construcción, fundiciones — explícitamente enumeradas), la Unidad Técnica de Seguridad es obligatoria con <strong>más de 50 trabajadores</strong>, previa disposición de la autoridad competente. La fundición, con 65 trabajadores, cumple holgadamente este umbral de 50 para actividades de alto riesgo. La gerencia confunde deliberadamente el umbral general (100) con el umbral reducido (50) aplicable a alto riesgo. La empresa debe contratar inmediatamente a un Responsable Técnico a tiempo completo o enfrentar sanción (multa y eventual clausura cautelar).' },
+  { id: 25, respuesta: 'Fundamento legal: "El presente trabajador ejerce el derecho de abstención consagrado en el Art. 13 del Decreto Ejecutivo 2393, el cual reconoce al trabajador el derecho a interrumpir sus labores y retirarse del área de trabajo cuando exista un peligro grave e inminente para su vida o salud, sin que ello genere represalias laborales. Las condiciones impuestas por el supervisor (operar sin refrigerante y con las compuertas abiertas ante el fallo del sensor de corte automático) constituyen un peligro grave e inminente: la ausencia del sensor de corte elimina la protección contra atrapamiento, y operar sin refrigerante con acero AISI 4140 genera temperaturas elevadas y proyección de viruta incandescente. El operario actuó conforme a la obligación de autocuidado y al deber de no ejecutar tareas sin las condiciones mínimas de seguridad, debiendo adicionar el reporte inmediato al Comité Paritario."' },
+  { id: 26, respuesta: 'Estructura orgánica del Comité Paritario para la empresa naval con 85 trabajadores (cumple el umbral &gt; 15): <strong>Representantes del empleador (3 principales + 3 suplentes):</strong> designados por la gerencia entre jefes de área y supervisores. <strong>Representantes de los trabajadores (3 principales + 3 suplentes):</strong> elegidos por votación directa de los 85 operarios. <strong>Cargos directivos:</strong> Presidente (un representante de una parte) y Secretario (un representante de la otra parte), elegidos por votación interna, alternándose anualmente (si el Presidente es patronal, el Secretario es laboral, y viceversa). <strong>Asesores permanentes con voz pero sin voto:</strong> el Técnico de Seguridad de la empresa y el Médico Ocupacional. <strong>Funcionamiento:</strong> sesiones mensuales ordinarias (con acta firmada) y extraordinarias ante accidentes o condiciones inseguras graves.' },
+  { id: 27, respuesta: 'Vulneración del Art. 9: el empleador incumple la obligación de suministrar EPP "adecuado al riesgo" y "homologado". Los respiradores para material particulado deben cumplir NIOSH (N95, R95, P100) o EN 149 (FFP1, FFP2, FFP3), y no pueden sustituirse por máscaras quirúrgicas ni respiradores sin sello de certificación. Dos riesgos a la salud: (a) <strong>Neumoconiosis (fibrosis pulmonar)</strong> — el material particulado fino (PM2.5-PM10) de algodón, polvo orgánico o sílice atraviesa una mascarilla no certificada y se deposita en los alvéolos, generando inflamación crónica y fibrosis irreversible a los 5-15 años de exposición; (b) <strong>Infecciones respiratorias recurrentes</strong> — al no haber sello hermético, el aire contaminado ingresa por los laterales; el operario sigue inhalando polvo pero cree estar protegido, prolongando la exposición. La empresa es responsable solidaria de los daños a la salud que deriven de esta negligencia.' },
+  { id: 28, respuesta: 'Flujo secuencial de intervención: <strong>Minuto 0:</strong> activación del plan de emergencia — atención inmediata del herido por brigadistas, llamado a ECU 911, aislamiento de la zona, consignación de la máquina (LOTO). <strong>Minuto 10-30:</strong> notificación interna al Técnico de Seguridad y al Presidente del Comité Paritario; notificación externa al IESS y al Ministerio del Trabajo (dentro de las 24 h). <strong>Hora 1-8:</strong> aseguramiento del lugar de los hechos (fotos, testigos, evidencia física), atención médica hospitalaria y emisión del parte médico. <strong>Hora 24:</strong> reunión extraordinaria del Comité Paritario (Art. 14) para iniciar investigación formal. <strong>Día 2-7:</strong> la Unidad Técnica de Seguridad (Art. 15) lidera el análisis causa-raíz mediante Árbol de Causas o Ishikawa, recopila evidencia, entrevista testigos. <strong>Día 7-15:</strong> emisión del informe causal conjunto Comité–Unidad Técnica, con determinación de causa inmediata, causa básica y causa raíz, recomendaciones de remediación y lecciones aprendidas. <strong>Día 15:</strong> presentación del informe al IESS y al Ministerio del Trabajo.' },
+  { id: 29, respuesta: 'Según el Art. 14, el Comité Paritario debe sesionar mensualmente, por lo que en 4 meses faltan <strong>4 actas mensuales</strong>. La contingencia sancionatoria: (a) multa impuesta por el Ministerio del Trabajo por incumplimiento del Art. 14 (sanción económica que depende del número de trabajadores y la reincidencia); (b) suspensión temporal del registro del Comité, dejando a la empresa sin órgano de veeduría válido; (c) si dentro de esos 4 meses ocurrió un accidente, el IESS puede aplicar recargo del 50% al 100% sobre las prestaciones al empleador, por considerar que la omisión del empleador de justificar las horas de los delegados impidió la función preventiva del Comité; (d) la empresa queda en lista de inspección prioritaria para auditoría del IESS en su próxima visita.' },
+  { id: 30, respuesta: 'Informe técnico de rechazo: "El Director de Operaciones propone que el Jefe de Mantenimiento asuma simultáneamente la dirección de la Unidad Técnica de Seguridad como función secundaria. Esta propuesta debe ser RECHAZADA por las siguientes razones técnicas y legales: <strong>(1) Incompatibilidad de funciones:</strong> El Jefe de Mantenimiento es responsable operativo de la disponibilidad de la maquinaria; al asumir también Seguridad, queda en conflicto de interés: priorizará el cumplimiento de producción sobre las decisiones técnicas de parar líneas inseguras, anulando la autonomía funcional exigida por el Art. 15. <strong>(2) Competencia técnica:</strong> El Art. 15 exige profesional con formación de cuarto nivel o registro profesional en Seguridad e Higiene del Trabajo, avalado por los entes de control. El Jefe de Mantenimiento no necesariamente cuenta con esta titulación. <strong>(3) Dedicación:</strong> La norma exige dedicación permanente; una función secundaria no garantiza el tiempo necesario para IPERC, inspecciones, capacitación, investigación de accidentes y elaboración del Reglamento Interno. <strong>Recomendación:</strong> Apertura formal del proceso de selección y contratación de un Responsable Técnico de Seguridad a tiempo completo, sin funciones operativas adicionales."' }
+];
+
+/* Nota: La justificación se muestra igualmente al hacer clic en una respuesta interactiva.
+   El solucionario completo del Banco de Evaluación solo se revela al desbloquear. */
+
+function renderSolucionarioBanco() {
+  // SM
+  const smContainer = document.getElementById('sol-sm-container');
+  if (smContainer) {
+    smContainer.innerHTML = SM_QUESTIONS.map(p => `
+      <div class="sol-block">
+        <div class="sol-block-head"><div class="sol-block-num">${p.id}</div><div class="sol-block-q">${p.enunciado}</div></div>
+        <div class="sol-block-a">
+          <span class="sol-block-a-mark">Respuesta correcta: ${p.respuesta.toUpperCase()}</span>
+          ${p.opciones.find(o => o.letra === p.respuesta).texto}
+          <br><br><strong>Justificación:</strong> ${p.justificacion}
+        </div>
+      </div>
+    `).join('');
+  }
+  // VF
+  const vfContainer = document.getElementById('sol-vf-container');
+  if (vfContainer) {
+    vfContainer.innerHTML = VF_QUESTIONS.map(p => `
+      <div class="sol-block sol-block-amber">
+        <div class="sol-block-head"><div class="sol-block-num">${p.id}</div><div class="sol-block-q">${p.enunciado}</div></div>
+        <div class="sol-block-a">
+          <span class="sol-block-a-mark">Respuesta: ${p.respuesta ? 'VERDADERO' : 'FALSO'}</span>
+          <strong>Argumentación:</strong> ${p.argumentacion}
+        </div>
+      </div>
+    `).join('');
+  }
+  // Desarrollo
+  const desContainer = document.getElementById('sol-desarrollo-container');
+  if (desContainer) {
+    desContainer.innerHTML = SOL_DESARROLLO_ANSWERS.map(p => `
+      <div class="sol-block sol-block-violet">
+        <div class="sol-block-head"><div class="sol-block-num">${p.id}</div><div class="sol-block-q">${DESARROLLO_QUESTIONS.find(q => q.id === p.id).enunciado}</div></div>
+        <div class="sol-block-a"><span class="sol-block-a-mark">Respuesta modelo</span>${p.respuesta}</div>
+      </div>
+    `).join('');
+  }
+  // Cálculo
+  const calcContainer = document.getElementById('sol-calculo-container');
+  if (calcContainer) {
+    calcContainer.innerHTML = SOL_CALCULO_ANSWERS.map(p => `
+      <div class="sol-block sol-block-rose">
+        <div class="sol-block-head"><div class="sol-block-num">${p.id}</div><div class="sol-block-q">${CALCULO_QUESTIONS.find(q => q.id === p.id).enunciado}</div></div>
+        <div class="sol-block-a"><span class="sol-block-a-mark">Respuesta modelo</span>${p.respuesta}</div>
+      </div>
+    `).join('');
+  }
+}
+
+function openPasswordModal(targetId) {
+  pendingUnlockTarget = targetId;
+  const modal = document.getElementById('password-modal');
+  const input = document.getElementById('password-input');
+  const error = document.getElementById('password-error');
+  input.value = '';
+  error.style.display = 'none';
+  modal.classList.add('open');
+  setTimeout(() => input.focus(), 50);
+}
+
+function closePasswordModal() {
+  document.getElementById('password-modal').classList.remove('open');
+  pendingUnlockTarget = null;
+}
+
+function tryUnlock() {
+  const input = document.getElementById('password-input');
+  const error = document.getElementById('password-error');
+  if (input.value === DOCENTE_PASSWORD) {
+    docenteUnlocked = true;
+    // Desbloquear TODAS las secciones (tres secciones protegidas)
+    ['solucionario-taller', 'solucionario-evaluacion', 'solucionario-tarea'].forEach(id => {
+      const content = document.getElementById(id);
+      const lock = document.getElementById(id + '-lock');
+      if (content) content.classList.add('unlocked');
+      if (lock) lock.style.display = 'none';
+    });
+    // Renderizar el solucionario del banco de evaluación
+    renderSolucionarioBanco();
+    closePasswordModal();
+  } else {
+    error.style.display = 'block';
+    input.value = '';
+    input.focus();
+  }
+}
+
+function requestUnlock(targetId) {
+  if (docenteUnlocked) {
+    const content = document.getElementById(targetId);
+    const lock = document.getElementById(targetId + '-lock');
+    if (content) content.classList.add('unlocked');
+    if (lock) lock.style.display = 'none';
+    if (targetId === 'solucionario-evaluacion') renderSolucionarioBanco();
+  } else {
+    openPasswordModal(targetId);
+  }
+}
+
+/* Adjuntar listeners al cargar (el modal está después del script) */
+document.addEventListener('DOMContentLoaded', () => {
+  const submitBtn = document.getElementById('password-submit');
+  const inputEl = document.getElementById('password-input');
+  const cancelBtn = document.getElementById('password-cancel');
+  const modal = document.getElementById('password-modal');
+  if (submitBtn) submitBtn.addEventListener('click', tryUnlock);
+  if (inputEl) inputEl.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); tryUnlock(); }
+    if (e.key === 'Escape') closePasswordModal();
+  });
+  if (cancelBtn) cancelBtn.addEventListener('click', closePasswordModal);
+  if (modal) modal.addEventListener('click', (e) => {
+    if (e.target.id === 'password-modal') closePasswordModal();
+  });
+});
+
+/* Acordeón del solucionario del Banco de Evaluación */
+document.addEventListener('click', (e) => {
+  const trigger = e.target.closest('.eval-solucionario-trigger');
+  if (trigger) {
+    const section = trigger.parentElement;
+    section.classList.toggle('open');
+  }
+});
+</script>
+
+<!-- ============ MODAL DE CONTRASEÑA ============ -->
+<div class="password-modal" id="password-modal" role="dialog" aria-modal="true" aria-labelledby="password-modal-title">
+  <div class="password-modal-card">
+    <div class="password-modal-icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    </div>
+    <h3 class="password-modal-title" id="password-modal-title">Acceso restringido — Solo docente</h3>
+    <p class="password-modal-text">Esta sección contiene material reservado para el cuerpo docente. Ingrese la contraseña para desbloquear todas las secciones protegidas (Solucionario del Taller, Respuestas del Banco de Evaluación y Solucionario de la Tarea Asincrónica).</p>
+    <input type="password" class="password-input" id="password-input" placeholder="Contraseña del docente" autocomplete="off" />
+    <div class="password-error" id="password-error">Contraseña incorrecta. Intente nuevamente.</div>
+    <div class="password-btns">
+      <button class="btn-cancel" id="password-cancel">Cancelar</button>
+      <button class="btn-submit" id="password-submit">Desbloquear</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
