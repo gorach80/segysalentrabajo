@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Material Docente — Infraestructura Física Industrial (Decreto 2393)</title>
+<meta name="description" content="Material didáctico universitario sobre auditoría técnica de infraestructura física industrial — Marco jurídico, casos, taller, banco de reactivos y tarea asíncrona.">
+<style>
+
+:root{
+  --azul-900:#0b2545;
+  --azul-800:#13315c;
+  --azul-700:#1b3a6b;
+  --azul-600:#24507f;
+  --azul-500:#3a6ea5;
+  --azul-100:#e7eef7;
+  --azul-50:#f4f7fb;
+  --oro:#b68a35;
+  --oro-soft:#e3c878;
+  --gris-900:#1a1a1a;
+  --gris-700:#4a4a4a;
+  --gris-500:#7a7a7a;
+  --gris-300:#d0d0d0;
+  --gris-200:#e6e6e6;
+  --gris-100:#f2f2f2;
+  --fondo:#fafbfd;
+  --borde:#cdd6e4;
+  --rojo:#a4161a;
+  --verde:#2a7f62;
+  --serif:'Georgia','Times New Roman','Noto Serif',serif;
+  --sans:'Helvetica Neue',Arial,'Noto Sans','Liberation Sans',sans-serif;
+  --mono:'Source Code Pro','Consolas','Menlo',monospace;
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--fondo);color:var(--gris-900);
+  font-family:var(--serif);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;}
+
+/* HEADER / Membrete académico */
+header.membrete{
+  background:linear-gradient(180deg,var(--azul-900) 0%, var(--azul-800) 100%);
+  color:#fff;padding:28px 40px 22px;border-bottom:4px solid var(--oro);
+  box-shadow:0 2px 8px rgba(0,0,0,0.15);
+}
+header.membrete .fila-sup{display:flex;justify-content:space-between;align-items:flex-start;
+  flex-wrap:wrap;gap:18px;border-bottom:1px solid rgba(255,255,255,0.18);padding-bottom:14px;margin-bottom:14px;}
+header.membrete .catedra{font-family:var(--sans);font-size:0.78rem;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--oro-soft);font-weight:600;}
+header.membrete .titulo-curso{font-family:var(--serif);font-size:0.95rem;font-style:italic;
+  color:#fff;opacity:0.92;margin-top:6px;}
+header.membrete .meta-curso{text-align:right;font-family:var(--sans);font-size:0.78rem;
+  color:#dfe6f1;line-height:1.45;}
+header.membrete .meta-curso strong{color:var(--oro-soft);letter-spacing:0.05em;}
+header.membrete h1{font-family:var(--serif);font-size:1.65rem;font-weight:700;margin:0;
+  letter-spacing:-0.01em;line-height:1.25;}
+header.membrete .subtitulo{font-family:var(--sans);font-size:0.85rem;color:#cfd9e8;
+  margin-top:4px;letter-spacing:0.02em;}
+header.membrete .info-adic{display:flex;gap:24px;flex-wrap:wrap;margin-top:10px;
+  font-family:var(--sans);font-size:0.75rem;color:#c8d2e0;}
+header.membrete .info-adic span strong{color:var(--oro-soft);margin-right:6px;}
+
+/* BARRA DE PESTAÑAS */
+nav.tabs{
+  position:sticky;top:0;z-index:100;
+  background:#fff;border-bottom:1px solid var(--borde);
+  box-shadow:0 1px 4px rgba(0,0,0,0.06);
+  display:flex;overflow-x:auto;
+}
+nav.tabs button{
+  flex:0 0 auto;
+  appearance:none;background:transparent;border:none;cursor:pointer;
+  font-family:var(--sans);font-size:0.86rem;font-weight:600;
+  color:var(--gris-700);padding:16px 22px 14px;
+  border-bottom:3px solid transparent;
+  transition:all .18s ease;
+  letter-spacing:0.02em;white-space:nowrap;
+  position:relative;
+}
+nav.tabs button .num{
+  display:inline-block;width:22px;height:22px;line-height:22px;
+  border-radius:50%;background:var(--gris-200);color:var(--gris-700);
+  font-size:0.7rem;text-align:center;margin-right:8px;font-weight:700;
+  transition:all .18s ease;
+}
+nav.tabs button:hover{background:var(--azul-50);color:var(--azul-800);}
+nav.tabs button:hover .num{background:var(--azul-100);color:var(--azul-700);}
+nav.tabs button.active{
+  color:var(--azul-900);border-bottom-color:var(--oro);
+  background:var(--azul-50);
+}
+nav.tabs button.active .num{background:var(--azul-900);color:#fff;}
+
+/* CONTENEDOR PRINCIPAL */
+main{max-width:1180px;margin:0 auto;padding:34px 40px 80px;}
+
+/* PANEL DE PESTAÑA */
+.tab-panel{display:none;animation:fade .35s ease;}
+.tab-panel.active{display:block;}
+@keyframes fade{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* Barra superior de cada pestaña: título + botón imprimir */
+.panel-head{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  gap:18px;margin-bottom:24px;padding-bottom:18px;
+  border-bottom:1px solid var(--borde);
+}
+.panel-head h2{
+  font-family:var(--serif);font-size:1.55rem;font-weight:700;
+  color:var(--azul-900);margin:0;line-height:1.3;letter-spacing:-0.01em;
+}
+.panel-head .epigrafe{
+  font-family:var(--sans);font-size:0.78rem;color:var(--gris-500);
+  letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px;font-weight:600;
+}
+.panel-head .acciones{flex:0 0 auto;display:flex;gap:10px;align-items:center;}
+.btn{
+  font-family:var(--sans);font-size:0.8rem;font-weight:600;
+  padding:8px 14px;border-radius:4px;cursor:pointer;border:1px solid var(--borde);
+  background:#fff;color:var(--azul-800);letter-spacing:0.03em;
+  transition:all .15s ease;
+}
+.btn:hover{background:var(--azul-50);border-color:var(--azul-500);}
+.btn-primario{background:var(--azul-800);color:#fff;border-color:var(--azul-800);}
+.btn-primario:hover{background:var(--azul-900);border-color:var(--azul-900);}
+.btn-oro{background:var(--oro);color:#fff;border-color:var(--oro);}
+.btn-oro:hover{background:#9a762a;}
+
+/* TIPOGRAFÍA DE CONTENIDO */
+.tab-panel h3{
+  font-family:var(--serif);font-size:1.28rem;font-weight:700;
+  color:var(--azul-800);margin:34px 0 14px;
+  padding-bottom:8px;border-bottom:2px solid var(--azul-100);
+  letter-spacing:-0.005em;
+}
+.tab-panel h3.sub{font-size:1.05rem;color:var(--azul-700);
+  border-bottom:1px dotted var(--borde);padding-bottom:5px;}
+.tab-panel h4{
+  font-family:var(--sans);font-size:0.95rem;font-weight:700;
+  color:var(--azul-700);margin:22px 0 10px;letter-spacing:0.01em;
+}
+.tab-panel h4.sub{font-size:0.88rem;color:var(--gris-700);font-weight:600;}
+.tab-panel p{margin:0 0 14px;text-align:justify;hyphens:auto;}
+.tab-panel p.lead{font-size:1.05rem;color:var(--gris-900);font-style:italic;
+  border-left:3px solid var(--oro);padding-left:14px;margin:18px 0;background:var(--azul-50);
+  padding-top:10px;padding-bottom:10px;border-radius:0 4px 4px 0;}
+.tab-panel p.nota{font-family:var(--sans);font-size:0.85rem;color:var(--gris-700);
+  background:var(--gris-100);padding:10px 14px;border-radius:4px;border-left:3px solid var(--gris-500);}
+.tab-panel ul, .tab-panel ol{margin:0 0 16px;padding-left:28px;}
+.tab-panel ul li, .tab-panel ol li{margin-bottom:8px;text-align:justify;}
+.tab-panel ul ul, .tab-panel ol ol{margin-top:6px;}
+.tab-panel strong{color:var(--azul-900);font-weight:700;}
+.tab-panel em{color:var(--gris-900);font-style:italic;}
+.tab-panel code{font-family:var(--mono);font-size:0.85em;background:var(--gris-100);
+  padding:1px 5px;border-radius:3px;color:var(--azul-800);}
+
+/* Cajas de información */
+.box-info{
+  background:var(--azul-50);border-left:4px solid var(--azul-500);
+  padding:14px 18px;margin:16px 0;border-radius:0 4px 4px 0;
+}
+.box-info .titulo{font-family:var(--sans);font-size:0.78rem;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--azul-700);font-weight:700;margin-bottom:8px;}
+.box-adv{
+  background:#fff5f5;border-left:4px solid var(--rojo);
+  padding:14px 18px;margin:16px 0;border-radius:0 4px 4px 0;
+}
+.box-adv .titulo{font-family:var(--sans);font-size:0.78rem;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--rojo);font-weight:700;margin-bottom:8px;}
+.box-ok{
+  background:#f0faf5;border-left:4px solid var(--verde);
+  padding:14px 18px;margin:16px 0;border-radius:0 4px 4px 0;
+}
+.box-ok .titulo{font-family:var(--sans);font-size:0.78rem;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--verde);font-weight:700;margin-bottom:8px;}
+
+/* TABLAS */
+.tab-panel table{
+  width:100%;border-collapse:collapse;margin:18px 0;font-size:0.86rem;
+  font-family:var(--sans);background:#fff;
+  box-shadow:0 1px 3px rgba(0,0,0,0.06);
+  border:1px solid var(--borde);
+  table-layout:fixed;
+}
+.tab-panel table thead{background:var(--azul-800);color:#fff;}
+.tab-panel table thead th{
+  padding:11px 12px;text-align:left;font-weight:600;font-size:0.78rem;
+  letter-spacing:0.06em;text-transform:uppercase;
+  border-right:1px solid var(--azul-700);
+}
+.tab-panel table thead th:last-child{border-right:none;}
+.tab-panel table tbody td{
+  padding:9px 12px;border-top:1px solid var(--borde);border-right:1px solid var(--borde);
+  vertical-align:top;color:var(--gris-900);line-height:1.5;
+  word-wrap:break-word;overflow-wrap:break-word;
+}
+.tab-panel table tbody td:last-child{border-right:none;}
+.tab-panel table tbody tr:nth-child(even){background:var(--azul-50);}
+.tab-panel table tbody tr:hover{background:#eaf1f8;}
+.tab-panel table tbody tr td:first-child{font-weight:600;color:var(--azul-800);}
+.tab-panel table.tabla-compacta{font-size:0.82rem;}
+.tab-panel table.tabla-compacta thead th{padding:8px 10px;font-size:0.74rem;}
+.tab-panel table.tabla-compacta tbody td{padding:7px 10px;}
+.tab-panel table caption{
+  caption-side:top;font-family:var(--sans);font-size:0.78rem;
+  color:var(--gris-500);font-style:italic;margin-bottom:6px;text-align:left;
+  letter-spacing:0.04em;
+}
+
+/* Bloque de fórmula */
+.formula-bloque{
+  background:#fff;border:1px solid var(--borde);border-left:4px solid var(--oro);
+  padding:14px 20px;margin:16px 0;border-radius:4px;overflow-x:auto;
+}
+.formula-bloque .etiqueta{
+  font-family:var(--sans);font-size:0.72rem;color:var(--gris-500);
+  letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;font-weight:600;
+}
+
+/* Cronología / Timeline (caso 2) */
+.timeline{position:relative;padding-left:30px;margin:18px 0;}
+.timeline::before{content:'';position:absolute;left:8px;top:6px;bottom:6px;
+  width:2px;background:var(--azul-500);}
+.timeline .ev{position:relative;margin-bottom:18px;padding-left:8px;}
+.timeline .ev::before{content:'';position:absolute;left:-26px;top:6px;
+  width:12px;height:12px;border-radius:50%;background:var(--azul-800);
+  border:2px solid #fff;box-shadow:0 0 0 2px var(--azul-500);}
+.timeline .ev .hora{font-family:var(--sans);font-weight:700;color:var(--azul-800);
+  font-size:0.86rem;letter-spacing:0.04em;}
+.timeline .ev .desc{font-size:0.95rem;color:var(--gris-900);margin-top:2px;}
+
+/* SOP / fases */
+.sop-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:14px;margin:16px 0;}
+.sop-card{background:#fff;border:1px solid var(--borde);border-top:4px solid var(--azul-700);
+  padding:14px 16px;border-radius:4px;}
+.sop-card .fase{font-family:var(--sans);font-size:0.72rem;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--azul-700);font-weight:700;}
+.sop-card h5{font-family:var(--serif);font-size:1rem;color:var(--azul-900);
+  margin:4px 0 8px;font-weight:700;}
+.sop-card ul{margin:0;padding-left:18px;font-size:0.86rem;}
+.sop-card ul li{margin-bottom:5px;}
+
+/* Diagrama ASCII / preformateado */
+.tab-panel pre{background:var(--gris-900);color:#e6e6e6;padding:14px 18px;
+  border-radius:4px;overflow-x:auto;font-family:var(--mono);font-size:0.78rem;
+  line-height:1.5;margin:14px 0;}
+.tab-panel pre.ascii{background:#fff;color:var(--azul-900);
+  border:1px solid var(--borde);font-size:0.8rem;}
+
+/* Reactivos */
+.reactivo{background:#fff;border:1px solid var(--borde);border-radius:5px;
+  padding:16px 20px;margin:14px 0;box-shadow:0 1px 2px rgba(0,0,0,0.04);}
+.reactivo .num-r{display:inline-block;background:var(--azul-800);color:#fff;
+  font-family:var(--sans);font-size:0.78rem;font-weight:700;padding:3px 9px;
+  border-radius:3px;margin-right:10px;letter-spacing:0.04em;}
+.reactivo .enunciado{font-weight:600;color:var(--azul-900);margin-bottom:8px;
+  display:inline;}
+.reactivo .opciones{margin:8px 0;padding-left:8px;}
+.reactivo .opciones li{list-style:upper-alpha;margin-bottom:5px;}
+.reactivo .justif{font-family:var(--sans);font-size:0.84rem;color:var(--gris-700);
+  margin-top:8px;padding-top:8px;border-top:1px dashed var(--borde);}
+
+/* SECCIÓN CLAVE / SOLUCIONES */
+.soluciones-wrap{margin-top:30px;border-top:2px dashed var(--oro);padding-top:20px;}
+.soluciones-locked{
+  background:linear-gradient(135deg,var(--azul-900) 0%, var(--azul-700) 100%);
+  color:#fff;padding:32px 24px;border-radius:6px;text-align:center;margin:20px 0;
+  box-shadow:0 3px 12px rgba(11,37,69,0.25);
+}
+.soluciones-locked .icono-candado{
+  font-family:var(--sans);font-size:2.4rem;color:var(--oro-soft);
+  margin-bottom:10px;display:block;line-height:1;
+}
+.soluciones-locked h4{
+  font-family:var(--serif);font-size:1.2rem;color:#fff;
+  margin:0 0 6px;font-weight:700;
+}
+.soluciones-locked p{
+  font-family:var(--sans);font-size:0.86rem;color:#cfd9e8;
+  margin:0 0 16px;text-align:center;
+}
+.soluciones-locked input{
+  font-family:var(--mono);font-size:1rem;letter-spacing:0.3em;
+  padding:10px 14px;border:1px solid var(--oro);border-radius:4px;
+  background:#fff;color:var(--azul-900);text-align:center;width:180px;
+  outline:none;
+}
+.soluciones-locked input:focus{box-shadow:0 0 0 3px var(--oro-soft);}
+.soluciones-locked .btn-unlock{
+  font-family:var(--sans);font-size:0.85rem;font-weight:700;
+  padding:11px 22px;border-radius:4px;cursor:pointer;
+  background:var(--oro);color:#fff;border:none;margin-left:8px;
+  letter-spacing:0.05em;text-transform:uppercase;
+}
+.soluciones-locked .btn-unlock:hover{background:#9a762a;}
+.soluciones-locked .error-clave{
+  color:#ffb3b3;font-family:var(--sans);font-size:0.82rem;
+  margin-top:10px;font-weight:600;display:none;
+}
+.soluciones-locked .error-clave.show{display:block;}
+.soluciones-content{display:none;}
+.soluciones-content.unlocked{
+  display:block;animation:fade .35s ease;
+  background:#fffaf0;border:1px solid var(--oro-soft);border-radius:6px;
+  padding:24px;margin-top:14px;
+}
+.soluciones-content.unlocked .sol-head{
+  font-family:var(--sans);font-size:0.78rem;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--oro);font-weight:700;
+  border-bottom:1px solid var(--oro-soft);padding-bottom:8px;margin-bottom:14px;
+}
+
+/* MODAL (clave) */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(11,37,69,0.78);
+  display:none;z-index:1000;align-items:center;justify-content:center;
+  backdrop-filter:blur(3px);animation:fade .2s ease;
+}
+.modal-overlay.show{display:flex;}
+.modal-box{
+  background:#fff;border-radius:8px;width:380px;max-width:90vw;
+  box-shadow:0 10px 40px rgba(0,0,0,0.35);overflow:hidden;
+}
+.modal-box .mb-head{
+  background:var(--azul-900);color:#fff;padding:16px 20px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.modal-box .mb-head h5{
+  font-family:var(--serif);font-size:1.05rem;margin:0;font-weight:700;color:#fff;
+}
+.modal-box .mb-head .cerrar{
+  background:transparent;border:none;color:#fff;cursor:pointer;
+  font-size:1.4rem;line-height:1;padding:0 4px;
+}
+.modal-box .mb-body{padding:22px 24px;}
+.modal-box .mb-body p{font-family:var(--sans);font-size:0.86rem;color:var(--gris-700);
+  margin:0 0 14px;text-align:left;}
+.modal-box .mb-body input{
+  width:100%;font-family:var(--mono);font-size:1.05rem;letter-spacing:0.3em;
+  padding:11px 14px;border:1.5px solid var(--borde);border-radius:4px;
+  text-align:center;outline:none;color:var(--azul-900);
+}
+.modal-box .mb-body input:focus{border-color:var(--oro);box-shadow:0 0 0 3px var(--oro-soft);}
+.modal-box .mb-body .err{
+  color:var(--rojo);font-family:var(--sans);font-size:0.82rem;
+  margin-top:8px;display:none;font-weight:600;
+}
+.modal-box .mb-body .err.show{display:block;}
+.modal-box .mb-foot{
+  background:var(--gris-100);padding:14px 24px;display:flex;
+  justify-content:flex-end;gap:10px;
+}
+.modal-box .btn-cancel{
+  background:transparent;border:1px solid var(--borde);color:var(--gris-700);
+  font-family:var(--sans);font-size:0.85rem;font-weight:600;
+  padding:8px 16px;border-radius:4px;cursor:pointer;
+}
+.modal-box .btn-cancel:hover{background:var(--gris-200);}
+.modal-box .btn-ok{
+  background:var(--azul-800);color:#fff;border:none;
+  font-family:var(--sans);font-size:0.85rem;font-weight:700;
+  padding:8px 18px;border-radius:4px;cursor:pointer;letter-spacing:0.04em;
+}
+.modal-box .btn-ok:hover{background:var(--azul-900);}
+
+/* Footer */
+footer.pie{
+  background:var(--azul-900);color:#c8d2e0;
+  padding:20px 40px;text-align:center;
+  font-family:var(--sans);font-size:0.78rem;letter-spacing:0.04em;
+  border-top:3px solid var(--oro);
+}
+footer.pie strong{color:var(--oro-soft);}
+
+/* Impresión */
+@media print{
+  nav.tabs, header.membrete .acciones, .panel-head .acciones, .soluciones-locked, .modal-overlay{display:none !important;}
+  .tab-panel{display:block !important;page-break-after:always;}
+  .tab-panel:last-child{page-break-after:auto;}
+  body{background:#fff;}
+  main{padding:0;max-width:100%;}
+  .tab-panel table{box-shadow:none;font-size:0.78rem;}
+  header.membrete{box-shadow:none;}
+}
+
+/* Responsive */
+@media (max-width:760px){
+  header.membrete{padding:18px 18px 14px;}
+  header.membrete h1{font-size:1.25rem;}
+  header.membrete .fila-sup{flex-direction:column;align-items:flex-start;}
+  header.membrete .meta-curso{text-align:left;}
+  main{padding:18px 16px 60px;}
+  .panel-head{flex-direction:column;}
+  .tab-panel h3{font-size:1.1rem;}
+  nav.tabs button{padding:12px 14px;font-size:0.78rem;}
+  nav.tabs button .num{display:none;}
+}
+
+</style>
+</head>
+<body>
+
+<header class="membrete">
+  <div class="fila-sup">
+    <div>
+      <div class="catedra">Cátedra: Ingeniería de Seguridad Industrial y Salud Ocupacional</div>
+      <div class="titulo-curso">Auditoría Técnica de Infraestructura Física en Plantas Industriales</div>
+    </div>
+    <div class="meta-curso">
+      <div><strong>Asignatura:</strong> SISO-302 · Seguridad Estructural</div>
+      <div><strong>Período lectivo:</strong> Semestre 2024-II</div>
+      <div><strong>Créditos:</strong> 4 · <strong>Horas:</strong> 64h pres. + 32h autón.</div>
+      <div><strong>Marco normativo:</strong> Decreto Ejecutivo 2393 / ISO 14122 / OSHA 29 CFR 1910</div>
+    </div>
+  </div>
+  <h1>Material Docente — Infraestructura Física Industrial</h1>
+  <div class="subtitulo">Fundamento normativo, casos de auditoría, taller práctico, banco de reactivos y tarea pericial asíncrona</div>
+  <div class="info-adic">
+    <span><strong>Edición:</strong> Material de cátedra — Versión 2024</span>
+    <span><strong>Cobertura:</strong> Arts. 21 · 23 · 26</span>
+    <span><strong>Modalidad:</strong> Híbrida (presencial + LMS)</span>
+  </div>
+</header>
+
+
+<nav class="tabs">
+  <button class="active" data-target="tab1"><span class="num">1</span>Marco Jurídico y Contexto Operacional</button>
+  <button data-target="tab2"><span class="num">2</span>Estudio de Caso — "Procesos del Litoral"</button>
+  <button data-target="tab3"><span class="num">3</span>Taller Práctico — "San Patricio"</button>
+  <button data-target="tab4"><span class="num">4</span>Banco de 30 Reactivos</button>
+  <button data-target="tab5"><span class="num">5</span>Tarea Asíncrona — "Austro S.A."</button>
+</nav>
+
+<main>
+
+<section class="tab-panel active" id="tab1">
+  <div class="panel-head">
+    <div>
+      <div class="epigrafe">Pestaña 1 · Fundamento normativo</div>
+      <h2>Marco Jurídico y Contexto Operacional</h2>
+    </div>
+    <div class="acciones">
+      <button class="btn" onclick="window.imprimirPanel()">Imprimir / PDF</button>
+    </div>
+  </div>
+
+  <p>El análisis técnico de las condiciones de infraestructura física en plantas industriales y centros de trabajo toma como base el <strong>Reglamento de Seguridad y Salud de los Trabajadores y Mejoramiento del Medio Ambiente de Trabajo</strong> (Decreto Ejecutivo 2393, Título II: «Centros de Trabajo, Edificaciones y Locales»). Este marco se articula directamente con normas internacionales de referencia técnica: <strong>ISO 14122</strong> (Seguridad de las máquinas: medios de acceso permanente), <strong>OSHA 29 CFR 1910</strong> (Subpart D: <em>Walking-Working Surfaces</em>) y la Norma Ecuatoriana de la Construcción (<strong>NEC</strong>).</p>
+
+  <h3>Análisis Técnico y Disposiciones Normativas</h3>
+
+  <h4>1. Artículo 21: Seguridad Estructural</h4>
+  <ul>
+    <li><strong>Mandato Legal:</strong> Las edificaciones permanentes o provisionales deben presentar solidez constructiva, garantizando resistencia contra desplome y solicitaciones ambientales (viento, sismo, cargas dinámicas de maquinaria). Cimientos, pisos y vigas deben calcularse con factores de seguridad adecuados al uso industrial.</li>
+    <li><strong>Rótulos de Capacidad:</strong> Exige señalización visible con las cargas admisibles nominales por unidad de superficie en entrepisos, plataformas y mezzanines.</li>
+  </ul>
+
+  <h4>2. Artículo 23: Suelos, Techos y Paredes</h4>
+  <ul>
+    <li><strong>Pavimentos (Suelos):</strong> Deben ser continuos, lisos (sin resaltes ni baches), no deslizantes y de fácil limpieza. Si el proceso involucra vertido o manejo de fluidos industriales, se exige una <strong>pendiente hidráulica de evacuación de hasta el 1.5%</strong> conectada a canaletas y sumideros.</li>
+    <li><strong>Techos y Tumbados:</strong> Diseñados para mitigar la intemperie (radiación térmica, lluvia, condensación). Los enlucidos y cielorrasos deben contar con adherencia certificada para evitar desprendimientos por fatiga vibratoria.</li>
+    <li><strong>Paredes:</strong> Acabado liso, tonalidad clara (factor de reflexión lumínica según norma de higiene) y resistentes a procesos periódicos de lavado y desinfección química.</li>
+  </ul>
+
+  <h4>3. Artículo 26: Escaleras Fijas y de Servicio</h4>
+  <ul>
+    <li><strong>Resistencia Mecánica:</strong> Toda escalera, rellano y plataforma debe soportar una <strong>carga móvil mínima de</strong> $500\,\text{kg/m}^{2}$ con un <strong>coeficiente de seguridad mínimo de 4</strong>.</li>
+    <li><strong>Geometría de Escaleras Generales:</strong>
+      <ul>
+        <li>Ancho mínimo útil: $900\,\text{mm}$.</li>
+        <li>Ángulo de inclinación ($\theta$): $20^{\circ} \leq \theta \leq 45^{\circ}$ respecto a la horizontal.</li>
+        <li>Altura de paso libre vertical: $\geq 2.20\,\text{m}$ medidos verticalmente desde la arista frontal de la huella.</li>
+        <li>Plataformas de descanso: Longitud mínima en el sentido de avance de $1.10\,\text{m}$, requeridas si la altura entre pisos excede los $2.70\,\text{m}$.</li>
+      </ul>
+    </li>
+    <li><strong>Escaleras de Servicio:</strong> Ancho útil no menor a $600\,\text{mm}$ y ángulo de inclinación de hasta $60^{\circ}$.</li>
+    <li><strong>Protecciones Perimétricas:</strong> Barandillas con altura nominal de $900\,\text{mm}$, rodapié o zócalo de contención y pasamanos continuo. Peldaños con orificios permeables limitados a una apertura máxima de $14\,\text{mm}$ para prevenir caída de herramientas a niveles inferiores.</li>
+  </ul>
+
+  <h3>Matriz de Parámetros de Control, Tolerancias e Instrumentación</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:22%">Parámetro</th>
+        <th style="width:11%">Artículo / Criterio</th>
+        <th style="width:30%">Valor Normativo / Tolerancia</th>
+        <th style="width:20%">Instrumento / Método de Ensayo</th>
+        <th style="width:17%">Frecuencia de Control</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Capacidad portante en pisos</td><td>Art. 21</td><td>Carga nominal rotulada ($\text{kN/m}^{2}$); deformación elástica admisible $\leq L/350$</td><td>Memoria de cálculo estructural / Extensómetro digital</td><td>Bienal o por cambio de layout de maquinaria</td></tr>
+      <tr><td>Microfisuración / Asentamiento</td><td>Art. 21</td><td>Abertura de grieta $&lt; 0.3\,\text{mm}$ (sin compromiso en armadura)</td><td>Fisurómetro óptico / Nivelación topográfica</td><td>Semestral</td></tr>
+      <tr><td>Coeficiente de fricción dinámico (DCOF)</td><td>Art. 23</td><td>$\mu \geq 0.50$ (en seco y húmedo)</td><td>Tribómetro dinámico (norma ANSI A137.1 / ASTM C1028)</td><td>Trimestral / Post-mantenimiento</td></tr>
+      <tr><td>Pendiente de drenaje de piso</td><td>Art. 23</td><td>$1.0\% \leq S \leq 1.5\%$ hacia sumidero</td><td>Nivel láser autonivelante o clinómetro digital</td><td>En recepción de obra y tras rectificaciones</td></tr>
+      <tr><td>Reflectancia de paredes</td><td>Art. 23</td><td>Factor de reflexión: $60\% - 80\%$ (tonos claros)</td><td>Luxómetro / Espectrofotómetro de superficie</td><td>Anual</td></tr>
+      <tr><td>Carga admisible en escaleras</td><td>Art. 26</td><td>$q \geq 500\,\text{kg/m}^{2}$ ($4.9\,\text{kN/m}^{2}$) con $CS \geq 4$</td><td>Ensayo de carga estática / Simulación por Elementos Finitos (FEA)</td><td>Certificación inicial y quinquenal</td></tr>
+      <tr><td>Geometría de peldaños (Blondel)</td><td>Art. 26</td><td>$2c + h = 60\,\text{a}\,64\,\text{cm}$; $h \geq 28\,\text{cm}$; $c \leq 18\,\text{cm}$</td><td>Calibrador vernier / Cinta métrica milimétrica calibrada</td><td>Inspección de seguridad trimestral</td></tr>
+      <tr><td>Altura de barandilla y zócalo</td><td>Art. 26</td><td>Pasamanos: $900\,\text{mm} \pm 20\,\text{mm}$; Rodapié: $\geq 150\,\text{mm}$</td><td>Flexómetro calibrado ISO 9001</td><td>Mensual</td></tr>
+      <tr><td>Abertura en peldaños / rejillas</td><td>Art. 26</td><td>Luz de malla / orificio $\leq 14\,\text{mm}$</td><td>Calibre Pasa / No Pasa $\varnothing 14\,\text{mm}$</td><td>Semestral</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Procedimiento Operativo para Ejecución de Controles (SOP)</h3>
+
+  <div class="sop-grid">
+    <div class="sop-card">
+      <div class="fase">Fase 1</div>
+      <h5>Inspección Visual y Metrología</h5>
+      <ul>
+        <li>Verificación dimensional (calibre, nivel láser, inclinómetro).</li>
+        <li>Inspección de anclajes mecánicos/químicos y cordones de soldadura (tintes penetrantes / ultrasonido).</li>
+      </ul>
+    </div>
+    <div class="sop-card">
+      <div class="fase">Fase 2</div>
+      <h5>Medición Física Dinámica</h5>
+      <ul>
+        <li>Mapeo de rugosidad y DCOF con tribómetro en zonas de alto tráfico.</li>
+        <li>Control de gálibo vertical ($\geq 2.20\,\text{m}$) en cajas de escaleras.</li>
+      </ul>
+    </div>
+    <div class="sop-card">
+      <div class="fase">Fase 3</div>
+      <h5>Auditoría Documental y Señalética</h5>
+      <ul>
+        <li>Verificación de placas fotoluminiscentes de sobrecarga máxima en mezzanines.</li>
+        <li>Contraste del plano de distribución de cargas respecto al inventario de activos.</li>
+      </ul>
+    </div>
+    <div class="sop-card">
+      <div class="fase">Fase 4</div>
+      <h5>Plan de Acción Correctiva (CAPA)</h5>
+      <ul>
+        <li>Desviación crítica (ej. $\mu &lt; 0.40$ o corrosión en largueros de escalera): Clausura preventiva inmediata.</li>
+        <li>Corrección de huella (cintas antideslizantes de carburo de silicio, resina epóxica autonivelante).</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Validación de Integridad Técnica</h3>
+  <ol>
+    <li><strong>Impacto en Confiabilidad y OEE:</strong> El estricto apego al Art. 23 (suelos libres de empozamientos y con DCOF controlado) y al Art. 26 mitiga el principal factor de accidentes mecánicos por resbalones y caídas al mismo o distinto nivel. A nivel productivo, elimina pérdidas por paradas no programadas (disponibilidad), ralentización de traslados logísticos internos (rendimiento) y daños a producto en tránsito por baches o pendientes irregulares (calidad).</li>
+    <li><strong>Jerarquía de Control:</strong> Todo parámetro fuera de tolerancia activa soluciones de ingeniería (modificación de rasante, reemplazo de peldaños de rejilla electroforjada) antes de derivar en controles administrativos o EPP.</li>
+  </ol>
+</section>
+
+
+<section class="tab-panel" id="tab2">
+  <div class="panel-head">
+    <div>
+      <div class="epigrafe">Pestaña 2 · Caso demostrativo</div>
+      <h2>Estudio de Caso Técnico: Colapso Parcial y Siniestralidad en Nave de Embotellado (Planta Industrial "Procesos del Litoral")</h2>
+    </div>
+    <div class="acciones">
+      <button class="btn" onclick="window.imprimirPanel()">Imprimir / PDF</button>
+    </div>
+  </div>
+
+  <div class="box-info">
+    <div class="titulo">Ficha del estudio de caso</div>
+    <ul>
+      <li><strong>Duración total:</strong> 20 minutos</li>
+      <li><strong>Audiencia:</strong> Estudiantes de Ingeniería Industrial / Seguridad Industrial y Salud Ocupacional (SISO)</li>
+      <li><strong>Objetivo de aprendizaje:</strong> Diagnosticar fallas críticas de infraestructura bajo el marco normativo (Decreto Ejecutivo 2393: Arts. 21, 23 y 26), calcular desviaciones cuantitativas y formular medidas de ingeniería correctivas.</li>
+    </ul>
+  </div>
+
+  <h3>1. Contextualización del Incidente (Minutos 0 a 4)</h3>
+  <h4>Datos de Operación</h4>
+  <ul>
+    <li><strong>Instalación:</strong> Nave principal de envasado y paletizado.</li>
+    <li><strong>Infraestructura comprometida:</strong>
+      <ul>
+        <li>Mezzanine metálico de almacenamiento de materia prima (resinas y tapas).</li>
+        <li>Escalera fija de acceso metálica (conecta cota $\pm 0.00\,\text{m}$ con nivel $+ 3.20\,\text{m}$).</li>
+        <li>Piso del pasillo de tránsito continuo entre lavado y llenado.</li>
+      </ul>
+    </li>
+    <li><strong>Evento ocurrido:</strong>
+      <div class="timeline">
+        <div class="ev">
+          <div class="hora">08:45 AM</div>
+          <div class="desc">Un operador de montacargas reporta deformación visual en la viga principal de soporte del mezzanine.</div>
+        </div>
+        <div class="ev">
+          <div class="hora">09:10 AM</div>
+          <div class="desc">Un operador que descendía con una caja de aditivos ($18\,\text{kg}$) resbala en el peldaño 7 de la escalera de servicio, sufriendo fractura de tibia y peroné.</div>
+        </div>
+        <div class="ev">
+          <div class="hora">09:15 AM</div>
+          <div class="desc">La vibración combinada de una carretilla elevadora manual adyacente y la pérdida de rigidez de un puntal genera el pandeo del larguero exterior de la escalera y fisuración del pavimento base.</div>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+  <h3>2. Hallazgos de la Auditoría Pericial (Minutos 4 a 10)</h3>
+  <p>El equipo de inspección técnica levantó las siguientes mediciones en la escena del siniestro:</p>
+  <table class="tabla-compacta">
+    <thead>
+      <tr><th style="width:35%">Área Inspeccionada</th><th>Dato Medido en Terreno</th><th>Parámetro Exigido</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Mezzanine (Art. 21)</td><td>Carga real: 780 kg/m² vs. Límite placa: Inexistente (Calculado: 450 kg/m²)</td><td>—</td></tr>
+      <tr><td>Piso nave (Art. 23)</td><td>DCOF: μ = 0.28 (con lubricante) vs. DCOF mín: μ ≥ 0.50 | Pendiente: 0.2%</td><td>—</td></tr>
+      <tr><td>Escalera fija (Art. 26)</td><td>Ancho: 520 mm | Ángulo: 56°</td><td>Ancho mín: 900 mm | Ángulo: 20° – 45°</td></tr>
+      <tr><td>Contrahuella</td><td>22 cm</td><td>Contrahuella máx: 18 cm</td></tr>
+      <tr><td>Huella</td><td>21 cm</td><td>Huella mín: 28 cm</td></tr>
+    </tbody>
+  </table>
+
+  <h4>Detalle de No Conformidades:</h4>
+
+  <h4 class="sub">1. Seguridad Estructural (Art. 21):</h4>
+  <ul>
+    <li>El mezzanine fue ampliado sin recálculo de cimentación ni vigas de carga.</li>
+    <li><strong>Ausencia de rótulo:</strong> No existía placa de capacidad portante máxima. La sobrecarga real excedió en un $73.3\%$ la capacidad de diseño estructural elástica.</li>
+  </ul>
+
+  <h4 class="sub">2. Suelos y Evacuación de Fluidos (Art. 23):</h4>
+  <ul>
+    <li>El piso de hormigón presentaba acabado pulido sin textura antideslizante, con restos de solución jabonosa de la faja transportadora.</li>
+    <li>El Coeficiente de Fricción Dinámico (<strong>DCOF</strong>) registrado con tribómetro fue $\mu = 0.28$ (condición hipercrítica de resbalamiento).</li>
+    <li>Pendiente transversal hacia canaleta: $0.2\%$, provocando estancamiento continuo (norma exige $1.0\%$ a $1.5\%$).</li>
+  </ul>
+
+  <h4 class="sub">3. Escalera de Tránsito Operativo (Art. 26):</h4>
+  <ul>
+    <li>Tipificada erróneamente en planos como "escalera de servicio", pero con tránsito continuo de personal ($\approx 120\,\text{pasos/turno}$).</li>
+    <li>Pendiente excesiva ($\theta = 56^{\circ}$).</li>
+    <li>Incumplimiento de la <strong>Ley de Blondel</strong>:
+      <div class="formula-bloque">
+        <div class="etiqueta">Verificación Ley de Blondel</div>
+        $$2c + h = 2\left( 22\,\text{cm} \right) + 21\,\text{cm} = 65\,\text{cm}$$
+        <p style="margin-top:8px;font-size:0.85rem;color:#4a4a4a;"><em>(Aparente rango de paso, pero con huella crítica</em> $h = 21\,\text{cm} &lt; 28\,\text{cm}$ <em>y contrahuella desproporcionada</em> $c = 22\,\text{cm} &gt; 18\,\text{cm}$, <em>reduciendo el área de contacto de la suela al</em> $65\%$).</p>
+      </div>
+    </li>
+    <li>Carencia de rodapié en descansillos intermedios.</li>
+  </ul>
+
+  <h3>3. Formulación de Soluciones de Ingeniería (Minutos 10 a 16)</h3>
+  <h4>Plan de Ingeniería y Control</h4>
+  <table class="tabla-compacta">
+    <thead>
+      <tr><th style="width:33%">Estructural — Art. 21</th><th style="width:33%">Suelos — Art. 23</th><th style="width:34%">Accesos — Art. 26</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <ul style="margin:0;padding-left:16px;">
+            <li>Instalación de placas fotoluminiscentes: "Carga Máxima: 4.0 kN/m²".</li>
+            <li>Refuerzo inferior con perfiles IPE-240 y arriostramiento en Cruz de San Andrés.</li>
+          </ul>
+        </td>
+        <td>
+          <ul style="margin:0;padding-left:16px;">
+            <li>Desbastado y aplicación de poliuretano cementicio con cuarzo (μ ≥ 0.65).</li>
+            <li>Regrabado de rasante: pendiente a 1.2% hacia sumidero longitudinal con rejilla sifónica.</li>
+          </ul>
+        </td>
+        <td>
+          <ul style="margin:0;padding-left:16px;">
+            <li>Desmonte de estructura antigua.</li>
+            <li>Rediseño con huella $h = 28\,\text{cm}$, $c = 17\,\text{cm}$.</li>
+            <li>Inclinación a $31.3^{\circ}$.</li>
+            <li>Peldaños electroforjados antideslizantes (&lt; 14 mm).</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4 class="sub">Medidas Inmediatas y Definitivas:</h4>
+  <ul>
+    <li><strong>Ingeniería Estructural (Art. 21):</strong> Refuerzo estructural con perfiles de acero estructural A36 para restituir el coeficiente de seguridad $CS \geq 4$. Implementación obligatoria de cartelería industrial estandarizada según ISO 7010 / INEN 439 indicando capacidad portante distribuida y puntual.</li>
+    <li><strong>Ingeniería de Superficies (Art. 23):</strong> Rectificación del suelo mediante recubrimiento multicapa de poliuretano-cemento texturizado con árido de cuarzo para garantizar $\mu \geq 0.60$ bajo presencia de lubricante. Nivelación de solera a pendiente constante de $1.2\%$.</li>
+    <li><strong>Reingeniería de Accesos (Art. 26):</strong> Reemplazo integral de la escalera por una estructura que cumpla:
+      <ul>
+        <li>Inclinación: $\theta = 31.3^{\circ}$.</li>
+        <li>Dimensionamiento: $c = 17\,\text{cm}$, $h = 28\,\text{cm}$ ($2(17) + 28 = 62\,\text{cm}$, óptimo según Blondel).</li>
+        <li>Ancho útil: $1000\,\text{mm}$ (superior al mínimo de $900\,\text{mm}$).</li>
+        <li>Barandilla perimetral a $900\,\text{mm}$ con travesaño intermedio y rodapié de $150\,\text{mm}$ de chapa soldada.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h3>4. Discusión Abierta y Cierre Técnico (Minutos 16 a 20)</h3>
+  <h4>Impacto en Confiabilidad Operativa y OEE:</h4>
+  <ul>
+    <li><strong>Disponibilidad:</strong> La investigación de accidentes y la clausura cautelar del área generaron una detención de línea de $14.5\,\text{horas}$, impactando directamente el indicador de disponibilidad ($A$).</li>
+    <li><strong>Rendimiento:</strong> La reducción de velocidad operativa forzada por el piso resbaladizo ralentizaba el ciclo de alimentación de materia prima en un $18\%$.</li>
+    <li><strong>Calidad:</strong> Vibraciones transmitidas a la embotelladora por microdesplazamientos del mezzanine descalibraban dosificadores volumétricos, generando mermas por sobrellenado.</li>
+  </ul>
+  <div class="box-info">
+    <div class="titulo">Pregunta de retroalimentación directa a la clase</div>
+    <p style="font-style:italic;margin:0;"><em>"Si por restricciones de espacio en planta es imposible extender el desarrollo horizontal de la escalera para alcanzar los</em> $45^{\circ}$<em>, ¿cuál es la solución técnica admisible bajo norma: mantener una escalera inclinada fuera de rango o migrar a una escala vertical tipo marinera con línea de vida / jaula de protección conforme a la jerarquía de controles?"</em></p>
+  </div>
+</section>
+
+
+<section class="tab-panel" id="tab3">
+  <div class="panel-head">
+    <div>
+      <div class="epigrafe">Pestaña 3 · Taller práctico</div>
+      <h2>Taller Práctico: Auditoría Forense y Rediseño de Infraestructura en Planta Procesadora</h2>
+    </div>
+    <div class="acciones">
+      <button class="btn" onclick="window.imprimirPanel()">Imprimir / PDF</button>
+    </div>
+  </div>
+
+  <div class="box-info">
+    <div class="titulo">Ficha del taller</div>
+    <ul>
+      <li><strong>Nivel:</strong> Medio</li>
+      <li><strong>Modalidad:</strong> Grupos de 2 a 3 estudiantes</li>
+      <li><strong>Duración total:</strong> 20 minutos (12 min de resolución analítica + 8 min de contraste de resultados)</li>
+      <li><strong>Objetivo:</strong> Auditar datos metrológicos de una nave de envasado, identificar no conformidades frente al marco legal (Decreto Ejecutivo 2393, Arts. 21, 23 y 26), calcular el rediseño geométrico y estructural, y cuantificar el impacto en la disponibilidad operativa.</li>
+    </ul>
+  </div>
+
+  <h3>Enunciado del Caso y Datos de Campo</h3>
+  <p>Una auditoría técnica en la planta agroindustrial "San Patricio" recopiló los siguientes datos en el área de mezclado y almacenamiento intermedio:</p>
+
+  <h4>1. Entrepiso metálico (Art. 21):</h4>
+  <ul>
+    <li>Área efectiva: $6.00\,\text{m} \times 4.00\,\text{m} = 24.0\,\text{m}^{2}$.</li>
+    <li>Masa total almacenada: $13\,200\,\text{kg}$ distribuidos uniformemente sobre la losa.</li>
+    <li>Límite admisible nominal según memoria de cálculo del fabricante: $4.50\,\text{kN/m}^{2}$.</li>
+    <li>Señalización: Placa borrada por corrosión; sin rótulos de carga máxima visible.</li>
+  </ul>
+
+  <h4>2. Piso de tránsito de operarios (Art. 23):</h4>
+  <ul>
+    <li>Coeficiente de fricción dinámico medido con tribómetro: $\mu = 0.34$ en presencia de agua de lavado.</li>
+    <li>Distancia entre el punto más alto del piso y la canaleta colectora: $L = 8.00\,\text{m}$.</li>
+    <li>Desnivel vertical medido: $\Delta h = 4.0\,\text{cm}$.</li>
+  </ul>
+
+  <h4>3. Escalera fija de acceso al entrepiso (Art. 26):</h4>
+  <ul>
+    <li>Altura a salvar (desnivel vertical total): $H = 3.00\,\text{m}$.</li>
+    <li>Contrahuella instalada: $c = 21.0\,\text{cm}$.</li>
+    <li>Huella instalada: $h = 22.0\,\text{cm}$.</li>
+    <li>Ancho útil de paso: $750\,\text{mm}$.</li>
+    <li>Ángulo de inclinación medido: $\theta = 43.6^{\circ}$.</li>
+    <li>Apertura de los orificios en las rejillas de los peldaños: $22\,\text{mm} \times 22\,\text{mm}$.</li>
+  </ul>
+
+  <h3>Entregables a Resolver por los Estudiantes (12 minutos)</h3>
+
+  <h4>Tarea 1: Verificación Estructural (Art. 21)</h4>
+  <ul>
+    <li>Calcule la carga superficial real aplicada sobre el entrepiso en $\text{kN/m}^{2}$ (asuma gravedad $g = 9.81\,\text{m/s}^{2}$).</li>
+    <li>Determine si la estructura opera bajo sobrecarga y calcule el porcentaje de desviación respecto al límite del fabricante.</li>
+  </ul>
+
+  <h4>Tarea 2: Evaluación Hidráulica y Tribométrica del Piso (Art. 23)</h4>
+  <ul>
+    <li>Calcule la pendiente actual del piso ($S_{\text{real}}\%$) y contraste con el rango normativo del Art. 23 ($1.0\%$ a $1.5\%$).</li>
+    <li>Dictamine si el piso cumple con el criterio de seguridad de fricción ($\mu \geq 0.50$) e indique la acción de ingeniería requerida.</li>
+  </ul>
+
+  <h4>Tarea 3: Auditoría y Rediseño de la Escalera (Art. 26)</h4>
+  <ul>
+    <li>Analice las dimensiones actuales con la Ley de Blondel ($2c + h$). Identifique todas las infracciones al Art. 26 (ancho, huella, contrahuella, orificios).</li>
+    <li><strong>Propuesta de rediseño:</strong>
+      <ul>
+        <li>Si la altura $H = 3.00\,\text{m}$, calcule el número exacto de peldaños ($N$) para fijar una contrahuella recomendada estándar $c = 17.65\,\text{cm}$.</li>
+        <li>Defina una huella $h$ que cumpla $2c + h = 63\,\text{cm}$.</li>
+        <li>Calcule el nuevo ángulo de inclinación $\theta = \arctan(c/h)$ y verifique que permanezca en el rango normativo de $20^{\circ}$ a $45^{\circ}$.</li>
+        <li>Verifique la exigencia de descansillo intermedio según la altura total.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <!-- =================== SOLUCIONES CON CLAVE =================== -->
+  <div class="soluciones-wrap" id="sol-tab3">
+    <div class="soluciones-locked">
+      <span class="icono-candado">&#128274;</span>
+      <h4>Guía de Solución y Rúbrica de Validación (Uso Docente)</h4>
+      <p>Esta sección contiene el desarrollo completo de las soluciones y la rúbrica de validación. Acceso restringido al personal docente.</p>
+      <button class="btn-oro" onclick="window.desbloquearSoluciones('sol-tab3')">Mostrar soluciones</button>
+    </div>
+    <div class="soluciones-content">
+      <div class="sol-head">Soluciones — Taller Planta "San Patricio" (uso docente)</div>
+
+      <h4>1. Solución Tarea 1: Sobrecarga en Entrepiso</h4>
+      <ul>
+        <li><strong>Carga aplicada total:</strong>
+          <div class="formula-bloque">
+            <div class="etiqueta">Fuerza total</div>
+            $$P = m \cdot g = 13\,200\,\text{kg} \times 9.81\,\text{m/s}^{2} = 129\,492\,\text{N} = 129.49\,\text{kN}$$
+          </div>
+        </li>
+        <li><strong>Carga superficial real:</strong>
+          <div class="formula-bloque">
+            <div class="etiqueta">Carga distribuida</div>
+            $$q_{\text{real}} = \frac{129.49\,\text{kN}}{24.0\,\text{m}^{2}} = 5.395\,\text{kN/m}^{2}$$
+          </div>
+        </li>
+        <li><strong>Desviación:</strong>
+          <div class="formula-bloque">
+            <div class="etiqueta">Porcentaje de sobrecarga</div>
+            $$\Delta\% = \left( \frac{5.395 - 4.50}{4.50} \right) \times 100 = + 19.89\%$$
+          </div>
+        </li>
+        <li><strong>Dictamen:</strong> No cumple Art. 21. Existe sobrecarga estructural del $19.89\%$ y falta de rotulación obligatoria.</li>
+      </ul>
+
+      <h4>2. Solución Tarea 2: Drenaje y Deslizamiento</h4>
+      <ul>
+        <li><strong>Pendiente actual:</strong>
+          <div class="formula-bloque">
+            <div class="etiqueta">Pendiente hidráulica real</div>
+            $$S_{\text{real}} = \frac{\Delta h}{L} \times 100 = \frac{0.04\,\text{m}}{8.00\,\text{m}} \times 100 = 0.50\%$$
+          </div>
+        </li>
+        <li><strong>Dictamen:</strong>
+          <ul>
+            <li>Pendiente insuficiente ($0.50\% &lt; 1.0\%$). No garantiza evacuación de efluentes y genera charcos.</li>
+            <li>Fricción crítica: $\mu = 0.34 &lt; 0.50$. Alto riesgo de caídas al mismo nivel.</li>
+          </ul>
+        </li>
+        <li><strong>Medida de ingeniería:</strong> Rectificación de rasante a $1.2\%$ hacia sumidero y aplicación de recubrimiento epóxico/poliuretano con árido de cuarzo para elevar $\mu \geq 0.60$.</li>
+      </ul>
+
+      <h4>3. Solución Tarea 3: Geometría de Escalera</h4>
+      <ul>
+        <li><strong>Auditoría actual:</strong>
+          <ul>
+            <li>Ley de Blondel: $2(21) + 22 = 64\,\text{cm}$ (da la suma numérica, pero las variables individuales incumplen: contrahuella $c = 21\,\text{cm} &gt; 18\,\text{cm}$ y huella $h = 22\,\text{cm} &lt; 28\,\text{cm}$).</li>
+            <li>Ancho útil: $750\,\text{mm} &lt; 900\,\text{mm}$ (incumple).</li>
+            <li>Malla de peldaño: $22\,\text{mm} &gt; 14\,\text{mm}$ (riesgo de caída de objetos, incumple).</li>
+          </ul>
+        </li>
+        <li><strong>Cálculo de Rediseño:</strong>
+          <ul>
+            <li>Número de contrahuellas:
+              <div class="formula-bloque">
+                $$N = \frac{300\,\text{cm}}{17.65\,\text{cm}} = 17\,\text{peldaños}$$
+                $$c_{\text{ajustada}} = \frac{300\,\text{cm}}{17} = 17.65\,\text{cm}$$
+              </div>
+            </li>
+            <li>Huella según Blondel ($63\,\text{cm}$):
+              <div class="formula-bloque">
+                $$h = 63\,\text{cm} - 2\left( 17.65\,\text{cm} \right) = 27.7\,\text{cm} \approx 28.0\,\text{cm}$$
+              </div>
+            </li>
+            <li>Ángulo de inclinación:
+              <div class="formula-bloque">
+                $$\theta = \arctan\left( \frac{17.65}{28.0} \right) = \arctan(0.6304) \approx 32.2^{\circ}$$
+                <p style="margin-top:6px;font-size:0.85rem;color:#4a4a4a;"><em>(Cumple</em> $20^{\circ} \leq 32.2^{\circ} \leq 45^{\circ}$).</p>
+              </div>
+            </li>
+            <li>Descansillo: Dado que la altura $H = 3.00\,\text{m} &gt; 2.70\,\text{m}$, <strong>se exige obligatoriamente un rellano intermedio</strong> con una longitud mínima en sentido de avance de $1.10\,\text{m}$.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>Validación de Integridad Técnica</h3>
+      <table class="tabla-compacta">
+        <thead>
+          <tr>
+            <th style="width:18%">Dimensión Auditada</th>
+            <th style="width:24%">Condición Inicial</th>
+            <th style="width:26%">Condición Normativa Exigida</th>
+            <th>Medida Correctiva Inmediata</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Capacidad Entrepiso</td><td>$5.40\,\text{kN/m}^{2}$ (sin rotular)</td><td>$\leq 4.50\,\text{kN/m}^{2}$ (rotulado visible)</td><td>Evacuación de $2\,200\,\text{kg}$ de carga e instalación de placa fotoluminiscente.</td></tr>
+          <tr><td>Escorrentía de Piso</td><td>$S = 0.50\%$</td><td>$1.0\% \leq S \leq 1.5\%$</td><td>Regrabado de rasante con mortero autonivelante a $1.2\%$.</td></tr>
+          <tr><td>Fricción Dinámica (DCOF)</td><td>$\mu = 0.34$</td><td>$\mu \geq 0.50$</td><td>Aplicación de sellador poliuretánico antideslizante con cuarzo.</td></tr>
+          <tr><td>Ancho de Escalera</td><td>$750\,\text{mm}$</td><td>$\geq 900\,\text{mm}$</td><td>Reemplazo estructural con perfiles que permitan $900\,\text{mm}$ libres.</td></tr>
+          <tr><td>Paso de Escalera</td><td>$c = 21\,\text{cm},\,h = 22\,\text{cm}$</td><td>$c \leq 18\,\text{cm},\,h \geq 28\,\text{cm}$</td><td>Fabricación de zancas para 17 alzadas ($c = 17.65\,\text{cm}$, $h = 28.0\,\text{cm}$).</td></tr>
+          <tr><td>Descanso de Escalera</td><td>Inexistente ($H = 3.00\,\text{m}$)</td><td>Obligatorio si $H &gt; 2.70\,\text{m}$</td><td>Inclusión de rellano intermedio de $1.10\,\text{m}$ de longitud.</td></tr>
+          <tr><td>Luz de Rejilla</td><td>$22\,\text{mm}$</td><td>$\leq 14\,\text{mm}$</td><td>Instalación de chapa electroforjada o perforada $\leq 14\,\text{mm}$.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+<section class="tab-panel" id="tab4">
+  <div class="panel-head">
+    <div>
+      <div class="epigrafe">Pestaña 4 · Evaluación</div>
+      <h2>Banco de 30 Reactivos de Evaluación Técnica</h2>
+    </div>
+    <div class="acciones">
+      <button class="btn" onclick="window.imprimirPanel()">Imprimir / PDF</button>
+    </div>
+  </div>
+
+  <h3>Sección I: Opción Múltiple (Reactivos 1 al 10)</h3>
+
+  <div class="reactivo"><span class="num-r">01</span><span class="enunciado">Según el Art. 21 del Decreto Ejecutivo 2393, ¿cuál es el requisito obligatorio respecto a la sobrecarga admisible en pisos, entrepisos y mezzanines de uso industrial?</span>
+    <ul class="opciones">
+      <li>Mantener un registro digital en la oficina de seguridad sin requerimiento físico en planta.</li>
+      <li>Fijar rótulos permanentes y visibles que especifiquen la carga máxima permitida por unidad de superficie ($\text{kg/m}^{2}$ o $\text{kN/m}^{2}$).</li>
+      <li>Limitar la carga operativa únicamente si la deflexión estructural supera $L/200$.</li>
+      <li>Realizar ensayos destructivos anuales en vigas y columnas principales.</li>
+    </ul>
+  </div>
+
+  <div class="reactivo"><span class="num-r">02</span><span class="enunciado">El Art. 23 prescribe que en pavimentos industriales donde existan vertidos de fluidos o limpieza húmeda, la pendiente hacia los canales de evacuación debe ser de hasta:</span>
+    <ul class="opciones">
+      <li>$0.5\%$</li>
+      <li>$3.0\%$</li>
+      <li>$1.5\%$</li>
+      <li>$5.0\%$</li>
+    </ul>
+  </div>
+
+  <div class="reactivo"><span class="num-r">03</span><span class="enunciado">Para cumplir con condiciones de tránsito seguro bajo normativas internacionales de higiene y seguridad en pavimentos (Art. 23), el Coeficiente de Fricción Dinámico (DCOF, $\mu$) mínimo admisible en húmedo medido con tribómetro debe ser:</span>
+    <ul class="opciones">
+      <li>$\mu \geq 0.20$</li>
+      <li>$\mu \geq 0.35$</li>
+      <li>$\mu \geq 0.50$</li>
+      <li>$\mu \geq 0.85$</li>
+    </ul>
+  </div>
+
+  <div class="reactivo"><span class="num-r">04</span><span class="enunciado">De acuerdo con el Art. 26, toda escalera fija y sus rellanos deben calcularse estructuralmente para soportar una sobrecarga móvil mínima de:</span>
+    <ul class="opciones">
+      <li>$250\,\text{kg/m}^{2}$</li>
+      <li>$350\,\text{kg/m}^{2}$</li>
+      <li>$500\,\text{kg/m}^{2}$</li>
+      <li>$750\,\text{kg/m}^{2}$</li>
+    </ul>
+  </div>
+
+  <div class="reactivo"><span class="num-r">05</span><span class="enunciado">El coeficiente de seguridad ($CS$) mecánico mínimo exigido en el diseño de escaleras fijas (Art. 26) es:</span>
+    <ul class="opciones">
+      <li>$1.5$</li>
+      <li>$2.0$</li>
+      <li>$3.0$</li>
+      <li>$4.0$</li>
+    </ul>
+  </div>
+
+  <div class="reactivo"><span class="num-r">06</span><span class="enunciado">El ancho útil mínimo de paso para una escalera fija de tránsito general (no clasificada como exclusiva de servicio) es de:</span>
+    <ul class="opciones">
+      <li>$600\,\text{mm}$</li>
+      <li>$750\,\text{mm}$</li>
+      <li>$900\,\text{mm}$</li>
+      <li>$1200\,\text{mm}$</li>
+    </ul>
+  </div>
+
+  <div class="reactivo"><span class="num-r">07</span><span class="enunciado">El rango normativo del ángulo de inclinación ($\theta$) respecto a la horizontal para escaleras fijas generales según el Art. 26 es:</span>
+    <ul class="opciones">
+      <li>$15^{\circ} \leq \theta \leq 30^{\circ}$</li>
+      <li>$20^{\circ} \leq \theta \leq 45^{\circ}$</li>
+      <li>$30^{\circ} \leq \theta \leq 60^{\circ}$</li>
+      <li>$45^{\circ} \leq \theta \leq 75^{\circ}$</li>
+    </ul>
+  </div>
+
+  <div class="reactivo"><span class="num-r">08</span><span class="enunciado">Según la relación ergonómica de Blondel aplicada a escaleras fijas ($2c + h$), ¿cuáles son los límites canónicos para la contrahuella ($c$) y la huella ($h$) según la legislación técnica?:</span>
+    <ul class="opciones">
+      <li>$c \leq 18\,\text{cm}$ y $h \geq 28\,\text{cm}$</li>
+      <li>$c \geq 22\,\text{cm}$ y $h \leq 20\,\text{cm}$</li>
+      <li>$c \leq 25\,\text{cm}$ y $h \geq 25\,\text{cm}$</li>
+      <li>$c = 20\,\text{cm}$ y $h = 24\,\text{cm}$</li>
+    </ul>
+  </div>
+
+  <div class="reactivo"><span class="num-r">09</span><span class="enunciado">Cuando la altura libre entre niveles en una escalera fija supera los $2.70\,\text{m}$, el Art. 26 exige obligatoriamente:</span>
+    <ul class="opciones">
+      <li>Reducir el ancho de la huella a $25\,\text{cm}$.</li>
+      <li>Un descansillo o rellano intermedio con longitud mínima de $1.10\,\text{m}$ en la dirección de avance.</li>
+      <li>Aumentar la inclinación de la zanca a $55^{\circ}$.</li>
+      <li>La instalación de una red anticaídas bajo los peldaños.</li>
+    </ul>
+  </div>
+
+  <div class="reactivo"><span class="num-r">10</span><span class="enunciado">En peldaños construidos con materiales perforados o rejillas electroforjadas, la dimensión máxima de abertura permitida por el Art. 26 para evitar el paso o caída de herramientas es:</span>
+    <ul class="opciones">
+      <li>$8\,\text{mm}$</li>
+      <li>$14\,\text{mm}$</li>
+      <li>$20\,\text{mm}$</li>
+      <li>$25\,\text{mm}$</li>
+    </ul>
+  </div>
+
+  <h3>Sección II: Verdadero o Falso con Justificación Técnica (Reactivos 11 al 18)</h3>
+
+  <div class="reactivo"><span class="num-r">11</span><span class="enunciado"><strong>(V/F)</strong> El Art. 21 faculta al empleador a aumentar la sobrecarga de un entrepiso si la deformación observada a simple vista no genera fisuración superficial en el concreto.</span></div>
+  <div class="reactivo"><span class="num-r">12</span><span class="enunciado"><strong>(V/F)</strong> Las paredes de locales industriales deben ser lisas, impermeables, lavables y de colores claros para favorecer el coeficiente de reflexión lumínica.</span></div>
+  <div class="reactivo"><span class="num-r">13</span><span class="enunciado"><strong>(V/F)</strong> Las escaleras de servicio pueden alcanzar un ángulo de inclinación de hasta $60^{\circ}$ y admiten un ancho útil mínimo reducido de $600\,\text{mm}$.</span></div>
+  <div class="reactivo"><span class="num-r">14</span><span class="enunciado"><strong>(V/F)</strong> Un diseño de peldaños con $c = 22\,\text{cm}$ y $h = 20\,\text{cm}$ cumple la normativa si su suma da $64\,\text{cm}$ según la fórmula de Blondel.</span></div>
+  <div class="reactivo"><span class="num-r">15</span><span class="enunciado"><strong>(V/F)</strong> La altura mínima del pasamanos en escaleras fijas debe ser de $900\,\text{mm}$, medidos verticalmente desde la superficie de la huella en su arista anterior.</span></div>
+  <div class="reactivo"><span class="num-r">16</span><span class="enunciado"><strong>(V/F)</strong> Las aberturas en pisos o descansillos elevados no requieren rodapié si la barandilla posee dos tubos horizontales intermedios.</span></div>
+  <div class="reactivo"><span class="num-r">17</span><span class="enunciado"><strong>(V/F)</strong> Una deflexión estática admisible estándar para vigas portantes de entrepisos metálicos industriales sometidos a carga de servicio es $\delta_{\text{adm}} \leq L/350$.</span></div>
+  <div class="reactivo"><span class="num-r">18</span><span class="enunciado"><strong>(V/F)</strong> El gálibo o altura de paso libre vertical en toda la trayectoria de una escalera fija puede ser de $1.90\,\text{m}$ si se trata de naves preexistentes.</span></div>
+
+  <h3>Sección III: Completación y Respuesta Corta (Reactivos 19 al 24)</h3>
+
+  <div class="reactivo"><span class="num-r">19</span><span class="enunciado">La relación de proporción del paso humano en el diseño biomecánico de escaleras según la ley de Blondel responde a la ecuación matemática: __________________.</span></div>
+  <div class="reactivo"><span class="num-r">20</span><span class="enunciado">En pisos de áreas húmedas o donde se manipulen aceites industriales, el tratamiento de ingeniería prioritario para restituir el coeficiente de fricción a $\mu \geq 0.50$ es la aplicación de un recubrimiento de tipo __________________ con adición de árido de __________________.</span></div>
+  <div class="reactivo"><span class="num-r">21</span><span class="enunciado">Si una escalera fija debe salvar un desnivel vertical de $H = 5.40\,\text{m}$, el número mínimo obligatorio de descansillos intermedios de $1.10\,\text{m}$ requeridos por el Art. 26 es de: __________________.</span></div>
+  <div class="reactivo"><span class="num-r">22</span><span class="enunciado">Los techos y cielorrasos industriales deben calcularse no solo para cargas muertas, sino también para absorber la solicitación ambiental de sobrecarga por viento, lluvia y __________________.</span></div>
+  <div class="reactivo"><span class="num-r">23</span><span class="enunciado">La altura mínima reglamentaria del rodapié (zócalo de protección contra caída de objetos) en plataformas y descansillos según la normativa es de __________________ $\text{mm}$.</span></div>
+  <div class="reactivo"><span class="num-r">24</span><span class="enunciado">El instrumento metrológico estandarizado empleado para determinar de forma cuantitativa el coeficiente de fricción dinámico en pisos industriales se denomina: __________________.</span></div>
+
+  <h3>Sección IV: Relación de Columnas / Emparejamiento (Reactivos 25 al 27)</h3>
+
+  <div class="reactivo"><span class="num-r">25</span><span class="enunciado">Relacione el elemento de infraestructura física con su parámetro normativo de control correspondiente:</span>
+    <table class="tabla-compacta">
+      <thead><tr><th style="width:50%">Elemento Estructural / Físico</th><th>Parámetro Normativo</th></tr></thead>
+      <tbody>
+        <tr><td>(1) Piso con drenaje de efluentes</td><td>[ ] A. $\geq 1.10\,\text{m}$ de longitud</td></tr>
+        <tr><td>(2) Peldaño de escalera fija general</td><td>[ ] B. Luz o perforación $\leq 14\,\text{mm}$</td></tr>
+        <tr><td>(3) Descansillo intermedio ($H &gt; 2.70\,\text{m}$)</td><td>[ ] C. Pendiente hidráulica: $1.0\%$ a $1.5\%$</td></tr>
+        <tr><td>(4) Malla metálica de rejilla de paso</td><td>[ ] D. Huella mínima $\geq 28\,\text{cm}$; Contrahuella $\leq 18\,\text{cm}$</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="reactivo"><span class="num-r">26</span><span class="enunciado">Relacione la tipología de escalera con sus parámetros geométricos límites:</span>
+    <table class="tabla-compacta">
+      <thead><tr><th style="width:50%">Tipología de Escalera</th><th>Parámetros Geométricos Límites</th></tr></thead>
+      <tbody>
+        <tr><td>(1) Escalera fija de uso general</td><td>[ ] A. $\theta &gt; 60^{\circ}$, requiere jaula quitamiedos o línea de vida</td></tr>
+        <tr><td>(2) Escalera de servicio</td><td>[ ] B. Ancho $\geq 900\,\text{mm}$, ángulo $20^{\circ} \leq \theta \leq 45^{\circ}$</td></tr>
+        <tr><td>(3) Escala fija vertical / marinera</td><td>[ ] C. Ancho $\geq 600\,\text{mm}$, ángulo de hasta $60^{\circ}$</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="reactivo"><span class="num-r">27</span><span class="enunciado">Relacione el defecto de infraestructura con su impacto directo en el cálculo de Efectividad Global de los Equipos (OEE):</span>
+    <table class="tabla-compacta">
+      <thead><tr><th style="width:50%">Condición de Falla en Planta</th><th>Factor Crítico de OEE Afectado</th></tr></thead>
+      <tbody>
+        <tr><td>(1) Deslizamiento de operadores por $\mu &lt; 0.30$ que detiene la celda por investigación de accidente</td><td>[ ] A. Calidad ($Q$)</td></tr>
+        <tr><td>(2) Ralentización en la velocidad de arrastre de carretillas por ondulaciones en suelo</td><td>[ ] B. Disponibilidad ($A$)</td></tr>
+        <tr><td>(3) Descalibración de balanzas dinámicas por vibración estructural inducida en mezzanine sobrecargado</td><td>[ ] C. Rendimiento ($P$)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Sección V: Ejercicios de Cálculo y Diseño Ingenieril (Reactivos 28 al 30)</h3>
+
+  <div class="reactivo"><span class="num-r">28</span><span class="enunciado"><strong>Verificación de Carga y Factor de Seguridad Estructural (Art. 21 y 26):</strong> Una plataforma elevada de mantenimiento de $4.00\,\text{m} \times 2.50\,\text{m}$ soporta una masa estática distribuida de $3\,800\,\text{kg}$ y una carga móvil transitoria de $1\,400\,\text{kg}$. Asumiendo $g = 9.81\,\text{m/s}^{2}$:</span>
+    <ul>
+      <li>a) Calcule la carga total aplicada por unidad de superficie en $\text{kN/m}^{2}$.</li>
+      <li>b) Si el límite nominal admisible certificado en la placa es $q_{\text{adm}} = 4.50\,\text{kN/m}^{2}$, determine si la plataforma cumple o se encuentra sobrecargada.</li>
+    </ul>
+  </div>
+
+  <div class="reactivo"><span class="num-r">29</span><span class="enunciado"><strong>Auditoría Geométrica de Pendiente de Evacuación de Fluidos (Art. 23):</strong> Un pasillo industrial de lavado de botellas posee un ancho de escorrentía transversal $L = 6.50\,\text{m}$ que descarga en una canaleta perimetral. En la auditoría topográfica se registra una cota superior de rasante $+ 0.048\,\text{m}$ y una cota de borde de canaleta $+ 0.000\,\text{m}$.</span>
+    <ul>
+      <li>a) Calcule la pendiente hidráulica real ($S_{\text{real}}\%$).</li>
+      <li>b) Dictamine si cumple con el Art. 23 ($1.0\% \leq S \leq 1.5\%$) y justifique la corrección requerida.</li>
+    </ul>
+  </div>
+
+  <div class="reactivo"><span class="num-r">30</span><span class="enunciado"><strong>Cálculo de Rediseño de Zancas y Peldaños según Ley de Blondel (Art. 26):</strong> Se debe proyectar una escalera fija de tránsito continuo para salvar un desnivel total $H = 2.55\,\text{m}$.</span>
+    <ul>
+      <li>a) Determine el número exacto de contrahuellas ($N$) considerando una alzada recomendada $c \approx 17.0\,\text{cm}$.</li>
+      <li>b) Ajuste el valor exacto de la contrahuella $c$.</li>
+      <li>c) Calcule la huella $h$ aplicando la ecuación de Blondel centrada en $63\,\text{cm}$ ($2c + h = 63\,\text{cm}$).</li>
+      <li>d) Calcule el ángulo de inclinación $\theta$ de la zanca y confirme si se ubica en el intervalo reglamentario ($20^{\circ} \leq \theta \leq 45^{\circ}$).</li>
+    </ul>
+  </div>
+
+  <!-- =================== SOLUCIONES CON CLAVE =================== -->
+  <div class="soluciones-wrap" id="sol-tab4">
+    <div class="soluciones-locked">
+      <span class="icono-candado">&#128274;</span>
+      <h4>Clave de Respuestas y Justificaciones Técnicas</h4>
+      <p>Esta sección contiene las respuestas correctas y justificaciones técnicas de los 30 reactivos. Acceso restringido al personal docente.</p>
+      <button class="btn-oro" onclick="window.desbloquearSoluciones('sol-tab4')">Mostrar respuestas</button>
+    </div>
+    <div class="soluciones-content">
+      <div class="sol-head">Clave de respuestas — Banco de 30 Reactivos (uso docente)</div>
+
+      <h3>Respuestas Sección I — Opción Múltiple (1–10)</h3>
+      <table class="tabla-compacta">
+        <thead><tr><th style="width:8%">N°</th><th style="width:12%">Respuesta</th><th>Justificación técnica</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong>B</strong></td><td>El Art. 21 exige la rotulación clara e indeleble de las cargas admisibles nominales en los puntos de almacenamiento y tránsito elevado para prevenir la sobrecarga estructural.</td></tr>
+          <tr><td>2</td><td><strong>C</strong></td><td>El Art. 23 fija un rango operativo de evacuación de hasta el $1.5\%$ para prevenir el estancamiento superficial sin comprometer la estabilidad biomecánica de la marcha de los operadores.</td></tr>
+          <tr><td>3</td><td><strong>C</strong></td><td>El estándar técnico de seguridad industrial establece un umbral de $\mu \geq 0.50$ para clasificar una superficie como no deslizante en condiciones de trabajo regulares.</td></tr>
+          <tr><td>4</td><td><strong>C</strong></td><td>El Art. 26 impone una carga móvil mínima distribuida de $500\,\text{kg/m}^{2}$ ($4.9\,\text{kN/m}^{2}$) para estructuras de paso vertical permanente.</td></tr>
+          <tr><td>5</td><td><strong>D</strong></td><td>El marco legal exige un coeficiente de seguridad estructural mínimo de 4 frente a cargas estáticas y dinámicas de operación.</td></tr>
+          <tr><td>6</td><td><strong>C</strong></td><td>Las escaleras principales y generales exigen un ancho útil libre mínimo de $900\,\text{mm}$; el valor de $600\,\text{mm}$ se reserva de forma excepcional para escaleras de servicio.</td></tr>
+          <tr><td>7</td><td><strong>B</strong></td><td>Pendientes menores a $20^{\circ}$ requieren rampas, mientras que ángulos mayores a $45^{\circ}$ quedan restringidos a escaleras de servicio (hasta $60^{\circ}$) o escalas fijas verticales ($&gt; 60^{\circ}$).</td></tr>
+          <tr><td>8</td><td><strong>A</strong></td><td>La contrahuella o alzada máxima permitida es de $18\,\text{cm}$ y la huella o pisada mínima útil es de $28\,\text{cm}$, cumpliendo la condición $60 \leq 2c + h \leq 64\,\text{cm}$.</td></tr>
+          <tr><td>9</td><td><strong>B</strong></td><td>Toda escalera que salve desniveles verticales mayores a $2.70\,\text{m}$ debe intercalar descansos intermedios con al menos $1.10\,\text{m}$ de desarrollo longitudinal.</td></tr>
+          <tr><td>10</td><td><strong>B</strong></td><td>El Art. 26 limita las perforaciones y mallas a un diámetro o luz máxima de $14\,\text{mm}$ para prevenir la proyección vertical de objetos a niveles inferiores.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Respuestas Sección II — Verdadero / Falso (11–18)</h3>
+      <table class="tabla-compacta">
+        <thead><tr><th style="width:8%">N°</th><th style="width:14%">Respuesta</th><th>Justificación</th></tr></thead>
+        <tbody>
+          <tr><td>11</td><td><strong>Falso</strong></td><td>Toda modificación de carga sobre estructuras debe estar respaldada por una memoria de cálculo estructural y ensayos no destructivos que certifiquen el factor de seguridad, prohibiéndose el criterio visual empírico.</td></tr>
+          <tr><td>12</td><td><strong>Verdadero</strong></td><td>El Art. 23 exige acabados lisos y claros para optimizar la iluminancia general, facilitar la sanitización y evitar la acumulación de material particulado.</td></tr>
+          <tr><td>13</td><td><strong>Verdadero</strong></td><td>El Art. 26 tipifica excepcionalmente a las escaleras de servicio para acceso exclusivo a maquinarias o zonas técnicas con estas tolerancias geométricas específicas.</td></tr>
+          <tr><td>14</td><td><strong>Falso</strong></td><td>Aunque algebraicamente $2(22) + 20 = 64\,\text{cm}$, se violan los límites individuales imperativos ($c \leq 18\,\text{cm}$ y $h \geq 28\,\text{cm}$), reduciendo la base de apoyo plantar y aumentando el riesgo de caída.</td></tr>
+          <tr><td>15</td><td><strong>Verdadero</strong></td><td>El Art. 26 estipula una cota nominal de protección de $900\,\text{mm}$ ($\pm 20\,\text{mm}$) para el pasamanos continuo.</td></tr>
+          <tr><td>16</td><td><strong>Falso</strong></td><td>El rodapié o zócalo de contención es de exigencia independiente y obligatoria (altura $\geq 150\,\text{mm}$) para impedir que materiales o herramientas rueden al vacío.</td></tr>
+          <tr><td>17</td><td><strong>Verdadero</strong></td><td>Conforme a los códigos de diseño estructural (AISC/NEC) integrados al Art. 21, la flecha elástica bajo cargas vivas debe restringirse para evitar fatiga en uniones y resonancia mecánica.</td></tr>
+          <tr><td>18</td><td><strong>Falso</strong></td><td>La altura de paso libre vertical mínima indeformable es de $2.20\,\text{m}$ para prevenir traumatismos craneales en operarios con equipo de protección personal.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Respuestas Sección III — Completación (19–24)</h3>
+      <table class="tabla-compacta">
+        <thead><tr><th style="width:8%">N°</th><th>Respuesta</th></tr></thead>
+        <tbody>
+          <tr><td>19</td><td>$2c + h = 60\,\text{a}\,64\,\text{cm}$ (donde $c$ es contrahuella y $h$ es huella).</td></tr>
+          <tr><td>20</td><td><strong>Recubrimiento:</strong> Poliuretano cementicio / Epóxico autonivelante; <strong>Árido:</strong> Cuarzo (sílice).</td></tr>
+          <tr><td>21</td><td>1 descansillo (dado que la altura máxima admisible por tramo sin descanso es de $2.70\,\text{m}$; $5.40/2.70 = 2$ tramos, lo que requiere 1 rellano intermedio).</td></tr>
+          <tr><td>22</td><td>Ceniza / Granizo / Mantenimiento y montaje de equipos (cargas vivas de techo).</td></tr>
+          <tr><td>23</td><td>$150\,\text{mm}$ (admitiéndose $100\,\text{mm}$ únicamente bajo especificaciones excepcionales de guardapié auxiliar).</td></tr>
+          <tr><td>24</td><td>Tribómetro dinámico (ensayo bajo estándares ANSI A137.1 / ASTM C1028).</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Respuestas Sección IV — Emparejamiento (25–27)</h3>
+      <ul>
+        <li><strong>Reactivo 25:</strong> (1) — C ; (2) — D ; (3) — A ; (4) — B.</li>
+        <li><strong>Reactivo 26:</strong> (1) — B ; (2) — C ; (3) — A.</li>
+        <li><strong>Reactivo 27:</strong> (1) — B ; (2) — C ; (3) — A.</li>
+      </ul>
+
+      <h3>Respuestas Sección V — Cálculo y Diseño (28–30)</h3>
+
+      <h4 class="sub">Solución Reactivo 28 — Verificación de Carga</h4>
+      <ul>
+        <li>Masa total: $M = 3\,800\,\text{kg} + 1\,400\,\text{kg} = 5\,200\,\text{kg}$.</li>
+        <li>Fuerza total: $F = 5\,200\,\text{kg} \times 9.81\,\text{m/s}^{2} = 51\,012\,\text{N} = 51.012\,\text{kN}$.</li>
+        <li>Área superficial: $A = 4.00\,\text{m} \times 2.50\,\text{m} = 10.00\,\text{m}^{2}$.</li>
+        <li>Carga superficial real:
+          <div class="formula-bloque">
+            $$q_{\text{real}} = \frac{51.012\,\text{kN}}{10.00\,\text{m}^{2}} = 5.101\,\text{kN/m}^{2}$$
+          </div>
+        </li>
+        <li>Contraste: $5.101\,\text{kN/m}^{2} &gt; 4.50\,\text{kN/m}^{2}$.</li>
+        <li><strong>Dictamen:</strong> La estructura opera con una sobrecarga del $+ 13.36\%$, violando el Art. 21. Requiere desalojo inmediato del excedente y reingeniería de perfiles.</li>
+      </ul>
+
+      <h4 class="sub">Solución Reactivo 29 — Pendiente de Evacuación</h4>
+      <ul>
+        <li>Desnivel: $\Delta h = 0.048\,\text{m}$.</li>
+        <li>Longitud horizontal: $L = 6.50\,\text{m}$.</li>
+        <li>Cálculo de pendiente:
+          <div class="formula-bloque">
+            $$S_{\text{real}} = \left( \frac{\Delta h}{L} \right) \times 100 = \left( \frac{0.048\,\text{m}}{6.50\,\text{m}} \right) \times 100 = 0.738\% \approx 0.74\%$$
+          </div>
+        </li>
+        <li><strong>Dictamen:</strong> No cumple. $S_{\text{real}} = 0.74\% &lt; 1.0\%$. Provoca empozamiento y formación de biopelículas resbalosas. Debe fresarse la superficie y recrecerse con mortero epóxico para alcanzar una pendiente de $1.20\%$, lo que equivale a un desnivel corregido de:
+          <div class="formula-bloque">
+            $$\Delta h_{\text{corr}} = 6.50\,\text{m} \times 0.012 = 0.078\,\text{m} = 7.80\,\text{cm}$$
+          </div>
+        </li>
+      </ul>
+
+      <h4 class="sub">Solución Reactivo 30 — Rediseño según Blondel</h4>
+      <ul>
+        <li>Número de peldaños:
+          <div class="formula-bloque">
+            $$N = \frac{255\,\text{cm}}{17.0\,\text{cm}} = 15\,\text{contrahuellas exactas}$$
+          </div>
+        </li>
+        <li>Contrahuella ajustada:
+          <div class="formula-bloque">
+            $$c = \frac{255\,\text{cm}}{15} = 17.0\,\text{cm}\quad\left( \leq 18\,\text{cm, cumple} \right)$$
+          </div>
+        </li>
+        <li>Huella según Blondel ($63\,\text{cm}$):
+          <div class="formula-bloque">
+            $$h = 63\,\text{cm} - 2\left( 17.0\,\text{cm} \right) = 63 - 34 = 29.0\,\text{cm}\quad\left( \geq 28\,\text{cm, cumple} \right)$$
+          </div>
+        </li>
+        <li>Ángulo de inclinación:
+          <div class="formula-bloque">
+            $$\tan(\theta) = \frac{c}{h} = \frac{17.0}{29.0} = 0.5862 \Longrightarrow \theta = \arctan(0.5862) \approx 30.38^{\circ}$$
+          </div>
+        </li>
+        <li><strong>Dictamen:</strong> Cumple plenamente con el Art. 26 ($20^{\circ} \leq 30.38^{\circ} \leq 45^{\circ}$). Como $H = 2.55\,\text{m} &lt; 2.70\,\text{m}$, no requiere intercalar descansillo intermedio.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<section class="tab-panel" id="tab5">
+  <div class="panel-head">
+    <div>
+      <div class="epigrafe">Pestaña 5 · Tarea asíncrona (evaluación individual)</div>
+      <h2>Tarea Asíncrona: Auditoría Pericial y Reingeniería Estructural en Nave de Extrusión y Termoformado</h2>
+    </div>
+    <div class="acciones">
+      <button class="btn" onclick="window.imprimirPanel()">Imprimir / PDF</button>
+    </div>
+  </div>
+
+  <div class="box-info">
+    <div class="titulo">Ficha de la tarea asíncrona</div>
+    <ul>
+      <li><strong>Modalidad:</strong> Trabajo individual autónomo (Asíncrono)</li>
+      <li><strong>Nivel de Complejidad:</strong> Alto (Evaluación pericial forense, modelado cuantitativo, cálculo mecánico y optimización de planta)</li>
+      <li><strong>Tiempo estimado de desarrollo:</strong> 120 minutos</li>
+      <li><strong>Entregable:</strong> Informe pericial técnico en formato PDF con memoria de cálculo en LaTeX y esquema de rediseño.</li>
+    </ul>
+  </div>
+
+  <h3>1. Contexto Operativo y Enunciado del Caso</h3>
+  <p>La planta de termoformado "Plásticos Industriales del Austro S.A." ha experimentado fallas recurrentes de confiabilidad operacional y un evento con tiempo perdido (LTI) en su línea principal de extrusión. La gerencia de operaciones ha ordenado una auditoría de seguridad estructural, superficies de trabajo y vías de acceso, centrada en el cumplimiento riguroso del Decreto Ejecutivo 2393 (Arts. 21, 23 y 26) y normas internacionales concurrentes (ISO 14122 y OSHA 29 CFR 1910 Subpart D).</p>
+
+  <h3>Datos Técnicos Levantados en Planta</h3>
+
+  <h4>Zona A: Mezzanine de Alimentación de Polímeros (Art. 21)</h4>
+  <ul>
+    <li><strong>Geometría del entrepiso:</strong> Plataforma rectangular de $8.00\,\text{m}$ de longitud por $5.00\,\text{m}$ de ancho, sustentada sobre 4 vigas principales de acero estructural ASTM A36 con perfil IPE 300 apoyadas en columnas en sus vértices.</li>
+    <li><strong>Cargas operativas actuales:</strong>
+      <ul>
+        <li>1 tolva dosificadora central de masa total (vacía + polímero virgen): $m_{1} = 4\,200\,\text{kg}$.</li>
+        <li>1 mezclador gravimétrico lateral de aditivos: $m_{2} = 1\,850\,\text{kg}$.</li>
+        <li>Almacenamiento transitorio de 12 palets de resina en sacos: masa total de palets $m_{3} = 12\,000\,\text{kg}$.</li>
+        <li>Carga humana y equipos menores de pesaje: $m_{4} = 450\,\text{kg}$.</li>
+      </ul>
+    </li>
+    <li><strong>Memoria de diseño original:</strong> Límite máximo de carga viva admisible nominal especificado por el calculista original: $q_{\text{adm}} = 3.50\,\text{kN/m}^{2}$.</li>
+    <li><strong>Señalética e instrumentación:</strong> No existe rótulo visible de carga admisible en el perímetro ni accesos. Se detectó una flecha estática máxima en el centro de luz de la viga principal de $\delta_{\text{real}} = 28.5\,\text{mm}$ (longitud de viga entre apoyos $L = 8.00\,\text{m}$). El límite permisible por norma es $\delta_{\text{adm}} \leq L/350$.</li>
+  </ul>
+
+  <h4>Zona B: Pavimento del Área de Molienda y Lavado (Art. 23)</h4>
+  <ul>
+    <li><strong>Superficie evaluada:</strong> Losa de hormigón pulido que drena fluidos de recirculación hacia una canaleta perimetral de $10.00\,\text{m}$ de desarrollo transversal.</li>
+    <li><strong>Geometría de escorrentía:</strong> La cota del punto más alto del pavimento es $+ 0.045\,\text{m}$ y la cota de descarga en el labio de la canaleta es $+ 0.000\,\text{m}$.</li>
+    <li><strong>Ensayos tribométricos:</strong> Mediciones realizadas con tribómetro dinámico estandarizado bajo presencia de lubricante de extrusión (solución acuosa de glicol al 5%) arrojaron un coeficiente de fricción dinámico $DCOF = 0.26$.</li>
+    <li><strong>Estado de paramentos:</strong> Muros colindantes acabados con mortero rugoso sin pintar, con acumulación de grasas y polvo de molienda; reflectancia lumínica medida: $22\%$.</li>
+  </ul>
+
+  <h4>Zona C: Escalera Principal de Acceso al Mezzanine (Art. 26)</h4>
+  <ul>
+    <li><strong>Desnivel vertical a salvar:</strong> $H = 4.20\,\text{m}$ continuos, sin descansillos intermedios.</li>
+    <li><strong>Geometría actual:</strong>
+      <ul>
+        <li>Número de contrahuellas: 18.</li>
+        <li>Contrahuella instalada: $c_{\text{act}} = 23.33\,\text{cm}$.</li>
+        <li>Huella instalada: $h_{\text{act}} = 20.00\,\text{cm}$.</li>
+        <li>Ancho útil de paso libre: $w = 700\,\text{mm}$.</li>
+        <li>Ángulo medido respecto a la horizontal: $\theta = 49.4^{\circ}$.</li>
+      </ul>
+    </li>
+    <li><strong>Elemento de piso en peldaños:</strong> Chapa de rejilla con aberturas rectangulares de $25\,\text{mm} \times 35\,\text{mm}$.</li>
+    <li><strong>Protecciones:</strong> Pasamanos instalado a una altura de $750\,\text{mm}$ medidos verticalmente desde la arista anterior de la huella, sin zócalo ni rodapié en el desarrollo ni en el desembarco superior.</li>
+  </ul>
+
+  <h3>2. Requerimientos de la Tarea (Entregables)</h3>
+  <ol>
+    <li><strong>Memoria de Cálculo Pericial Estructural (Art. 21):</strong>
+      <ul>
+        <li>Calcule la carga total aplicada ($P$) y la carga superficial uniforme equivalente ($q_{\text{real}}$) en $\text{kN/m}^{2}$ sobre el mezzanine (considere $g = 9.81\,\text{m/s}^{2}$).</li>
+        <li>Compare $q_{\text{real}}$ con $q_{\text{adm}}$ y determine el porcentaje exacto de sobrecarga.</li>
+        <li>Evalúe la condición de flecha estática ($\delta_{\text{real}}$ vs. $\delta_{\text{adm}}$) y dictamine la estabilidad estructural inmediata.</li>
+      </ul>
+    </li>
+    <li><strong>Auditoría y Plan de Ingeniería de Superficies (Art. 23):</strong>
+      <ul>
+        <li>Determine la pendiente hidráulica real ($S_{\text{real}}\%$) y contrástela con el rango legal normativo ($1.0\%$ a $1.5\%$). Calcule el incremento de cota requerido para corregir la rasante a $1.20\%$.</li>
+        <li>Diagnostique el riesgo por resbalamiento frente al umbral crítico ($\mu \geq 0.50$) y defina las especificaciones técnicas del tratamiento superficial de ingeniería.</li>
+      </ul>
+    </li>
+    <li><strong>Reingeniería Integral de la Escalera (Art. 26):</strong>
+      <ul>
+        <li>Identifique y tabule las no conformidades normativas de la escalera actual frente al Art. 26.</li>
+        <li>Diseñe una escalera completamente nueva:
+          <ul>
+            <li>Determine el número exacto de descansillos obligatorios y su longitud mínima en sentido de marcha.</li>
+            <li>Divida el desnivel total en tramos simétricos y calcule el número total de contrahuellas ($N$) considerando una alzada estándar de diseño $c \approx 17.5\,\text{cm}$.</li>
+            <li>Determine la huella $h$ mediante la fórmula de Blondel ($2c + h = 63\,\text{cm}$).</li>
+            <li>Calcule el nuevo ángulo de inclinación ($\theta$).</li>
+            <li>Especifique dimensiones normativas de ancho útil, altura de pasamanos, rodapié y tamaño de apertura de malla en peldaños.</li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><strong>Análisis de Impacto en Efectividad Global de los Equipos (OEE):</strong>
+      <ul>
+        <li>Formule una matriz analítica que explique cómo cada una de las fallas detectadas degrada la Disponibilidad ($A$), el Rendimiento ($P$) o la Calidad ($Q$) de la nave de extrusión.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <!-- =================== SOLUCIONES CON CLAVE =================== -->
+  <div class="soluciones-wrap" id="sol-tab5">
+    <div class="soluciones-locked">
+      <span class="icono-candado">&#128274;</span>
+      <h4>Guía de Solución y Memoria de Cálculo (Patrón de Corrección)</h4>
+      <p>Esta sección contiene el patrón de corrección completo: memoria pericial, rediseño de escalera y rúbrica analítica. Acceso restringido al personal docente.</p>
+      <button class="btn-oro" onclick="window.desbloquearSoluciones('sol-tab5')">Mostrar soluciones</button>
+    </div>
+    <div class="soluciones-content">
+      <div class="sol-head">Soluciones — Tarea Asíncrona "Plásticos Industriales del Austro S.A." (uso docente)</div>
+
+      <h3>Solución 1: Verificación Estructural del Mezzanine (Art. 21)</h3>
+      <p><strong>Masa total sobre el entrepiso:</strong></p>
+      <div class="formula-bloque">
+        <div class="etiqueta">Masa total</div>
+        $$M_{\text{total}} = m_{1} + m_{2} + m_{3} + m_{4} = 4\,200 + 1\,850 + 12\,000 + 450 = 18\,500\,\text{kg}$$
+      </div>
+      <p><strong>Carga gravitatoria total:</strong></p>
+      <div class="formula-bloque">
+        <div class="etiqueta">Fuerza total</div>
+        $$P = M_{\text{total}} \cdot g = 18\,500\,\text{kg} \times 9.81\,\text{m/s}^{2} = 181\,485\,\text{N} = 181.485\,\text{kN}$$
+      </div>
+      <p><strong>Carga superficial real distribuida:</strong> Área del mezzanine: $A = 8.00\,\text{m} \times 5.00\,\text{m} = 40.00\,\text{m}^{2}$.</p>
+      <div class="formula-bloque">
+        <div class="etiqueta">Carga superficial</div>
+        $$q_{\text{real}} = \frac{P}{A} = \frac{181.485\,\text{kN}}{40.00\,\text{m}^{2}} = 4.537\,\text{kN/m}^{2}$$
+      </div>
+      <p><strong>Evaluación de sobrecarga:</strong></p>
+      <div class="formula-bloque">
+        <div class="etiqueta">Porcentaje de sobrecarga</div>
+        $$\Delta\% = \left( \frac{q_{\text{real}} - q_{\text{adm}}}{q_{\text{adm}}} \right) \times 100 = \left( \frac{4.537 - 3.50}{3.50} \right) \times 100 = + 29.63\%$$
+      </div>
+      <p><strong>Evaluación de flecha elástica:</strong></p>
+      <div class="formula-bloque">
+        $$\delta_{\text{adm}} = \frac{L}{350} = \frac{8\,000\,\text{mm}}{350} \approx 22.86\,\text{mm}$$
+        $$\delta_{\text{real}} = 28.50\,\text{mm} &gt; \delta_{\text{adm}} = 22.86\,\text{mm}\quad(\Delta\% = + 24.67\%)$$
+      </div>
+      <div class="box-adv">
+        <div class="titulo">Dictamen</div>
+        <p style="margin:0;">Falla estructural inminente por deformación plástica y sobrecarga no autorizada. Violación directa del Art. 21. Medida inmediata: Desalojo de al menos $4\,200\,\text{kg}$ de materia prima, apeo preventivo de vigas y colocación de placas fotoluminiscentes con límite de carga nominal $q \leq 3.50\,\text{kN/m}^{2}$.</p>
+      </div>
+
+      <h3>Solución 2: Auditoría de Pavimentos y Muros (Art. 23)</h3>
+      <p><strong>Pendiente hidráulica actual:</strong></p>
+      <div class="formula-bloque">
+        $$S_{\text{real}} = \left( \frac{\Delta h}{L} \right) \times 100 = \left( \frac{0.045\,\text{m}}{10.00\,\text{m}} \right) \times 100 = 0.45\%$$
+      </div>
+      <p><em>Rango normativo exigido:</em> $1.00\% \leq S \leq 1.50\%$.</p>
+      <p><em>Dictamen:</em> Pendiente deficiente ($0.45\% &lt; 1.00\%$). Genera empozamiento permanente de lubricante.</p>
+      <p><strong>Cota corregida de rasante al 1.20%:</strong></p>
+      <div class="formula-bloque">
+        $$\Delta h_{\text{req}} = 10.00\,\text{m} \times 0.012 = 0.120\,\text{m} = 12.00\,\text{cm}$$
+      </div>
+      <p><em>Incremento de recrecido en cresta:</em> $\delta h = 12.00\,\text{cm} - 4.50\,\text{cm} = 7.50\,\text{cm}$.</p>
+      <p><strong>Evaluación de fricción y muros:</strong></p>
+      <ul>
+        <li>$DCOF = 0.26 \ll 0.50$: Zona de altísimo riesgo de caída al mismo nivel.</li>
+        <li><em>Acción de ingeniería:</em> Fresado mecánico y colocación de mortero autonivelante de poliuretano-cemento texturizado con arena de cuarzo grado 0.4–0.8 mm para garantizar $\mu \geq 0.65$.</li>
+        <li><em>Tratamiento de muros:</em> Enyesado/enlucido liso y pintura epóxica blanca lavable, elevando la reflectancia del $22\%$ a un valor $\geq 70\%$ conforme al Art. 23 e ISO 8995.</li>
+      </ul>
+
+      <h3>Solución 3: Reingeniería de Escalera (Art. 26)</h3>
+      <h4>Cuadro de Infracciones Detectadas</h4>
+      <table class="tabla-compacta">
+        <thead>
+          <tr>
+            <th style="width:22%">Parámetro</th>
+            <th style="width:22%">Valor Medido en Terreno</th>
+            <th style="width:30%">Límite Normativo (Art. 26)</th>
+            <th>Estado de Cumplimiento</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Altura sin descansillo</td><td>$4.20\,\text{m}$ continuo</td><td>Máximo $2.70\,\text{m}$ entre descansillos</td><td><strong>No Cumple</strong> (Crítico)</td></tr>
+          <tr><td>Contrahuella ($c$)</td><td>$23.33\,\text{cm}$</td><td>Máximo $18.00\,\text{cm}$</td><td><strong>No Cumple</strong></td></tr>
+          <tr><td>Huella ($h$)</td><td>$20.00\,\text{cm}$</td><td>Mínimo $28.00\,\text{cm}$</td><td><strong>No Cumple</strong></td></tr>
+          <tr><td>Ángulo de inclinación ($\theta$)</td><td>$49.4^{\circ}$</td><td>$20^{\circ} \leq \theta \leq 45^{\circ}$</td><td><strong>No Cumple</strong> (Exceso de pendiente)</td></tr>
+          <tr><td>Ancho útil libre ($w$)</td><td>$700\,\text{mm}$</td><td>Mínimo $900\,\text{mm}$</td><td><strong>No Cumple</strong></td></tr>
+          <tr><td>Abertura de malla</td><td>$25 \times 35\,\text{mm}$</td><td>Máximo $\leq 14\,\text{mm}$</td><td><strong>No Cumple</strong> (Riesgo caída objetos)</td></tr>
+          <tr><td>Altura pasamanos</td><td>$750\,\text{mm}$</td><td>$900\,\text{mm} \pm 20\,\text{mm}$</td><td><strong>No Cumple</strong></td></tr>
+          <tr><td>Rodapié / Zócalo</td><td>Inexistente</td><td>Obligatorio $\geq 150\,\text{mm}$</td><td><strong>No Cumple</strong></td></tr>
+        </tbody>
+      </table>
+
+      <h4>Cálculo de Rediseño de Ingeniería</h4>
+      <ol>
+        <li><strong>Descansillos:</strong> Dado que $H = 4.20\,\text{m} &gt; 2.70\,\text{m}$, se requiere obligatoriamente <strong>1 descansillo intermedio</strong>. Se divide la altura en 2 tramos iguales de desnivel vertical:
+          <div class="formula-bloque">
+            $$H_{1} = H_{2} = \frac{4.20\,\text{m}}{2} = 2.10\,\text{m} = 210.0\,\text{cm}\quad\left( \leq 2.70\,\text{m} \right)$$
+          </div>
+          <em>Longitud de rellano intermedio:</em> $L_{\text{descansillo}} = 1.10\,\text{m}$ libre en sentido de marcha.</li>
+        <li><strong>Dimensionamiento de peldaños (por tramo):</strong>
+          <ul>
+            <li>Número de contrahuellas por tramo ($n$):
+              <div class="formula-bloque">
+                $$n = \frac{210.0\,\text{cm}}{17.5\,\text{cm}} = 12\,\text{contrahuellas por tramo} \Longrightarrow N_{\text{total}} = 24\,\text{contrahuellas}$$
+              </div>
+            </li>
+            <li>Contrahuella ajustada:
+              <div class="formula-bloque">
+                $$c = \frac{210.0\,\text{cm}}{12} = 17.50\,\text{cm}\quad\left( \leq 18.00\,\text{cm, CUMPLE} \right)$$
+              </div>
+            </li>
+            <li>Huella aplicando la fórmula de Blondel ($2c + h = 63\,\text{cm}$):
+              <div class="formula-bloque">
+                $$h = 63\,\text{cm} - 2\left( 17.50\,\text{cm} \right) = 63 - 35 = 28.00\,\text{cm}\quad\left( \geq 28.00\,\text{cm, CUMPLE} \right)$$
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li><strong>Ángulo de inclinación resultante:</strong>
+          <div class="formula-bloque">
+            $$\tan(\theta) = \frac{c}{h} = \frac{17.50\,\text{cm}}{28.00\,\text{cm}} = 0.6250 \Longrightarrow \theta = \arctan(0.6250) \approx 32.0^{\circ}$$
+          </div>
+          <em>Comprobación:</em> $20^{\circ} \leq 32.0^{\circ} \leq 45^{\circ}$ (CUMPLE con óptimo ergonómico).</li>
+        <li><strong>Protecciones perimetrales:</strong>
+          <ul>
+            <li>Ancho útil libre de escalera y descansillo: $w = 1\,000\,\text{mm}$ ($&gt; 900\,\text{mm}$).</li>
+            <li>Pasamanos tubular continuo a altura de $900\,\text{mm}$ con travesaño intermedio a $450\,\text{mm}$.</li>
+            <li>Rodapié de plancha de acero soldada de $150\,\text{mm}$ de altura en ambos costados y en todo el contorno del descansillo.</li>
+            <li>Peldaños en rejilla electroforjada tipo <em>serrated</em> con luz de malla máxima de $14\,\text{mm}$.</li>
+          </ul>
+        </li>
+      </ol>
+
+      <h3>Solución 4: Impacto de las No Conformidades en el OEE</h3>
+      <table class="tabla-compacta">
+        <thead>
+          <tr>
+            <th style="width:25%">Falla Auditada</th>
+            <th style="width:22%">Componente OEE Afectado</th>
+            <th>Mecanismo de Pérdida Industrial</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Sobrecarga de mezzanine (Art. 21)</td><td>Disponibilidad ($A$)</td><td>Paradas no programadas por necesidad de inspecciones forenses, clausuras preventivas y detención de extrusoras por riesgo de colapso físico.</td></tr>
+          <tr><td>Piso resbaloso $\mu = 0.26$ (Art. 23)</td><td>Rendimiento ($P$)</td><td>Ralentización forzada del desplazamiento de operarios y pérdida de velocidad nominal en transporte manual de cargas por temor a resbalamiento.</td></tr>
+          <tr><td>Ausencia de pendiente de piso (Art. 23)</td><td>Calidad ($Q$)</td><td>Salpicaduras de fluidos contaminados hacia pallets de resina limpia a nivel de piso, generando degradación de materia prima y producto no conforme.</td></tr>
+          <tr><td>Escalera fuera de norma (Art. 26)</td><td>Disponibilidad ($A$) y Rendimiento ($P$)</td><td>Accidentes incapacitantes por caídas (pérdida de horas-hombre); fatiga física extrema del personal al subir cargas por peldaños de $23.33\,\text{cm}$, reduciendo la cadencia productiva.</td></tr>
+        </tbody>
+      </table>
+
+      <h3>4. Rúbrica Analítica de Calificación (Escala 100 Puntos)</h3>
+      <table class="tabla-compacta">
+        <thead>
+          <tr>
+            <th style="width:20%">Criterio de Evaluación</th>
+            <th>Sobresaliente (90 – 100%)</th>
+            <th>Avanzado (75 – 89%)</th>
+            <th>Básico (60 – 74%)</th>
+            <th>Insuficiente (&lt; 60%)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Cálculo y Dictamen Estructural (Art. 21)</strong><br><em>(Ponderación: 25 pts)</em></td>
+            <td>Deduce con rigor analítico en notación científica/LaTeX $P$, $q_{\text{real}}$, $\Delta\%$ de sobrecarga y evalúa correctamente la deflexión $\delta_{\text{adm}}$ frente a $\delta_{\text{real}}$, emitiendo un dictamen pericial impecable.</td>
+            <td>Calcula $q_{\text{real}}$ y determina sobrecarga, pero presenta omisiones menores de precisión en el análisis de flecha o unidades.</td>
+            <td>Calcula la masa y peso, pero comete errores aritméticos en la carga superficial o confunde los límites admisibles.</td>
+            <td>No calcula las cargas superficiales o ignora las deformaciones admisibles del Art. 21.</td>
+          </tr>
+          <tr>
+            <td><strong>Ingeniería de Suelos y Paramentos (Art. 23)</strong><br><em>(Ponderación: 25 pts)</em></td>
+            <td>Determina con precisión matemática la pendiente real, calcula con exactitud la cota corregida al $1.20\%$, contrasta el $DCOF$ y prescribe soluciones técnicas de polímeros y reflectancia lumínica.</td>
+            <td>Calcula la pendiente y diagnostica el $DCOF$, pero la solución de recrecido tiene imprecisiones de cota menores.</td>
+            <td>Detecta que el piso no cumple, pero comete errores en la fórmula de pendiente o en la justificación de reflectancia de muros.</td>
+            <td>No calcula la pendiente hidráulica o plantea medidas superficiales sin sustento técnico.</td>
+          </tr>
+          <tr>
+            <td><strong>Rediseño Geométrico de Escalera (Art. 26)</strong><br><em>(Ponderación: 35 pts)</em></td>
+            <td>Identifica todas las no conformidades; formula el rediseño con descansillo normativo, calcula peldaños mediante Blondel exacto, verifica el ángulo e integra rodapié, barandilla y malla $\leq 14\,\text{mm}$.</td>
+            <td>Identifica las no conformidades y rediseña con Blondel, pero omite la comprobación del ángulo resultante o detalles del rodapié.</td>
+            <td>Plantea una escalera que cumple Blondel, pero no incluye el descansillo intermedio obligatorio para $H = 4.20\,\text{m}$.</td>
+            <td>Falla en el cálculo de peldaños, mantiene pendientes mayores a $45^{\circ}$ o incumple la normativa del Art. 26.</td>
+          </tr>
+          <tr>
+            <td><strong>Articulación y Modelado en OEE</strong><br><em>(Ponderación: 15 pts)</em></td>
+            <td>Vincula de manera exhaustiva y justificada cada desviación física de infraestructura con la Disponibilidad, Rendimiento y Calidad del sistema productivo.</td>
+            <td>Asocia la mayoría de los defectos con variables del OEE, con argumentos operacionales claros pero sin desglose detallado por factor.</td>
+            <td>Menciona el impacto en paradas de planta, pero confunde pérdidas de Rendimiento con pérdidas de Disponibilidad o Calidad.</td>
+            <td>No vincula la seguridad física con la productividad ni con la efectividad de equipos.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>5. Matriz de Configuración del iDevice en eXeLearning</h3>
+      <table class="tabla-compacta">
+        <thead>
+          <tr>
+            <th style="width:22%">Parámetro</th>
+            <th style="width:35%">Configuración Técnica</th>
+            <th>Justificación Funcional</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Tipo de iDevice</td><td><em>Tarea / Estudio de Casos</em> integrado con <em>Actividad de Lectura</em></td><td>Permite presentar la casuística industrial compleja con cuadros técnicos desplegables y campo de subida de informe.</td></tr>
+          <tr><td>Ajustes Generales: Visibilidad</td><td>Bloque de texto instructivo fijo con pestaña colapsable para la guía de fórmulas</td><td>Evita la sobrecarga cognitiva durante la resolución y mantiene accesible la consulta de ecuaciones.</td></tr>
+          <tr><td>trazabilidad</td><td>SCORM 2004 4th Edition (cmi.interactions, cmi.score.scaled)</td><td>Monitorea el tiempo real de permanencia en el caso y asegura el registro del envío del entregable pericial.</td></tr>
+          <tr><td>Puntaje Mínimo de Aprobación</td><td>$80/100$ puntos en rúbrica analítica</td><td>Garantiza que el estudiante domine las tolerancias legales y el cálculo ingenieril sin brechas de seguridad.</td></tr>
+          <tr><td>Gamificación: Contraseña de Desbloqueo</td><td>Condicional al envío: INGENIERIA_2393</td><td>Desbloquea la clave de acceso a la retroalimentación pericial comparativa tras subir el archivo al LMS.</td></tr>
+          <tr><td>Optimización Instruccional (OEE)</td><td>Tasa esperada de entrega $\geq 90\%$; Disponibilidad continua en plataforma 24/7</td><td>Elimina cuellos de botella por incompatibilidad de visualización mediante diseño responsivo en HTML5.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-box">
+    <div class="mb-head">
+      <h5>Acceso a soluciones — Personal docente</h5>
+      <button class="cerrar" onclick="window.cerrarModalClave()" aria-label="Cerrar">&times;</button>
+    </div>
+    <div class="mb-body">
+      <p>Esta sección contiene las soluciones y la rúbrica de evaluación. Ingrese la clave de acceso otorgada por la cátedra para visualizar el contenido completo.</p>
+      <input type="password" id="input-clave" placeholder="Clave de acceso" autocomplete="off">
+      <div class="err" id="err-clave">Clave incorrecta. Verifique e intente nuevamente.</div>
+    </div>
+    <div class="mb-foot">
+      <button class="btn-cancel" onclick="window.cerrarModalClave()">Cancelar</button>
+      <button class="btn-ok" onclick="window.confirmarClave()">Desbloquear</button>
+    </div>
+  </div>
+</div>
+
+
+<footer class="pie">
+  <p><strong>Material docente</strong> · Cátedra de Ingeniería de Seguridad Industrial y Salud Ocupacional · Período 2024-II</p>
+  <p>Documento técnico de apoyo basado en el <strong>Decreto Ejecutivo 2393</strong>, ISO 14122, OSHA 29 CFR 1910 y NEC. El acceso a las soluciones está restringido al personal docente.</p>
+</footer>
+
+<script>
+
+(function(){
+  // Reconstruye la clave: deshace rot7 sobre el string ofuscado -> atob -> str
+  function _unrot(s,n){
+    var out=[];
+    for (var i=0;i<s.length;i++){
+      var ch=s.charAt(i);
+      if (ch>='A' && ch<='Z') out.push(String.fromCharCode((ch.charCodeAt(0)-65-n+26)%26+65));
+      else if (ch>='a' && ch<='z') out.push(String.fromCharCode((ch.charCodeAt(0)-97-n+26)%26+97));
+      else if (ch>='0' && ch<='9') out.push(String((parseInt(ch)+10-n)%10));
+      else out.push(ch);
+    }
+    return out.join('');
+  }
+  var KEY_OBF = "TAr1Td==";
+  var CLAVE_REAL = atob(_unrot(KEY_OBF, 7));
+
+  // ---------- Tabs ----------
+  var tabs = document.querySelectorAll('nav.tabs button');
+  var panels = document.querySelectorAll('.tab-panel');
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){
+      var id = t.getAttribute('data-target');
+      tabs.forEach(function(x){x.classList.remove('active');});
+      panels.forEach(function(p){p.classList.remove('active');});
+      t.classList.add('active');
+      document.getElementById(id).classList.add('active');
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  });
+
+  // ---------- Imprimir pestaña activa ----------
+  window.imprimirPanel = function(){
+    var activo = document.querySelector('.tab-panel.active');
+    if(!activo) return;
+    var titulo = activo.querySelector('.panel-head h2') ? activo.querySelector('.panel-head h2').innerText : 'Material docente';
+    var win = window.open('', '_blank', 'width=1024,height=720');
+    var estilos = document.querySelectorAll('style,link[rel="stylesheet"]');
+    var estilosHtml = '';
+    estilos.forEach(function(s){ if(s.tagName==='STYLE') estilosHtml += '<style>'+s.innerHTML+'</style>'; else estilosHtml += s.outerHTML; });
+    win.document.write('<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><title>'+titulo+'</title>');
+    win.document.write(estilosHtml);
+    win.document.write('</head><body>');
+    win.document.write('<header class="membrete">'+document.querySelector('header.membrete').innerHTML+'</header>');
+    win.document.write('<main>'+activo.innerHTML+'</main>');
+    win.document.write('</body></html>');
+    win.document.close();
+    setTimeout(function(){ win.print(); }, 500);
+  };
+
+  // ---------- Modal de clave ----------
+  var overlay = document.getElementById('modal-overlay');
+  var inputClave = document.getElementById('input-clave');
+  var errClave = document.getElementById('err-clave');
+  var targetSolucion = null;
+
+  function abrirModal(targetId){
+    targetSolucion = targetId;
+    overlay.classList.add('show');
+    inputClave.value='';
+    errClave.classList.remove('show');
+    setTimeout(function(){ inputClave.focus(); }, 80);
+  }
+  function cerrarModal(){ overlay.classList.remove('show'); targetSolucion=null; }
+  function intentarUnlock(){
+    if (inputClave.value === CLAVE_REAL){
+      cerrarModal();
+      var el = document.getElementById(targetSolucion);
+      if (el){
+        // Bloquear el candado dentro del mismo wrap
+        var locked = el.querySelector('.soluciones-locked');
+        if (locked) locked.style.display='none';
+        var content = el.querySelector('.soluciones-content');
+        if (content) content.classList.add('unlocked');
+        el.scrollIntoView({behavior:'smooth', block:'start'});
+      }
+    } else {
+      errClave.classList.add('show');
+      inputClave.value='';
+      inputClave.focus();
+    }
+  }
+
+  window.desbloquearSoluciones = function(targetId){
+    // Si ya está desbloqueado, no pedir clave
+    var el = document.getElementById(targetId);
+    if (el){
+      var content = el.querySelector('.soluciones-content');
+      if (content && content.classList.contains('unlocked')){
+        el.scrollIntoView({behavior:'smooth', block:'start'});
+        return;
+      }
+    }
+    abrirModal(targetId);
+  };
+  window.cerrarModalClave = cerrarModal;
+  window.confirmarClave = intentarUnlock;
+
+  overlay.addEventListener('click', function(e){ if(e.target===overlay) cerrarModal(); });
+  document.addEventListener('keydown', function(e){
+    if (e.key==='Escape' && overlay.classList.contains('show')) cerrarModal();
+    if (e.key==='Enter' && overlay.classList.contains('show')) intentarUnlock();
+  });
+
+  // ---------- MathJax ----------
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$']], displayMath: [['$$','$$']] },
+    svg: { fontCache: 'global' },
+    startup: {
+      ready: function(){
+        MathJax.startup.defaultReady();
+        // Re-render cuando se cambia de pestaña
+        MathJax.startup.promise.then(function(){
+          // ya procesado inicial
+        });
+      }
+    }
+  };
+  // Cargar MathJax desde CDN
+  var mj = document.createElement('script');
+  mj.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+  mj.async = true;
+  document.head.appendChild(mj);
+
+  // Re-render MathJax al cambiar de pestaña
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){
+      if (window.MathJax && window.MathJax.typesetPromise){
+        MathJax.typesetPromise([document.getElementById(t.getAttribute('data-target'))]);
+      }
+    });
+  });
+
+})();
+
+</script>
+</body>
+</html>
