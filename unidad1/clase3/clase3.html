@@ -1,0 +1,2353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Seguridad Industrial y Salud Ocupacional — Clase 3 — D.E. 2393</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    processEscapes: true
+  },
+  options: {
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  }
+};
+</script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+:root {
+  --navy: #0f2c4d;
+  --navy-deep: #081d35;
+  --navy-light: #1c4977;
+  --gold: #b78d33;
+  --gold-light: #d4ab52;
+  --cream: #faf6ee;
+  --cream-warm: #f3ead8;
+  --paper: #ffffff;
+  --ink: #1a1a1a;
+  --ink-soft: #3a3a3a;
+  --muted: #6b7280;
+  --border: #d6cfbe;
+  --success: #1f7a45;
+  --danger: #b3261e;
+  --shadow: 0 2px 8px rgba(15, 44, 77, 0.08);
+  --shadow-lg: 0 10px 40px rgba(15, 44, 77, 0.18);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: 'Lora', Georgia, 'Times New Roman', serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.75;
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+  color: var(--navy-deep);
+  font-weight: 600;
+  line-height: 1.3;
+}
+/* ---------- Header ---------- */
+.site-header {
+  background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 60%, var(--navy-light) 100%);
+  color: var(--cream);
+  padding: 38px 28px 32px;
+  border-bottom: 4px solid var(--gold);
+  position: relative;
+  overflow: hidden;
+}
+.site-header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle at 20% 50%, rgba(183, 141, 51, 0.10) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(212, 171, 82, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+.header-inner {
+  max-width: 1280px; margin: 0 auto;
+  display: flex; align-items: center; gap: 24px;
+  position: relative; z-index: 1;
+}
+.header-emblem {
+  width: 78px; height: 78px; flex-shrink: 0;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.05);
+  font-family: 'Inter', sans-serif;
+  font-weight: 800; font-size: 28px; color: var(--gold-light);
+  letter-spacing: 1px;
+}
+.header-text { flex: 1; }
+.header-kicker {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 6px;
+}
+.header-title {
+  font-family: 'Lora', serif;
+  font-size: 28px; font-weight: 700;
+  margin: 0 0 6px 0;
+  color: #ffffff;
+  line-height: 1.25;
+}
+.header-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px; color: rgba(250, 246, 238, 0.85);
+  font-weight: 400;
+}
+.header-meta {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px; color: var(--gold-light);
+  margin-top: 10px; font-weight: 500;
+  letter-spacing: 0.5px;
+}
+/* ---------- Tabs ---------- */
+.tabs-nav {
+  background: var(--paper);
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 50;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.tabs-inner {
+  max-width: 1280px; margin: 0 auto;
+  display: flex; gap: 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+.tab-btn {
+  flex: 1; min-width: 180px;
+  background: transparent; border: none;
+  padding: 18px 18px 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px; font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.18s ease;
+  text-align: left;
+  line-height: 1.4;
+  display: flex; flex-direction: column; gap: 3px;
+}
+.tab-btn:hover {
+  background: var(--cream);
+  color: var(--navy-deep);
+}
+.tab-btn.active {
+  color: var(--navy-deep);
+  border-bottom-color: var(--gold);
+  background: var(--cream);
+}
+.tab-btn .tab-num {
+  font-size: 10px; font-weight: 700;
+  color: var(--gold); letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.tab-btn.active .tab-num { color: var(--navy); }
+.tab-btn .tab-lock { font-size: 11px; color: var(--gold); margin-top: 4px; }
+
+/* ---------- Content area ---------- */
+.content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 44px 36px 100px;
+}
+.tab-pane { display: none; animation: fadeIn 0.4s ease; }
+.tab-pane.active { display: block; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.pane-header {
+  border-left: 4px solid var(--gold);
+  padding: 4px 0 4px 18px;
+  margin-bottom: 28px;
+}
+.pane-header .pane-kicker {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+.pane-header h2 {
+  font-size: 26px; margin: 0 0 8px 0;
+  color: var(--navy-deep);
+}
+.pane-header .pane-lead {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px; color: var(--muted);
+  font-weight: 400;
+}
+.pane-divider {
+  height: 1px;
+  background: linear-gradient(to right, var(--gold) 0%, var(--gold) 60px, var(--border) 60px, var(--border) 100%);
+  margin: 28px 0;
+}
+
+/* ---------- Typography in content ---------- */
+.tab-pane h1 { font-size: 24px; margin: 32px 0 14px; }
+.tab-pane h2 { font-size: 22px; margin: 28px 0 12px; }
+.tab-pane h3 { font-size: 19px; margin: 22px 0 10px; color: var(--navy); }
+.tab-pane h4 { font-size: 17px; margin: 18px 0 8px; color: var(--navy-light); }
+.tab-pane p { margin: 0 0 14px 0; }
+.tab-pane strong { color: var(--navy-deep); font-weight: 600; }
+.tab-pane em { color: var(--ink-soft); }
+.tab-pane ul, .tab-pane ol { margin: 0 0 16px 0; padding-left: 28px; }
+.tab-pane li { margin-bottom: 6px; }
+.tab-pane li > ul, .tab-pane li > ol { margin-top: 6px; }
+.tab-pane a { color: var(--navy-light); text-decoration: underline; text-decoration-color: var(--gold); }
+.tab-pane blockquote {
+  border-left: 3px solid var(--gold);
+  background: var(--cream-warm);
+  padding: 12px 18px;
+  margin: 16px 0;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+.tab-pane code {
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  background: rgba(15, 44, 77, 0.07);
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 0.92em;
+  color: var(--navy-deep);
+}
+.tab-pane pre {
+  background: var(--navy-deep);
+  color: var(--cream);
+  padding: 16px 20px;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-family: 'JetBrains Mono', 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 14px 0;
+  border-left: 3px solid var(--gold);
+}
+.tab-pane pre.ascii-diagram {
+  background: #fbf6e9;
+  color: var(--navy-deep);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  font-size: 12px;
+  line-height: 1.4;
+  white-space: pre;
+  padding: 18px 22px;
+}
+.tab-pane table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 18px 0;
+  font-size: 14px;
+  background: var(--paper);
+  box-shadow: var(--shadow);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.tab-pane th {
+  background: var(--navy);
+  color: var(--cream);
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 2px solid var(--gold);
+  font-size: 13px;
+  letter-spacing: 0.3px;
+}
+.tab-pane td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.tab-pane tr:nth-child(even) td { background: var(--cream); }
+.tab-pane tr:last-child td { border-bottom: none; }
+.tab-pane hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 28px 0;
+}
+.tab-pane .math.display, .tab-pane mjx-container[display="true"] {
+  background: var(--cream-warm);
+  border-left: 3px solid var(--gold);
+  padding: 12px 18px;
+  margin: 14px 0;
+  border-radius: 3px;
+  overflow-x: auto;
+}
+
+/* ---------- Solution lock blocks ---------- */
+.solution-block {
+  margin: 36px 0 24px;
+  border: 1px dashed var(--gold);
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(183,141,51,0.04) 0%, rgba(183,141,51,0.01) 100%);
+  overflow: hidden;
+}
+.solution-gate {
+  padding: 28px 24px;
+  text-align: center;
+}
+.solution-gate .lock-icon {
+  width: 56px; height: 56px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  background: var(--cream-warm);
+  border: 2px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold);
+  font-size: 26px;
+}
+.solution-gate h3 {
+  margin: 0 0 6px 0;
+  color: var(--navy-deep);
+  font-size: 18px;
+}
+.solution-gate p {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0 0 18px 0;
+  font-family: 'Inter', sans-serif;
+}
+.solution-gate .gate-error {
+  color: var(--danger);
+  font-size: 13px;
+  margin-top: 10px;
+  font-family: 'Inter', sans-serif;
+  min-height: 18px;
+}
+.solution-gate button {
+  background: var(--navy);
+  color: var(--cream);
+  border: none;
+  padding: 12px 28px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  letter-spacing: 0.4px;
+  transition: all 0.15s ease;
+  border-bottom: 2px solid var(--navy-deep);
+}
+.solution-gate button:hover {
+  background: var(--navy-light);
+  transform: translateY(-1px);
+}
+.solution-content {
+  display: none;
+  padding: 0 28px 28px;
+}
+.solution-content.unlocked { display: block; animation: fadeIn 0.5s ease; }
+.solution-content::before {
+  content: 'Solucionario Docente';
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: var(--gold);
+  padding: 18px 0 8px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 18px;
+}
+
+/* ---------- Password modal ---------- */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(8, 29, 53, 0.55);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: center; justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+.modal-overlay.show { display: flex; animation: fadeIn 0.2s ease; }
+.modal-card {
+  background: var(--paper);
+  border-radius: 10px;
+  padding: 32px 32px 26px;
+  width: 100%; max-width: 380px;
+  box-shadow: var(--shadow-lg);
+  border-top: 4px solid var(--gold);
+}
+.modal-card .modal-icon {
+  width: 48px; height: 48px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--gold-light);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+}
+.modal-card h3 {
+  text-align: center;
+  margin: 0 0 6px 0;
+  font-size: 19px;
+  color: var(--navy-deep);
+}
+.modal-card p {
+  text-align: center;
+  color: var(--muted);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  margin: 0 0 20px 0;
+}
+.modal-card input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px;
+  letter-spacing: 4px;
+  text-align: center;
+  color: var(--navy-deep);
+  background: var(--cream);
+  transition: border-color 0.15s ease;
+}
+.modal-card input:focus {
+  outline: none;
+  border-color: var(--gold);
+  background: var(--paper);
+}
+.modal-card .modal-error {
+  color: var(--danger);
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  text-align: center;
+  min-height: 16px;
+  margin-top: 8px;
+}
+.modal-card .modal-actions {
+  display: flex; gap: 10px;
+  margin-top: 18px;
+}
+.modal-card button {
+  flex: 1;
+  padding: 10px 16px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  transition: all 0.15s ease;
+}
+.modal-card .btn-cancel {
+  background: var(--paper);
+  color: var(--muted);
+}
+.modal-card .btn-cancel:hover { background: var(--cream); }
+.modal-card .btn-submit {
+  background: var(--navy);
+  color: var(--cream);
+  border-color: var(--navy);
+}
+.modal-card .btn-submit:hover { background: var(--navy-light); }
+
+/* ---------- Footer ---------- */
+.site-footer {
+  background: var(--navy-deep);
+  color: rgba(250, 246, 238, 0.7);
+  padding: 28px 24px;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  border-top: 3px solid var(--gold);
+}
+.site-footer strong { color: var(--gold-light); }
+
+/* ---------- Print friendly ---------- */
+@media print {
+  .tabs-nav, .site-footer, .solution-gate { display: none; }
+  .tab-pane { display: block !important; page-break-after: always; }
+  .solution-content { display: block !important; }
+}
+
+@media (max-width: 720px) {
+  .header-inner { flex-direction: column; text-align: center; gap: 14px; }
+  .header-title { font-size: 22px; }
+  .tab-btn { min-width: 140px; font-size: 12px; padding: 14px 12px; }
+  .content { padding: 28px 18px 60px; }
+  .pane-header h2 { font-size: 21px; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-emblem">SISO</div>
+    <div class="header-text">
+      <div class="header-kicker">Cátedra · Seguridad Industrial y Salud Ocupacional</div>
+      <h1 class="header-title">Reglamentos de Seguridad — Decreto Ejecutivo 2393</h1>
+      <div class="header-sub">Análisis técnico-jurídico · Art. 33 (Evacuación) · Art. 54 (Estrés Térmico) · Dinámica de Evacuación y Modelación TGBH</div>
+      <div class="header-meta">Clase 3 · Material didáctico académico universitario</div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs-nav" role="tablist">
+  <div class="tabs-inner">
+    <button class="tab-btn active" data-tab="t1" role="tab">
+      <span class="tab-num">Pestaña 01</span>
+      Análisis Técnico-Jurídico<br/>Artículos 33 y 54 del D.E. 2393
+    </button>
+    <button class="tab-btn" data-tab="t2" role="tab">
+      <span class="tab-num">Pestaña 02</span>
+      Estudio de Caso Práctico<br/>Línea de Termoformado «Alfa-5»
+    </button>
+    <button class="tab-btn" data-tab="t3" role="tab">
+      <span class="tab-num">Pestaña 03</span>
+      Taller Práctico<br/>Planta Metalmecánica Vulcano S.A.
+      <span class="tab-lock">🔒 Solución con clave</span>
+    </button>
+    <button class="tab-btn" data-tab="t4" role="tab">
+      <span class="tab-num">Pestaña 04</span>
+      Taller Evaluativo<br/>30 Reactivos Técnicos y Normativos
+      <span class="tab-lock">🔒 Solución con clave</span>
+    </button>
+    <button class="tab-btn" data-tab="t5" role="tab">
+      <span class="tab-num">Pestaña 05</span>
+      Tarea Asincrónica<br/>Caso Avanzado «Aceros del Litoral S.A.»
+      <span class="tab-lock">🔒 Solución con clave</span>
+    </button>
+  </div>
+</nav>
+
+<main class="content">
+
+  <!-- =================== TAB 1 =================== -->
+  <section id="t1" class="tab-pane active">
+    <div class="pane-header">
+      <div class="pane-kicker">Pestaña 01 · Marco Normativo</div>
+      <h2>Análisis Técnico-Jurídico: Artículos 33 y 54 del Decreto Ejecutivo 2393</h2>
+      <div class="pane-lead">Reglamento de Seguridad y Salud de los Trabajadores y Mejoramiento del Medio Ambiente de Trabajo — Registro Oficial 565.</div>
+    </div>
+    <div class="pane-divider"></div>
+    <p><strong>Análisis Técnico-Jurídico: Artículos 33 y 54 del Decreto Ejecutivo
+2393</strong></p>
+<p>El marco regulatorio técnico en Ecuador para la Seguridad y Salud en el
+Trabajo está regido por el <strong>Decreto Ejecutivo 2393</strong> (<em>Reglamento de
+Seguridad y Salud de los Trabajadores y Mejoramiento del Medio Ambiente
+de Trabajo</em>). El análisis riguroso de las condiciones locativas y los
+agentes físicos ambientales exige descomponer las variables de diseño
+bajo criterios de ingeniería y optimización operativa.</p>
+<p><strong>1. Artículo 33: Puertas y Salidas de Emergencia</strong></p>
+<p>Este artículo establece las condiciones estructurales mínimas para
+garantizar el desalojo seguro y continuo del personal ante un evento
+adverso, evitando el colapso por estrangulamiento de flujo peatonal:</p>
+<ul>
+<li><p><strong>Accesibilidad y Señalización:</strong> Las salidas y puertas exteriores
+deben ser de acceso directo, despejadas de cualquier obstáculo
+físico y señalizadas conforme a la norma técnica (fondos de
+contraste y pictogramas fotoluminiscentes o iluminados por sistemas
+de emergencia).</p></li>
+<li><p><strong>Sentido de Apertura:</strong> Las puertas de evacuación deben abrirse
+hacia el exterior (en el sentido natural del flujo de escape) para
+evitar aplastamientos generados por presión de multitudes en
+situaciones de pánico. Queda prohibido el uso de puertas corredizas
+o giratorias como salidas de evacuación exclusivas a menos que
+cuenten con un mecanismo de abatimiento oscilobatiente por empuje.</p></li>
+<li><p><strong>Mecanismos de Cierre y Apertura:</strong> No deben poseer cerraduras con
+llave o candado durante las jornadas de labor. Deben disponer de
+barras antipánico o manillas de accionamiento rápido y mecánico.</p></li>
+<li><p><strong>Cálculo Normativo del Ancho de Salida:</strong> El reglamento determina
+que hasta 50 trabajadores, el ancho mínimo libre de paso será de
+<span class="math inline">\(0.80\text{~m}\)</span>a <span class="math inline">\(1.00\text{~m}\)</span>. Cuando la ocupación supera dicho
+umbral, el ancho total acumulado de las salidas se dimensiona
+mediante la expresión lineal del reglamento:</p></li>
+</ul>
+<p><span class="math display">\[\text{Ancho~en~metros} = 0.006 \times N\]</span></p>
+<p>Donde:</p>
+<ul>
+<li><p><span class="math inline">\(N\)</span>: Número total de trabajadores usuarios en el sector de incendio
+o área ocupada.</p></li>
+<li><p><span class="math inline">\(0.006\text{~m/persona}\)</span>: Coeficiente de diseño normativo que
+garantiza una tasa de evacuación controlada.</p></li>
+</ul>
+<p><strong>2. Artículo 54: Estrés Térmico por Calor</strong></p>
+<p>Este artículo regula la exposición ocupacional a ambientes térmicos
+agresivos originados por procesos termomecánicos (fundición, calderas,
+hornos) o condiciones climáticas severas, vinculándose directamente con
+el metabolismo de trabajo y la termorregulación humana:</p>
+<ul>
+<li><p><strong>Jerarquía de Controles de Ingeniería:</strong></p>
+<ol type="1">
+<li><p><em>Aislamiento y Apantallamiento:</em> Blindaje térmico de focos
+radiantes mediante pantallas reflectoras o materiales aislantes
+térmicos incombustibles.</p></li>
+<li><p><em>Ventanas de Observación:</em> Uso de vidrios especiales
+atérmicos/reflectantes cuando la supervisión visual del proceso
+sea continua.</p></li>
+<li><p><em>Distanciamiento Físico:</em> Separación de puestos de trabajo a
+distancias donde la densidad de flujo radiante (<span class="math inline">\(W/m^{2}\)</span>)
+disminuya por la ley del inverso del cuadrado.</p></li>
+<li><p><em>Climatización:</em> Implementación de cabinas de control con aire
+acondicionado y ventilación forzada localizada por extracción.</p></li>
+</ol></li>
+<li><p><strong>Evaluación Cuantitativa mediante Índice TGBH:</strong> El artículo norma
+la evaluación del estrés térmico basándose en el <strong>Índice de
+Temperatura de Globo y Bulbo Húmedo (TGBH / WBGT)</strong>:</p>
+<ul>
+<li><em>En interiores sin radiación solar directa:</em></li>
+</ul></li>
+</ul>
+<p><span class="math display">\[\text{TGBH} = 0.7\, T_{bh} + 0.3\, T_{g}\]</span></p>
+<ul>
+<li><em>En exteriores con carga solar:</em></li>
+</ul>
+<p><span class="math display">\[\text{TGBH} = 0.7\, T_{bh} + 0.2\, T_{g} + 0.1\, T_{a}\]</span></p>
+<p><em>(Donde</em> <span class="math inline">\(T_{bh}\)</span><em>es la temperatura de bulbo húmedo natural,</em> <span class="math inline">\(T_{g}\)</span><em>la
+temperatura de globo termométrico y</em> <span class="math inline">\(T_{a}\)</span><em>la temperatura de bulbo
+seco o ambiental).</em></p>
+<ul>
+<li><strong>Régimen de Actividad - Descanso:</strong> Establece la modulación de las
+jornadas de trabajo (100% trabajo, 75% trabajo - 25% descanso, 50% -
+50%, 25% - 75%) en función de los límites permisibles de TGBH (°C)
+cruzados contra la tasa metabólica (clasificada en carga liviana,
+moderada o pesada).</li>
+</ul>
+<p><strong>Parámetros Críticos en la Dinámica de Evacuación</strong></p>
+<p>La evacuación técnica de una nave o planta industrial no es un suceso
+estático, sino una modelación de flujo hidráulico de personas donde
+intervienen las siguientes variables de ingeniería:</p>
+<p><strong>1. Tiempo Teórico de Evacuación (</strong><span class="math inline">\(\mathbf{T}_{\mathbf{E}}\)</span><strong>)</strong></p>
+<p>Es el intervalo temporal desde la detección inicial hasta que la última
+persona cruza la salida al punto de encuentro:</p>
+<p><span class="math display">\[T_{E} = T_{d} + T_{a} + T_{r} + T_{m}\]</span></p>
+<ul>
+<li><p><span class="math inline">\(T_{d}\)</span><strong>(Tiempo de detección):</strong> Latencia del sistema de sensores
+térmicos/ópticos.</p></li>
+<li><p><span class="math inline">\(T_{a}\)</span><strong>(Tiempo de alarma):</strong> Verificación e inicio de señales
+sonoras/ópticas unificadas.</p></li>
+<li><p><span class="math inline">\(T_{r}\)</span><strong>(Tiempo de retraso / pre-movimiento):</strong> Reconocimiento
+psicológico del riesgo, apagado seguro de maquinaria y preparación
+del personal.</p></li>
+<li><p><span class="math inline">\(T_{m}\)</span><strong>(Tiempo de movimiento):</strong> Desplazamiento dinámico efectivo
+a través de las rutas.</p></li>
+</ul>
+<p><strong>2. Carga de Ocupación o Aforo (</strong><span class="math inline">\(\mathbf{N}\)</span><strong>)</strong></p>
+<p>Determina la densidad máxima teórica de personas por unidad de
+superficie en función del uso del suelo (m²/persona):</p>
+<p><span class="math display">\[N = \frac{\text{Área~Útil}\ \left( \text{m}^{2} \right)}{\text{Factor~de~Ocupación}\ \left( \text{m}^{2}/\text{persona} \right)}\]</span></p>
+<p><strong>3. Distancia Máxima de Recorrido (</strong><span class="math inline">\(\mathbf{D}_{\mathbf{\max}}\)</span><strong>)</strong></p>
+<p>Longitud física real que una persona debe transitar desde el punto más
+desfavorable o remoto de la nave hasta una salida de emergencia o zona
+de abrigo estanco.</p>
+<ul>
+<li>En riesgo ordinario/medio, el estándar limita el trayecto entre
+<span class="math inline">\(25\text{~m}\)</span><strong>y</strong> <span class="math inline">\(40\text{~m}\)</span>sin rociadores automáticos,
+extendiéndose a <span class="math inline">\(60\text{~m}\)</span>con sistemas de extinción automática
+instalados.</li>
+</ul>
+<p><strong>4. Capacidad de Evacuación y Unidades de Ancho de Salida (UAS)</strong></p>
+<p>El dimensionamiento de vías se calcula en módulos estándar o Unidades de
+Ancho de Paso (donde <span class="math inline">\(1\text{~UAS} \approx 0.55\text{~m}\)</span>a
+<span class="math inline">\(0.60\text{~m}\)</span>, correspondiente al ancho de hombros medio de un adulto
+con holgura):</p>
+<p><span class="math display">\[UAS = \frac{\text{Ancho~Libre~Real}}{0.60\text{~m}}\]</span></p>
+<p>El caudal o flujo de personas (<span class="math inline">\(F\)</span>) a través de un paso calibrado se
+modela como:</p>
+<p><span class="math display">\[F = c \cdot W_{e} \cdot D\]</span></p>
+<p>Donde <span class="math inline">\(c\)</span>es la velocidad de marcha media (<span class="math inline">\(1.0 - 1.2\text{~m/s}\)</span> en
+plano horizontal, <span class="math inline">\(0.6 - 0.8\text{~m/s}\)</span>en gradas descendentes),
+<span class="math inline">\(W_{e}\)</span>es el ancho libre efectivo y <span class="math inline">\(D\)</span>es la densidad de la masa
+(<span class="math inline">\(persona/m^{2}\)</span>).</p>
+<p><strong>5. Punto de Encuentro y Zona Segura</strong></p>
+<p>Espacio exterior a cielo abierto, delimitado geográficamente fuera del
+radio de colapso estructural (altura del edificio <span class="math inline">\(H \times 1.5\)</span>) y
+fuera de las trayectorias de plumas de humo o gases tóxicos según la
+rosa de los vientos predominante.</p>
+<p><strong>Validación de Integridad</strong></p>
+<table style="width:98%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 30%" />
+<col style="width: 32%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Parámetro /
+Componente</strong></th>
+<th><strong>Ecuación / Criterio Técnico</strong></th>
+<th style="text-align: left;"><strong>Valor Límite Operativo</strong></th>
+<th style="text-align: left;"><strong>Impacto en OEE y
+Seguridad</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Ancho de
+Salida
+(</strong><span class="math inline">\(W\)</span><strong>)</strong></td>
+<td><span class="math display">\[W = 0.006 \times N\]</span></td>
+<td style="text-align: left;">Mínimo
+<span class="math inline">\(0.80\text{~}\text{m}\)</span>(hasta 50
+personas)</td>
+<td style="text-align: left;">Cero
+estrangulamiento;
+evacuación en tiempo
+crítico
+(<span class="math inline">\(&lt; 3\text{~min}\)</span>).</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Estrés
+Térmico
+(TGBH)</strong></td>
+<td><span class="math display">\[0.7T_{bh} + 0.3T_{g}\]</span></td>
+<td style="text-align: left;">Según tabla metabólica (ej.
+<span class="math inline">\({25.9}^{\circ}\text{C}\)</span>trabajo
+pesado continuo)</td>
+<td style="text-align: left;">Previene golpes de
+calor y caída de
+rendimiento por
+fatiga extrema.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Espacio de
+Trabajo
+Térmico</strong></td>
+<td>Perímetro libre a
+hornos/calderos</td>
+<td style="text-align: left;"><span class="math inline">\(\geq 1.50\text{~m}\)</span>de distancia
+radial incombustible</td>
+<td style="text-align: left;">Elimina riesgo de
+quemadura por
+contacto y estrés
+radiativo agudo.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Tasa de
+Flujo
+Peatonal</strong></td>
+<td><span class="math display">\[F = c \cdot W_{e} \cdot D\]</span></td>
+<td style="text-align: left;">40 a 60 personas/minuto por metro
+de ancho</td>
+<td style="text-align: left;">Evita turbulencias y
+bloqueos en puertas
+durante paradas de
+emergencia.</td>
+</tr>
+</tbody>
+</table>
+
+  </section>
+
+  <!-- =================== TAB 2 =================== -->
+  <section id="t2" class="tab-pane">
+    <div class="pane-header">
+      <div class="pane-kicker">Pestaña 02 · Caso Trabajado</div>
+      <h2>Estudio de Caso Práctico: Optimización de Evacuación y Control Térmico en la Línea de Termoformado «Alfa-5»</h2>
+      <div class="pane-lead">Sesión docente de 20 minutos · Caso modelo con deducción matemática completa y retroalimentación técnica.</div>
+    </div>
+    <div class="pane-divider"></div>
+    <p>en la Línea de Termoformado "Alfa-5"**</p>
+<p><strong>Introducción Motivadora</strong></p>
+<p>En la ingeniería de operaciones, la seguridad no es un apéndice
+normativo; es un pilar crítico de la Efectividad Global de los Equipos
+(OEE). Una línea de producción que opera con microclimas degradados
+(estrés térmico severo) reduce la eficiencia de la mano de obra,
+incrementa la tasa de defectos y arriesga paradas no programadas
+catastróficas. Si a esto se añade una vía de evacuación estrangulada, el
+fallo en los sistemas de contingencia transforma un incidente menor en
+una fatalidad industrial.</p>
+<p>En este estudio de caso de 20 minutos analizaremos cuantitativamente la
+nave de extrusión y termoformado "Alfa-5" bajo el marco de los
+Artículos 33 (Puertas y Salidas de Emergencia) y 54 (Estrés Térmico) del
+Decreto Ejecutivo 2393.</p>
+<p><strong>iDevice de Lectura: Planteamiento del Escenario Industrial</strong></p>
+<p>La nave industrial "Alfa-5" cuenta con una superficie de
+<span class="math inline">\(1\, 200\text{~m}^{2}\)</span>(<span class="math inline">\(40\text{~m} \times 30\text{~m}\)</span>). En el turno
+matutino labora un personal total distribuido de
+<span class="math inline">\(N = 180\text{~trabajadores}\)</span>entre maquinistas, empacadores e
+inspectores de calidad.</p>
+<pre class="ascii-diagram">◄──────────────────────── 40 m ────────────────────────►
+
+┌───────────────────────────────────────[Salida A: 0.90 m]
+
+│ Zona de Enfriamiento y Empaque │
+
+▲ │ │
+
+│ │ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
+
+30 m │ Focos Radiantes: Batería de Hornos │
+
+│ │ [T_g = 42°C, T_bh = 28°C, T_a = 31°C] │
+
+▼ │ │
+
+│ Puesto Crítico: Alimentación Manual │
+
+└───────────────────────────────────────[Salida B: 0.90 m]</pre>
+<p><strong>Condiciones Locativas Actuales (Art. 33)</strong></p>
+<ul>
+<li><p><strong>Salidas Existentes:</strong> Dispone de dos puertas perimetrales
+batientes hacia afuera de <span class="math inline">\(0.90\text{~m}\)</span>de luz libre cada una
+(<span class="math inline">\(\text{Ancho~total~instalado} = 1.80\text{~m}\)</span>).</p></li>
+<li><p><strong>Recorrido:</strong> El punto más alejado del piso de producción dista a
+<span class="math inline">\(D_{\max} = 38\text{~m}\)</span>en línea recta obstaculizada hasta la salida
+más próxima.</p></li>
+<li><p><strong>Componentes de Tiempo:</strong></p>
+<ul>
+<li><p>Detección automática (<span class="math inline">\(T_{d}\)</span>): <span class="math inline">\(15\text{~s}\)</span></p></li>
+<li><p>Verificación y activación de alarma general (<span class="math inline">\(T_{a}\)</span>):
+<span class="math inline">\(20\text{~s}\)</span></p></li>
+<li><p>Retardo de pre-movimiento / parada segura de máquina (<span class="math inline">\(T_{r}\)</span>):
+<span class="math inline">\(35\text{~s}\)</span></p></li>
+</ul></li>
+</ul>
+<p><strong>Condiciones Termohigrométricas en Puesto de Alimentación (Art. 54)</strong></p>
+<ul>
+<li><p><strong>Mediciones Ambientales (Interior sin carga solar directa):</strong></p>
+<ul>
+<li><p>Temperatura de bulbo húmedo natural (<span class="math inline">\(T_{bh}\)</span>):
+<span class="math inline">\({28.0}^{\circ}\text{C}\)</span></p></li>
+<li><p>Temperatura de globo (<span class="math inline">\(T_{g}\)</span>): <span class="math inline">\({42.0}^{\circ}\text{C}\)</span></p></li>
+<li><p>Temperatura de aire / bulbo seco (<span class="math inline">\(T_{a}\)</span>):
+<span class="math inline">\({31.0}^{\circ}\text{C}\)</span></p></li>
+</ul></li>
+<li><p><strong>Régimen Operativo:</strong> Tarea clasificada como <strong>Carga de Trabajo
+Pesada</strong> (<span class="math inline">\(M \approx 415\text{~W}\)</span> / <span class="math inline">\(360\text{~kcal/h}\)</span>), operando
+bajo esquema continuo (<span class="math inline">\(100\%\)</span> trabajo durante turnos de 60 minutos
+continuos).</p></li>
+</ul>
+<p><strong>Deducción Matemática y Análisis de Ingeniería</strong></p>
+<p><strong>1. Verificación del Ancho de Evacuación (Art. 33)</strong></p>
+<p>El requerimiento normativo de ancho total (<span class="math inline">\(W_{\text{req}}\)</span>) para una
+población <span class="math inline">\(N = 180\)</span>está regido por la función lineal del reglamento:</p>
+<p><span class="math display">\[W_{\text{req}} = 0.006 \times N\]</span></p>
+<p><span class="math display">\[W_{\text{req}} = 0.006 \times 180 = 1.08\text{~m}\]</span></p>
+<p><em>Cálculo de Unidades de Ancho de Salida (UAS):</em></p>
+<p><span class="math display">\[UAS = \frac{W_{\text{instalado}}}{0.60\text{~m}} = \frac{1.80\text{~m}}{0.60\text{~m}} = 3.0\text{~UAS}\]</span></p>
+<p><em>Tiempo de Movimiento Efectivo (</em><span class="math inline">\(T_{m}\)</span><em>):</em> Considerando una tasa de
+desalojo experimental de flujo horizontal de
+<span class="math inline">\(k = 1.2\text{~personas}/\left( \text{s} \cdot \text{m} \right)\)</span>y ancho
+total efectivo <span class="math inline">\(W_{e} = 1.80\text{~m}\)</span>:</p>
+<p><span class="math display">\[\text{Flujo~de~salida~}F = k \times W_{e} = 1.2 \times 1.80 = 2.16\text{~personas/s}\]</span></p>
+<p><span class="math display">\[T_{\text{flujo}} = \frac{N}{F} = \frac{180}{2.16} \approx 83.33\text{~s}\]</span></p>
+<p>Con una velocidad media de desplazamiento <span class="math inline">\(v = 1.0\text{~m/s}\)</span>sobre la
+distancia crítica <span class="math inline">\(D_{\max} = 38\text{~m}\)</span>:</p>
+<p><span class="math display">\[T_{\text{tránsito}} = \frac{D_{\max}}{v} = \frac{38\text{~m}}{1.0\text{~m/s}} = 38.00\text{~s}\]</span></p>
+<p>El tiempo total de movimiento corresponde al mayor cuello de botella más
+el desplazamiento inicial:</p>
+<p><span class="math display">\[T_{m} = T_{\text{tránsito}} + T_{\text{flujo}} = 38.00 + 83.33 = 121.33\text{~s}\]</span></p>
+<p><em>Tiempo Total Teórico de Evacuación (</em><span class="math inline">\(T_{E}\)</span><em>):</em></p>
+<p><span class="math display">\[T_{E} = T_{d} + T_{a} + T_{r} + T_{m}\]</span></p>
+<p><span class="math display">\[T_{E} = 15 + 20 + 35 + 121.33 = 191.33\text{~s}\quad\left( 3.19\text{~min} \right)\]</span></p>
+<p><strong>2. Modelación del Índice de Estrés Térmico (Art. 54)</strong></p>
+<p>Para interiores sin radiación solar directa, el índice ponderado de
+Temperatura de Globo y Bulbo Húmedo (TGBH) se deduce mediante:</p>
+<p><span class="math display">\[\text{TGBH} = 0.7\, T_{bh} + 0.3\, T_{g}\]</span></p>
+<p>Sustituyendo los valores directos de campo:</p>
+<p><span class="math display">\[\text{TGBH} = (0.7 \times 28.0) + (0.3 \times 42.0)\]</span></p>
+<p><span class="math display">\[\text{TGBH} = 19.6 + 12.6 = {32.20}^{\circ}\text{C}\]</span></p>
+<p><em>Contraste contra Límites Permisibles (Decreto 2393 / ACGIH):</em> Para
+trabajo continuo pesado, el límite umbral máximo es de
+<span class="math inline">\({25.90}^{\circ}\text{C}\)</span><strong>TGBH</strong>.</p>
+<p><span class="math display">\[\Delta\text{TGBH} = {32.20}^{\circ}\text{C} - {25.90}^{\circ}\text{C} = + {6.30}^{\circ}\text{C}\quad\text{(Condición~Crítica:~Riesgo~Inminente~de~Golpe~de~Calor)}\]</span></p>
+<p>Para una carga pesada a <span class="math inline">\({32.2}^{\circ}\text{C}\)</span>, la tabla de modulación
+exige un régimen forzado de <span class="math inline">\(25\%\)</span><strong>trabajo y</strong> <span class="math inline">\(75\%\)</span><strong>descanso por
+cada hora</strong>, reduciendo la disponibilidad operativa del personal a 15
+minutos productivos por hora (pérdida directa del <span class="math inline">\(75\%\)</span>en utilización
+de mano de obra).</p>
+<p><strong>Actividad Práctica para el Aula (Minutos 10 al 16)</strong></p>
+<p>CRONOGRAMA DE LA SESIÓN DOCENTE (20 MIN)</p>
+<pre class="ascii-diagram">┌────────────┬─────────────────────────────┬──────────────────────────┐
+
+│ Minuto │ Fase Pedagógica │ Acción del Estudiante │
+
+├────────────┼─────────────────────────────┼──────────────────────────┤
+
+│ 00:00 - 05:00 │ Inducción y Datos del Caso │ Registro de variables │
+
+│ 05:01 - 10:00 │ Deducción y Modelado Físico │ Cálculo de TGBH y Tevac
+│
+
+│ 10:01 - 16:00 │ Dinámica de Rediseño Focal │ Propuesta de Controles │
+
+│ 16:01 - 20:00 │ Cierre y Matriz de Control │ Validación SCORM / OEE │
+
+└────────────┴─────────────────────────────┴──────────────────────────┘</pre>
+<p><strong>Problema Planteado a los Estudiantes:</strong></p>
+<ol type="1">
+<li><p>Diseñar la intervención de ingeniería para abatir el TGBH a menos de
+<span class="math inline">\({26.0}^{\circ}\text{C}\)</span>sin alterar la velocidad de la máquina
+extrusora.</p></li>
+<li><p>Reconfigurar las puertas para garantizar que el tiempo total de
+evacuación <span class="math inline">\(T_{E}\)</span>sea estrictamente menor a
+<span class="math inline">\(150\text{~}\text{s}\)</span><strong>(</strong><span class="math inline">\(2.5\text{~min}\)</span><strong>)</strong>.</p></li>
+</ol>
+<p><strong>Retroalimentación Docente</strong></p>
+<ol type="1">
+<li><p><strong>Intervención en Evacuación (Art. 33):</strong></p>
+<ul>
+<li><p><em>Diagnóstico:</em> Aunque
+<span class="math inline">\(W_{\text{instalado}} = 1.80\text{~m} &gt; W_{\text{req}} = 1.08\text{~m}\)</span>,
+el cuello de botella radica en la distribución de las dos únicas
+puertas.</p></li>
+<li><p><em>Solución Técnica:</em> Apertura de una tercera salida central de
+<span class="math inline">\(1.20\text{~m}\)</span>equipada con barra antipánico. Esto reduce la
+distancia máxima crítica <span class="math inline">\(D_{\max}\)</span>de<span class="math inline">\(38\text{~m}\)</span> a
+<span class="math inline">\(22\text{~m}\)</span>, eleva el ancho libre a
+<span class="math inline">\(W_{e} = 3.00\text{~}\text{m}\)</span>(<span class="math inline">\(5\text{~UAS}\)</span>) y comprime el
+tiempo de flujo a <span class="math inline">\(T_{\text{flujo}} = 50.0\text{~s}\)</span>.</p></li>
+<li><p><em>Resultado:</em> <span class="math inline">\(T_{E}\)</span>optimizado baja a
+<span class="math inline">\(122\text{~}\text{s}\)</span>(<span class="math inline">\(2.03\text{~min}\)</span>), cumpliendo
+holgadamente el criterio de contingencia.</p></li>
+</ul></li>
+<li><p><strong>Intervención en Estrés Térmico (Art. 54):</strong></p>
+<ul>
+<li><p><em>Control en la Fuente:</em> Apantallamiento de la batería de hornos
+mediante paneles móviles de aluminio reflectivo pulido con lana
+de roca interna. Esto reduce la radiación incidente, bajando
+<span class="math inline">\(T_{g}\)</span>de<span class="math inline">\({42.0}^{\circ}\text{C}\)</span> a
+<span class="math inline">\({32.0}^{\circ}\text{C}\)</span>.</p></li>
+<li><p><em>Control en el Medio:</em> Inyección forzada de aire seco exterior a
+caudal calibrado que abate <span class="math inline">\(T_{bh}\)</span>a <span class="math inline">\({23.0}^{\circ}\text{C}\)</span>.</p></li>
+<li><p><em>Recálculo:</em></p></li>
+</ul></li>
+</ol>
+<p><span class="math display">\[\text{TGBH}_{\text{nuevo}} = (0.7 \times 23.0) + (0.3 \times 32.0) = 16.1 + 9.6 = {25.70}^{\circ}\text{C} &lt; {25.90}^{\circ}\text{C}\]</span></p>
+<ul>
+<li><em>Impacto en OEE:</em> Al retornar el microclima al umbral de trabajo
+continuo (<span class="math inline">\(100\%\)</span> laborable), se elimina la necesidad de paradas de
+descanso térmico del <span class="math inline">\(75\%\)</span>, recuperando la capacidad operativa y
+estabilizando el componente de Rendimiento del OEE.</li>
+</ul>
+<p><strong>Validación de Integridad</strong></p>
+<table style="width:99%;">
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 29%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Variable de
+Control</strong></th>
+<th style="text-align: left;"><strong>Valor Inicial</strong></th>
+<th style="text-align: left;"><strong>Valor Ajustado</strong></th>
+<th style="text-align: left;"><strong>criterio normativo</strong></th>
+<th style="text-align: left;"><strong>Estado de
+Cumplimiento</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Ancho Total
+Salidas
+(</strong><span class="math inline">\(W\)</span><strong>)</strong></td>
+<td style="text-align: left;"><span class="math display">\[1.80\text{~m}\]</span></td>
+<td style="text-align: left;"><span class="math display">\[3.00\text{~m}\]</span></td>
+<td style="text-align: left;"><span class="math display">\[\geq 0.006 \times N = 1.08\text{~m}\]</span></td>
+<td style="text-align: left;"><strong>Conforme</strong>
+(Sobredimensionado
+por factor de
+seguridad)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Tiempo de
+Evacuación
+(</strong><span class="math inline">\(T_{E}\)</span><strong>)</strong></td>
+<td style="text-align: left;"><span class="math display">\[191.33\text{~s}\]</span></td>
+<td style="text-align: left;"><span class="math display">\[122.00\text{~s}\]</span></td>
+<td style="text-align: left;"><span class="math display">\[&lt; 150.00\text{~s}\]</span></td>
+<td style="text-align: left;"><strong>Conforme</strong>
+(Reducción del
+<span class="math inline">\(36.2\%\)</span>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Índice Térmico
+(TGBH)</strong></td>
+<td style="text-align: left;"><span class="math display">\[{32.20}^{\circ}\text{C}\]</span></td>
+<td style="text-align: left;"><span class="math display">\[{25.70}^{\circ}\text{C}\]</span></td>
+<td style="text-align: left;"><span class="math inline">\(\leq {25.90}^{\circ}\text{C}\)</span>(Pesado
+continuo)</td>
+<td style="text-align: left;"><strong>Conforme</strong>
+(Mitigación total de
+golpe de calor)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Disponibilidad
+Laboral</strong></td>
+<td style="text-align: left;"><span class="math inline">\(25\%\)</span>(<span class="math inline">\(15\text{~min/h}\)</span>)</td>
+<td style="text-align: left;"><span class="math inline">\(100\%\)</span>(<span class="math inline">\(60\text{~min/h}\)</span>)</td>
+<td style="text-align: left;">Art. 54 Dec. Exec. 2393</td>
+<td style="text-align: left;"><strong>Optimizado</strong> (Cero
+paradas por fatiga
+térmica)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Matriz Analítica: Configuración del iDevice en Exelearning</strong></p>
+<p>Para el montaje de esta unidad evaluativa en la plataforma eXeLearning,
+se especifican los siguientes parámetros directos:</p>
+<table style="width:98%;">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 35%" />
+<col style="width: 39%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Parámetro</strong></th>
+<th style="text-align: left;"><strong>Configuración Óptima</strong></th>
+<th style="text-align: left;"><strong>Justificación Técnica e
+Instruccional</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Tipo de
+iDevice</strong></td>
+<td style="text-align: left;"><em>Cuestionario Scorm</em>
+combinado con <em>Caso
+Práctico</em></td>
+<td style="text-align: left;">Permite presentar la narrativa
+del problema y segregar la
+evaluación cuantitativa con
+retroalimentación inmediata.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Ajustes
+Generales</strong></td>
+<td style="text-align: left;">Ponderación: 100% sobre base
+vigesimal; Modo de
+visualización: Pestañas
+secuenciales.</td>
+<td style="text-align: left;">Evita la sobrecarga cognitiva
+durante los 20 minutos de
+análisis del caso de estudio.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>trazabilidad</strong></td>
+<td style="text-align: left;">Versión: <strong>SCORM 1.2 / 2004
+4th Ed</strong>;
+cmi.core.lesson_status
+dependiente de umbral
+<span class="math inline">\(\geq 80\%\)</span>.</td>
+<td style="text-align: left;">Garantiza registro exacto de la
+nota de cálculo de TGBH y ancho
+de evacuación en el libro de
+calificaciones del LMS.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Gamificación /
+Contraseñas</strong></td>
+<td style="text-align: left;">Clave de desbloqueo
+condicional: TGBH25.7</td>
+<td style="text-align: left;">La retroalimentación técnica y
+la matriz de soluciones se
+liberan únicamente cuando el
+estudiante ingresa el valor
+correcto de
+<span class="math inline">\(\text{TGBH}_{\text{nuevo}}\)</span>.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Aporte al OEE
+Instruccional</strong></td>
+<td style="text-align: left;">Disponibilidad: 100% (cero
+fallos de script);
+Rendimiento: Tiempo de
+ejecución calibrado a 20 min
+exactos.</td>
+<td style="text-align: left;">Elimina tiempos muertos del
+alumnado y automatiza la
+corrección algorítmica sin
+requerir intervención manual
+del docente.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Referencias Bibliográficas (Normas APA)</strong></p>
+<ul>
+<li><p>American Conference of Governmental Industrial Hygienists. (2024).
+<em>Threshold limit values for chemical substances and physical agents
+and biological exposure indices</em>. ACGIH.</p></li>
+<li><p>Instituto Ecuatoriano de Seguridad Social. (1986). <em>Reglamento de
+seguridad y salud de los trabajadores y mejoramiento del medio
+ambiente de trabajo</em> (Decreto Ejecutivo 2393). Registro Oficial 565.</p></li>
+<li><p>International Organization for Standardization. (2018).
+<em>Occupational health and safety management systems — Requirements
+with guidance for use</em> (ISO Standard No. 45001:2018).
+<a href="https://www.iso.org/standard/63787.html">https://www.iso.org/standard/63787.html</a></p></li>
+<li><p>National Fire Protection Association. (2024). <em>Life safety code</em>
+(NFPA Standard No. 101). NFPA.</p></li>
+</ul>
+
+  </section>
+
+  <!-- =================== TAB 3 =================== -->
+  <section id="t3" class="tab-pane">
+    <div class="pane-header">
+      <div class="pane-kicker">Pestaña 03 · Taller Aplicado</div>
+      <h2>Taller Práctico: Caso de Estudio «Planta Metalmecánica Vulcano S.A.»</h2>
+      <div class="pane-lead">Forja y mecanizado · N = 220 operarios · Resolución cuantitativa de evacuación (Art. 33) y estrés térmico (Art. 54).</div>
+    </div>
+    <div class="pane-divider"></div>
+    <p>S.A."**</p>
+<p><strong>Introducción Motivadora</strong></p>
+<p>En la gestión de operaciones y seguridad industrial, la capacidad de
+respuesta y el confort térmico son variables críticas que determinan la
+continuidad del negocio y la integridad de la fuerza laboral. En este
+taller de 20 minutos, ustedes actuarán como ingenieros consultores en
+Seguridad Industrial y Salud Ocupacional (SISO). Analizarán una nave de
+forja y mecanizado sujeta a paradas no programadas por fatiga térmica y
+con un diseño de evacuación que compromete la vida de los operarios ante
+conatos de incendio. La optimización del entorno no solo salvará vidas,
+sino que restaurará la Efectividad Global de los Equipos (OEE) de la
+planta.</p>
+<p><strong>iDevice de Lectura: Memoria Técnica y Datos de Campo</strong></p>
+<p>La empresa metalmecánica "Vulcano S.A." opera una nave de conformado
+en caliente con dimensiones de <span class="math inline">\(50.0\text{~m} \times 25.0\text{~m}\)</span>
+(Área total: <span class="math inline">\(1\, 250\text{~m}^{2}\)</span>). En el área labora una dotación
+fija de <span class="math inline">\(N = 220\text{~operarios}\)</span>.</p>
+<pre class="ascii-diagram">◄──────────────────────── 50 m ────────────────────────►
+
+┌───────────────────────────────────────[Salida Norte: 1.00 m]
+
+│ Zona de Enfriamiento y Mecanizado │
+
+▲ │ │
+
+│ │ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
+
+25 m │ Focos Radiantes: Prensas y Hornos │
+
+│ │ [T_g = 46.0°C, T_bh = 29.0°C] │
+
+▼ │ │
+
+│ Puesto Crítico: Descarga de Forja │
+
+└───────────────────────────────────────[Salida Sur: 1.00 m]</pre>
+<p><strong>1. Datos para Evacuación (Art. 33 - Decreto Ejecutivo 2393)</strong></p>
+<ul>
+<li><p><strong>Salidas Instaladas:</strong> Dos puertas perimetrales de batiente hacia
+el exterior de <span class="math inline">\(1.00\text{~m}\)</span> de luz libre cada una
+(<span class="math inline">\(\text{Ancho~total~actual~}W_{\text{act}} = 2.00\text{~m}\)</span>).</p></li>
+<li><p><strong>Recorrido Crítico:</strong> Distancia real no lineal desde el punto más
+remoto al vano más cercano: <span class="math inline">\(D_{\max} = 42.0\text{~m}\)</span>.</p></li>
+<li><p><strong>Variables Temporales del Sistema:</strong></p>
+<ul>
+<li><p>Tiempo de detección por detectores de ionización (<span class="math inline">\(T_{d}\)</span>):
+<span class="math inline">\(12.0\text{~s}\)</span>.</p></li>
+<li><p>Tiempo de confirmación y disparo de alarma sonora (<span class="math inline">\(T_{a}\)</span>):
+<span class="math inline">\(18.0\text{~s}\)</span>.</p></li>
+<li><p>Tiempo de retardo/pre-evacuación y consignación básica
+(<span class="math inline">\(T_{r}\)</span>): <span class="math inline">\(30.0\text{~s}\)</span>.</p></li>
+<li><p>Velocidad de marcha horizontal media estimada (<span class="math inline">\(v\)</span>):
+<span class="math inline">\(1.2\text{~m/s}\)</span>.</p></li>
+<li><p>Constante de caudal específico peatonal (<span class="math inline">\(k\)</span>):
+<span class="math inline">\(1.2\text{~personas}/\left( \text{s} \cdot \text{m} \right)\)</span>.</p></li>
+</ul></li>
+</ul>
+<p><strong>2. Datos de Estrés Térmico (Art. 54 - Decreto Ejecutivo 2393)</strong></p>
+<ul>
+<li><p><strong>Condiciones Ambientales (Interior de nave sin radiación solar
+directa):</strong></p>
+<ul>
+<li><p>Temperatura de bulbo húmedo natural (<span class="math inline">\(T_{bh}\)</span>):
+<span class="math inline">\({29.0}^{\circ}\text{C}\)</span>.</p></li>
+<li><p>Temperatura de globo termométrico (<span class="math inline">\(T_{g}\)</span>):
+<span class="math inline">\({46.0}^{\circ}\text{C}\)</span>.</p></li>
+<li><p>Temperatura de bulbo seco / ambiental (<span class="math inline">\(T_{a}\)</span>):
+<span class="math inline">\({33.0}^{\circ}\text{C}\)</span>.</p></li>
+</ul></li>
+<li><p><strong>Carga de Trabajo:</strong> Tarea continua clasificada como <strong>Pesada</strong>
+(<span class="math inline">\(M &gt; 400\text{~W}\)</span> / forja manual y desmoldeo continuo).</p></li>
+<li><p><strong>Umbral Límite Permisible (ACGIH / Dec. Exec. 2393):</strong> Para trabajo
+continuo pesado, el límite normativo es
+<span class="math inline">\(\text{TGBH}_{\lim} = {25.90}^{\circ}\text{C}\)</span>.</p></li>
+</ul>
+<p><strong>Actividad Práctica (Tiempo de Ejecución: 20 Minutos)</strong></p>
+<p>Trabajando de forma individual o en parejas, resuelvan cuantitativamente
+las siguientes consignas en su hoja de entrega:</p>
+<ol type="1">
+<li><p><strong>Evaluación de Vías de Escape (Art. 33):</strong></p>
+<ul>
+<li><p>Calcule el ancho total normativo requerido (<span class="math inline">\(W_{\text{req}}\)</span>)
+para los 220 trabajadores según el Decreto Ejecutivo 2393.</p></li>
+<li><p>Determine el caudal de flujo de personas (<span class="math inline">\(F\)</span>) a través de las
+salidas actuales y calcule el tiempo total teórico de evacuación
+(<span class="math inline">\(T_{E}\)</span>).</p></li>
+<li><p>Si la norma técnica interna exige que
+<span class="math inline">\(T_{E} \leq 140.0\text{~s}\)</span>, dictamine si la configuración
+actual cumple y determine el ancho adicional necesario en metros
+si existiera déficit temporal.</p></li>
+</ul></li>
+<li><p><strong>Evaluación de Estrés Térmico (Art. 54):</strong></p>
+<ul>
+<li><p>Calcule el índice de Temperatura de Globo y Bulbo Húmedo (TGBH)
+real del puesto de forja.</p></li>
+<li><p>Determine el exceso térmico sobre el límite permisible
+(<span class="math inline">\(\Delta\text{TGBH}\)</span>) y determine el régimen de trabajo-descanso
+legal que debería aplicarse de inmediato si no se implementan
+controles.</p></li>
+<li><p>Si se instala un apantallamiento térmico reflectivo que reduce
+<span class="math inline">\(T_{g}\)</span> a <span class="math inline">\({31.0}^{\circ}\text{C}\)</span> y un sistema de enfriamiento
+evaporativo que reduce <span class="math inline">\(T_{bh}\)</span> a <span class="math inline">\({23.5}^{\circ}\text{C}\)</span>,
+demuestre si el puesto retorna al <span class="math inline">\(100\%\)</span> de trabajo continuo.</p></li>
+</ul></li>
+</ol>
+
+    <div class="solution-block" data-solution="t3">
+      <div class="solution-gate">
+        <div class="lock-icon">🔒</div>
+        <h3>Sección de Solución Docente</h3>
+        <p>El solucionario analítico de este taller está reservado para uso del docente.<br/>Ingrese la clave de acceso para desbloquear la retroalimentación técnica.</p>
+        <button class="unlock-btn" data-target="t3">Acceder a la solución</button>
+        <div class="gate-error"></div>
+      </div>
+      <div class="solution-content" id="sol-t3">
+        <p><strong>1. Resolución de Evacuación (Art. 33)</strong></p>
+<ul>
+<li><strong>Ancho Normativo Requerido:</strong></li>
+</ul>
+<p><span class="math display">\[W_{\text{req}} = 0.006 \times N = 0.006 \times 220 = 1.32\text{~m}\]</span></p>
+<p><em>Diagnóstico normativo:</em> Con <span class="math inline">\(W_{\text{act}} = 2.00\text{~m}\)</span>, cumple el
+mínimo dimensional del Art. 33 (<span class="math inline">\(2.00\text{~m} \geq 1.32\text{~m}\)</span>).</p>
+<ul>
+<li><strong>Modelado del Tiempo Total Teórico (</strong><span class="math inline">\(T_{E}\)</span><strong>):</strong></li>
+</ul>
+<p><span class="math display">\[F = k \times W_{\text{act}} = 1.2 \times 2.00 = 2.40\text{~personas/s}\]</span></p>
+<p><span class="math display">\[T_{\text{flujo}} = \frac{N}{F} = \frac{220}{2.40} = 91.67\text{~s}\]</span></p>
+<p><span class="math display">\[T_{\text{tránsito}} = \frac{D_{\max}}{v} = \frac{42.0\text{~m}}{1.2\text{~m/s}} = 35.00\text{~s}\]</span></p>
+<p><span class="math display">\[T_{m} = T_{\text{tránsito}} + T_{\text{flujo}} = 35.00 + 91.67 = 126.67\text{~s}\]</span></p>
+<p><span class="math display">\[T_{E} = T_{d} + T_{a} + T_{r} + T_{m} = 12.0 + 18.0 + 30.0 + 126.67 = 186.67\text{~s}\quad\left( 3.11\text{~min} \right)\]</span></p>
+<ul>
+<li><strong>Ajuste para Criterio de Seguridad
+(</strong><span class="math inline">\(T_{E} \leq 140.0\text{~s}\)</span><strong>):</strong></li>
+</ul>
+<p><span class="math display">\[T_{m,\text{máx}} = 140.0 - (12.0 + 18.0 + 30.0) = 80.00\text{~s}\]</span></p>
+<p><span class="math display">\[T_{\text{flujo,~req}} = T_{m,\text{máx}} - T_{\text{tránsito}} = 80.00 - 35.00 = 45.00\text{~s}\]</span></p>
+<p><span class="math display">\[F_{\text{req}} = \frac{N}{T_{\text{flujo,~req}}} = \frac{220}{45.00} = 4.89\text{~personas/s}\]</span></p>
+<p><span class="math display">\[W_{\text{necesario}} = \frac{F_{\text{req}}}{k} = \frac{4.89}{1.2} = 4.08\text{~m}\]</span></p>
+<p><em>Conclusión de diseño:</em> Se requiere habilitar un vano de salida
+adicional de mínimo <span class="math inline">\(2.10\text{~m}\)</span> (equivalente a <span class="math inline">\(3.5\text{~UAS}\)</span>)
+para situar <span class="math inline">\(W_{\text{total}} \geq 4.10\text{~m}\)</span> y abatir el cuello de
+botella.</p>
+<p><strong>2. Resolución de Estrés Térmico (Art. 54)</strong></p>
+<ul>
+<li><strong>Cálculo del TGBH Inicial:</strong></li>
+</ul>
+<p><span class="math display">\[\text{TGBH} = 0.7\, T_{bh} + 0.3\, T_{g} = (0.7 \times 29.0) + (0.3 \times 46.0) = 20.30 + 13.80 = {34.10}^{\circ}\text{C}\]</span></p>
+<p><span class="math display">\[\Delta\text{TGBH} = {34.10}^{\circ}\text{C} - {25.90}^{\circ}\text{C} = + {8.20}^{\circ}\text{C}\]</span></p>
+<ul>
+<li><strong>Impacto Operativo Inmediato:</strong></li>
+</ul>
+<p>A <span class="math inline">\({34.10}^{\circ}\text{C}\)</span> con carga pesada, la normativa internacional
+y el Art. 54 prohíben el trabajo continuo. El régimen reglamentario
+aplicable es <span class="math inline">\(25\%\)</span> <strong>Trabajo -</strong> <span class="math inline">\(75\%\)</span> <strong>Descanso</strong> (15 min laborables
+por hora). El personal pierde 45 minutos productivos por hora de turno,
+derrumbando la Disponibilidad del OEE al <span class="math inline">\(25\%\)</span>.</p>
+<ul>
+<li><strong>Efectividad de Controles de Ingeniería Propuestos:</strong></li>
+</ul>
+<p><span class="math display">\[\text{TGBH}_{\text{nuevo}} = (0.7 \times 23.5) + (0.3 \times 31.0) = 16.45 + 9.30 = {25.75}^{\circ}\text{C}\]</span></p>
+<p><em>Evaluación:</em> Dado que
+<span class="math inline">\({25.75}^{\circ}\text{C} &lt; {25.90}^{\circ}\text{C}\)</span>, la reducción de
+radiación y entalpía permite retornar al <span class="math inline">\(100\%\)</span> <strong>de trabajo
+continuo</strong>, suprimiendo las paradas por estrés térmico y restableciendo
+el OEE al estándar programado.</p>
+<p><strong>Validación de Integridad</strong></p>
+<table style="width:98%;">
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 22%" />
+<col style="width: 22%" />
+<col style="width: 24%" />
+<col style="width: 15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Parámetro /
+Componente</strong></th>
+<th style="text-align: left;"><strong>Condición Inicial</strong></th>
+<th style="text-align: left;"><strong>Condición Corregida</strong></th>
+<th style="text-align: left;"><strong>Valor Límite Normativo</strong></th>
+<th style="text-align: left;"><strong>Estado de
+Conformidad</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Ancho Total de
+Salidas
+(</strong><span class="math inline">\(W\)</span><strong>)</strong></td>
+<td style="text-align: left;"><span class="math display">\[2.00\text{~m}\]</span></td>
+<td style="text-align: left;"><span class="math display">\[4.10\text{~m}\]</span></td>
+<td style="text-align: left;"><span class="math inline">\(\geq 1.32\text{~m}\)</span> (Art. 33)</td>
+<td style="text-align: left;"><strong>Conforme</strong>
+(Supera restricción
+temporal)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Tiempo de
+Evacuación
+(</strong><span class="math inline">\(T_{E}\)</span><strong>)</strong></td>
+<td style="text-align: left;"><span class="math display">\[186.67\text{~s}\]</span></td>
+<td style="text-align: left;"><span class="math display">\[138.89\text{~s}\]</span></td>
+<td style="text-align: left;"><span class="math inline">\(\leq 140.00\text{~s}\)</span> (Meta
+interna)</td>
+<td style="text-align: left;"><strong>Conforme</strong>
+(Reducción de
+<span class="math inline">\(47.78\text{~s}\)</span>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Índice Térmico
+(TGBH)</strong></td>
+<td style="text-align: left;"><span class="math display">\[{34.10}^{\circ}\text{C}\]</span></td>
+<td style="text-align: left;"><span class="math display">\[{25.75}^{\circ}\text{C}\]</span></td>
+<td style="text-align: left;"><span class="math inline">\(\leq {25.90}^{\circ}\text{C}\)</span>
+(Art. 54)</td>
+<td style="text-align: left;"><strong>Conforme</strong> (Zona
+segura de labor)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Régimen de
+Descanso
+Forzado</strong></td>
+<td style="text-align: left;"><span class="math inline">\(75\%\)</span> parada</td>
+<td style="text-align: left;"><span class="math inline">\(0\%\)</span> parada</td>
+<td style="text-align: left;">Art. 54 Dec. Exec. 2393</td>
+<td style="text-align: left;"><strong>Optimizado</strong>
+(Disponibilidad
+100%)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Referencias Bibliográficas (Normas APA)</strong></p>
+<ul>
+<li><p>American Conference of Governmental Industrial Hygienists. (2024).
+<em>Threshold limit values for chemical substances and physical agents
+and biological exposure indices</em>. ACGIH.</p></li>
+<li><p>Instituto Ecuatoriano de Seguridad Social. (1986). <em>Reglamento de
+seguridad y salud de los trabajadores y mejoramiento del medio
+ambiente de trabajo</em> (Decreto Ejecutivo 2393). Registro Oficial 565.</p></li>
+<li><p>International Organization for Standardization. (2018).
+<em>Occupational health and safety management systems — Requirements
+with guidance for use</em> (ISO Standard No. 45001:2018).
+<a href="https://www.iso.org/standard/63787.html">https://www.iso.org/standard/63787.html</a></p></li>
+<li><p>National Fire Protection Association. (2024). <em>Standard for the
+installation of sprinkler systems and life safety code</em> (NFPA
+Standards 13 &amp; 101). NFPA.</p></li>
+</ul>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== TAB 4 =================== -->
+  <section id="t4" class="tab-pane">
+    <div class="pane-header">
+      <div class="pane-kicker">Pestaña 04 · Instrumento Evaluativo</div>
+      <h2>Taller Evaluativo de Conocimientos Técnicos y Normativos</h2>
+      <div class="pane-lead">Tema: Reglamentos de Seguridad (Decreto Ejecutivo 2393) · Subtemas: Art. 33, Art. 54 y Dinámica de Evacuación · 30 reactivos en cinco tipologías.</div>
+    </div>
+    <div class="pane-divider"></div>
+    <p>TEMA: REGLAMENTOS DE SEGURIDAD (DECRETO EJECUTIVO 2393)</p>
+<p>SUBTEMAS: ART. 33 (PUERTAS Y SALIDAS DE EMERGENCIA), ART. 54 (ESTRÉS
+TÉRMICO POR CALOR) Y DINÁMICA DE EVACUACIÓN</p>
+<p>================================================================================</p>
+<p>INSTRUCCIONES GENERALES:</p>
+<p>- Lea detenidamente cada enunciado antes de responder.</p>
+<p>- Este instrumento consta de 30 reactivos distribuidos en 5 tipologías:</p>
+<p>* Parte I: Opción Múltiple (Reactivos 1 al 10)</p>
+<p>* Parte II: Verdadero o Falso con Justificación Técnica (Reactivos 11
+al 16)</p>
+<p>* Parte III: Emparejamiento / Correspondencia (Reactivos 17 al 20)</p>
+<p>* Parte IV: Completamiento de Texto y Fórmulas (Reactivos 21 al 25)</p>
+<p>* Parte V: Resolución de Problemas Cuantitativos Breves (Reactivos 26
+al 30)</p>
+<p>- Al final del documento se encuentra la Clave de Respuestas y
+Solucionario Técnico para el docente.</p>
+<p>--------------------------------------------------------------------------------</p>
+<p>PARTE I: OPCIÓN MÚLTIPLE CON BASE ESTRUCTURADA</p>
+<p>Seleccione la letra correspondiente a la única opción técnicamente
+correcta.</p>
+<p>--------------------------------------------------------------------------------</p>
+<p>1. Según el Art. 33 del Decreto Ejecutivo 2393, ¿cuál es el ancho
+mínimo libre que debe poseer una puerta de emergencia en locales con una
+ocupación de hasta 50 trabajadores?</p>
+<p>A) 0.60 metros.</p>
+<p>B) 0.80 metros.</p>
+<p>C) 1.20 metros.</p>
+<p>D) 1.50 metros.</p>
+<p>2. ¿Cuál es el sentido de apertura mandatorio que deben tener las
+puertas de evacuación y salidas de emergencia conforme a la
+reglamentación técnica de seguridad?</p>
+<p>A) Siempre hacia el interior del recinto de trabajo para mantener
+despejadas las aceras perimetrales.</p>
+<p>B) En vaivén continuo con cierre hidráulico amortiguado sin punto fijo
+de bloqueo.</p>
+<p>C) Hacia el exterior del local, siguiendo la trayectoria natural del
+flujo de evacuación.</p>
+<p>D) Corredizo lateral automatizado accionado por fotocélula de
+proximidad sin bypass mecánico.</p>
+<p>3. Para una nave industrial con una dotación total de 250 operarios, el
+cálculo normativo del ancho total de las puertas de salida establecido
+por el Art. 33 corresponde a:</p>
+<p>A) 1.25 metros.</p>
+<p>B) 1.50 metros.</p>
+<p>C) 2.00 metros.</p>
+<p>D) 2.50 metros.</p>
+<p>4. En la ecuación de balance de tiempo total de evacuación (Te = Td +
+Ta + Tr + Tm), ¿qué fenómeno representa específicamente la variable Tr?</p>
+<p>A) El tiempo de retraso o pre-movimiento para reconocimiento del riesgo
+y parada segura de maquinaria.</p>
+<p>B) El tiempo de respuesta de las brigadas externas de bomberos hasta
+arribar a la planta.</p>
+<p>C) El tiempo de retardo en la propagación de la pluma térmica hacia los
+detectores de humo.</p>
+<p>D) El tiempo residual de refrescamiento del personal tras evacuar la
+zona de estrés térmico.</p>
+<p>5. En la determinación del estrés térmico por calor (Art. 54), ¿cuál es
+la fórmula normalizada del Índice TGBH (WBGT) para puestos de trabajo en
+interiores sin radiación solar directa?</p>
+<p>A) TGBH = 0.7 Tbh + 0.3 Tg</p>
+<p>B) TGBH = 0.7 Ta + 0.3 Tg</p>
+<p>C) TGBH = 0.7 Tbh + 0.2 Tg + 0.1 Ta</p>
+<p>D) TGBH = 0.5 Tbh + 0.5 Tg</p>
+<p>6. ¿Qué componente del sensor compuesto de estrés térmico es
+responsable de medir la carga térmica por radiación infrarroja
+proveniente de superficies calientes como hornos o calderas?</p>
+<p>A) El termómetro de bulbo seco convencional.</p>
+<p>B) El termómetro de globo termométrico (Tg).</p>
+<p>C) El anemómetro de hilo caliente calibrado.</p>
+<p>D) El psicrómetro de mecha húmeda aspirada.</p>
+<p>7. Si un puesto de trabajo de forja manual pesada registra un TGBH que
+supera en +4.5 °C el límite máximo permisible, ¿cuál es la medida
+administrativa inmediata de modulación horaria según el Art. 54 si no se
+cuenta con apantallamiento?</p>
+<p>A) 100% trabajo durante toda la jornada con suministro de agua fría.</p>
+<p>B) 75% trabajo y 25% descanso en cada hora de labor.</p>
+<p>C) 50% trabajo y 50% descanso en cada hora de labor.</p>
+<p>D) 25% trabajo y 75% descanso en cada hora de labor.</p>
+<p>8. En el dimensionamiento de rutas de escape industriales, ¿cuál es el
+ancho dimensional estandarizado correspondiente a una Unidad de Ancho de
+Salida (UAS)?</p>
+<p>A) 0.35 metros.</p>
+<p>B) 0.60 metros.</p>
+<p>C) 1.00 metros.</p>
+<p>D) 1.40 metros.</p>
+<p>9. El primer nivel prioritario en la jerarquía de control de ingeniería
+para mitigar el estrés térmico por calor radiante según el Art. 54
+consiste en:</p>
+<p>A) Dotar a los trabajadores con trajes aluminizados de protección
+pasiva.</p>
+<p>B) Interponer pantallas térmicas reflectivas o aislar
+termomecánicamente los focos de calor.</p>
+<p>C) Aumentar la velocidad de rotación de turnos entre operarios de la
+misma cuadrilla.</p>
+<p>D) Instalar sistemas de microaspersión directa de agua presurizada
+sobre el operario.</p>
+<p>10. En una planta industrial sin rociadores automáticos clasificada con
+riesgo de incendio ordinario, la distancia máxima de recorrido real
+hasta la salida más cercana no debe exceder de:</p>
+<p>A) 15 metros.</p>
+<p>B) 40 metros.</p>
+<p>C) 90 metros.</p>
+<p>D) 120 metros.</p>
+<p>--------------------------------------------------------------------------------</p>
+<p>PARTE II: VERDADERO O FALSO CON JUSTIFICACIÓN TÉCNICA</p>
+<p>Escriba (V) o (F) y fundamente su dictamen bajo los criterios del Dec.
+Exec. 2393.</p>
+<p>--------------------------------------------------------------------------------</p>
+<p>11. [ ] Las puertas corredizas y las puertas giratorias están
+plenamente autorizadas por el Art. 33 como salidas de emergencia
+definitivas y exclusivas, prescindiendo de cualquier mecanismo
+oscilobatiente por empuje.</p>
+<p>Justificación:
+_____________________________________________________________</p>
+<p>12. [ ] Durante las horas laborables en una fábrica, las puertas de
+emergencia perimetrales pueden mantenerse cerradas con llave o candado
+siempre que exista un custodio designado en el área contigua.</p>
+<p>Justificación:
+_____________________________________________________________</p>
+<p>13. [ ] La temperatura de bulbo húmedo (Tbh) pondera el 70% del valor
+total del índice TGBH porque cuantifica la limitación del enfriamiento
+fisiológico por evaporación del sudor humano.</p>
+<p>Justificación:
+_____________________________________________________________</p>
+<p>14. [ ] El tiempo de evacuación por flujo (Tflujo) a través de una
+puerta es directamente proporcional al número de ocupantes e
+inversamente proporcional al ancho efectivo de paso.</p>
+<p>Justificación:
+_____________________________________________________________</p>
+<p>15. [ ] El punto de encuentro de evacuación debe ubicarse
+preferentemente junto al muro perimetral más alto de la nave para
+aprovechar su proyección de sombra contra el sol.</p>
+<p>Justificación:
+_____________________________________________________________</p>
+<p>16. [ ] De acuerdo con el Art. 54, los locales o puestos adyacentes a
+hornos y calderas deben conservar un radio perimetral despejado de al
+menos 1.50 metros libre de material combustible.</p>
+<p>Justificación:
+_____________________________________________________________</p>
+<p>--------------------------------------------------------------------------------</p>
+<p>PARTE III: EMPAREJAMIENTO DE CONCEPTOS TÉCNICOS</p>
+<p>Relacione el parámetro de evacuación/térmico de la Columna A con su
+definición u operatividad técnica en la Columna B.</p>
+<p>--------------------------------------------------------------------------------</p>
+<p>COLUMNA A:</p>
+<p>17. Tiempo de Retardo (Tr)</p>
+<p>18. Distancia Máxima de Recorrido (Dmax)</p>
+<p>19. Temperatura de Globo (Tg)</p>
+<p>20. Caudal Peatonal Unitario (k)</p>
+<p>COLUMNA B:</p>
+<p>[ ] a. Magnitud física que evalúa la radiación térmica emitida por
+cuerpos incandescentes mediante una esfera de cobre pintada de negro
+mate.</p>
+<p>[ ] b. Parámetro empírico que representa la tasa promedio de personas
+que atraviesan un metro de ancho de salida por segundo (típicamente 1.0
+a 1.3 p/s/m).</p>
+<p>[ ] c. Trayectoria geométrica real más desfavorable desde el punto de
+trabajo más aislado hasta el plano de la salida de escape.</p>
+<p>[ ] d. Intervalo en el que los ocupantes perciben la señal de alarma,
+detienen operaciones de riesgo y deciden iniciar el desplazamiento.</p>
+<p>--------------------------------------------------------------------------------</p>
+<p>PARTE IV: COMPLETAMIENTO TÉCNICO Y FÓRMULAS</p>
+<p>Rellene los espacios en blanco con el término, valor o expresión
+matemática exacta.</p>
+<p>--------------------------------------------------------------------------------</p>
+<p>21. Para locales de trabajo con más de 50 trabajadores, la fórmula
+reglamentaria del Art. 33 para calcular el ancho total en metros (W) de
+las puertas de salida es: W = ____________ x N.</p>
+<p>22. En recintos industriales a cielo abierto con exposición directa a
+radiación solar, la fórmula del índice TGBH calculada según el Art. 54
+corresponde a: TGBH = 0.7 Tbh + 0.2 Tg + ____________.</p>
+<p>23. Las barras de accionamiento de salida rápida instaladas
+transversalmente en las puertas de evacuación para permitir apertura
+inmediata por presión corporal se denominan barras
+____________.</p>
+<p>24. La velocidad media de marcha de diseño (v) en trayectos
+horizontales libres de humo para cálculo de tiempo de tránsito peatonal
+se estima en un valor promedio de ____________ m/s.</p>
+<p>25. El componente de la OEE que se ve severamente degradado cuando un
+puesto con estrés térmico extremo obliga a pausar la operación 45
+minutos por cada hora de trabajo es la ____________.</p>
+<p>--------------------------------------------------------------------------------</p>
+<p>PARTE V: RESOLUCIÓN DE PROBLEMAS CUANTITATIVOS BREVES</p>
+<p>Desarrolle el planteamiento matemático, aplique la fórmula y consigne el
+valor final con sus unidades.</p>
+<p>--------------------------------------------------------------------------------</p>
+<p>26. Una nave de fundición cuenta con N = 300 trabajadores en el turno
+diurno. Determine el ancho total reglamentario mínimo de salidas (Wreq)
+que debe garantizar la nave según el Art. 33 del Decreto Ejecutivo 2393.</p>
+<p>Desarrollo:</p>
+<p>Resultado final: ____________________</p>
+<p>27. En un área de calderas en interiores se registran las siguientes
+lecturas termoambientales: Tbh = 27.0 °C y Tg = 41.0 °C. Calcule el
+Índice TGBH de este puesto de trabajo.</p>
+<p>Desarrollo:</p>
+<p>Resultado final: ____________________</p>
+<p>28. En la misma área anterior (TGBH = valor calculado en 27), los
+operarios realizan tareas de estiba continua clasificadas como pesadas,
+cuyo límite permisible normativo es de 25.9 °C. ¿Cuál es el exceso de
+carga térmica Delta TGBH que experimenta el operario?</p>
+<p>Desarrollo:</p>
+<p>Resultado final: ____________________</p>
+<p>29. Una puerta perimetral de emergencia posee un ancho útil efectivo We
+= 1.60 m. Si la tasa experimental de flujo peatonal es k = 1.2
+personas/(s x m), ¿cuántas personas evacuan a través de dicha puerta por
+cada segundo (Flujo F)?</p>
+<p>Desarrollo:</p>
+<p>Resultado final: ____________________</p>
+<p>30. Un área de ensamble con 150 operarios posee una puerta con flujo de
+descarga F = 2.5 personas/s. Si la distancia crítica de escape es Dmax =
+36 metros y la velocidad de desplazamiento es v = 1.2 m/s, determine el
+tiempo de movimiento efectivo total (Tm = Ttránsito + Tflujo).</p>
+<p>Desarrollo:</p>
+<p>Resultado final: ____________________</p>
+<p>================================================================================</p>
+<p>FIN DEL CUESTIONARIO DEL ESTUDIANTE</p>
+<p>================================================================================</p>
+<p>================================================================================</p>
+<p>SOLUCIONARIO TÉCNICO Y CLAVE DE CALIFICACIÓN (USO EXCLUSIVO DOCENTE)</p>
+<p>================================================================================</p>
+<p>PARTE I: RESPUESTAS CORRECTAS Y FUNDAMENTO</p>
+
+    <div class="solution-block" data-solution="t4">
+      <div class="solution-gate">
+        <div class="lock-icon">🔒</div>
+        <h3>Clave de Respuestas y Solucionario Técnico</h3>
+        <p>El solucionario completo con fundamentación técnica está reservado para uso exclusivo docente.<br/>Ingrese la clave de acceso para visualizar las respuestas correctas.</p>
+        <button class="unlock-btn" data-target="t4">Acceder al solucionario</button>
+        <div class="gate-error"></div>
+      </div>
+      <div class="solution-content" id="sol-t4">
+        <p>1. B) 0.80 metros.</p>
+<p>Fundamento: El Art. 33 del D.E. 2393 estipula taxativamente que para
+locales de hasta 50 trabajadores, el ancho mínimo de las salidas será de
+0.80 m a 1.00 m.</p>
+<p>2. C) Hacia el exterior del local, siguiendo la trayectoria natural del
+flujo de evacuación.</p>
+<p>Fundamento: La apertura hacia afuera previene el aplastamiento por
+compresión de masa humana frente al vano de la puerta durante
+evacuaciones de urgencia.</p>
+<p>3. B) 1.50 metros.</p>
+<p>Fundamento: Aplicando la ecuación W = 0.006 x N; W = 0.006 x 250 = 1.50
+m.</p>
+<p>4. A) El tiempo de retraso o pre-movimiento para reconocimiento del
+riesgo y parada segura de maquinaria.</p>
+<p>Fundamento: Tr representa la latencia psicofísica y procedimental previa
+a que la masa comience a desplazarse fácticamente.</p>
+<p>5. A) TGBH = 0.7 Tbh + 0.3 Tg.</p>
+<p>Fundamento: Es la ponderación estándar para recintos cubiertos sin
+radiación solar según el Art. 54 y normas ISO 7243 / ACGIH.</p>
+<p>6. B) El termómetro de globo termométrico (Tg).</p>
+<p>Fundamento: La esfera metálica hueca negra absorbe y equilibra la
+radiación infrarroja de fuentes emisoras circundantes.</p>
+<p>7. D) 25% trabajo y 75% descanso en cada hora de labor.</p>
+<p>Fundamento: Al superar severamente el umbral límite permisible para
+trabajo pesado, la modulación fisiológica reduce la carga metabólica
+obligando a 45 min de pausa térmica recuperativa.</p>
+<p>8. B) 0.60 metros.</p>
+<p>Fundamento: Una Unidad de Ancho de Salida (UAS) equivale
+antropométricamente al ancho de hombros medio (55 a 60 cm) holgado.</p>
+<p>9. B) Interponer pantallas térmicas reflectivas o aislar
+termomecánicamente los focos de calor.</p>
+<p>Fundamento: En la jerarquía de control, el control de ingeniería en la
+fuente o medio precede a la rotación organizativa o al uso de EPP.</p>
+<p>10. B) 40 metros.</p>
+<p>Fundamento: El estándar de diseño de vías de escape para riesgo
+ordinario sin sistemas de extinción automática fija el límite en 40
+metros.</p>
+<p>PARTE II: VERIFICACIÓN Y JUSTIFICACIÓN TÉCNICA</p>
+<p>11. Falso.</p>
+<p>Justificación: Las puertas corredizas y giratorias no son permitidas
+para uso exclusivo de emergencia, a menos que colapsen por empuje
+mecánico oscilobatiente hacia afuera en caso de pánico.</p>
+<p>12. Falso.</p>
+<p>Justificación: El Art. 33 prohíbe terminantemente mantener puertas de
+escape aseguradas con llaves o candados durante las jornadas
+productivas; deben contar con apertura libre e inmediata desde el
+interior.</p>
+<p>13. Verdadero.</p>
+<p>Justificación: La temperatura de bulbo húmedo cuantifica la presión de
+vapor ambiental; a mayor humedad, el cuerpo humano pierde su principal
+mecanismo de disipación que es la sudoración.</p>
+<p>14. Verdadero.</p>
+<p>Justificación: Tflujo = N / (k x We). A mayor N mayor tiempo, y a mayor
+ancho We mayor caudal de descarga y menor tiempo de vaciado.</p>
+<p>15. Falso.</p>
+<p>Justificación: El punto de encuentro debe ubicarse fuera de la zona de
+colapso de las estructuras (distancia &gt;= 1.5 veces la altura del muro)
+y a favor del viento para evitar intoxicación por humos.</p>
+<p>16. Verdadero.</p>
+<p>Justificación: El Art. 54 exige un perímetro radial de aislamiento de al
+menos 1.50 metros alrededor de generadores térmicos para evitar ignición
+y quemaduras directas.</p>
+<p>PARTE III: EMPAREJAMIENTO</p>
+<p>17. -&gt; [ d ] Intervalo en el que los ocupantes perciben la señal de
+alarma, detienen operaciones de riesgo y deciden iniciar el
+desplazamiento.</p>
+<p>18. -&gt; [ c ] Trayectoria geométrica real más desfavorable desde el
+punto de trabajo más aislado hasta el plano de la salida de escape.</p>
+<p>19. -&gt; [ a ] Magnitud física que evalúa la radiación térmica emitida
+por cuerpos incandescentes mediante una esfera de cobre pintada de negro
+mate.</p>
+<p>20. -&gt; [ b ] Parámetro empírico que representa la tasa promedio de
+personas que atraviesan un metro de ancho de salida por segundo.</p>
+<p>PARTE IV: COMPLETAMIENTO</p>
+<p>21. 0.006 (ó 0.006 m/persona).</p>
+<p>22. 0.1 Ta (ó 0.1 x Ta).</p>
+<p>23. antipánico.</p>
+<p>24. 1.0 a 1.2 (o simplemente 1.2).</p>
+<p>25. Disponibilidad (dentro del índice de Mantenimiento Productivo Total
+/ OEE).</p>
+<p>PARTE V: SOLUCIÓN A PROBLEMAS CUANTITATIVOS</p>
+<p>26. Planteamiento: Wreq = 0.006 x N</p>
+<p>Cálculo: Wreq = 0.006 x 300 = 1.80 m</p>
+<p>Resultado final: 1.80 metros (equivalente a 3 UAS).</p>
+<p>27. Planteamiento: TGBH = 0.7 Tbh + 0.3 Tg</p>
+<p>Cálculo: TGBH = (0.7 x 27.0) + (0.3 x 41.0) = 18.90 + 12.30 = 31.20 °C</p>
+<p>Resultado final: 31.20 °C.</p>
+<p>28. Planteamiento: Delta TGBH = TGBH_real - TGBH_lim</p>
+<p>Cálculo: Delta TGBH = 31.20 °C - 25.90 °C = +5.30 °C</p>
+<p>Resultado final: +5.30 °C (Sobreexposición crítica).</p>
+<p>29. Planteamiento: F = k x We</p>
+<p>Cálculo: F = 1.2 personas/(s x m) x 1.60 m = 1.92 personas/s</p>
+<p>Resultado final: 1.92 personas/s.</p>
+<p>30. Planteamiento:</p>
+<p>Ttránsito = Dmax / v = 36 m / 1.2 m/s = 30.00 s</p>
+<p>Tflujo = N / F = 150 / 2.5 = 60.00 s</p>
+<p>Tm = Ttránsito + Tflujo = 30.00 s + 60.00 s = 90.00 s</p>
+<p>Resultado final: 90.00 segundos (1.50 minutos).</p>
+<p>================================================================================</p>
+<p>```eof</p>
+<p>He estructurado y generado el taller completo en texto plano dentro del
+archivo `Taller_Evaluativo_30_Reactivos_SISO.txt`.</p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== TAB 5 =================== -->
+  <section id="t5" class="tab-pane">
+    <div class="pane-header">
+      <div class="pane-kicker">Pestaña 05 · Tarea Asincrónica Avanzada</div>
+      <h2>Tarea Asincrónica: Caso de Estudio Avanzado de Ingeniería SISO</h2>
+      <div class="pane-lead">Planta «Aceros del Litoral S.A.» · Fundición y colada continua · N = 360 trabajadores · 4 módulos de auditoría y rediseño integral.</div>
+    </div>
+    <div class="pane-divider"></div>
+    <p>planta ni de la confiabilidad operacional. Un microclima severo degrada
+el factor de Disponibilidad y Rendimiento en la Efectividad Global de
+los Equipos (OEE) debido a paradas obligatorias por fatiga térmica,
+mientras que una deficiencia en las rutas de escape compromete
+catastróficamente la seguridad de las personas. En esta tarea
+asincrónica de alta complejidad, asumirán el rol de Consultor Principal
+de Seguridad y Procesos para auditar y rediseñar integralmente la planta
+de fundición y mecanizado pesado "Aceros del Litoral S.A.".</p>
+<p><strong>iDevice de Lectura: Memoria Técnica y Condiciones de Planta</strong></p>
+<p>La planta opera una nave industrial de conformación y colada continua
+con dimensiones en planta de <span class="math inline">\(80.00\text{~m} \times 40.00\text{~m}\)</span>
+(Área útil: <span class="math inline">\(3\, 200.00\text{~m}^{2}\)</span>). En el turno crítico diurno
+labora una dotación concurrente de <span class="math inline">\(N = 360\text{~trabajadores}\)</span>.</p>
+<pre class="ascii-diagram">◄──────────────────────── 80.00 m ────────────────────────►
+
+┌──────────────[P1: 1.20 m]──────────────[P2: 1.20 m]─────┐
+
+│ Bahía de Mecanizado Pesado y Enfriamiento │
+
+▲ │ │
+
+│ │ ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
+
+40.00 m│ Batería de Hornos de Inducción y Cucharas de Colada │
+
+│ │ [Zona Térmica Crítica: Tg, Tbh, Ta elevadas] │
+
+▼ │ │
+
+│ Bahía de Moldeo, Vaciado Manual y Desbaste │
+
+└────────────────────────────────────────[P3: 1.50 m]─────┘</pre>
+<p><strong>1. Diagnóstico de Evacuación y Vías de Escape (Art. 33 - Decreto
+Ejecutivo 2393)</strong></p>
+<ul>
+<li><p><strong>Configuración de Salidas Existentes:</strong></p>
+<ul>
+<li><p>Puerta 1 (<span class="math inline">\(P_{1}\)</span>, Norte): Ancho útil libre
+<span class="math inline">\(W_{1} = 1.20\text{~m}\)</span>.</p></li>
+<li><p>Puerta 2 (<span class="math inline">\(P_{2}\)</span>, Norte): Ancho útil libre
+<span class="math inline">\(W_{2} = 1.20\text{~m}\)</span>.</p></li>
+<li><p>Puerta 3 (<span class="math inline">\(P_{3}\)</span>, Sur): Ancho útil libre
+<span class="math inline">\(W_{3} = 1.50\text{~m}\)</span>.</p></li>
+<li><p>Ancho total instalado:
+<span class="math inline">\(W_{\text{act}} = 1.20 + 1.20 + 1.50 = 3.90\text{~m}\)</span>.</p></li>
+</ul></li>
+<li><p><strong>Geometría y Recorridos:</strong></p>
+<ul>
+<li>El punto de trabajo más desfavorable se ubica en el vértice
+suroeste de la nave. Debido a la disposición de tolvas y bancos
+de maquinaria, la distancia real de recorrido no lineal hasta la
+salida más próxima (<span class="math inline">\(P_{3}\)</span>) es <span class="math inline">\(D_{\max} = 56.00\text{~m}\)</span>.</li>
+</ul></li>
+<li><p><strong>Parámetros Temporales del Sistema de Alarma y Marcha:</strong></p>
+<ul>
+<li><p>Latencia de detección automática de humo/calor (<span class="math inline">\(T_{d}\)</span>):
+<span class="math inline">\(15.00\text{~s}\)</span>.</p></li>
+<li><p>Retardo de verificación, validación y disparo de alarma
+sonora-lumínica (<span class="math inline">\(T_{a}\)</span>): <span class="math inline">\(25.00\text{~s}\)</span>.</p></li>
+<li><p>Tiempo de pre-movimiento (<span class="math inline">\(T_{r}\)</span>): Parada controlada de grúas y
+consignación de vertido de metal fundido: <span class="math inline">\(45.00\text{~s}\)</span>.</p></li>
+<li><p>Velocidad de marcha libre horizontal (<span class="math inline">\(v\)</span>): <span class="math inline">\(1.10\text{~m/s}\)</span>.</p></li>
+<li><p>Constante experimental de caudal específico peatonal (<span class="math inline">\(k\)</span>):
+<span class="math inline">\(1.25\text{~personas}/\left( \text{s} \cdot \text{m} \right)\)</span>.</p></li>
+</ul></li>
+</ul>
+<p><strong>2. Diagnóstico Termohigrométrico (Art. 54 - Decreto Ejecutivo 2393)</strong></p>
+<p>Los operarios del área de desmoldeo y vertido manual realizan una labor
+catalogada biomecánicamente como <strong>Pesada</strong> (Tasa metabólica estimada
+<span class="math inline">\(M = 430\text{~W} \approx 370\text{~kcal/h}\)</span>).</p>
+<ul>
+<li><p><strong>Mediciones de Campo (Ambiente interior sin incidencia solar
+directa):</strong></p>
+<ul>
+<li><p>Temperatura de bulbo húmedo natural (<span class="math inline">\(T_{bh}\)</span>):
+<span class="math inline">\({30.50}^{\circ}\text{C}\)</span>.</p></li>
+<li><p>Temperatura de globo termométrico (<span class="math inline">\(T_{g}\)</span>):
+<span class="math inline">\({48.50}^{\circ}\text{C}\)</span>.</p></li>
+<li><p>Temperatura de bulbo seco / aire (<span class="math inline">\(T_{a}\)</span>):
+<span class="math inline">\({34.00}^{\circ}\text{C}\)</span>.</p></li>
+</ul></li>
+<li><p><strong>Criterios Normativos y Operacionales:</strong></p>
+<ul>
+<li><p>Límite permisible de exposición según ACGIH / Dec. Exec. 2393
+para trabajo continuo pesado:
+<span class="math inline">\(\text{TGBH}_{\lim} = {25.90}^{\circ}\text{C}\)</span>.</p></li>
+<li><p>Régimen operativo actual impuesto por supervisión: 100% trabajo
+continuo durante ciclos de 60 minutos.</p></li>
+</ul></li>
+</ul>
+<p><strong>Actividad Práctica: Entregables de la Tarea Asincrónica</strong></p>
+<p>Los estudiantes deberán elaborar un informe técnico de ingeniería
+resolviendo rigurosamente los siguientes cuatro módulos:</p>
+<p><strong>Módulo 1: Auditoría Cuantitativa de Evacuación (Art. 33)</strong></p>
+<ol type="1">
+<li><p>Determine el requerimiento mínimo legal de ancho total de puertas
+(<span class="math inline">\(W_{\text{req}}\)</span>) conforme a la formulación estricta del Art. 33
+del Decreto Ejecutivo 2393 para la población actual (<span class="math inline">\(N = 360\)</span>).</p></li>
+<li><p>Desarrolle la deducción del modelo cinemático de evacuación y
+calcule el tiempo de tránsito (<span class="math inline">\(T_{\text{tránsito}}\)</span>), tiempo de
+descarga por flujo (<span class="math inline">\(T_{\text{flujo}}\)</span>), tiempo de movimiento
+(<span class="math inline">\(T_{m}\)</span>) y el tiempo total teórico de evacuación (<span class="math inline">\(T_{E}\)</span>).</p></li>
+<li><p>La empresa aseguradora fija como meta de seguridad de vida un tiempo
+total de evacuación <span class="math inline">\(T_{E} \leq 150.00\text{~s}\)</span>. Evalúe si la
+planta cumple esta meta. Si no la cumple, calcule el ancho útil
+total (<span class="math inline">\(W_{\text{necesario}}\)</span>) y determine cuántas Unidades de Ancho
+de Salida (UAS de <span class="math inline">\(0.60\text{~m}\)</span>) deben agregarse a la arquitectura
+de la nave.</p></li>
+</ol>
+<p><strong>Módulo 2: Modelación de Estrés Térmico y Régimen Fisiológico (Art.
+54)</strong></p>
+<ol type="1">
+<li><p>Deduzca el valor del Índice de Temperatura de Globo y Bulbo Húmedo
+(<span class="math inline">\(\text{TGBH}\)</span>) inicial del área de vertido manual.</p></li>
+<li><p>Determine la sobreexposición térmica cuantitativa
+(<span class="math inline">\(\Delta\text{TGBH}\)</span>) respecto al límite de
+<span class="math inline">\({25.90}^{\circ}\text{C}\)</span>.</p></li>
+<li><p>De acuerdo con el Art. 54, establezca el régimen legal de
+trabajo-descanso (en porcentajes y minutos por hora) que debe
+aplicarse en la planta en su estado actual para evitar estrés por
+calor y colapso cardiovascular.</p></li>
+<li><p>Cuantifique el impacto directo de este régimen en la disponibilidad
+operacional de la mano de obra en el cálculo del OEE (asumiendo que
+las paradas por descanso térmico constituyen pérdidas no
+recuperables dentro del turno).</p></li>
+</ol>
+<p><strong>Módulo 3: Proyecto de Controles de Ingeniería e Impacto en OEE</strong></p>
+<p>Proponga y demuestre matemáticamente una solución integral de controles
+de ingeniería:</p>
+<ol type="1">
+<li><p>Diseñe una intervención que incluya blindaje térmico por pantallas
+reflectivas y ventilación forzada por dilución que abata la
+temperatura de globo a <span class="math inline">\(T_{g} = {32.50}^{\circ}\text{C}\)</span> y la de
+bulbo húmedo a <span class="math inline">\(T_{bh} = {22.80}^{\circ}\text{C}\)</span>. Demuestre si el
+nuevo índice <span class="math inline">\(\text{TGBH}_{\text{nuevo}}\)</span> permite retornar al 100%
+de trabajo continuo (<span class="math inline">\(60\text{~min/h}\)</span>).</p></li>
+<li><p>Determine la reubicación de una nueva puerta de escape (<span class="math inline">\(P_{4}\)</span>)
+para que la distancia máxima de recorrido no lineal disminuya a
+<span class="math inline">\(D_{\max,\text{nuevo}} = 30.00\text{~m}\)</span>, recalculando el <span class="math inline">\(T_{E}\)</span>
+final optimizado con el ancho propuesto en el Módulo 1.</p></li>
+</ol>
+<p><strong>Solución Analítica Completa (Uso Docente)</strong></p>
+<p><strong>1. Resolución de Evacuación (Art. 33)</strong></p>
+<ul>
+<li><strong>Ancho Mínimo Normativo:</strong></li>
+</ul>
+
+    <div class="solution-block" data-solution="t5">
+      <div class="solution-gate">
+        <div class="lock-icon">🔒</div>
+        <h3>Solución Analítica Completa</h3>
+        <p>La solución analítica completa de los cuatro módulos está reservada para uso docente.<br/>Ingrese la clave de acceso para visualizar las deducciones, recálculos y rúbrica de calificación.</p>
+        <button class="unlock-btn" data-target="t5">Acceder a la solución</button>
+        <div class="gate-error"></div>
+      </div>
+      <div class="solution-content" id="sol-t5">
+        <p><span class="math display">\[W_{\text{req}} = 0.006 \times N = 0.006 \times 360 = 2.16\text{~m}\]</span></p>
+<p><em>Diagnóstico normativo:</em> Con <span class="math inline">\(W_{\text{act}} = 3.90\text{~m}\)</span>, cumple el
+mínimo prescrito en el Art. 33 (<span class="math inline">\(3.90\text{~m} \geq 2.16\text{~m}\)</span>).</p>
+<ul>
+<li><strong>Cálculo de Variables Temporales Iniciales:</strong></li>
+</ul>
+<p><span class="math display">\[\text{Caudal~de~descarga~global~}F = k \times W_{\text{act}} = 1.25\text{~personas}/\left( \text{s} \cdot \text{m} \right) \times 3.90\text{~m} = 4.875\text{~personas/s}\]</span></p>
+<p><span class="math display">\[T_{\text{flujo}} = \frac{N}{F} = \frac{360}{4.875} \approx 73.85\text{~s}\]</span></p>
+<p><span class="math display">\[T_{\text{tránsito}} = \frac{D_{\max}}{v} = \frac{56.00\text{~m}}{1.10\text{~m/s}} \approx 50.91\text{~s}\]</span></p>
+<p><span class="math display">\[T_{m} = T_{\text{tránsito}} + T_{\text{flujo}} = 50.91 + 73.85 = 124.76\text{~s}\]</span></p>
+<p><span class="math display">\[T_{E} = T_{d} + T_{a} + T_{r} + T_{m} = 15.00 + 25.00 + 45.00 + 124.76 = 209.76\text{~s}\quad\left( 3.50\text{~min} \right)\]</span></p>
+<ul>
+<li><strong>Evaluación contra Criterio de Aseguradora
+(</strong><span class="math inline">\(T_{E} \leq 150.00\text{~s}\)</span><strong>):</strong></li>
+</ul>
+<p><span class="math display">\[209.76\text{~s} &gt; 150.00\text{~s} \Longrightarrow \mathbf{No\ Cumple.\ Existe\ un\ déficit\ de\ }59.76\text{~s.}\]</span></p>
+<ul>
+<li><strong>Rediseño de Capacidad de Salida:</strong></li>
+</ul>
+<p><span class="math display">\[T_{m,\text{máx}} = 150.00 - \left( T_{d} + T_{a} + T_{r} \right) = 150.00 - 85.00 = 65.00\text{~s}\]</span></p>
+<p>Manteniendo temporalmente <span class="math inline">\(D_{\max} = 56.00\text{~m}\)</span>
+(<span class="math inline">\(T_{\text{tránsito}} = 50.91\text{~s}\)</span>):</p>
+<p><span class="math display">\[T_{\text{flujo,~req}} = T_{m,\text{máx}} - T_{\text{tránsito}} = 65.00 - 50.91 = 14.09\text{~s}\]</span></p>
+<p><span class="math display">\[F_{\text{req}} = \frac{N}{T_{\text{flujo,~req}}} = \frac{360}{14.09\text{~s}} \approx 25.55\text{~personas/s}\]</span></p>
+<p><span class="math display">\[W_{\text{necesario}} = \frac{F_{\text{req}}}{k} = \frac{25.55}{1.25} \approx 20.44\text{~m}\]</span></p>
+<p><em>Análisis Crítico de Ingeniería:</em> Pretender ensanchar las salidas a
+<span class="math inline">\(20.44\text{~m}\)</span> es inviable y evidencia que el verdadero
+estrangulamiento proviene de la elevada distancia de recorrido
+(<span class="math inline">\(D_{\max} = 56.00\text{~m}\)</span>).</p>
+<p>Si se aplica la optimización del Módulo 3 reduciendo la distancia
+crítica a <span class="math inline">\(D_{\max} = 30.00\text{~m}\)</span>:</p>
+<p><span class="math display">\[T_{\text{tránsito,~nuevo}} = \frac{30.00\text{~m}}{1.10\text{~m/s}} \approx 27.27\text{~s}\]</span></p>
+<p><span class="math display">\[T_{\text{flujo,~req}} = 65.00 - 27.27 = 37.73\text{~s}\]</span></p>
+<p><span class="math display">\[F_{\text{req}} = \frac{360}{37.73\text{~s}} \approx 9.54\text{~personas/s}\]</span></p>
+<p><span class="math display">\[W_{\text{total,~nuevo}} = \frac{F_{\text{req}}}{k} = \frac{9.54}{1.25} \approx 7.63\text{~m}\]</span></p>
+<p><span class="math display">\[\Delta W = W_{\text{total,~nuevo}} - W_{\text{act}} = 7.63 - 3.90 = 3.73\text{~m}\]</span></p>
+<p><span class="math display">\[\Delta\text{UAS} = \frac{3.73\text{~m}}{0.60\text{~m/UAS}} = 6.22 \Longrightarrow \mathbf{Se\ deben\ adicionar\ 7\ UAS\ (mínimo\ }4.20\text{~m~total~de~vanos~adicionales).}\]</span></p>
+<p><em>Configuración propuesta:</em> Agregar dos salidas intermedias de
+<span class="math inline">\(2.10\text{~m}\)</span> (<span class="math inline">\(3.5\text{~UAS}\)</span> c/u), logrando
+<span class="math inline">\(W_{\text{final}} = 3.90 + 4.20 = 8.10\text{~m}\)</span>.</p>
+<p><strong>2. Resolución de Estrés Térmico (Art. 54)</strong></p>
+<ul>
+<li><strong>Cálculo del TGBH Inicial:</strong></li>
+</ul>
+<p><span class="math display">\[\text{TGBH}_{\text{inicial}} = 0.7\, T_{bh} + 0.3\, T_{g} = (0.7 \times 30.50) + (0.3 \times 48.50) = 21.35 + 14.55 = {35.90}^{\circ}\text{C}\]</span></p>
+<ul>
+<li><strong>Magnitud de Exceso:</strong></li>
+</ul>
+<p><span class="math display">\[\Delta\text{TGBH} = {35.90}^{\circ}\text{C} - {25.90}^{\circ}\text{C} = + {10.00}^{\circ}\text{C}\]</span></p>
+<ul>
+<li><strong>Régimen de Modulación y Disponibilidad OEE:</strong></li>
+</ul>
+<p>Con <span class="math inline">\(\text{TGBH} = {35.90}^{\circ}\text{C}\)</span> para trabajo pesado, se
+sobrepasa incluso el umbral máximo de trabajo admisible
+(<span class="math inline">\({30.0}^{\circ}\text{C}\)</span>). La normativa del Art. 54 y los estándares
+internacionales imponen de forma estricta el régimen extremo:</p>
+<p><span class="math display">\[\mathbf{25\%\ Trabajo\  - \ 75\%\ Descanso\ (15\ minutos\ de\ trabajo\ por\ cada\ 45\ minutos\ de\ descanso\ en\ área\ aclimatada).}\]</span></p>
+<p><em>Impacto en OEE:</em></p>
+<p>La disponibilidad neta de la mano de obra cae al:</p>
+<p><span class="math display">\[\text{Disponibilidad~(Mano~de~Obra)} = \frac{15\text{~min}}{60\text{~min}} = 0.25\quad(25\%)\]</span></p>
+<p>Esto ocasiona una pérdida de <span class="math inline">\(75\%\)</span> de capacidad instalada por hora de
+turno únicamente atribuible a la condición microclimática degradada.</p>
+<p><strong>3. Proyecto de Controles y Verificación Final</strong></p>
+<ul>
+<li><strong>Mitigación Térmica:</strong></li>
+</ul>
+<p><span class="math display">\[\text{TGBH}_{\text{nuevo}} = (0.7 \times 22.80) + (0.3 \times 32.50) = 15.96 + 9.75 = {25.71}^{\circ}\text{C}\]</span></p>
+<p>Dado que <span class="math inline">\({25.71}^{\circ}\text{C} \leq {25.90}^{\circ}\text{C}\)</span>, el
+puesto se ubica en franja verde de seguridad, permitiendo retornar al
+<span class="math inline">\(100\%\)</span> <strong>de trabajo continuo</strong> (<span class="math inline">\(60\text{~min/h}\)</span>). La disponibilidad
+de mano de obra se restituye de <span class="math inline">\(25\%\)</span> a <span class="math inline">\(100\%\)</span>, incrementando el OEE
+global del área en un factor directo de <span class="math inline">\(4.0 \times\)</span>.</p>
+<ul>
+<li><strong>Verificación del Tiempo de Evacuación Optimizado
+(</strong><span class="math inline">\(W = 8.10\text{~m}\)</span><strong>,</strong> <span class="math inline">\(D_{\max} = 30.00\text{~m}\)</span><strong>):</strong></li>
+</ul>
+<p><span class="math display">\[F = 1.25 \times 8.10 = 10.125\text{~personas/s}\]</span></p>
+<p><span class="math display">\[T_{\text{flujo}} = \frac{360}{10.125} \approx 35.56\text{~s}\]</span></p>
+<p><span class="math display">\[T_{\text{tránsito}} = \frac{30.00}{1.10} \approx 27.27\text{~s}\]</span></p>
+<p><span class="math display">\[T_{m} = 27.27 + 35.56 = 62.83\text{~s}\]</span></p>
+<p><span class="math display">\[T_{E} = 15.00 + 25.00 + 45.00 + 62.83 = 147.83\text{~s}\quad\left( 2.46\text{~min} \right) \leq 150.00\text{~s}\quad\mathbf{(Conforme)}\]</span></p>
+<p><strong>Validación de Integridad</strong></p>
+<table style="width:99%;">
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 28%" />
+<col style="width: 23%" />
+<col style="width: 21%" />
+<col style="width: 11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Variable /
+Parámetro de
+Diseño</strong></th>
+<th style="text-align: left;"><strong>Condición Inicial (Auditoría)</strong></th>
+<th style="text-align: left;"><strong>Condición Propuesta
+(Ingeniería)</strong></th>
+<th style="text-align: left;"><strong>Criterio de Control</strong></th>
+<th style="text-align: left;"><strong>Estado de
+Cumplimiento</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Ancho Total de
+Salidas (</strong><span class="math inline">\(W\)</span><strong>)</strong></td>
+<td style="text-align: left;"><span class="math inline">\(3.90\text{~m}\)</span> (<span class="math inline">\(6.5\text{~UAS}\)</span>)</td>
+<td style="text-align: left;"><span class="math inline">\(8.10\text{~m}\)</span> (<span class="math inline">\(13.5\text{~UAS}\)</span>)</td>
+<td style="text-align: left;"><span class="math inline">\(\geq 2.16\text{~m}\)</span> (Art. 33)</td>
+<td style="text-align: left;"><strong>Conforme</strong>
+(Ajustado por
+balance
+cinemático)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Distancia Máxima
+(</strong><span class="math inline">\(D_{\max}\)</span><strong>)</strong></td>
+<td style="text-align: left;"><span class="math display">\[56.00\text{~m}\]</span></td>
+<td style="text-align: left;"><span class="math display">\[30.00\text{~m}\]</span></td>
+<td style="text-align: left;"><span class="math inline">\(\leq 40.00\text{~m}\)</span> (Riesgo
+ordinario)</td>
+<td style="text-align: left;"><strong>Conforme</strong>
+(Reducción del
+<span class="math inline">\(46.4\%\)</span>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Tiempo de
+Evacuación
+(</strong><span class="math inline">\(T_{E}\)</span><strong>)</strong></td>
+<td style="text-align: left;"><span class="math inline">\(209.76\text{~s}\)</span> (<span class="math inline">\(3.50\text{~min}\)</span>)</td>
+<td style="text-align: left;"><span class="math inline">\(147.83\text{~s}\)</span>
+(<span class="math inline">\(2.46\text{~min}\)</span>)</td>
+<td style="text-align: left;"><span class="math inline">\(\leq 150.00\text{~s}\)</span>
+(Requerimiento seguro)</td>
+<td style="text-align: left;"><strong>Conforme</strong>
+(Cumplimiento de
+meta técnica)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Índice Térmico
+(TGBH)</strong></td>
+<td style="text-align: left;"><span class="math display">\[{35.90}^{\circ}\text{C}\]</span></td>
+<td style="text-align: left;"><span class="math display">\[{25.71}^{\circ}\text{C}\]</span></td>
+<td style="text-align: left;"><span class="math inline">\(\leq {25.90}^{\circ}\text{C}\)</span>
+(Art. 54)</td>
+<td style="text-align: left;"><strong>Conforme</strong>
+(Zona de trabajo
+continuo)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Régimen
+Trabajo-Descanso</strong></td>
+<td style="text-align: left;"><span class="math display">\[25\%\text{~Trab.} - 75\%\text{~Desc.}\]</span></td>
+<td style="text-align: left;"><span class="math display">\[100\%\text{~Trabajo~Continuo}\]</span></td>
+<td style="text-align: left;">Decreto Ejecutivo 2393</td>
+<td style="text-align: left;"><strong>Optimizado</strong>
+(Disponibilidad
+100%)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Rúbrica Analítica de Calificación (Escala Vigesimal: 0 a 20 Puntos)</strong></p>
+<table style="width:98%;">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 42%" />
+<col style="width: 14%" />
+<col style="width: 13%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Criterio de
+Evaluación</strong></th>
+<th style="text-align: left;"><strong>Excelente (5 pts)</strong></th>
+<th style="text-align: left;"><strong>Bueno (3.5 -
+4.5 pts)</strong></th>
+<th style="text-align: left;"><strong>Regular (2.0 -
+3.0 pts)</strong></th>
+<th style="text-align: left;"><strong>Deficiente (0 -
+1.5 pts)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>1.
+Modelación
+Cinemática de
+Evacuación
+(Art. 33)</strong></td>
+<td style="text-align: left;">Deduce formalmente todas las ecuaciones
+(<span class="math inline">\(F,T_{\text{flujo}},T_{\text{tránsito}},T_{E}\)</span>).
+Aplica cifras significativas exactas y diagnostica
+con precisión el desfase normativo.</td>
+<td style="text-align: left;">Aplica las
+ecuaciones y
+obtiene el tiempo
+de evacuación con
+errores menores
+de redondeo.
+Identifica el
+incumplimiento de
+la meta de
+tiempo.</td>
+<td style="text-align: left;">Omite el cálculo
+de tránsito o
+flujo en la
+deducción.
+Aplica fórmulas
+de forma
+mecánica sin
+justificar
+variables
+cinemáticas.</td>
+<td style="text-align: left;">Errores
+matemáticos
+graves en la
+formulación de
+flujo; confunde
+ancho legal con
+capacidad
+temporal de
+descarga.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>2.
+Evaluación
+Cuantitativa
+de Estrés
+Térmico (Art.
+54)</strong></td>
+<td style="text-align: left;">Calcula el TGBH interior sin errores, determina el
+<span class="math inline">\(\Delta\text{TGBH}\)</span> exacto, sustenta la modulación
+horaria legal (<span class="math inline">\(25\% - 75\%\)</span>) y vincula la pérdida
+al OEE.</td>
+<td style="text-align: left;">Calcula
+correctamente el
+TGBH y determina
+el exceso
+térmico, pero la
+vinculación con
+el impacto en OEE
+es cualitativa o
+incompleta.</td>
+<td style="text-align: left;">Aplica
+erróneamente los
+coeficientes del
+TGBH (confunde
+interior con
+exterior) o
+asigna un
+régimen horario
+discordante con
+el Art. 54.</td>
+<td style="text-align: left;">No comprende la
+estructura del
+TGBH; no
+determina el
+régimen
+fisiológico
+reglamentario ni
+las pérdidas
+productivas.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>3. Propuesta
+de Ingeniería
+y Rediseño
+Espacial</strong></td>
+<td style="text-align: left;">Demuestra matemáticamente la mitigación del TGBH a
+zona continua. Rediseña vanos (UAS) y recorridos
+(<span class="math inline">\(D_{\max}\)</span>) para alcanzar
+<span class="math inline">\(T_{E} \leq 150\text{~s}\)</span>.</td>
+<td style="text-align: left;">Propone
+soluciones de
+ingeniería
+viables que
+cumplen las
+normas térmicas y
+de escape, pero
+sin dimensionar
+el número de UAS
+requerido.</td>
+<td style="text-align: left;">La propuesta
+reduce
+parcialmente los
+riesgos pero no
+logra bajar el
+TGBH del umbral
+permisible o
+sobrestima las
+dimensiones
+físicas de las
+salidas.</td>
+<td style="text-align: left;">Propuestas
+genéricas sin
+sustento
+cuantitativo (ej.
+"poner
+ventiladores" o
+"abrir
+puertas") sin
+cálculo numérico
+de validación.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>4.
+Integridad
+Técnica, Rigor
+Formal y
+Normas APA</strong></td>
+<td style="text-align: left;">Presenta el informe estructurado con terminología
+técnica avanzada, tabla de validación de
+integridad, deducciones claras en LaTeX y citas APA
+7ma ed.</td>
+<td style="text-align: left;">Informe ordenado
+con lenguaje
+técnico adecuado
+y deducciones
+claras, aunque
+con
+inconsistencias
+menores de
+formato o citas
+APA.</td>
+<td style="text-align: left;">Estructura
+desorganizada,
+lenguaje
+coloquial,
+omisión de
+unidades de
+medida o
+ausencia de
+referencias
+bibliográficas
+normadas.</td>
+<td style="text-align: left;">Documento
+informal, sin
+justificación
+matemática,
+omitiendo
+unidades físicas
+y carente de
+fuentes
+reglamentarias.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Referencias Bibliográficas (Normas APA)</strong></p>
+<ul>
+<li><p>American Conference of Governmental Industrial Hygienists. (2024).
+<em>Threshold limit values for chemical substances and physical agents
+and biological exposure indices</em>. ACGIH.</p></li>
+<li><p>Instituto Ecuatoriano de Seguridad Social. (1986). <em>Reglamento de
+seguridad y salud de los trabajadores y mejoramiento del medio
+ambiente de trabajo</em> (Decreto Ejecutivo 2393). Registro Oficial 565.</p></li>
+<li><p>International Organization for Standardization. (2018).
+<em>Occupational health and safety management systems — Requirements
+with guidance for use</em> (ISO Standard No. 45001:2018).
+<a href="https://www.iso.org/standard/63787.html">https://www.iso.org/standard/63787.html</a></p></li>
+<li><p>National Fire Protection Association. (2024). <em>Life safety code</em></p></li>
+</ul>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Password modal -->
+<div class="modal-overlay" id="modal">
+  <div class="modal-card">
+    <div class="modal-icon">🔑</div>
+    <h3>Acceso Restringido</h3>
+    <p>Esta sección contiene material docente reservado.<br/>Ingrese la clave de acceso para continuar.</p>
+    <input type="password" id="pw-input" autocomplete="off" placeholder="• • • •" inputmode="numeric" />
+    <div class="modal-error" id="modal-error"></div>
+    <div class="modal-actions">
+      <button class="btn-cancel" id="btn-cancel">Cancelar</button>
+      <button class="btn-submit" id="btn-submit">Verificar</button>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <strong>Cátedra SISO</strong> · Material didáctico académico universitario basado en el Decreto Ejecutivo 2393 (Registro Oficial 565) · Normas de referencia: ACGIH 2024, ISO 45001:2018, NFPA 101.
+</footer>
+
+<script>
+// ---------- Tab switching ----------
+const tabs = document.querySelectorAll('.tab-btn');
+const panes = document.querySelectorAll('.tab-pane');
+tabs.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const id = btn.dataset.tab;
+    tabs.forEach(b => b.classList.toggle('active', b === btn));
+    panes.forEach(p => p.classList.toggle('active', p.id === id));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
+// ---------- Password gate ----------
+// The key is stored only as a SHA-256 hash; the plain-text key is never
+// present in this file, so it cannot be discovered by reading the source.
+const EXPECTED_HASH = '52bb7cc738dbf5e5eee2c76754d87904e6750c63eda5e0a866197d2e16d9c142';
+
+async function sha256(text) {
+  const buf = new TextEncoder().encode(text);
+  const digest = await crypto.subtle.digest('SHA-256', buf);
+  return Array.from(new Uint8Array(digest))
+    .map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+const modal       = document.getElementById('modal');
+const pwInput     = document.getElementById('pw-input');
+const modalError  = document.getElementById('modal-error');
+const btnSubmit   = document.getElementById('btn-submit');
+const btnCancel   = document.getElementById('btn-cancel');
+let pendingTarget = null;
+
+function openModal(target) {
+  pendingTarget = target;
+  modalError.textContent = '';
+  pwInput.value = '';
+  modal.classList.add('show');
+  setTimeout(() => pwInput.focus(), 50);
+}
+function closeModal() {
+  modal.classList.remove('show');
+  pendingTarget = null;
+  pwInput.value = '';
+  modalError.textContent = '';
+}
+async function tryUnlock() {
+  const value = pwInput.value.trim();
+  if (!value) {
+    modalError.textContent = 'Ingrese la clave de acceso.';
+    return;
+  }
+  const hash = await sha256(value);
+  if (hash === EXPECTED_HASH) {
+    const content = document.getElementById('sol-' + pendingTarget);
+    const block = document.querySelector('[data-solution="' + pendingTarget + '"]');
+    if (content) content.classList.add('unlocked');
+    if (block) {
+      const gate = block.querySelector('.solution-gate');
+      if (gate) gate.style.display = 'none';
+    }
+    closeModal();
+    // Re-run MathJax on the newly revealed content
+    if (window.MathJax && window.MathJax.typesetPromise) {
+      window.MathJax.typesetPromise([content]).catch(()=>{});
+    }
+  } else {
+    modalError.textContent = 'Clave incorrecta. Intente nuevamente.';
+    pwInput.value = '';
+    pwInput.focus();
+  }
+}
+
+document.querySelectorAll('.unlock-btn').forEach(btn => {
+  btn.addEventListener('click', () => openModal(btn.dataset.target));
+});
+btnSubmit.addEventListener('click', tryUnlock);
+btnCancel.addEventListener('click', closeModal);
+pwInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') tryUnlock();
+  if (e.key === 'Escape') closeModal();
+});
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) closeModal();
+});
+
+// Keyboard tab navigation with Ctrl+Arrow
+document.addEventListener('keydown', (e) => {
+  if (e.ctrlKey && (e.key === 'ArrowRight' || e.key === 'ArrowLeft')) {
+    e.preventDefault();
+    const activeIdx = Array.from(tabs).findIndex(t => t.classList.contains('active'));
+    let next = e.key === 'ArrowRight' ? activeIdx + 1 : activeIdx - 1;
+    next = Math.max(0, Math.min(tabs.length - 1, next));
+    tabs[next].click();
+  }
+});
+</script>
+</body>
+</html>
