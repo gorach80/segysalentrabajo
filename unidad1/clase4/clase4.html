@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SISO - Decreto Ejecutivo 2393 | Clase 4</title>
+    <style>
+        :root {
+            --primary: #1a3c5e; /* Azul universitario */
+            --secondary: #b8860b; /* Dorado académico */
+            --bg: #f4f6f8;
+            --text: #2c3e50;
+            --border: #dcdde1;
+            --success: #27ae60;
+            --danger: #c0392b;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+        header { background: var(--primary); color: white; padding: 2rem; text-align: center; border-bottom: 4px solid var(--secondary); }
+        header h1 { font-size: 1.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; }
+        header h2 { font-size: 1.2rem; font-weight: 400; color: #dcdde1; }
+        
+        .tabs-nav { display: flex; background: #34495e; flex-wrap: wrap; justify-content: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .tab-btn { background: none; border: none; color: #bdc3c7; padding: 15px 20px; cursor: pointer; font-size: 0.95rem; transition: all 0.3s; flex-grow: 1; max-width: 250px; text-align: center; }
+        .tab-btn:hover { color: white; background: rgba(255,255,255,0.1); }
+        .tab-btn.active { color: white; background: var(--primary); border-bottom: 3px solid var(--secondary); font-weight: bold; }
+
+        .container { max-width: 1200px; margin: 20px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .tab-content { display: none; animation: fadeIn 0.5s; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        h3 { color: var(--primary); margin: 25px 0 15px 0; padding-bottom: 5px; border-bottom: 2px solid var(--secondary); }
+        h4 { color: #2c3e50; margin: 20px 0 10px 0; font-size: 1.1rem; }
+        p { margin-bottom: 15px; text-align: justify; }
+        ul, ol { margin: 15px 0 15px 40px; }
+        li { margin-bottom: 8px; }
+
+        .formula { background: #eef2f7; border-left: 4px solid var(--primary); padding: 15px; margin: 15px 0; font-family: 'Courier New', Courier, monospace; font-weight: bold; overflow-x: auto; }
+        .highlight-box { background: #fdf2e9; border: 1px solid #f39c12; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.9rem; }
+        th, td { border: 1px solid var(--border); padding: 12px; text-align: left; vertical-align: top; }
+        th { background: var(--primary); color: white; font-weight: bold; }
+        tr:nth-child(even) { background: #f8f9fa; }
+
+        .lock-section { border: 2px dashed var(--danger); padding: 20px; background: #fff5f5; border-radius: 8px; text-align: center; margin-top: 30px; }
+        .unlock-btn { background: var(--danger); color: white; border: none; padding: 12px 25px; font-size: 1rem; border-radius: 5px; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+        .unlock-btn:hover { background: #e74c3c; }
+        .solution-box { display: none; margin-top: 20px; background: #e8f8f5; border: 1px solid var(--success); padding: 20px; border-radius: 5px; }
+        
+        sup { font-size: 0.75em; vertical-align: super; }
+        sub { font-size: 0.75em; vertical-align: sub; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Seguridad Industrial y Salud Ocupacional (SISO)</h1>
+    <h2>Análisis del Decreto Ejecutivo 2393: Reglamento de Seguridad y Salud de los Trabajadores y Mejoramiento del Medio Ambiente de Trabajo</h2>
+</header>
+
+<nav class="tabs-nav">
+    <button class="tab-btn active" onclick="openTab(event, 'tab1')">1. Marco Normativo D.E. 2393</button>
+    <button class="tab-btn" onclick="openTab(event, 'tab2')">2. Caso Clínico-Industrial</button>
+    <button class="tab-btn" onclick="openTab(event, 'tab3')">3. Taller Práctico Metalmecánica</button>
+    <button class="tab-btn" onclick="openTab(event, 'tab4')">4. Evaluación Normativa</button>
+    <button class="tab-btn" onclick="openTab(event, 'tab5')">5. Tarea Asincrónica Pericial</button>
+</nav>
+
+<div class="container">
+
+    <!-- PESTAÑA 1 -->
+    <div id="tab1" class="tab-content active">
+        <h3>El marco normativo técnico analizado corresponde al Decreto Ejecutivo 2393</h3>
+        <p><strong>Reglamento de Seguridad y Salud de los Trabajadores y Mejoramiento del Medio Ambiente de Trabajo (Ecuador).</strong> A continuación se desglosa el análisis técnico-legal, los criterios de cálculo cuantitativo, la matriz de niveles de riesgo y la estructura formal de informe técnico.</p>
+
+        <h4>1. Análisis Técnico-Jurídico y Criterios Operativos (D.E. 2393)</h4>
+        
+        <h5>Art. 55: Ruidos y Vibraciones</h5>
+        <p><strong>Ruido continuo/intermitente:</strong><br>
+        El límite máximo permisible para una jornada de 8 horas diarias es de 85 dB(A) (escala de ponderación A con respuesta lenta, Slow).<br>
+        La relación de intercambio estipulada en el reglamento aplica una tasa de cambio de 5 dB (duplicación o reducción a la mitad del tiempo de exposición permisible por cada incremento o decremento de 5 dB).</p>
+        <div class="formula">D = (C<sub>1</sub>/T<sub>1</sub> + C<sub>2</sub>/T<sub>2</sub> + ... + C<sub>n</sub>/T<sub>n</sub>) * 100</div>
+        <p>Donde C<sub>n</sub> es el tiempo real de exposición en el nivel n, y T<sub>n</sub> es el tiempo máximo permitido en dicho nivel.</p>
+        <p>Para ruido continuo, la relación matemática entre el tiempo máximo permisible T (horas) y el nivel sonoro continuo equivalente L en dB(A) bajo la tasa de 5 dB se modela como:</p>
+        <div class="formula">T = 8 / 2<sup>(L - 85) / 5</sup></div>
+        <p><strong>Límite de techo (Ceiling):</strong> Prohibición terminante de exposición sin protección a niveles superiores a 115 dB(A) continuos o 140 dB(C) pico para ruido de impacto.</p>
+
+        <p><strong>Vibraciones:</strong><br>
+        Distinción mandatoria entre vibración cuerpo entero (Whole-Body Vibration, WBV: rangos críticos de 1 a 80 Hz, con resonancias orgánicas severas en el rango de 4 a 8 Hz) y vibración mano-brazo (Hand-Arm Vibration, HAV: rangos críticos de 100 a 500 Hz).<br>
+        Controles en la fuente (aisladores elastoméricos, equilibrado dinámico), seguidos de mantenimiento predictivo para prevenir daños vasculares (Síndrome de Raynaud) o musculoesqueléticos.</p>
+
+        <h5>Art. 57: Iluminación Artificial y de Emergencia</h5>
+        <p><strong>Criterios Generales:</strong> Prohibición de contrastes excesivos que provoquen fatiga visual; control estricto del deslumbramiento directo y reflejado; correlación cromática acorde a la tarea visual.</p>
+        <p><strong>Valores Mínimos de Iluminancia (Lux):</strong></p>
+        <ul>
+            <li>Zonas de paso, pasillos y almacenes generales: 50 a 100 lux.</li>
+            <li>Operaciones de mecanizado medio, montaje de piezas grandes, salas de máquinas: 200 a 300 lux.</li>
+            <li>Trabajos de precisión, ensamble fino, lectura de instrumentos de precisión, dibujo técnico: 500 a 1000 lux.</li>
+            <li>Trabajos de ultra-precisión (microelectrónica, matrices de calibración fina): 1000 a 3000 lux.</li>
+        </ul>
+        <p><strong>Alumbrado de Emergencia:</strong><br>
+        Activación autónoma instantánea ante falla del suministro principal (&lt; 1 segundo).<br>
+        Nivel mínimo de servicio: 5 lux en rutas de evacuación a nivel de suelo, con autonomía mínima operativa de 60 minutos.</p>
+
+        <h5>Art. 61: Radiaciones No Ionizantes - Ultravioleta (UV)</h5>
+        <p><strong>Clasificación espectral:</strong> UV-A (315-400 nm), UV-B (280-315 nm), UV-C (100-280 nm).<br>
+        <strong>Fuentes críticas:</strong> Procesos de soldadura eléctrica al arco (GMAW, GTAW, SMAW), corte por plasma, y sistemas de desinfección/curado.<br>
+        <strong>Riesgos ocupacionales:</strong> Fotoqueratitis, eritema dérmico severo y carcinogénesis celular a largo plazo.<br>
+        <strong>Control técnico:</strong> Apantallamiento rígido o cortinas de soldadura con certificación óptica de absorción; EPP específico con factor de protección ocular DIN adecuado a la corriente de arco (5 a 14 DIN).</p>
+
+        <h5>Art. 62: Radiaciones Ionizantes y No Ionizantes</h5>
+        <p><strong>Radiaciones Ionizantes:</strong><br>
+        Emisiones corpusculares (α, β) y electromagnéticas de alta energía (γ, Rayos X).<br>
+        Principio rector ALARA (As Low As Reasonably Achievable).<br>
+        Límites dosimétricos anuales de dosis efectiva (conforme a Comisión Internacional de Protección Radiológica - ICRP / Organismo Internacional de Energía Atómica - OIEA): 20 mSv promediado en 5 años consecutivos, sin exceder 50 mSv en un único año.<br>
+        Dosimetría personal obligatoria (TLD/película), blindajes de atenuación según ley de Beer-Lambert:</p>
+        <div class="formula">I = I<sub>0</sub> * e<sup>-μx</sup></div>
+        <p>(donde μ es el coeficiente de atenuación lineal y x el espesor del blindaje).</p>
+        <p><strong>Radiaciones No Ionizantes (RF, Microondas, Infrarrojos, Láser):</strong><br>
+        Vigilancia de efectos térmicos por densidad de potencia (mW/cm²) y campos electromagnéticos inducidos.</p>
+
+        <h5>Art. 193: Señalización de Seguridad</h5>
+        <p>Exigencia del código de colores estandarizado (contrastes, formas geométricas y pictogramas):</p>
+        <ul>
+            <li><strong>Rojo:</strong> Prohibición, parada de emergencia, equipo contra incendios.</li>
+            <li><strong>Amarillo:</strong> Advertencia, precaución, zona de riesgo físico.</li>
+            <li><strong>Verde:</strong> Condición de seguridad, rutas de evacuación, primeros auxilios.</li>
+            <li><strong>Azul:</strong> Obligación (uso mandatorio de EPP).</li>
+        </ul>
+        <p>Ubicación estratégica visible, iluminación garantizada y mantenimiento que asegure su legibilidad sin crear distracciones al flujo de trabajo.</p>
+
+        <h4>2. Matriz Cuantitativa de Niveles de Riesgo para Medición</h4>
+        <p>Para clasificar los datos de monitoreo en planta e integrarlos en informes de higiene industrial, se adopta el criterio de Nivel de Acción (NA), fijado habitualmente en el 50% de la dosis o en el umbral inferior de seguridad del Límite Máximo Permisible (LMP).</p>
+        <table>
+            <tr><th>Factor de Riesgo</th><th>Variable / Magnitud</th><th>Nivel de Riesgo Bajo (Aceptable)</th><th>Nivel de Riesgo Medio (Nivel de Acción)</th><th>Nivel de Riesgo Alto / Crítico (No Conforme)</th></tr>
+            <tr><td>Ruido (8h)</td><td>Nivel Sonoro Continuo Eq. (dB(A))</td><td>&le; 80 dB(A)</td><td>80.1 - 85 dB(A)</td><td>&gt; 85 dB(A) (Pico &gt;140 dB(C))</td></tr>
+            <tr><td>Vibración Cuerpo Entero</td><td>Aceleración ponderada (m/s²)</td><td>&le; 0.5 m/s²</td><td>0.51 - 1.15 m/s²</td><td>&gt; 1.15 m/s²</td></tr>
+            <tr><td>Vibración Mano-Brazo</td><td>Aceleración ponderada (m/s²)</td><td>&le; 2.5 m/s²</td><td>2.51 - 5.0 m/s²</td><td>&gt; 5.0 m/s²</td></tr>
+            <tr><td>Iluminancia (Tareas medias)</td><td>Lux en plano de trabajo (E)</td><td>&ge; 300 lux</td><td>200 - 299 lux</td><td>&lt; 200 lux</td></tr>
+            <tr><td>Iluminancia (Precisión)</td><td>Lux en plano de trabajo (E)</td><td>&ge; 1000 lux</td><td>500 - 999 lux</td><td>&lt; 500 lux</td></tr>
+            <tr><td>Iluminación Emergencia</td><td>Lux en piso / ruta de escape</td><td>&ge; 5 lux</td><td>1 - 4.9 lux</td><td>&lt; 1 lux</td></tr>
+            <tr><td>Radiación UV</td><td>Irradiancia efectiva (J/m²)</td><td>&le; 30 J/m²</td><td>10 - 30 J/m²</td><td>&gt; 30 J/m²</td></tr>
+            <tr><td>Radiación Ionizante</td><td>Dosis Efectiva Anual (mSv)</td><td>&le; 20 mSv (TOE)</td><td>1 - 20 mSv</td><td>&gt; 20 mSv</td></tr>
+            <tr><td>Señalización (Art. 193)</td><td>Conformidad dimensional/lumínica</td><td>100% cobertura ISO</td><td>70% cobertura / deterioro leve</td><td>&lt;50% cobertura / ausente / no visible</td></tr>
+        </table>
+
+        <h4>3. Jerarquía y Protocolo para la Generación de Informes Técnicos</h4>
+        <p>Todo informe de monitoreo higiénico debe redactarse bajo una estructura estandarizada que permita auditorías técnicas y legales:</p>
+        <ol>
+            <li><strong>Objetivo del Monitoreo y Alcance Legal:</strong> Cita directa de los artículos del D.E. 2393 evaluados.</li>
+            <li><strong>Ficha Técnica de Equipos de Medición:</strong> Marca, modelo, número de serie. Certificado de calibración vigente (patrón trazable a laboratorio acreditado). Calibración acústica/óptica en campo (pre y post medición).</li>
+            <li><strong>Metodología y Condiciones Operativas:</strong> Descripción de régimen de producción durante el monitoreo (para garantizar reproducibilidad y cálculo de OEE). Puntos de muestreo georreferenciados o acotados en plano de planta (formato matricial).</li>
+            <li><strong>Tabla de Datos Crudos y Discusión de Resultados:</strong> Contraste directo: Valor Medido vs. Límite Permisible (D.E. 2393). Clasificación del riesgo según la matriz (Bajo, Medio, Alto).</li>
+            <li><strong>Medidas de Control Jerárquico (Ingeniería y Gestión):</strong>
+                <ul>
+                    <li><strong>Fuente:</strong> Atenuación mecánica, encapsulamiento, mantenimiento predictivo, rediseño luminotécnico.</li>
+                    <li><strong>Medio:</strong> Barreras de aislamiento acústico, apantallamiento para radiaciones (Art. 61/62), redistribución espacial.</li>
+                    <li><strong>Receptor:</strong> Demarcación de zonas de riesgo (Art. 193), rotación del personal (reducción de C), EPP certificado (con factor de reducción de ruido NRR / filtros ópticos con grado de protección especificado).</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <!-- PESTAÑA 2 -->
+    <div id="tab2" class="tab-content">
+        <h3>Guía Docente: Estudio de Caso Clínico-Industrial (20 Minutos)</h3>
+        <p><strong>Asignatura:</strong> Seguridad Industrial y Salud Ocupacional (SISO)<br>
+        <strong>Tema:</strong> Aplicación del D.E. 2393 (Arts. 55, 57, 61, 62 y 193) y Evaluación Cuantitativa de Riesgos Físicos<br>
+        <strong>Modalidad:</strong> Exposición magistral interactiva con método del caso<br>
+        <strong>Duración:</strong> 20 minutos cronometrados</p>
+
+        <h4>1. Ficha Técnica del Escenario</h4>
+        <ul>
+            <li><strong>Empresa:</strong> Metalmecánica & Estructuras Pesadas del Pacífico S.A.</li>
+            <li><strong>Área evaluada:</strong> Nave de Corte, Conformado y Ensayos No Destructivos (END).</li>
+            <li><strong>Población expuesta:</strong> 18 operarios de producción, 4 soldadores, 2 inspectores de calidad END.</li>
+            <li><strong>Jornada laboral:</strong> 8 horas diarias (T = 8 h).</li>
+            <li><strong>Motivo de la auditoría:</strong> Incremento del 11.8% en descartes por retrabajo (merma en la Calidad del OEE), reportes de cefalea recurrente y dos incidentes por tropiezos en pasillos principales.</li>
+        </ul>
+
+        <h4>2. Dossier de Mediciones Higiénicas (Datos de Campo)</h4>
+        <p>Durante el turno matutino a régimen de producción plena (100% capacidad), el equipo de higiene industrial recabó los siguientes valores:</p>
+        <table>
+            <tr><th>Código</th><th>Factor Físico</th><th>Punto de Muestreo</th><th>Valor Medido</th><th>Límite D.E. 2393</th><th>Estado Preliminar</th></tr>
+            <tr><td>M-01</td><td>Ruido continuo (Art. 55)</td><td>Puesto de Prensas y Cizallas</td><td>92.5 dB(A)</td><td>85 dB(A)</td><td>Excedido</td></tr>
+            <tr><td>M-02</td><td>Vibración mano-brazo (Art. 55)</td><td>Amoladoras de desbaste</td><td>5.8 m/s²</td><td>5.0 m/s²</td><td>Excedido</td></tr>
+            <tr><td>M-03</td><td>Iluminancia banco (Art. 57)</td><td>Mesa de inspección dimensional</td><td>220 lux</td><td>500 lux</td><td>Deficitario</td></tr>
+            <tr><td>M-04</td><td>Alumbrado emergencia (Art. 57)</td><td>Pasillo de evacuación sur</td><td>1.2 lux</td><td>5.0 lux</td><td>Crítico</td></tr>
+            <tr><td>M-05</td><td>Radiación UV (Art. 61)</td><td>Bahía de soldadura SMAW / GMAW</td><td>2.4 µW/cm²</td><td>0.1 µW/cm²</td><td>Excedido</td></tr>
+            <tr><td>M-06</td><td>Radiación Ionizante (Art. 62)</td><td>Búnker END (Gammagrafía Ir-192)</td><td>12.5 µSv/h en pared exterior</td><td>Zona libre: 0.5 µSv/h</td><td>Fuga / Riesgo Alto</td></tr>
+            <tr><td>M-07</td><td>Señalización (Art. 193)</td><td>Nave general y búnker</td><td>Falta pictograma azul EPP; salida verde tapada</td><td>100% visible y normalizado</td><td>No Conforme</td></tr>
+        </table>
+
+        <h4>3. Guion Metodológico de la Clase (Cronograma de 20 Minutos)</h4>
+        <p>[00:00 - 03:00] Apertura y planteamiento del caso<br>
+        [03:00 - 08:00] Análisis normativo y resolución matemática (Ruido y Luz)<br>
+        [08:00 - 13:00] Matriz de clasificación de riesgos (Radiaciones y Señalización)<br>
+        [13:00 - 17:00] Ingeniería de control y vinculación con la productividad (OEE)<br>
+        [17:00 - 20:00] Pregunta socrática de debate y síntesis ejecutiva</p>
+
+        <div class="highlight-box">
+            <strong>Minuto 00:00 a 03:00 — Introducción y Planteamiento del Conflicto</strong><br>
+            Intervención del docente: "Ingenieros, la gerencia de planta nos convocó porque el OEE cayó en un 11.8% y los supervisores culpan a la 'falta de atención de los operarios'. Sin embargo, al auditar las condiciones ambientales bajo el Decreto Ejecutivo 2393, encontramos que el puesto de trabajo agrede físicamente al trabajador. Vamos a determinar la gravedad legal y física de estos hallazgos para redactar un informe pericial vinculante."<br><br>
+            Proyectar la tabla de datos crudos (M-01 a M-07) en la pizarra o pantalla.
+        </div>
+
+        <div class="highlight-box">
+            <strong>Minuto 03:00 a 08:00 — Explotación Cuantitativa y Contraste Legal</strong><br><br>
+            <em>1. Cálculo de Ruido (Art. 55)</em><br>
+            El docente demuestra en pizarra el impacto de los 92.5 dB(A) medidos, aplicando la tasa de intercambio legal de 5 dB del D.E. 2393:<br>
+            <div class="formula">T = 8 / 2<sup>(92.5 - 85) / 5</sup> = 8 / 2<sup>1.5</sup> = 8 / 2.828 = 2.82 horas</div>
+            Interpretación: En una jornada de 8 horas, el operario está expuesto casi al triple del límite seguro permitido:<br>
+            <div class="formula">D = (8 / 2.82) * 100 = 283% de Dosis</div><br>
+            
+            <em>2. Déficit Luminotécnico (Art. 57)</em><br>
+            La mesa de calibración requiere ensamble fino y lectura micrométrica (500 a 1000 lux). Se registran únicamente 220 lux. El déficit es del 56%.<br>
+            Conexión causa-raíz: La fatiga visual y los errores de lectura explican el incremento del 11.8% del OEE en piezas defectuosas (pérdida directa en el factor Calidad del OEE).<br>
+            La luminaria de emergencia registra 1.2 lux frente a los 5 reglamentarios: ante un corte de energía, la evacuación resulta inviable y propensa a accidentes con cizallas.
+        </div>
+
+        <div class="highlight-box">
+            <strong>Minuto 08:00 a 13:00 — Matriz de Riesgo: Radiaciones y Señalización</strong><br>
+            El docente clasifica las mediciones dentro de la matriz técnica para el informe:<br>
+            <table>
+                <tr><th>PUNTO</th><th>FACTOR FÍSICO</th><th>NIVEL DE RIESGO</th><th>ACCIÓN INMEDIATA</th></tr>
+                <tr><td>M-01 / M-02</td><td>Ruido y Vibración</td><td>ALTO / NO CONF.</td><td>Rotación / Amortiguador</td></tr>
+                <tr><td>M-03 / M-04</td><td>Iluminación de precisión</td><td>ALTO / NO CONF.</td><td>Reingeniería de luminaria</td></tr>
+                <tr><td>M-05</td><td>Radiación UV (Soldadura)</td><td>CRÍTICO</td><td>Mamparas clase EN 1598</td></tr>
+                <tr><td>M-06</td><td>Radiación Gamma (END)</td><td>MUY CRÍTICO</td><td>Suspensión de disparo</td></tr>
+                <tr><td>M-07</td><td>Señalización Art. 193</td><td>MEDIO-ALTO</td><td>Balizamiento normado</td></tr>
+            </table>
+            <strong>Punto focal de seguridad radiológica (Arts. 61 y 62):</strong><br>
+            <em>Radiación UV (Art. 61):</em> La falta de mamparas en soldadura somete a los transeúntes a 2.4 µW/cm², superando el umbral de daño actínico ocular (fotoqueratitis en menos de 15 minutos).<br>
+            <em>Radiación Ionizante (Art. 62):</em> La lectura perimetral del búnker (12.5 µSv/h) evidencia un blindaje deficiente o fisuras en la mampostería baritada. Supera por 25 veces el límite para personal no expuesto profesionalmente (0.5 µSv/h).
+        </div>
+
+        <div class="highlight-box">
+            <strong>Minuto 13:00 a 17:00 — Jerarquía de Controles de Ingeniería e Impacto en OEE</strong><br>
+            El docente desglosa el plan de acción correctivo que debe constar en el informe:<br>
+            <strong>En la Fuente (Ingeniería):</strong><br>
+            - Ruido/Vibración: Colocación de tacos de goma antivibratorios bajo la bancada de las prensas y cambio de amoladoras por modelos con balanceo dinámico y empuñaduras ergonómicas elastoméricas.<br>
+            - Radiación Ionizante: Adición de planchas de plomo de 2 mm en la compuerta del búnker según ley de atenuación I=I0*e^(-µx).<br>
+            <strong>En el Medio:</strong><br>
+            - Radiación UV: Instalación de mamparas perimetrales de color rojo/bronce con filtro UV (Art. 61) para aislar los arcos eléctricos.<br>
+            - Iluminación: Instalación de luminarias LED focales direccionales de 750 lux sobre las mesas de verificación (Art. 57) y sustitución de balastos en luces de emergencia (Art. 57).<br>
+            <strong>En el Receptor y Señalización (Art. 193):</strong><br>
+            - Señalización circular azul con pictograma de protección auditiva mandatoria (doble inserción: copa + tapón) y protección facial DIN 11 para soldadura.<br>
+            - Delimitación en piso con franjas amarillo/negro en zonas de prensas y verde/blanco en rutas de evacuación libres de obstáculos.
+        </div>
+
+        <div class="highlight-box">
+            <strong>Minuto 17:00 a 20:00 — Pregunta Socrática de Cierre y Tarea de Informe</strong><br>
+            <em>Pregunta de discusión para los alumnos (2 minutos):</em><br>
+            "Si la gerencia propone resolver el problema de ruido (M-01: 92.5 dB) entregando únicamente tapones auditivos comunes (NRR 15 dB) sin intervenir las máquinas ni los tiempos, ¿qué objeción técnica y legal fundamentarían en su informe?"<br><br>
+            <em>Respuesta esperada del estudiante:</em><br>
+            El docente recalca que el factor de atenuación real en campo de los tapones simples es insuficiente para atenuar de forma confiable a jornadas de 8 horas continuas (la atenuación real se castiga al 50% según OSHA: (15-7)/2 = 4 dB de reducción real, dejando al trabajador en 88.5 dB(A), aún sobre el límite). Además, vulnera la jerarquía de control del D.E. 2393, que prioriza la eliminación en la fuente y el medio antes del EPP.<br><br>
+            <em>Conclusión (1 minuto):</em><br>
+            "Un ambiente de trabajo fuera de norma no solo genera responsabilidades penales y patronales por enfermedad profesional (hipoacusia, cataratas, síndrome de dedos blancos); destruye la disponibilidad y calidad del proceso productivo. Su informe técnico debe reflejar números, normas y costos de control."
+        </div>
+    </div>
+
+    <!-- PESTAÑA 3 -->
+    <div id="tab3" class="tab-content">
+        <h3>Taller Práctico Aplicado: Auditoría Higiénico-Técnica en Planta Metalmecánica</h3>
+        <p><strong>Modalidad:</strong> Individual o parejas<br>
+        <strong>Nivel:</strong> Medio<br>
+        <strong>Tiempo límite de ejecución:</strong> 20 minutos<br>
+        <strong>Entregable:</strong> Matriz analítica de riesgos y dictamen pericial con acciones de control.</p>
+
+        <h4>1. Contexto Operativo y Datos de Campo</h4>
+        <p>Una empresa de fabricación de tolvas industriales opera con una jornada laboral de 8 horas. El departamento de Seguridad y Salud Ocupacional realizó un monitoreo instrumental con sonómetro integrador Tipo 1, acelerómetro triaxial, luxómetro calibrado, radiómetro UV y detector Geiger-Müller en cuatro puestos críticos.</p>
+        <p>Los datos recabados en régimen estable de producción son los siguientes:</p>
+        <table>
+            <tr><th>Puesto / Tarea</th><th>Factor de Riesgo Físico</th><th>Valor Medido en Planta</th><th>Tiempo Real de Exposición (C)</th><th>Referencia Legal (D.E. 2393)</th></tr>
+            <tr><td>P-1: Biselado y Corte</td><td>Ruido continuo (dB(A))</td><td>90</td><td>4 horas</td><td>Art. 55 (85 dB(A) para 8h; tasa 5 dB)</td></tr>
+            <tr><td>Ruido en reposo/almacén</td><td>70</td><td>4 horas</td><td>Permisible</td></tr>
+            <tr><td>P-2: Acabado amoladora</td><td>Vibración Mano-Brazo (m/s²)</td><td>3.5</td><td>N/A (Integrado en 8h)</td><td>Art. 55 (Valor de acción: 2.5; Límite: 5.0)</td></tr>
+            <tr><td>P-3: Inspección visual</td><td>Iluminancia en mesa (lux)</td><td>280</td><td>N/A</td><td>Art. 57 (Trabajos de precisión 500-1000 lux)</td></tr>
+            <tr><td>Pasillo de escape adyacente</td><td>2</td><td>N/A (Emergencia)</td><td>Art. 57 (Alumbrado de emergencia 5 lux)</td></tr>
+            <tr><td>P-4: Soldadura TIG inox.</td><td>Radiación UV (µW/cm²)</td><td>1.8</td><td>N/A</td><td>Art. 61 (Límite permisible 0.1 µW/cm²)</td></tr>
+            <tr><td>Planta General</td><td>Señalización</td><td>Inexistente en P-1 y P-4</td><td>N/A</td><td>Art. 193 (Colores y formas reglamentarias)</td></tr>
+        </table>
+
+        <h4>2. Consignas de Trabajo (Guía del Estudiante)</h4>
+        <p><strong>Fase A: Tratamiento Matemático de Datos (8 minutos)</strong></p>
+        <ol>
+            <li>Calcular el tiempo máximo permisible (T) para el nivel sonoro de 90 dB(A) usando la relación con tasa de 5 dB:<br>
+            <div class="formula">T = 8 / 2<sup>(L - 85) / 5</sup></div></li>
+            <li>Calcular la Dosis Diaria Acumulada de Ruido (D) considerando que el operario pasa 4 horas en corte (90 dB(A)) y 4 horas en almacén (70 dB(A), donde el tiempo permitido es virtualmente infinito, considere C/T = 0):<br>
+            <div class="formula">D = (C<sub>1</sub>/T<sub>1</sub> + C<sub>2</sub>/T<sub>2</sub>) * 100</div></li>
+            <li>Determinar el déficit porcentual de iluminancia en la mesa de inspección de precisión (280 lux vs 500 lux mínimo req):<br>
+            <div class="formula">% Déficit = ((Req - Medido) / Req) * 100</div></li>
+        </ol>
+
+        <p><strong>Fase B: Matriz de Categorización del Riesgo (6 minutos)</strong></p>
+        <p>Complete la siguiente tabla técnica clasificando cada factor según el nivel de riesgo: Bajo (Aceptable), Medio (Nivel de Acción) o Alto/Crítico (No Conforme):</p>
+        <table>
+            <tr><th>Factor Evaluado</th><th>Parámetro Clave</th><th>Nivel de Riesgo</th><th>Justificación Técnico-Normativa</th></tr>
+            <tr><td>Ruido compuesto</td><td>Dosis Diaria (D)</td><td></td><td></td></tr>
+            <tr><td>Vibración amoladora</td><td>3.5 m/s²</td><td></td><td></td></tr>
+            <tr><td>Iluminación banco</td><td>280 lux</td><td></td><td></td></tr>
+            <tr><td>Luz de emergencia</td><td>2 lux</td><td></td><td></td></tr>
+            <tr><td>Radiación UV</td><td>1.8 µW/cm²</td><td></td><td></td></tr>
+            <tr><td>Señalización</td><td>Ausente en zonas P-1/P-4</td><td></td><td></td></tr>
+        </table>
+
+        <p><strong>Fase C: Prescripción de Ingeniería y Señalización (6 minutos)</strong></p>
+        <p>Plantee una medida de control en la fuente/medio y la señalización normalizada (Art. 193) obligatoria:</p>
+        <ol>
+            <li>Para el puesto de Soldadura TIG (Radiación UV).</li>
+            <li>Para el puesto de Corte y Biselado (Ruido y Proyección).</li>
+        </ol>
+
+        <!-- SECCIÓN BLOQUEADA PESTAÑA 3 -->
+        <div class="lock-section">
+            <h4>3. Hoja de Solución y Criterios de Evaluación (Uso Docente)</h4>
+            <p>Esta sección contiene las respuestas y criterios de evaluación.</p>
+            <button class="unlock-btn" onclick="unlockSection('sol3', this)">Desbloquear Soluciones</button>
+        </div>
+        <div id="sol3" class="solution-box">
+            <h4>Respuestas Numéricas Esperadas (Fase A):</h4>
+            <p><strong>Tiempo permitido a 90 dB(A):</strong><br>
+            T = 8 / 2<sup>(90 - 85) / 5</sup> = 8 / 2<sup>1</sup> = 8 / 2 = <strong>4 horas</strong></p>
+            
+            <p><strong>Dosis Acumulada de Ruido:</strong><br>
+            D = (4 / 4 + 0) * 100 = <strong>100%</strong></p>
+            
+            <p><strong>Diagnóstico:</strong> Supera el 100% de la dosis legal diaria permitida. Condición No Conforme (justo en el umbral).</p>
+            
+            <p><strong>Déficit Luminotécnico:</strong><br>
+            % Déficit = ((500 - 280) / 500) * 100 = (220 / 500) * 100 = <strong>44.0%</strong></p>
+
+            <h4>Solución Matriz de Riesgo (Fase B):</h4>
+            <table>
+                <tr><th>Factor Evaluado</th><th>Parámetro Clave</th><th>Nivel de Riesgo</th><th>Justificación Técnico-Normativa</th></tr>
+                <tr><td>Ruido compuesto</td><td>Dosis: 100%</td><td>Alto / No Conforme</td><td>Excede el 100% de la dosis permitida bajo D.E. 2393 Art. 55.</td></tr>
+                <tr><td>Vibración amoladora</td><td>3.5 m/s²</td><td>Medio (Acción)</td><td>Supera el umbral de acción (2.5), pero no el límite de 5.0. Requiere vigilancia médica y pausas.</td></tr>
+                <tr><td>Iluminación banco</td><td>280 lux</td><td>Alto / No Conforme</td><td>Incumple el mínimo legal de 500 lux para trabajos de precisión (Art. 57).</td></tr>
+                <tr><td>Luz de emergencia</td><td>2 lux</td><td>Alto / Crítico</td><td>Menor a los 5 lux mínimos a nivel de suelo para evacuación segura.</td></tr>
+                <tr><td>Radiación UV</td><td>1.8 µW/cm²</td><td>Alto / Crítico</td><td>Supera el umbral seguro de 0.1 µW/cm², riesgo de fotoqueratitis en arco abierto (Art. 61).</td></tr>
+                <tr><td>Señalización</td><td>Ausencia total</td><td>Alto / No Conforme</td><td>Vulneración del Art. 193; falta advertencia de peligro y mandatos de EPP.</td></tr>
+            </table>
+
+            <h4>Solución Controles e Ingeniería (Fase C):</h4>
+            <p><strong>Puesto de Soldadura TIG:</strong><br>
+            <em>Ingeniería/Medio:</em> Colocación de mamparas o cortinas de soldadura con certificación óptica contra UV (clase EN 1598) con pigmentación traslúcida roja/bronce para absorción del espectro 200-315 nm.<br>
+            <em>Señalización (Art. 193):</em> Pictograma azul circular con símbolo de pantalla facial/gafas de soldador (Uso obligatorio de protección ocular/facial con grado DIN específico) y pictograma triangular amarillo con símbolo de radiación óptica no ionizante.</p>
+            
+            <p><strong>Puesto de Corte:</strong><br>
+            <em>Ingeniería/Medio:</em> Amortiguación de vibraciones en la base de la sierra/bancada mediante aisladores de elastómero y apantallamiento acústico perimetral móvil.<br>
+            <em>Señalización (Art. 193):</em> Pictograma azul de protección auditiva obligatoria (auriculares/copas) y gafas de impacto; franjas diagonales amarillo y negro en el suelo para delimitar el radio de proyección de viruta.</p>
+        </div>
+    </div>
+
+    <!-- PESTAÑA 4 -->
+    <div id="tab4" class="tab-content, tab-content active">
+        <h3>EVALUACION NORMATIVA Y TECNICA: D.E. 2393</h3>
+        <p><strong>TEMAS:</strong> Art. 55 (Ruido y Vibraciones), Art. 57 (Iluminacion), Art. 61 (UV), Art. 62 (Radiaciones), Art. 193 (Señalizacion) e Informes Higienicos<br>
+        <strong>DURACION:</strong> 60 MINUTOS | <strong>FORMATO:</strong> TEXTO PLANO</p>
+
+        <h4>BLOQUE I: OPCION MULTIPLE CON RESPUESTA UNICA (Reactivos 1 al 10)</h4>
+        <ol>
+            <li>Segun el Art. 55 del D.E. 2393, ¿cual es el nivel de presion sonora maximo permisible para una jornada ordinaria de 8 horas de exposicion continua sin EPE?<br>a) 80 dB(A) b) 85 dB(A) c) 90 dB(A) d) 95 dB(A)</li>
+            <li>De acuerdo con el Art. 55, para ruido continuo o intermitente se utiliza una tasa de cambio (relacion de intercambio) de:<br>a) 3 dB b) 4 dB c) 5 dB d) 10 dB</li>
+            <li>El nivel sonoro continuo maximo que jamas debe sobrepasarse sin proteccion auditiva bajo ninguna condicion (limite techo) es:<br>a) 100 dB(A) b) 115 dB(A) c) 130 dB(C) d) 140 dB(A)</li>
+            <li>Segun el Art. 57, el nivel minimo de iluminancia para trabajos que demandan gran precision, dibujo tecnico o lectura micrometrica es:<br>a) 100 a 200 lux b) 200 a 300 lux c) 500 a 1000 lux d) 50 a 100 lux</li>
+            <li>Conforme al Art. 57, los sistemas de alumbrado de emergencia en rutas de evacuacion deben proveer sobre el suelo un nivel lumínico minimo de:<br>a) 1 lux b) 5 lux c) 15 lux d) 50 lux</li>
+            <li>El tiempo maximo admisible para que el alumbrado de emergencia entre en servicio tras la interrupcion del suministro electrico normal es de:<br>a) 1 segundo b) 10 segundos c) 30 segundos d) 60 segundos</li>
+            <li>Segun el Art. 61, la radiacion ultravioleta proveniente de soldadura de arco electrico genera como efecto patologico agudo en ojos desprotegidos:<br>a) Glaucoma de angulo cerrado b) Cataratas seniles c) Fotoqueratitis (oftalmia electromagnetica) d) Desprendimiento de retina</li>
+            <li>En proteccion radiologica (Art. 62), el principio ALARA establece que:<br>a) Toda radiacion debe eliminarse a cero absoluto sin considerar costos. b) Las exposiciones deben mantenerse tan bajas como sea razonablemente alcanzable. c) La dosis anual puede superar los 100 mSv si la empresa lo indemniza. d) Unicamente los medicos ocupacionales pueden ingresar a camaras de ensayo.</li>
+            <li>El codigo de colores regulado en el Art. 193 designa el color AZUL para:<br>a) Advertencia de peligro inminente b) Ubicacion de equipos contra incendios c) Obligacion de uso de Equipo de Proteccion Personal (EPP) d) Señalizacion de rutas de evacuacion y primeros auxilios</li>
+            <li>En evaluacion higienica, se define como "Nivel de Accion" (Action Level) aquel umbral donde:<br>a) Se declara la clausura inmediata de la instalacion industrial. b) Se alcanza el 50% de la dosis maxima de exposicion, iniciando controles preventivos. c) El riesgo se clasifica como totalmente aceptable y libre de monitoreo. d) La empresa suspende los pagos a la seguridad social.</li>
+        </ol>
+
+        <h4>BLOQUE II: VERDADERO O FALSO JUSTIFICADO (Reactivos 11 al 17)</h4>
+        <p><em>(Indique V o F. Si es FALSO, justifique tecnicamente en el parentesis)</em></p>
+        <ol start="11">
+            <li>[ ] Conforme al D.E. 2393, si el nivel de ruido en un puesto asciende a 90 dB(A), el tiempo maximo de permanencia permitido para el trabajador es de 4 horas. (Justificacion: )</li>
+            <li>[ ] Las vibraciones de cuerpo entero (WBV) transmitidas por maquinaria pesada tienen su banda de frecuencia de mayor resonancia e impacto entre 100 y 500 Hz. (Justificacion: )</li>
+            <li>[ ] Para una via de evacuacion o pasillo de paso general, el Art. 57 exige un nivel de iluminancia igual o superior a 500 lux. (Justificacion: )</li>
+            <li>[ ] La radiacion UV-C comprende longitudes de onda entre 100 y 280 nm y posee mayor potencial germicida y energetico que la radiacion UV-A. (Justificacion: )</li>
+            <li>[ ] El limite anual de dosis efectiva para trabajadores ocupacionalmente expuestos a radiaciones ionizantes es de 20 mSv/año promediado en 5 años consecutivos. (Justificacion: )</li>
+            <li>[ ] Segun el Art. 193, el color de contraste reglamentario para el fondo de seguridad amarillo (advertencia) es el color blanco. (Justificacion: )</li>
+            <li>[ ] La entrega de protectores auditivos de insercion (tapones) exime a la empresa de implementar controles de ingenieria en la fuente generadora de ruido. (Justificacion: )</li>
+        </ol>
+
+        <h4>BLOQUE III: EMPAREJAMIENTO DE TERMINOS Y NORMAS (Reactivos 18 al 22)</h4>
+        <p>Relacione el concepto o parametro de la COLUMNA A con la definicion o norma correspondiente en la COLUMNA B.</p>
+        <p><strong>COLUMNA A:</strong><br>
+        [18] Art. 55 (Vibraciones mano-brazo)<br>
+        [19] Art. 57 (Nivel de emergencia)<br>
+        [20] Art. 61 (Radiacion UV)<br>
+        [21] Art. 62 (Atenuacion de fotones)<br>
+        [22] Art. 193 (Color Verde)</p>
+        <p><strong>COLUMNA B:</strong><br>
+        (A) Ley de atenuacion exponencial de Beer-Lambert (I = I0 * e^(-mu * x)).<br>
+        (B) Señalizacion de salidas de socorro, puestos de primeros auxilios y vias seguras.<br>
+        (C) Valor de accion de 2.5 m/s^2 y valor limite de 5.0 m/s^2 para jornada de 8h.<br>
+        (D) Mamparas con absorcion espectral certificada clase EN 1598 en puestos de soldadura.<br>
+        (E) 5 lux medidos a nivel del suelo con autonomia minima de 60 minutos.</p>
+        <p>Respuestas: 18: [ ] 19: [ ] 20: [ ] 21: [ ] 22: [ ]</p>
+
+        <h4>BLOQUE IV: COMPLETACION TECNICA (Reactivos 23 al 27)</h4>
+        <p>Complete los espacios en blanco con el termino tecnico, valor numerico o concepto exacto:</p>
+        <ol start="23">
+            <li>La formula para determinar el tiempo permisible T de ruido bajo una tasa de 5 dB en funcion del nivel sonoro medido L es: T = 8 / (2 elevado a ( (L - _____) / _____ ) ).</li>
+            <li>El sindrome vascular y neurosensor ocasionado por exposicion prolongada a vibraciones en herramientas manuales se denomina vulgarmente Sindrome de Dedos Blancos o enfermedad de _______________.</li>
+            <li>Las señales de advertencia segun el Art. 193 tienen forma geometrica _______________, con fondo de color _______________ y pictograma negro.</li>
+            <li>Para medir con precision la iluminancia en puestos de trabajo se emplea un equipo denominado _______________, calibrado bajo celula de correccion fotopica.</li>
+            <li>En un informe pericial de higiene, cuando el valor medido se ubica entre el Nivel de Accion y el Limite Maximo Permisible, el nivel de riesgo se clasifica como _______________.</li>
+        </ol>
+
+        <h4>BLOQUE V: CASOS DE APLICACION Y CALCULOS RAPIDOS (Reactivos 28 al 30)</h4>
+        <ol start="28">
+            <li>En una nave de embuticion, un operario permanece 2 horas en una cortadora a 95 dB(A) y las restantes 6 horas en una zona de ensamble a 80 dB(A). Tomando en cuenta que el tiempo permitido a 95 dB(A) es de 2 horas (T1 = 2) y a 80 dB(A) el aporte de dosis es nulo (T2 tiende a infinito):<br>a) Calcule la dosis acumulada de ruido diario (D).<br>b) Indique si el trabajador cumple o incumple el Art. 55.<br><em>Espacio para calculo:</em></li>
+            <li>Se realiza una medicion en la mesa de control de calidad optico de una linea farmaceutica, arrojando 280 lux. La tarea exige lectura de defectos microscopicos, cuyo valor de norma es 1000 lux.<br>a) Determine el deficit porcentual de iluminacion.<br>b) Indique que impacto genera esto en el OEE (Disponibilidad, Rendimiento o Calidad).<br><em>Espacio para calculo:</em></li>
+            <li>Durante la inspeccion de un búnker de gammagrafia industrial (Art. 62), el radiometro portatil mide 8 uSv/h en la puerta externa. Si el limite para areas de libre acceso no controladas es de 0.5 uSv/h:<br>a) ¿Cuantas veces se excede el limite seguro de libre transito?<br>b) Escriba dos acciones correctivas inmediatas de proteccion radiologica (fuente/medio).<br><em>Espacio para desarrollo:</em></li>
+        </ol>
+
+        <!-- SECCIÓN BLOQUEADA PESTAÑA 4 -->
+        <div class="lock-section">
+            <h4>SOLUCIONARIO Y CRITERIOS DE CALIFICACION DOCENTE</h4>
+            <p>Esta sección contiene las respuestas a toda la evaluación.</p>
+            <button class="unlock-btn" onclick="unlockSection('sol4', this)">Desbloquear Soluciones</button>
+        </div>
+        <div id="sol4" class="solution-box">
+            <h4>BLOQUE I:</h4>
+            <p>1: b (85 dB(A) es el LMP legal para 8 horas bajo D.E. 2393).<br>
+            2: c (Tasa de 5 dB establecida en la legislacion ecuatoriana).<br>
+            3: b (115 dB(A) es el techo absoluto sin proteccion).<br>
+            4: c (500 a 1000 lux para trabajos finos y lectura instrumental de precision).<br>
+            5: b (5 lux es el valor obligatorio a nivel del suelo en rutas de escape).<br>
+            6: a (1 segundo es el tiempo maximo de conmutacion instantanea).<br>
+            7: c (Fotoqueratitis por daño fotoquimico en cornea y conjuntiva).<br>
+            8: b (As Low As Reasonably Achievable: optimizacion radiologica).<br>
+            9: c (Azul indica obligatoriedad de uso de EPP o conducta especifica).<br>
+            10: b (Nivel de accion = 50% de la dosis o umbral de gestion preventiva).</p>
+
+            <h4>BLOQUE II:</h4>
+            <p>11: V (A 90 dB(A), aplicando tasa de 5 dB: 8 / 2^((90-85)/5) = 8/2 = 4 horas).<br>
+            12: F (El rango critico de resonancia en cuerpo entero es de 1 a 80 Hz, resonando visceras y columna entre 4 y 8 Hz; de 100 a 500 Hz corresponde a vibracion mano-brazo).<br>
+            13: F (Para pasillos y transito general se requiere entre 50 y 100 lux; 500 lux es para precision).<br>
+            14: V (UV-C es de onda corta, mayor frecuencia y alto potencial destructivo celular).<br>
+            15: V (Conforme directrices OIEA e ICRP integradas al control del Art. 62).<br>
+            16: F (El color de contraste reglamentario del amarillo de seguridad es el NEGRO).<br>
+            17: F (La jerarquia legal y tecnica obliga a intervenir primero en la fuente y en el medio de propagacion antes de confiar el control al EPP).</p>
+
+            <h4>BLOQUE III:</h4>
+            <p>18: C &nbsp;&nbsp; 19: E &nbsp;&nbsp; 20: D &nbsp;&nbsp; 21: A &nbsp;&nbsp; 22: B</p>
+
+            <h4>BLOQUE IV:</h4>
+            <p>23: 85 / 5<br>
+            24: Raynaud<br>
+            25: triangular / amarillo<br>
+            26: luxometro<br>
+            27: Medio (o Nivel de Accion)</p>
+
+            <h4>BLOQUE V:</h4>
+            <p>28: a) D = (C1/T1 + C2/T2) * 100 = (2/2 + 0) * 100 = 100%. &nbsp;&nbsp; b) Se encuentra exactamente en el 100% de la dosis maxima permisible. Si bien no sobrepasa formalmente el LMP, esta en el umbral critico y requiere monitoreo periodico.</p>
+            <p>29: a) Deficit = ((1000 - 280) / 1000) * 100 = (720 / 1000) * 100 = 72.0%. &nbsp;&nbsp; b) Impacta directamente en el factor CALIDAD del OEE, debido al incremento de piezas defectuosas no detectadas o errores de inspeccion generados por fatiga visual.</p>
+            <p>30: a) Exceso = 8 / 0.5 = 16 veces por encima del limite de libre transito. &nbsp;&nbsp; b) Medidas inmediatas:<br>
+            - Suspension inmediata de disparos radiograficos hasta verificar el colimador y blindaje.<br>
+            - Blindaje estructural adicional con laminas de plomo o mamposteria baritada en la puerta del búnker y delimitacion perimetral Art. 193 con trebol radiactivo.</p>
+        </div>
+    </div>
+
+    <!-- PESTAÑA 5 -->
+    <div id="tab5" class="tab-content">
+        <h3>Tarea Asincrónica: Auditoría Pericial Integral y Reingeniería de Control Ambiental en Planta Metalúrgica Pesada</h3>
+        <p><strong>Asignatura:</strong> Seguridad Industrial y Salud Ocupacional (SISO)<br>
+        <strong>Marco Legal y Técnico:</strong> Decreto Ejecutivo 2393 (Arts. 55, 57, 61, 62, 193), Estándares ISO 45001 y Criterios Higiénicos Internacionales (ACGIH / ISO 9612 / ISO 5349 / ISO 2631 / ICRP 103).<br>
+        <strong>Nivel de Complejidad:</strong> Alto (Evaluación Cuantitativa Multivariable, Blindaje Físico y Jerarquía de Control).<br>
+        <strong>Modalidad:</strong> Trabajo de investigación y resolución pericial asincrónica (Individual o Equipos de máx. 2 ingenieros).</p>
+
+        <h4>1. Descripción del Escenario Operativo</h4>
+        <p>La empresa "Consorcio Metalúrgico del Austro C.A." opera una planta de calderería pesada, conformado de tuberías para oleoductos y Ensayos No Destructivos (END). La jornada laboral es continua de 8 horas diarias (T = 8 h, de 07:00 a 15:30 con 30 minutos no computables de almuerzo).</p>
+        <p>La Gerencia General ha detectado tres problemas críticos:</p>
+        <ul>
+            <li>Una notificación vinculante del ente de control laboral exigiendo un informe pericial de higiene tras reportes médicos de hipoacusia neurosensorial bilateral y síndrome del túnel carpiano en el personal de corte y biselado.</li>
+            <li>Un incremento del 11.8% en defectos de acabado y grietas inadvertidas en soldadura (merma crítica en el componente de Calidad del OEE).</li>
+            <li>Alarmas periódicas en los dosímetros personales de termoluminiscencia (TLD) del personal adyacente a la bahía de ensayos no destructivos por rayos gamma.</li>
+        </ul>
+        <p>Usted ha sido contratado como Perito Auditor en Seguridad y Salud Ocupacional para realizar el diagnóstico analítico, modelar los cálculos matemáticos avanzados, categorizar los niveles de riesgo y diseñar la reingeniería de control en la fuente, el medio y el receptor.</p>
+
+        <h4>2. Dossier de Datos Cuantitativos de Campo</h4>
+        <p>El equipo pericial realizó mediciones durante cinco días hábiles representativos bajo régimen de producción nominal (100% capacidad instalada):</p>
+
+        <p><strong>A. Factor Físico: Ruido Acústico en Ciclos de Trabajo Variables (Art. 55)</strong><br>
+        El puesto de Operador de Corte, Tronzado y Rebajado presenta una exposición discontinua distribuida de la siguiente forma a lo largo de las 8 horas de turno:</p>
+        <ul>
+            <li>Fase 1 (Tronzado con disco abrasivo de corte pesado): C<sub>1</sub> = 1.5 h/día; Nivel sonoro continuo equivalente: L<sub>1</sub> = 98.0 dB(A).</li>
+            <li>Fase 2 (Biselado de tubería con amoladora angular neumática): C<sub>2</sub> = 2.5 h/día; Nivel sonoro continuo equivalente: L<sub>2</sub> = 91.0 dB(A).</li>
+            <li>Fase 3 (Soldadura por arco sumergido y armado): C<sub>3</sub> = 3.0 h/día; Nivel sonoro continuo equivalente: L<sub>3</sub> = 84.0 dB(A).</li>
+            <li>Fase 4 (Traslado en carretilla y limpieza de viruta en pasillos): C<sub>4</sub> = 1.0 h/día; Nivel sonoro continuo equivalente: L<sub>4</sub> = 76.0 dB(A).</li>
+        </ul>
+        <p>Adicionalmente, el sonómetro integrador Tipo 1 registró picos repetitivos de impacto por descarga neumática de planchas de hasta 143.5 dB(C).</p>
+
+        <p><strong>B. Factor Físico: Vibraciones Mecánicas (Art. 55)</strong><br>
+        <em>Vibración Mano-Brazo (HAV):</em> El operario utiliza la amoladora neumática durante 2.5 h/día acumuladas. Los valores de aceleración triaxial ponderada medidos en empuñadura son:<br>
+        a<sub>wx</sub> = 4.2 m/s², a<sub>wy</sub> = 3.8 m/s², a<sub>wz</sub> = 5.1 m/s²<br><br>
+        <em>Vibración Cuerpo Entero (WBV):</em> El conductor del autoelevador de transporte de placas opera durante 6.0 h/día en un vehículo diésel con asiento rígido sin suspensión neumática. Las aceleraciones ponderadas medidas en el asiento son:<br>
+        a<sub>wx</sub> = 0.65 m/s², a<sub>wy</sub> = 0.58 m/s², a<sub>wz</sub> = 0.92 m/s²<br>
+        (Recuerde los factores de multiplicación de norma ISO 2631-1: k<sub>x</sub> = 1.4, k<sub>y</sub> = 1.4, k<sub>z</sub> = 1.0).</p>
+
+        <p><strong>C. Factor Físico: Luminotecnia en Puestos y Emergencia (Art. 57)</strong><br>
+        <em>Mesa de Ensayos No Destructivos</em> (inspección de partículas magnéticas y líquidos penetrantes):<br>
+        Tarea visual: Detección micrométrica de fisuras y medición de garganta con calibre Vernier.<br>
+        Mediciones de iluminancia sobre el plano de trabajo (0.85 m del suelo): Se tomaron 9 puntos según retícula regular (3 × 3):<br>
+        [210, 240, 220, 290, 310, 270, 205, 230, 225] lux<br>
+        Coeficiente de uniformidad actual: U<sub>0</sub> = E<sub>min</sub> / E<sub>prom</sub>.<br><br>
+        <em>Ruta Principal de Evacuación hacia Punto de Encuentro:</em><br>
+        Iluminancia media medida a nivel de suelo con corte intencional de red principal: 1.4 lux.<br>
+        Autonomía declarada del banco de baterías de lámparas de emergencia: 25 minutos.</p>
+
+        <p><strong>D. Factor Físico: Radiaciones Ultravioletas (Art. 61)</strong><br>
+        Las cabinas de soldadura GMAW/FCAW carecen de biombos fijos.<br>
+        A una distancia de 3.5 metros (zona de tránsito de pasillo peatonal de supervisores), el radiómetro registra una irradiancia espectral ponderada efectiva de E<sub>eff</sub> = 2.4 µW/cm² para una exposición no apantallada acumulada de transeúntes de aproximadamente 1.5 h/día.<br>
+        (Límite permisible ACGIH/D.E. 2393: La dosis diaria para E<sub>eff</sub> no debe sobrepasar 30 J/m² en una jornada de 8 horas, o un valor de flujo continuo equivalente de 0.1–1.0 µW/cm²).</p>
+
+        <p><strong>E. Factor Físico: Radiaciones Ionizantes en Búnker END (Art. 62)</strong><br>
+        Fuente utilizada: Proyector gammagráfico con radionucleido de Iridio-192 (<sup>192</sup>Ir) con actividad nominal de A<sub>0</sub> = 1.85 TBq (50 Ci).<br>
+        Tasa de exposición medida en la cara externa de la compuerta metálica de acceso (área catalogada como libre/pública): Ḣ = 24.5 µSv/h.<br>
+        La compuerta actual es de acero al carbono dulce (ρ = 7.8 g/cm³) con un espesor de x<sub>0</sub> = 12 mm.<br>
+        El coeficiente de atenuación lineal del plomo (Pb) para el espectro gamma medio del <sup>192</sup>Ir (E<sub>γ</sub> ≈ 0.38 MeV) es μ<sub>Pb</sub> = 2.30 cm<sup>-1</sup> (o espesor hemirreductor HVL ≈ 0.30 cm).</p>
+
+        <p><strong>F. Señalización y Balizamiento (Art. 193)</strong><br>
+        - Ausencia de señalética fotoluminiscente en salidas de emergencia.<br>
+        - Falta de rotulación del trebol de riesgo radiológico en el exterior de la compuerta.<br>
+        - Ausencia de demarcación perimetral de zonas de atropello de autoelevadores y obligatoriedad de protección auditiva.</p>
+
+        <h4>3. Estructura y Consignas del Entregable Requerido</h4>
+        <p>El informe pericial técnico debe presentarse en formato de reporte formal de ingeniería conteniendo los siguientes cuatro módulos:</p>
+        <ul>
+            <li><strong>Módulo 1: Modelado Matemático e Higiénico Cuantitativo</strong> (Cálculos de T, D, LAeq,8h, A(8) HAV/WBV, Iluminancia, Dosis UV, Blindaje Pb).</li>
+            <li><strong>Módulo 2: Matriz Cuantitativa Pericial de Clasificación del Riesgo</strong> (Bajo, Medio, Alto/Crítico vs D.E. 2393).</li>
+            <li><strong>Módulo 3: Plan Integral de Ingeniería de Control y EPP</strong> (Jerarquía de controles y Art. 193).</li>
+            <li><strong>Módulo 4: Análisis de Impacto Económico y Productivo (OEE)</strong> (Disponibilidad, Rendimiento, Calidad).</li>
+        </ul>
+
+        <h4>4. Rúbrica de Evaluación Analítica (100 Puntos)</h4>
+        <table>
+            <tr><th>Criterio de Evaluación</th><th>Excelente (90-100%)</th><th>Satisfactorio (75-89%)</th><th>En Desarrollo (50-74%)</th><th>Insuficiente (&lt;50%)</th><th>Pts</th></tr>
+            <tr><td>1. Rigor Matemático</td><td>Resuelve con exactitud analítica y conceptual todas las fórmulas.</td><td>Errores menores de redondeo; fórmulas bien seleccionadas.</td><td>Omite 1 o 2 cálculos fundamentales.</td><td>Cálculos incorrectos, fórmulas mal empleadas.</td><td>30</td></tr>
+            <tr><td>2. Aplicación Normativa</td><td>Contrasta cada dato contra Arts. D.E. 2393 con precisión pericial.</td><td>Contrasta la mayoría citando artículos correctos.</td><td>Confunde límites de exposición o artículos.</td><td>No fundamenta en D.E. 2393.</td><td>25</td></tr>
+            <tr><td>3. Reingeniería</td><td>Propone controles viables, detallados y jerarquizados.</td><td>Plantea soluciones adecuadas, pero delega al EPP.</td><td>Sugiere medidas genéricas sin dimensionamiento.</td><td>No respeta jerarquía o propone medidas absurdas.</td><td>25</td></tr>
+            <tr><td>4. Integración OEE</td><td>Conecta sólidamente física ambiental con OEE.</td><td>Vincula higiene con productividad de forma coherente.</td><td>Mención superficial del OEE sin causa-raíz.</td><td>No analiza impacto en productividad.</td><td>20</td></tr>
+        </table>
+
+        <!-- SECCIÓN BLOQUEADA PESTAÑA 5 -->
+        <div class="lock-section">
+            <h4>5. Solución Modelo y Pauta Pericial Oficial (Uso Docente)</h4>
+            <p>Esta sección contiene la resolución completa del caso para cotejo y evaluación docente.</p>
+            <button class="unlock-btn" onclick="unlockSection('sol5', this)">Desbloquear Soluciones</button>
+        </div>
+        <div id="sol5" class="solution-box">
+            <h4>Módulo 1: Deducciones Matemáticas</h4>
+            <p><strong>1. Ruido Laboral (Art. 55)</strong><br>
+            Tasa de intercambio legal (5 dB): T<sub>i</sub> = 8 / 2<sup>(L<sub>i</sub> - 85) / 5</sup></p>
+            <ul>
+                <li>Fase 1 (98.0 dB(A)): T<sub>1</sub> = 8 / 2<sup>(98 - 85) / 5</sup> = 8 / 2<sup>2.6</sup> = 1.3194 h (1 h 19 min)</li>
+                <li>Fase 2 (91.0 dB(A)): T<sub>2</sub> = 8 / 2<sup>(91 - 85) / 5</sup> = 8 / 2<sup>1.2</sup> = 3.4822 h (3 h 29 min)</li>
+                <li>Fase 3 (84.0 dB(A)): T<sub>3</sub> = 8 / 2<sup>(84 - 85) / 5</sup> = 8 / 2<sup>-0.2</sup> = 9.1896 h</li>
+                <li>Fase 4 (76.0 dB(A)): T<sub>4</sub> = 8 / 2<sup>(76 - 85) / 5</sup> = 8 / 2<sup>-1.8</sup> = 27.8576 h</li>
+            </ul>
+            <p>Cálculo de Dosis Total Diaria (D):<br>
+            D = (1.5/1.3194 + 2.5/3.4822 + 3.0/9.1896 + 1.0/27.8576) * 100<br>
+            D = (1.1369 + 0.7179 + 0.3265 + 0.0359) * 100 = <strong>221.72%</strong><br>
+            Diagnóstico: Sobreexposición crítica severa (supera por 121.7% el límite).</p>
+
+            <p>Nivel Sonoro Continuo Equivalente Ponderado A (L<sub>Aeq,8h</sub>):<br>
+            L<sub>Aeq,8h</sub> = 10 log<sub>10</sub> [ (1/8) * (1.5 * 10<sup>9.8</sup> + 2.5 * 10<sup>9.1</sup> + 3.0 * 10<sup>8.4</sup> + 1.0 * 10<sup>7.6</sup>) ]<br>
+            L<sub>Aeq,8h</sub> = <strong>92.24 dB(A)</strong></p>
+            
+            <p>Conformidad de Pico Acústico: Medido 143.5 dB(C). Límite techo: 140.0 dB(C).<br>
+            Diagnóstico: Infracción grave inmediata. Riesgo directo de traumatismo acústico agudo.</p>
+
+            <p><strong>2. Vibraciones Mecánicas (Art. 55)</strong><br>
+            <em>Vibración Mano-Brazo (HAV):</em><br>
+            a<sub>hv</sub> = √(4.2² + 3.8² + 5.1²) = √(17.64 + 14.44 + 26.01) = 7.62 m/s²<br>
+            A(8)<sub>HAV</sub> = 7.62 * √(2.5 / 8) = 7.62 * 0.5590 = <strong>4.26 m/s²</strong><br>
+            Diagnóstico: Riesgo Medio (Nivel de Acción Excedido). 70.4% por encima del valor de acción (2.5).</p>
+
+            <p><em>Vibración Cuerpo Entero (WBV):</em><br>
+            Ejes ponderados: k<sub>x</sub>a<sub>wx</sub> = 0.91, k<sub>y</sub>a<sub>wy</sub> = 0.812, k<sub>z</sub>a<sub>wz</sub> = 0.92. Eje dominante Z.<br>
+            A(8)<sub>WBV,z</sub> = 0.92 * √(6.0 / 8) = 0.80 m/s²<br>
+            Vector total a<sub>v</sub> = √(0.91² + 0.812² + 0.92²) = 1.528 m/s² => A(8)<sub>vectorial</sub> = 1.528 * 0.866 = <strong>1.32 m/s²</strong><br>
+            Diagnóstico: Supera ampliamente Nivel de Acción (0.50) y sobrepasa límite legal (1.15). Riesgo Crítico.</p>
+
+            <p><strong>3. Iluminancia y Alumbrado de Emergencia (Art. 57)</strong><br>
+            Promedio (E) = 2200 / 9 = <strong>244.44 lux</strong><br>
+            Uniformidad (U<sub>0</sub>) = 205 / 244.44 = <strong>0.839</strong> (Aceptable > 0.6)<br>
+            % Déficit (vs 500 lux) = ((500 - 244.44) / 500) * 100 = <strong>51.11%</strong><br>
+            Alumbrado Emergencia: Medido 1.4 lux (Mínimo 5.0 lux) y 25 min (Mínimo 60 min). No Conforme.</p>
+
+            <p><strong>4. Radiaciones y Cálculo de Blindaje Plomado</strong><br>
+            <em>Radiación UV (Art. 61):</em><br>
+            Dosis UV = 2.4 µW/cm² * 5400 s = 12960 µJ/cm² = <strong>129.6 J/m²</strong><br>
+            Exceso = 129.6 / 30.0 = <strong>4.32 veces por encima del límite</strong>. Causa directa de eritema/fotoqueratitis.</p>
+
+            <p><em>Radiación Ionizante y Dimensionamiento de Blindaje (Art. 62):</em><br>
+            Aplicando Ley de Beer-Lambert: 0.5 = 24.5 * e<sup>-2.30 * Δx</sup><br>
+            ln(0.020408) = -2.30 * Δx => -3.8918 = -2.30 * Δx<br>
+            Δx = <strong>1.692 cm (≈ 17 mm de plomo)</strong><br>
+            Prescripción: Láminas de plomo electrolítico 99.9% espesor mínimo 17 mm con traslape laberinto.</p>
+
+            <h4>Módulo 2: Matriz Cuantitativa Pericial de Riesgo</h4>
+            <table>
+                <tr><th>Agente Físico</th><th>Parámetro Cuantitativo</th><th>Valor Obtenido</th><th>Umbral Legal</th><th>Categorización</th><th>Art. Infringido</th></tr>
+                <tr><td>Ruido Diario</td><td>Dosis Acumulada (D)</td><td>221.72%</td><td>Máx. 100%</td><td>Alto / Crítico</td><td>Art. 55</td></tr>
+                <tr><td>Ruido Impacto</td><td>Pico Presión</td><td>143.5 dB(C)</td><td>Techo 140 dB(C)</td><td>Crítico / Inminente</td><td>Art. 55</td></tr>
+                <tr><td>Vibración HAV</td><td>A(8)</td><td>4.26 m/s²</td><td>Acción: 2.5 / LMP: 5.0</td><td>Medio (Nivel Acción)</td><td>Art. 55</td></tr>
+                <tr><td>Vibración WBV</td><td>Vector A(8)</td><td>1.32 m/s²</td><td>LMP: 1.15 m/s²</td><td>Alto / No Conforme</td><td>Art. 55</td></tr>
+                <tr><td>Iluminancia END</td><td>Media</td><td>244.44 lux</td><td>Mín. 500-1000 lux</td><td>Alto / No Conforme</td><td>Art. 57</td></tr>
+                <tr><td>Luz Emergencia</td><td>Nivel/Autonomía</td><td>1.4 lux / 25 min</td><td>Mín 5 lux / 60 min</td><td>Crítico / Evacuación</td><td>Art. 57</td></tr>
+                <tr><td>Radiación UV</td><td>Exposición efectiva</td><td>129.6 J/m²</td><td>Máx. 30.0 J/m²</td><td>Crítico / Actínico</td><td>Art. 61</td></tr>
+                <tr><td>Radiación Gamma</td><td>Tasa de fuga</td><td>24.5 µSv/h</td><td>Máx. 0.5 µSv/h</td><td>Muy Crítico / Fuga</td><td>Art. 62</td></tr>
+                <tr><td>Señalización</td><td>Cobertura integral</td><td>Inexistente/Incompleta</td><td>100% codificado</td><td>Alto / Incumplimiento</td><td>Art. 193</td></tr>
+            </table>
+
+            <h4>Módulo 3: Plan de Reingeniería de Control y Señalización</h4>
+            <p><strong>Ingeniería en la Fuente:</strong><br>
+            - Sustitución de válvulas de escape libre por silenciadores de descarga porosa sinterizada (reducción picos &lt; 110 dB(C)).<br>
+            - Sustitución asiento rígido autoelevador por suspensión neumática ajustable (atenúa eje Z a &lt; 0.40 m/s²).</p>
+            <p><strong>Ingeniería en el Medio:</strong><br>
+            - Biombos fijos/cortinas retráctiles EN 1598 (color bronce/rojo, absorben 100-400 nm).<br>
+            - Forrado plomado 17 mm compuerta búnker.<br>
+            - Luminarias LED campana estancas CRI &ge; 85, garantizando &ge; 750 lux mantenidos.</p>
+            <p><strong>Receptor y Cálculo de EPP:</strong><br>
+            - Doble protección auditiva mandatoria (orejera SNR 32 + tapón SNR 28), garantizando reducción efectiva de 15-18 dB(A).<br>
+            - Caretas soldador DIN 11.</p>
+            <p><strong>Programa de Señalización (Art. 193):</strong><br>
+            - Búnker Gamma: Triangular amarilla borde negro trebol radiactivo "ZONA CONTROLADA".<br>
+            - SoldEPP: Circular azul careta obligatoria + Triangular amarilla+e7 radiación óptica.<br>
+            - Nave General: Franjas poliuretano amarillo tránsito 10 cm; rutas escape placas fotoluminiscentes verdes.</p>
+
+            <h4>Módulo 4: Análisis de Impacto Directo en el OEE</h4>
+            <p>OEE = Disponibilidad (A) × Rendimiento (P) × Calidad (Q)</p>
+            <p><strong>Disponibilidad (A):</strong> La sobreexposición por ruido (D=221%) y vibraciones obligaría legalmente a detener la operación o rotar personal, reduciendo el tiempo planificado de producción directa por paradas regulatorias o baja por enfermedad profesional.</p>
+            <p><strong>Rendimiento (P):</strong> La vibración WBV (1.32 m/s²) causará fatiga temprana y lentitud en el conductor del autoelevador, reduciendo la velocidad de ciclo de transporte de material. El síndrome de túnel carpiano por HAV mermará la destreza manual en el biselado.</p>
+            <p><strong>Calidad (Q):</strong> El severo déficit de iluminancia (51%) y la fatiga visual directa impactan en la tasa de detección de defectos, explicando el incremento del 11.8% en grietas inadvertidas (merma en líquidos penetrantes/partículas magnéticas). Además, la fuga de radiación gamma obliga a reprocesar piezas o invalida ensayos END por seguridad radiológica, generando retrabajo.</p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // Función para cambiar de pestaña
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].classList.remove("active");
+        }
+        tablinks = document.getElementsByClassName("tab-btn");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
+        }
+        document.getElementById(tabName).classList.add("active");
+        evt.currentTarget.classList.add("active");
+    }
+
+    // Función para desbloquear secciones con clave ofuscada
+    function unlockSection(sectionId, buttonElement) {
+        var password = prompt("Ingrese la clave de acceso docente:");
+        if (!password) return; // Cancelado
+
+        // La clave es 1983. Se ofusca mediante códigos ASCII char(49)=1, char(57)=9, char(56)=8, char(51)=3
+        // Para evitar que aparezca "1983" en el código fuente.
+        var secretKey = [49, 57, 56, 51].map(c => String.fromCharCode(c)).join('');
+        
+        if (password === secretKey) {
+            document.getElementById(sectionId).style.display = 'block';
+            // Ocultar el botón y el cuadro de bloqueo
+            buttonElement.parentElement.style.display = 'none';
+        } else {
+            alert("Clave incorrecta. Acceso denegado.");
+        }
+    }
+</script>
+
+</body>
+</html>
