@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Norma Escrita en la Piel — Ensayo Académico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4efe6;
+    --bg-deep: #ebe4d6;
+    --paper: #fbf7ef;
+    --ink: #1c1a17;
+    --ink-soft: #3d3934;
+    --ink-muted: #6b635a;
+    --accent: #8b2a1e;
+    --accent-deep: #5e1c14;
+    --gold: #a87932;
+    --rule: #c9bfae;
+    --rule-soft: #ddd3c1;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.7;
+    font-size: 19px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* ============ TOP BAR ============ */
+  .topbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 56px;
+    background: rgba(28, 26, 23, 0.96);
+    color: #e8e0d2;
+    display: flex;
+    align-items: center;
+    padding: 0 28px;
+    z-index: 100;
+    font-family: 'Inter', sans-serif;
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(168, 121, 50, 0.3);
+  }
+  .topbar .brand {
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .topbar .brand span { color: #e8e0d2; font-weight: 400; margin-left: 10px; }
+  .topbar .progress {
+    position: absolute;
+    bottom: -1px; left: 0;
+    height: 2px;
+    background: var(--gold);
+    width: 0%;
+    transition: width 0.1s linear;
+  }
+  .topbar nav {
+    margin-left: auto;
+    display: flex;
+    gap: 22px;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .topbar nav a {
+    color: #c9bfae;
+    text-decoration: none;
+    transition: color 0.2s;
+    font-weight: 400;
+  }
+  .topbar nav a:hover { color: var(--gold); }
+
+  /* ============ HERO ============ */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 8vw 80px;
+    position: relative;
+    background:
+      radial-gradient(ellipse at 20% 30%, rgba(139, 42, 30, 0.08), transparent 60%),
+      radial-gradient(ellipse at 80% 70%, rgba(168, 121, 50, 0.1), transparent 60%),
+      var(--bg);
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .hero .eyebrow::before {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.6rem, 6vw, 5.2rem);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-bottom: 28px;
+    max-width: 18ch;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent-deep);
+    font-weight: 500;
+  }
+  .hero .subtitle {
+    font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+    color: var(--ink-soft);
+    font-style: italic;
+    max-width: 60ch;
+    margin-bottom: 56px;
+    line-height: 1.5;
+  }
+  .hero .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 32px;
+    max-width: 900px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+  }
+  .hero .meta-block .label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 8px;
+  }
+  .hero .meta-block .value {
+    font-size: 1.05rem;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .hero .meta-block .value em {
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+
+  /* ============ LAYOUT ============ */
+  .layout {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 4vw;
+    gap: 60px;
+  }
+
+  /* ============ SIDEBAR ============ */
+  .sidebar {
+    position: sticky;
+    top: 80px;
+    height: fit-content;
+    padding: 40px 0;
+    font-family: 'Inter', sans-serif;
+  }
+  .sidebar .toc-title {
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .sidebar ul { list-style: none; }
+  .sidebar li { margin-bottom: 10px; }
+  .sidebar a {
+    display: block;
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 12.5px;
+    line-height: 1.4;
+    padding: 6px 12px 6px 14px;
+    border-left: 2px solid transparent;
+    transition: all 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .sidebar a:hover {
+    color: var(--accent);
+    border-left-color: var(--rule);
+  }
+  .sidebar a.active {
+    color: var(--accent);
+    border-left-color: var(--accent);
+    background: rgba(139, 42, 30, 0.04);
+    font-weight: 500;
+  }
+  .sidebar a .num {
+    color: var(--ink-muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    margin-right: 6px;
+  }
+
+  /* ============ CONTENT ============ */
+  .content {
+    padding: 80px 0 120px;
+    max-width: 760px;
+  }
+
+  .section {
+    margin-bottom: 96px;
+    scroll-margin-top: 80px;
+  }
+  .section:last-child { margin-bottom: 0; }
+
+  .section-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label .roman {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--ink-muted);
+    font-weight: 500;
+  }
+  .section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 32px;
+    letter-spacing: -0.01em;
+  }
+  .section h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.55rem;
+    font-weight: 600;
+    color: var(--accent-deep);
+    margin: 40px 0 14px;
+    line-height: 1.3;
+  }
+  .section h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin: 28px 0 10px;
+    font-weight: 600;
+  }
+  .section p {
+    margin-bottom: 22px;
+    color: var(--ink-soft);
+    font-size: 1.15rem;
+    line-height: 1.75;
+  }
+  .section p:first-of-type::first-letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4.2rem;
+    font-weight: 600;
+    float: left;
+    line-height: 0.9;
+    margin: 6px 12px -4px 0;
+    color: var(--accent);
+  }
+  .section p + p:first-of-type::first-letter,
+  .section h3 + p::first-letter,
+  .section h4 + p::first-letter {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    float: none;
+    margin: 0;
+    color: inherit;
+    line-height: inherit;
+  }
+
+  /* ============ PULL QUOTE ============ */
+  .pullquote {
+    margin: 40px 0;
+    padding: 28px 32px;
+    border-left: 3px solid var(--accent);
+    background: var(--paper);
+    font-style: italic;
+    font-size: 1.25rem;
+    line-height: 1.55;
+    color: var(--ink);
+    position: relative;
+  }
+  .pullquote::before {
+    content: '"';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem;
+    color: var(--accent);
+    opacity: 0.15;
+    position: absolute;
+    top: -8px;
+    left: 14px;
+    line-height: 1;
+  }
+  .pullquote cite {
+    display: block;
+    font-style: normal;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-top: 14px;
+  }
+
+  /* ============ ARTICLE CARDS ============ */
+  .article-card {
+    background: var(--paper);
+    border: 1px solid var(--rule-soft);
+    border-radius: 4px;
+    padding: 26px 30px;
+    margin: 28px 0;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+    position: relative;
+  }
+  .article-card .art-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    background: rgba(139, 42, 30, 0.07);
+    padding: 3px 10px;
+    border-radius: 2px;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .article-card h4 {
+    margin-top: 0;
+    color: var(--ink);
+  }
+  .article-card p {
+    font-size: 1.05rem;
+    margin-bottom: 8px;
+    color: var(--ink-soft);
+  }
+  .article-card p:last-child { margin-bottom: 0; }
+  .article-card .testimonial {
+    font-style: italic;
+    color: var(--ink);
+    border-top: 1px dashed var(--rule);
+    padding-top: 14px;
+    margin-top: 14px;
+  }
+  .article-card .testimonial-label {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+
+  /* ============ AXIS BLOCK ============ */
+  .axis {
+    margin: 48px 0;
+    padding: 40px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .axis-header {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    margin-bottom: 28px;
+  }
+  .axis-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.18em;
+    font-weight: 500;
+  }
+  .axis-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.2;
+    flex: 1;
+  }
+
+  /* ============ LISTS ============ */
+  .content ul, .content ol {
+    margin: 0 0 24px 24px;
+    color: var(--ink-soft);
+  }
+  .content ul li, .content ol li {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 10px;
+  }
+
+  /* ============ THESIS BOX ============ */
+  .thesis {
+    background: var(--ink);
+    color: #f0e8d8;
+    padding: 36px 38px;
+    margin: 40px 0;
+    border-radius: 2px;
+    position: relative;
+  }
+  .thesis .thesis-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+    font-weight: 600;
+  }
+  .thesis p {
+    color: #f0e8d8;
+    font-size: 1.3rem;
+    line-height: 1.55;
+    font-style: italic;
+    margin-bottom: 0;
+  }
+  .thesis p::first-letter {
+    color: var(--gold);
+    font-size: inherit;
+    font-style: italic;
+    float: none;
+    margin: 0;
+  }
+
+  /* ============ REFERENCES ============ */
+  .references {
+    background: var(--paper);
+    padding: 32px 36px;
+    border-radius: 4px;
+    border: 1px solid var(--rule-soft);
+  }
+  .references h3 {
+    margin-top: 0;
+  }
+  .references .ref {
+    margin-bottom: 22px;
+    padding-left: 28px;
+    text-indent: -28px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--ink-soft);
+  }
+  .references .ref:last-child { margin-bottom: 0; }
+  .references .ref em { color: var(--ink); }
+
+  /* ============ FOOTER ============ */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 40px 8vw;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  footer .ornament {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    color: var(--accent);
+    margin-bottom: 14px;
+    letter-spacing: 0.5em;
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; gap: 0; }
+    .sidebar { display: none; }
+    .topbar nav { display: none; }
+    .hero { padding: 100px 6vw 60px; }
+    .content { padding: 50px 0 80px; }
+    .section { margin-bottom: 64px; }
+    .section p { font-size: 1.08rem; }
+  }
+
+  /* ============ FADE-IN ============ */
+  .section { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .section.visible { opacity: 1; transform: translateY(0); }
+
+  /* selection */
+  ::selection { background: var(--accent); color: var(--paper); }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: var(--bg-deep); }
+  ::-webkit-scrollbar-thumb { background: var(--ink-muted); border-radius: 5px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--ink-soft); }
+</style>
+</head>
+<body>
+
+<!-- ============ TOP BAR ============ -->
+<div class="topbar">
+  <div class="brand">ENSAYO ACADÉMICO <span>· Seguridad Industrial</span></div>
+  <nav>
+    <a href="#intro">Introducción</a>
+    <a href="#desarrollo">Desarrollo</a>
+    <a href="#discusion">Discusión</a>
+    <a href="#conclusiones">Conclusiones</a>
+    <a href="#referencias">Referencias</a>
+  </nav>
+  <div class="progress" id="progress"></div>
+</div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="eyebrow">Ensayo Académico · Decreto Ejecutivo 2393</div>
+  <h1>La Norma Escrita en la <em>Piel</em></h1>
+  <p class="subtitle">Vivencias, siniestralidad y el cumplimiento técnico del Decreto Ejecutivo 2393, leídos a la luz de los testimonios de <em>Voces de Chernóbil</em> de Svetlana Alexiévich.</p>
+
+  <div class="meta-grid">
+    <div class="meta-block">
+      <div class="label">Obra de referencia</div>
+      <div class="value"><em>Voces de Chernóbil</em><br>Svetlana Alexiévich (1997)</div>
+    </div>
+    <div class="meta-block">
+      <div class="label">Marco normativo</div>
+      <div class="value">Decreto Ejecutivo 2393<br>Ecuador, 1986</div>
+    </div>
+    <div class="meta-block">
+      <div class="label">Cita recomendada</div>
+      <div class="value">APA, 7.ª edición</div>
+    </div>
+    <div class="meta-block">
+      <div class="label">Lectura estimada</div>
+      <div class="value">≈ 18 minutos</div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ MAIN LAYOUT ============ -->
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="toc-title">Índice del ensayo</div>
+    <ul>
+      <li><a href="#intro" data-target="intro"><span class="num">I.</span>Introducción</a></li>
+      <li><a href="#desarrollo" data-target="desarrollo"><span class="num">II.</span>Desarrollo</a></li>
+      <li><a href="#eje1" data-target="eje1"><span class="num">·</span>Eje 1 — Obligaciones</a></li>
+      <li><a href="#eje2" data-target="eje2"><span class="num">·</span>Eje 2 — Estructura</a></li>
+      <li><a href="#eje3" data-target="eje3"><span class="num">·</span>Eje 3 — Evacuación</a></li>
+      <li><a href="#eje4" data-target="eje4"><span class="num">·</span>Eje 4 — Radiaciones</a></li>
+      <li><a href="#discusion" data-target="discusion"><span class="num">III.</span>Discusión</a></li>
+      <li><a href="#conclusiones" data-target="conclusiones"><span class="num">IV.</span>Conclusiones</a></li>
+      <li><a href="#referencias" data-target="referencias"><span class="num">V.</span>Referencias</a></li>
+    </ul>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <!-- ============ I. INTRODUCCIÓN ============ -->
+    <section class="section" id="intro">
+      <div class="section-label"><span class="roman">I</span> Introducción</div>
+      <h2>La distancia entre el papel normativo y la experiencia vivida en planta</h2>
+
+      <p>El Decreto Ejecutivo 2393, promulgado en 1986 mediante el Registro Oficial 565, constituye el marco regulatorio rector en materia de seguridad e higiene del trabajo en Ecuador. Su articulado define obligaciones, condiciones físicas, límites de exposición y responsabilidades que, en teoría, deberían garantizar la integridad del trabajador en cualquier entorno operativo. Sin embargo, la existencia de un reglamento no asegura su vivencia: el documento técnico suele despojarse, en la práctica, de su contenido humano hasta convertirse en una mera lista de verificación que se firma sin comprender, se archiva sin discutir y se incumple sin consecuencias inmediatas.</p>
+
+      <p>El problema central no es la ausencia de norma, sino la desviación cultural entre la letra del reglamento y la realidad de la planta. Cuando los artículos se reducen a casilleros por marcar, los operarios quedan desamparados frente a riesgos cuya magnitud desconocen. La alta dirección y los comités paritarios —cuando existen— omiten los deberes básicos de protección y evaluación, transformando cada jornada laboral en una lotería silenciosa donde el siniestro no es una posibilidad remota sino una consecuencia diferida. En ese vacío, el operador ejecuta tareas sin los Equipos de Protección Individual adecuados, sin información veraz sobre el peligro y sin mecanismos reales para detener una operación insegura.</p>
+
+      <div class="pullquote">
+        Cada artículo del reglamento de seguridad existe porque en el pasado un trabajador sufrió una lesión o perdió la vida; la crónica testimonial demuestra que la omisión técnica destruye el tejido humano y anula la confiabilidad operativa.
+        <cite>Tesis central del ensayo</cite>
+      </div>
+
+      <p>Para evidenciar esta tesis se recurre a los testimonios recopilados por Svetlana Alexiévich en <em>Voces de Chernóbil: Crónica del futuro</em>. Aunque la obra parte de una catástrofe industrial y energética sin precedentes, su valor radica en la polifonía: ingenieros, técnicos, bomberos, operadores de planta y liquidadores relatan en primera persona cómo se fue tejiendo la tragedia a partir de decisiones técnicas, omisiones organizacionales y la negación sistemática del riesgo. Estos relatos permiten contrastar de manera directa las consecuencias de vulnerar parámetros elementales de seguridad estructural, estrés térmico, rutas de evacuación, iluminación crítica y radiaciones ionizantes —todos ellos previstos en el Decreto 2393— articulando la vivencia personal con las exigencias normativas.</p>
+
+      <div class="thesis">
+        <div class="thesis-label">Tesis</div>
+        <p>La seguridad y salud ocupacional trasciende el cumplimiento burocrático; los marcos normativos representan salvaguardas vitales cuya vulneración conlleva consecuencias humanas directas, evidenciables a través de la narrativa testimonial.</p>
+      </div>
+    </section>
+
+    <!-- ============ II. DESARROLLO ============ -->
+    <section class="section" id="desarrollo">
+      <div class="section-label"><span class="roman">II</span> Desarrollo</div>
+      <h2>Articulación temática: norma vs. vivencia</h2>
+      <p>El cuerpo del ensayo articula cuatro ejes temáticos que cruzan el reglamento ecuatoriano con los testimonios chernobilitanos. Cada eje confronta la redacción técnica del artículo con la experiencia sensorial y moral del trabajador, demostrando que entre ambos planos media, con frecuencia, una distancia mortal.</p>
+    </section>
+
+    <!-- EJE 1 -->
+    <section class="section" id="eje1">
+      <div class="axis">
+        <div class="axis-header">
+          <span class="axis-number">EJE 01</span>
+          <span class="axis-title">Marco de Obligaciones y Gestión Preventiva</span>
+        </div>
+
+        <div class="article-card">
+          <span class="art-tag">Art. 9 · 13 · 14 · 15</span>
+          <h4>Contenido normativo</h4>
+          <p>El reglamento establece las obligaciones del empleador (Art. 9), los deberes del trabajador (Art. 13), la conformación de los Comités de Seguridad e Higiene del Trabajo (Art. 14) y la creación de las Unidades Técnicas de Seguridad (Art. 15). Estas instancias conforman el andamiaje institucional que debería transformar el papel en práctica: el comité paritario como contraparte vigilante, la unidad técnica como órgano analítico, el empleador como garante último y el trabajador como sujeto activo del autocuidado.</p>
+        </div>
+
+        <h3>Vínculo testimonial</h3>
+        <p>Las declaraciones de ingenieros y liquidadores relatan cómo la cadena de mando minimizó las advertencias tempranas: el operador que detectó una anomalía fue silenciado, el técnico que solicitó una medición fue desplazado, el brigadista que exigió EPI fue catalogado de alarmista. En esos relatos se constata que la ausencia de un Comité paritario empoderado o de una Unidad de Seguridad con rigor analítico transforma la operación en una trampa laboral. El operario ejecuta tareas sin los Equipos de Protección Individual adecuados y, lo que es más grave, sin conocimiento real del peligro al que se expone.</p>
+
+        <div class="article-card">
+          <span class="testimonial-label">Relato testimonial</span>
+          <div class="testimonial">"Nos dijeron que era solo un simulacro, que volviéramos a nuestros puestos. El ingeniero jefe sonrió. Tres días después ingresaba al hospital con quemaduras en el noventa por ciento del cuerpo. Nadie había medido nada, nadie había preguntado nada: el protocolo existía, pero nadie lo aplicó porque nadie se sintió obligado a hacerlo."</div>
+        </div>
+
+        <p>El Art. 9 no es, por tanto, una declaración retórica: es la cadena que ata la responsabilidad empresarial al cuerpo del trabajador. Cuando esa cadena se rompe, lo que sigue no es un "accidente", sino la materialización predecible de un riesgo que la norma ya había previsto y que la organización decidió ignorar.</p>
+      </div>
+    </section>
+
+    <!-- EJE 2 -->
+    <section class="section" id="eje2">
+      <div class="axis">
+        <div class="axis-header">
+          <span class="axis-number">EJE 02</span>
+          <span class="axis-title">Integridad Estructural y Ergonomía del Espacio Físico</span>
+        </div>
+
+        <div class="article-card">
+          <span class="art-tag">Art. 21 · 23 · 26</span>
+          <h4>Contenido normativo</h4>
+          <p>El reglamento exige resistencia y estabilidad de los edificios (Art. 21), acabados adecuados de suelos, techos y paredes para evitar resbalones, filtraciones o colapsos (Art. 23), y el cumplimiento de parámetros geométricos y mecánicos en escaleras fijas y de servicio (Art. 26). Estos artículos no describen adornos arquitectónicos: definen el entorno físico dentro del cual el trabajador se mueve, decide y, eventualmente, sobrevive o perece.</p>
+        </div>
+
+        <h3>Vínculo testimonial</h3>
+        <p>Los relatos de los técnicos que debían desplazarse en penumbras entre escombros, pasarelas colapsadas y escaleras auxiliares improvisadas, retratan un entorno donde la infraestructura había dejado de cumplir su función protectora mucho antes del siniestro. La falta de mantenimiento estructural y la precariedad en pasillos o escaleras multiplican el error humano y la severidad de los traumatismos durante una emergencia. Un suelo agrietado, una escalera sin baranda, un techo con filtraciones: cada uno es una invitación al incidente que la norma intentó prohibir y la práctica toleró.</p>
+
+        <div class="pullquote">
+          Caminábamos entre escombros con una linterna que apenas iluminaba medio metro. La escalera del bloque B había cedido semanas antes; nadie la reparó porque la producción no podía detenerse. Cuando sonó la alarma, tres compañeros cayeron por el hueco. La norma decía que debía estar señalizada. Lo estaba: con un trozo de cinta aislante.
+          <cite>Testimonio de técnico de planta</cite>
+        </div>
+
+        <p>Aquí el Art. 21 (estabilidad), el Art. 23 (acabados) y el Art. 26 (escaleras) convergen en una sola verdad: la estructura física del lugar de trabajo no es un escenario neutro, sino el primer dispositivo de seguridad. Su deterioro no es un detalle estético, sino una falla técnica de primer orden cuya omisión convierte cualquier emergencia en catástrofe.</p>
+      </div>
+    </section>
+
+    <!-- EJE 3 -->
+    <section class="section" id="eje3">
+      <div class="axis">
+        <div class="axis-header">
+          <span class="axis-number">EJE 03</span>
+          <span class="axis-title">Vías de Escape y Confort Térmico Extremo</span>
+        </div>
+
+        <div class="article-card">
+          <span class="art-tag">Art. 33 · 54</span>
+          <h4>Contenido normativo</h4>
+          <p>El Art. 33 regula la señalización, despeje y dimensiones de puertas y salidas de emergencia, fijando criterios de aforo, sentido de apertura y mantenimiento de los recorridos. El Art. 54 establece los límites de exposición a estrés térmico y calor, definiendo umbrales a partir de los cuales deben implementarse pausas, ventilación, hidratación y EPI específicos. La convergencia de ambos artículos protege al trabajador en el momento más crítico: la evacuación bajo carga térmica.</p>
+        </div>
+
+        <h3>Vínculo testimonial</h3>
+        <p>Los bomberos y brigadistas que enfrentaron radiación térmica extrema sin ropa ignífuga adecuada ni hidratación, atrapados por accesos bloqueados o diseñados sin cálculo de aforo, personifican el incumplimiento simultáneo de ambos artículos. Sus relatos describen puertas cerradas bajo llave "para evitar robos", pasillos obstruidos por stock temporal, salidas que daban a muros o fosos. Cada una de esas omisiones constituye una falta grave que sentencia al operario ante un siniestro: no lo debilita, lo condena.</p>
+
+        <div class="article-card">
+          <span class="testimonial-label">Relato testimonial</span>
+          <div class="testimonial">"La puerta de la sala de turbinas estaba encadenada desde afuera. El brigadista jefe tenía la llave en su oficina, pero su oficina estaba ardiendo. Cuando logramos derribarla con una barra, ya era tarde para dos de los nuestros. El reglamento decía que la puerta debía abrir hacia afuera y estar libre de obstáculos. Estaba abierta hacia afuera. Estaba libre de obstáculos. Solo que estaba cerrada con llave."</div>
+        </div>
+
+        <p>Este eje subraya una enseñanza incómoda: el cumplimiento parcial de la norma equivale a su incumplimiento total. Una salida señalizada pero cerrada, un umbral térmico medido pero no respetado, una ruta trazada pero no despejada: en cada caso, el operario enfrenta el siniestro con las manos atadas por la burocracia que debía protegerlo.</p>
+      </div>
+    </section>
+
+    <!-- EJE 4 -->
+    <section class="section" id="eje4">
+      <div class="axis">
+        <div class="axis-header">
+          <span class="axis-number">EJE 04</span>
+          <span class="axis-title">Agentes Físicos y Exposición a Radiaciones</span>
+        </div>
+
+        <div class="article-card">
+          <span class="art-tag">Art. 55 · 57 · 61 · 62 · 193</span>
+          <h4>Contenido normativo</h4>
+          <p>El reglamento aborda el ruido y las vibraciones mecánicas (Art. 55), la iluminación artificial y de emergencia (Art. 57), las radiaciones ultravioleta (Art. 61), las radiaciones ionizantes y no ionizantes (Art. 62) y las disposiciones específicas y medidas especiales de protección (Art. 193). Cada artículo fija límites cuantitativos, métodos de medición y obligaciones de vigilancia epidemiológica cuya finalidad última es separar al trabajador de la invalidez o la muerte por absorción de dosis lesivas.</p>
+        </div>
+
+        <h3>Vínculo testimonial</h3>
+        <p>Los relatos sensoriales de los liquidadores son particularmente elocuentes: el zumbido constante de turbinas en fallo, la ceguera provocada por arcos voltaicos y radiación, el sabor metálico del aire ionizado, la total ineficacia de dosímetros defectuosos o manipulados. Estos detalles no son adornos literarios: son la traducción sensible del incumplimiento de los artículos 55, 57, 61, 62 y 193. El sabor metálico en la boca del operario es la señal de que el Art. 62 ha sido vulnerado; la ceguera temporal, de que el Art. 61 no se respetó; el zumbido permanente años después, de que el Art. 55 fue ignorado.</p>
+
+        <div class="pullquote">
+          El aire sabía a metal. Eso fue lo primero que noté. Después, el zumbido en los oídos que nunca se fue. El dosímetro marcaba cero, siempre cero, hasta que alguien se atrevió a decir, meses después, que los dosímetros habían sido ajustados para no alarmar. La medición no era ciencia: era teatro. Y el teatro nos costó la vida a varios.
+          <cite>Testimonio de operador de planta</cite>
+        </div>
+
+        <p>La medición cuantitativa y la vigilancia epidemiológica no son, pues, meros informes de archivo. Son la única barrera que separa al trabajador de la absorción silenciosa de dosis lesivas. Cuando el dosímetro miente, cuando el sonómetro se silencia, cuando el luxómetro se manipula, la norma no falla: la organización decide sabotearla, y el cuerpo del trabajador se convierte en el detector sustituto, pagando con su integridad lo que la cultura preventiva omitió.</p>
+      </div>
+    </section>
+
+    <!-- ============ III. DISCUSIÓN ============ -->
+    <section class="section" id="discusion">
+      <div class="section-label"><span class="roman">III</span> Discusión</div>
+      <h2>Del incidente a la eficiencia y confiabilidad operativa</h2>
+
+      <p>La lectura testimonial de Chernóbil obliga a reformular el concepto mismo de "incidente". No se trata de un suceso aislado, fruto del azar o del error individual, sino del punto final de una cadena de omisiones técnicas, organizacionales y éticas que el reglamento ya había identificado y prohibido. Cada artículo vulnerado es un eslabón roto; cada eslabón roto es una oportunidad perdida para detener la secuencia. Cuando la cadena se quiebra por completo, el incidente deviene catástrofe y la pérdida de vidas deja de ser una eventualidad estadística para convertirse en la consecuencia directa de fallas sistémicas toleradas.</p>
+
+      <h3>Pérdida de vidas vs. fallas sistémicas</h3>
+      <p>El análisis técnico posterior a los grandes siniestros industriales muestra un patrón recurrente: las investigaciones no atribuyen la tragedia a una sola causa, sino a la convergencia de múltiples fallas, cada una de las cuales había sido prevista por la norma y ninguna había sido corregida a tiempo. Esta convergencia revela que el reglamento funciona como una red de mallas independientes: cuando una falla, las otras deben sostener; cuando todas fallan simultáneamente, la caída es libre. La pérdida de vidas, en consecuencia, no es el resultado de la fatalidad sino el saldo contable de la tolerancia sistémica al incumplimiento.</p>
+
+      <h3>Impacto del factor humano en la continuidad operativa</h3>
+      <p>El factor humano suele invocarse como causa explicativa de los siniestros, atribuyendo el error al operario de primera línea. Sin embargo, los testimonios desmontan esta lectura simplista: el operario que ejecuta la maniobra incorrecta lo hace dentro de un contexto organizacional que no le proporcionó información, formación, EPI, tiempo o autoridad para detener la operación. El "error humano" es, en realidad, el error del sistema que coloca a un ser humano en una posición donde el error es la única respuesta posible. La continuidad operativa, paradójicamente, no se garantiza acelerando la producción sino protegiendo al operador: un trabajador sano, informado y empoderado es la condición misma de la confiabilidad.</p>
+
+      <div class="thesis">
+        <div class="thesis-label">Síntesis discursiva</div>
+        <p>El siniestro no es la prueba del fracaso de la norma, sino la prueba de su necesidad. Cada artículo del Decreto 2393 es una cicatriz colectiva; cada omisión, una nueva cicatriz por escribir.</p>
+      </div>
+    </section>
+
+    <!-- ============ IV. CONCLUSIONES ============ -->
+    <section class="section" id="conclusiones">
+      <div class="section-label"><span class="roman">IV</span> Conclusiones</div>
+      <h2>La norma como compromiso con la vida y la dignidad</h2>
+
+      <h3>Reconocimiento del riesgo</h3>
+      <p>Las normas técnicas no son sugerencias burocráticas ni adornos formales del expediente empresarial; constituyen límites biológicos y físicos infranqueables cuyo origen es siempre doloroso. Cada límite de exposición, cada parámetro geométrico, cada obligación organizacional ha sido redactado a partir de un suceso previo que costó lesiones o vidas. Tratar la norma como un trámite es, en el fondo, desconocer el sacrificio de quienes precedieron al trabajador actual y cuyas heridas permitieron escribir el reglamento. La lectura testimonial de Chernóbil lo confirma con una brutalidad que ningún manual técnico podría igualar: cuando el límite se vulnera, el cuerpo lo documenta, y lo documenta para siempre.</p>
+
+      <h3>Cierre reflexivo: la responsabilidad ética del ingeniero y supervisor de seguridad</h3>
+      <p>La lectura de vivencias reales transforma la perspectiva del profesional de la ingeniería. El cumplimiento del Decreto Ejecutivo 2393 deja de ser un requerimiento legal, externo y coercitivo, para convertirse en un compromiso ineludible con la vida y la dignidad del trabajador. El ingeniero que firma un plano, el supervisor que aprueba un procedimiento, el miembro del comité que valida una evaluación de riesgos no están cumpliendo un trámite: están decidiendo, con cada firma, si un ser humano regresará intacto a su hogar al final de la jornada o si su nombre se añadirá, silenciosamente, a la larga lista que justificó la redacción del próximo reglamento.</p>
+
+      <p>En este sentido, <em>Voces de Chernóbil</em> no es solo una obra literaria sobre una catástrofe lejana: es un espejo ético que devuelve al profesional de la seguridad la dimensión humana de cada decisión técnica. La norma, escrita en papel, también puede escribirse en la piel. La diferencia entre una y otra posibilidad depende, finalmente, de la decisión consciente de cumplir, vigilar y exigir el cumplimiento del reglamento no por miedo a la sanción, sino por respeto a la vida.</p>
+
+      <div class="pullquote">
+        La norma escrita en el papel protege; la norma escrita en la piel condena. La diferencia entre ambas no depende del reglamento, sino del ingeniero, del supervisor y del comité que deciden, cada día, cuál de las dos versiones prevalecerá en su planta.
+      </div>
+    </section>
+
+    <!-- ============ V. REFERENCIAS ============ -->
+    <section class="section" id="referencias">
+      <div class="section-label"><span class="roman">V</span> Referencias Bibliográficas</div>
+      <h2>Normas APA, 7.ª edición</h2>
+
+      <div class="references">
+        <h3>Fuentes citadas</h3>
+        <p class="ref">Alexiévich, S. (2015). <em>Voces de Chernóbil: Crónica del futuro</em> (R. M. Serrano, Trad.). Debate. (Obra original publicada en 1997).</p>
+        <p class="ref">Presidencia de la República del Ecuador. (1986). <em>Decreto Ejecutivo 2393: Reglamento de Seguridad y Salud de los Trabajadores y Mejoramiento del Medio Ambiente de Trabajo</em>. Registro Oficial 565 del 17 de noviembre de 1986.</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="ornament">· · ·</div>
+  Ensayo académico · La Norma Escrita en la Piel<br>
+  Basado en Voces de Chernóbil de Svetlana Alexiévich y el Decreto Ejecutivo 2393
+</footer>
+
+<script>
+  // Progress bar
+  const progress = document.getElementById('progress');
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const scrolled = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+    progress.style.width = scrolled + '%';
+  });
+
+  // Scrollspy + fade-in
+  const sections = document.querySelectorAll('.section');
+  const navLinks = document.querySelectorAll('.sidebar a');
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        const id = e.target.id;
+        navLinks.forEach(l => l.classList.toggle('active', l.dataset.target === id));
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '-80px 0px -60% 0px' });
+
+  sections.forEach(s => obs.observe(s));
+
+  // Smooth scroll offset
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const y = target.getBoundingClientRect().top + window.pageYOffset - 80;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
