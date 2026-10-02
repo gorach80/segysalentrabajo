@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Taller · Voces de Chernóbil — Banco de Preguntas para Evaluación Oral</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f3efe6;
+    --bg-deep: #e9e2d2;
+    --paper: #fbf8f0;
+    --ink: #1a1c1e;
+    --ink-soft: #3a3d40;
+    --ink-muted: #6b6e72;
+    --accent: #9c2a1a;
+    --accent-deep: #6e1c12;
+    --accent-soft: rgba(156, 42, 26, 0.08);
+    --gold: #a87932;
+    --steel: #2a3d4a;
+    --steel-soft: #4a6373;
+    --rule: #c9bfae;
+    --rule-soft: #ddd3c1;
+    --level-1: #4a6b3a;
+    --level-2: #a87932;
+    --level-3: #9c2a1a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.65;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* ============ TOP BAR ============ */
+  .topbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 56px;
+    background: rgba(26, 28, 30, 0.96);
+    color: #e8e0d2;
+    display: flex;
+    align-items: center;
+    padding: 0 28px;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(168, 121, 50, 0.3);
+  }
+  .topbar .code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .topbar .code span { color: #e8e0d2; font-weight: 400; margin-left: 10px; }
+  .topbar .progress {
+    position: absolute;
+    bottom: -1px; left: 0;
+    height: 2px;
+    background: var(--gold);
+    width: 0%;
+    transition: width 0.1s linear;
+  }
+  .topbar nav {
+    margin-left: auto;
+    display: flex;
+    gap: 20px;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .topbar nav a {
+    color: #c9bfae;
+    text-decoration: none;
+    transition: color 0.2s;
+    font-weight: 400;
+  }
+  .topbar nav a:hover { color: var(--gold); }
+
+  /* ============ HERO ============ */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 110px 8vw 70px;
+    position: relative;
+    background:
+      linear-gradient(135deg, rgba(42, 61, 74, 0.04) 0%, transparent 50%),
+      radial-gradient(ellipse at 85% 15%, rgba(156, 42, 26, 0.07), transparent 55%),
+      var(--bg);
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero .stamp {
+    position: absolute;
+    top: 90px; right: 8vw;
+    border: 1.5px solid var(--accent);
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    padding: 14px 20px;
+    transform: rotate(2deg);
+    background: rgba(251, 248, 240, 0.6);
+    text-transform: uppercase;
+  }
+  .hero .stamp strong { display: block; font-size: 22px; letter-spacing: 0.05em; margin-bottom: 2px; color: var(--accent-deep); }
+  .hero .eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-weight: 600;
+  }
+  .hero .eyebrow::before {
+    content: '';
+    width: 36px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 5vw, 4.4rem);
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-bottom: 22px;
+    max-width: 22ch;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent-deep);
+    font-weight: 500;
+  }
+  .hero .subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+    color: var(--ink-soft);
+    font-style: italic;
+    max-width: 65ch;
+    margin-bottom: 48px;
+    line-height: 1.5;
+  }
+  .hero .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0;
+    max-width: 1100px;
+    border-top: 1px solid var(--rule);
+    border-left: 1px solid var(--rule);
+  }
+  .hero .meta-block {
+    padding: 22px 24px;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    background: var(--paper);
+  }
+  .hero .meta-block .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .hero .meta-block .value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--ink);
+    font-weight: 500;
+    line-height: 1.3;
+  }
+  .hero .meta-block .value em { font-style: italic; color: var(--accent-deep); }
+
+  /* ============ LAYOUT ============ */
+  .layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 4vw;
+    gap: 56px;
+  }
+
+  /* ============ SIDEBAR ============ */
+  .sidebar {
+    position: sticky;
+    top: 80px;
+    height: fit-content;
+    padding: 40px 0;
+    font-family: 'Inter', sans-serif;
+  }
+  .sidebar .toc-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--rule);
+    font-weight: 600;
+  }
+  .sidebar ul { list-style: none; }
+  .sidebar li { margin-bottom: 4px; }
+  .sidebar a {
+    display: block;
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 12.5px;
+    line-height: 1.35;
+    padding: 7px 12px 7px 14px;
+    border-left: 2px solid transparent;
+    transition: all 0.2s;
+    letter-spacing: 0.01em;
+  }
+  .sidebar a:hover {
+    color: var(--accent);
+    border-left-color: var(--rule);
+    background: var(--paper);
+  }
+  .sidebar a.active {
+    color: var(--accent);
+    border-left-color: var(--accent);
+    background: var(--accent-soft);
+    font-weight: 500;
+  }
+  .sidebar a .num {
+    color: var(--ink-muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    margin-right: 8px;
+    font-weight: 500;
+  }
+  .sidebar a.sub { padding-left: 28px; font-size: 11.5px; color: var(--ink-muted); }
+
+  /* ============ CONTENT ============ */
+  .content {
+    padding: 70px 0 100px;
+    max-width: 820px;
+  }
+
+  .section {
+    margin-bottom: 80px;
+    scroll-margin-top: 80px;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .section.visible { opacity: 1; transform: translateY(0); }
+  .section:last-child { margin-bottom: 0; }
+
+  .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    margin-bottom: 8px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-num::before {
+    content: '';
+    width: 28px;
+    height: 1px;
+    background: var(--accent);
+  }
+  .section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 600;
+    line-height: 1.18;
+    color: var(--ink);
+    margin-bottom: 26px;
+    letter-spacing: -0.01em;
+  }
+  .section h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--steel);
+    margin: 36px 0 14px;
+    line-height: 1.3;
+  }
+  .section h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+    margin: 24px 0 10px;
+    font-weight: 600;
+  }
+  .section p {
+    margin-bottom: 18px;
+    color: var(--ink-soft);
+    font-size: 1.02rem;
+    line-height: 1.7;
+  }
+  .section strong { color: var(--ink); font-weight: 600; }
+  .section em { color: var(--accent-deep); font-style: italic; }
+
+  /* ============ SUMMARY BOX ============ */
+  .summary {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 36px 44px;
+    margin: 28px 0;
+    font-family: 'Cormorant Garamond', serif;
+    position: relative;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.02);
+  }
+  .summary::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: var(--accent);
+  }
+  .summary .summary-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 16px;
+    margin-bottom: 22px;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .summary .summary-meta .meta-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    font-weight: 600;
+  }
+  .summary .summary-meta .word-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .summary p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.18rem;
+    line-height: 1.75;
+    color: var(--ink);
+    margin-bottom: 18px;
+  }
+  .summary p:first-of-type::first-letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4.5rem;
+    font-weight: 600;
+    float: left;
+    line-height: 0.85;
+    margin: 8px 14px -6px 0;
+    color: var(--accent);
+  }
+  .summary p + p:first-of-type::first-letter {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    float: none;
+    margin: 0;
+    color: inherit;
+    line-height: inherit;
+  }
+  .summary em { color: var(--accent-deep); font-style: italic; }
+  .summary strong { color: var(--ink); font-weight: 600; }
+
+  /* ============ QUESTION CARDS ============ */
+  .question-block {
+    margin: 30px 0;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--paper);
+  }
+  .question-header {
+    padding: 16px 22px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .question-header.level-1 { background: rgba(74, 107, 58, 0.08); border-left: 3px solid var(--level-1); }
+  .question-header.level-2 { background: rgba(168, 121, 50, 0.08); border-left: 3px solid var(--level-2); }
+  .question-header.level-3 { background: rgba(156, 42, 26, 0.08); border-left: 3px solid var(--level-3); }
+  .level-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+    font-weight: 600;
+    color: #fff;
+  }
+  .level-badge.l1 { background: var(--level-1); }
+  .level-badge.l2 { background: var(--level-2); }
+  .level-badge.l3 { background: var(--level-3); }
+  .question-header .axis-tag {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--ink);
+    flex: 1;
+  }
+  .question-header .axis-tag small {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: var(--ink-muted);
+    font-weight: 400;
+    margin-top: 2px;
+    letter-spacing: 0.02em;
+  }
+  .question-body { padding: 18px 22px; }
+  .question-list {
+    counter-reset: q;
+    list-style: none;
+    margin: 0;
+  }
+  .question-list li {
+    counter-increment: q;
+    padding: 12px 0 12px 44px;
+    border-bottom: 1px dashed var(--rule-soft);
+    position: relative;
+    font-size: 0.98rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .question-list li:last-child { border-bottom: none; }
+  .question-list li::before {
+    content: 'P' counter(q, decimal-leading-zero);
+    position: absolute;
+    left: 0; top: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+  .question-list li .hint {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+    font-style: italic;
+    margin-top: 4px;
+    padding-left: 0;
+  }
+
+  /* ============ CALLOUT ============ */
+  .callout {
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    padding: 18px 22px;
+    margin: 24px 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .callout .callout-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .callout p {
+    margin: 0;
+    font-size: 0.98rem;
+    color: var(--ink);
+  }
+  .callout p + p { margin-top: 10px; }
+
+  /* ============ TEACHER GUIDE ============ */
+  .teacher-guide {
+    background: var(--steel);
+    color: #f0e8d8;
+    padding: 32px 36px;
+    border-radius: 4px;
+    margin: 28px 0;
+  }
+  .teacher-guide h3 {
+    color: var(--gold);
+    margin-top: 0;
+    font-size: 1.4rem;
+  }
+  .teacher-guide h4 {
+    color: var(--gold);
+    margin-top: 20px;
+    font-size: 11px;
+  }
+  .teacher-guide p {
+    color: #d8d0c2;
+    font-size: 0.98rem;
+    line-height: 1.65;
+  }
+  .teacher-guide ul {
+    list-style: none;
+    margin: 12px 0;
+  }
+  .teacher-guide ul li {
+    color: #d8d0c2;
+    padding-left: 22px;
+    position: relative;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+  .teacher-guide ul li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+  }
+  .teacher-guide strong { color: #fff; }
+
+  /* ============ EVAL TABLE ============ */
+  .eval-wrap {
+    overflow-x: auto;
+    margin: 28px 0;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+  }
+  .eval-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--paper);
+    font-size: 0.88rem;
+  }
+  .eval-table thead { background: var(--steel); color: #f0e8d8; }
+  .eval-table th {
+    padding: 12px 14px;
+    text-align: left;
+    font-family: 'Inter', sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-right: 1px solid rgba(255,255,255,0.1);
+  }
+  .eval-table td {
+    padding: 12px 14px;
+    border-top: 1px solid var(--rule-soft);
+    border-right: 1px solid var(--rule-soft);
+    color: var(--ink-soft);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .eval-table td:first-child { font-weight: 600; color: var(--ink); }
+  .eval-table td .pill {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+  .pill.l1 { background: var(--level-1); }
+  .pill.l2 { background: var(--level-2); }
+  .pill.l3 { background: var(--level-3); }
+
+  /* ============ FOOTER ============ */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 36px 8vw;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    background: var(--bg-deep);
+  }
+  footer .ornament {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    color: var(--accent);
+    margin-bottom: 12px;
+    letter-spacing: 0.4em;
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 980px) {
+    .layout { grid-template-columns: 1fr; gap: 0; }
+    .sidebar { display: none; }
+    .topbar nav { display: none; }
+    .hero { padding: 100px 6vw 60px; }
+    .hero .stamp { position: static; margin-bottom: 32px; display: inline-block; }
+    .content { padding: 50px 0 70px; }
+    .summary { padding: 24px 22px; }
+    .summary p { font-size: 1.05rem; }
+    .summary p:first-of-type::first-letter { font-size: 3.5rem; }
+    .eval-table { font-size: 0.78rem; }
+    .eval-table th, .eval-table td { padding: 10px 8px; }
+  }
+
+  ::selection { background: var(--accent); color: var(--paper); }
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: var(--bg-deep); }
+  ::-webkit-scrollbar-thumb { background: var(--ink-muted); border-radius: 5px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--steel); }
+</style>
+</head>
+<body>
+
+<!-- ============ TOP BAR ============ -->
+<div class="topbar">
+  <div class="code">TALLER 01 <span>· Voces de Chernóbil · Evaluación Oral Individual</span></div>
+  <nav>
+    <a href="#resumen">Resumen</a>
+    <a href="#banco">Banco de Preguntas</a>
+    <a href="#docente">Guía Docente</a>
+    <a href="#rúbrica">Rúbrica</a>
+  </nav>
+  <div class="progress" id="progress"></div>
+</div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="stamp">
+    Taller
+    <strong>N.º 01</strong>
+    Evaluación Oral
+  </div>
+
+  <div class="eyebrow">Taller Académico · Seguridad e Higiene Industrial</div>
+  <h1>Voces de Chernóbil: <em>del testimonio a la norma</em></h1>
+  <p class="subtitle">Resumen interpretativo de la obra de Svetlana Alexiévich y banco de preguntas estructurado para evaluación oral individual en clase, articulado con el Decreto Ejecutivo 2393.</p>
+
+  <div class="meta-grid">
+    <div class="meta-block">
+      <div class="label">Obra base</div>
+      <div class="value"><em>Voces de Chernóbil</em><br>Svetlana Alexiévich (1997)</div>
+    </div>
+    <div class="meta-block">
+      <div class="label">Modalidad</div>
+      <div class="value">Oral · Individual</div>
+    </div>
+    <div class="meta-block">
+      <div class="label">Duración</div>
+      <div class="value">5–7 min por estudiante</div>
+    </div>
+    <div class="meta-block">
+      <div class="label">Preguntas</div>
+      <div class="value">24 preguntas · 3 niveles</div>
+    </div>
+    <div class="meta-block">
+      <div class="label">Marco normativo</div>
+      <div class="value">D.E. 2393 · R.O. 565</div>
+    </div>
+    <div class="meta-block">
+      <div class="label">Puntaje</div>
+      <div class="value">/ 10 puntos</div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ MAIN LAYOUT ============ -->
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="toc-title">Índice del taller</div>
+    <ul>
+      <li><a href="#resumen" data-target="resumen"><span class="num">01</span>Resumen (500 palabras)</a></li>
+      <li><a href="#banco" data-target="banco"><span class="num">02</span>Banco de Preguntas</a></li>
+      <li><a href="#eje1" data-target="eje1" class="sub"><span class="num">·</span>Eje 1 · Gobernanza</a></li>
+      <li><a href="#eje2" data-target="eje2" class="sub"><span class="num">·</span>Eje 2 · Estructura</a></li>
+      <li><a href="#eje3" data-target="eje3" class="sub"><span class="num">·</span>Eje 3 · Evacuación</a></li>
+      <li><a href="#eje4" data-target="eje4" class="sub"><span class="num">·</span>Eje 4 · Agentes físicos</a></li>
+      <li><a href="#docente" data-target="docente"><span class="num">03</span>Guía para el Docente</a></li>
+      <li><a href="#rúbrica" data-target="rúbrica"><span class="num">04</span>Rúbrica de Evaluación</a></li>
+    </ul>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <!-- ============ 1. RESUMEN ============ -->
+    <section class="section" id="resumen">
+      <div class="section-num">01 · Resumen interpretativo</div>
+      <h2>Voces de Chernóbil: Crónica del futuro</h2>
+      <p>El siguiente resumen, de aproximadamente 500 palabras, condensa los ejes temáticos de la obra para servir de base al banco de preguntas. Cada estudiante debe leerlo con anterioridad y estar preparado para responder oralmente sobre cualquier punto aquí tratado, articulándolo con los artículos correspondientes del Decreto Ejecutivo 2393.</p>
+
+      <div class="summary">
+        <div class="summary-meta">
+          <span class="meta-label">Resumen interpretativo · Obra base</span>
+          <span class="word-count">~500 palabras</span>
+        </div>
+
+        <p><em>Voces de Chernóbil: Crónica del futuro</em> (1997) de Svetlana Alexiévich recopila los testimonios de sobrevivientes del accidente nuclear de Chernóbil ocurrido el 26 de abril de 1986. La obra, Premio Nobel de Literatura 2015, no sigue una estructura narrativa convencional: se construye como un coro polifónico donde bomberos, ingenieros, médicos, soldados, maestras, esposas e hijos relatan en primera persona los días, meses y años posteriores a la catástrofe. Alexiévich elimina su propia voz para dejar hablar a los protagonistas, transformando el documento histórico en experiencia íntima.</p>
+
+        <p>El accidente se produce durante una prueba de seguridad en el reactor cuarto de la central Vladimir Ilich Lenin. Los operadores desactivan los sistemas de protección violando protocolos elementales, la potencia se dispara y la explosión libera cientos de veces más radiación que Hiroshima. Los primeros bomberos que acuden creen apagar un incendio ordinario: nadie les advierte de la radiación, nadie les entrega dosímetros ni ropa protectora. Horas después, comienzan a vomitar, a perder el cabello, a desintegrarse desde dentro. La información se oculta durante días: en Prípiat, la ciudad vecina, los niños juegan en la arena radiactiva mientras los funcionarios niegan la magnitud del desastre.</p>
+
+        <p>Alexiévich organiza los testimonios en varias secciones. <strong>"De los que no sabían"</strong> recoge la voz de los operadores y técnicos que ejecutaron la maniobra fatal sin comprender su alcance, convirtiendo el cumplimiento de órdenes en sentencia. <strong>"Soldados"</strong> reúne a los <em>liquidadores</em>: jóvenes reclutas enviados a limpiar el techo del reactor con palas y plomo, working en turnos de cuarenta segundos porque más tiempo equivalía a muerte segura. <strong>"Monólogo sobre la vida entera escrita en dos puertas"</strong> narra la experiencia de una esposa que ve morir a su esposo bombero en una habitación aislada del hospital de Moscú, donde el cuerpo se descompone en vida bajo la radiación absorbida.</p>
+
+        <p>La obra no se limita a denunciar la negligencia técnica: documenta el desmoronamiento del lenguaje. Los testimonios repiten que <strong>"no había palabras"</strong> para lo vivido, que la radiación —invisible, inodora, insípida— escapaba a toda descripción. Los soldados la llamaban <em>"polvo radiactivo"</em>, <em>"arena negra"</em>, <em>"luz azul"</em>; los médicos la confundían con una gripe extraña. Esta carencia simbólica permitió que el régimen ocultara, minimizara y reinventara los hechos durante años.</p>
+
+        <p>La dimensión humana del desastre atraviesa cada página: las esposas que ingresan a las zonas de exclusión para estar con sus maridos contaminados, las madres que paren niños sin cráneo, los ancianos que regresan a sus aldeas envenenadas porque <em>"allí está la tierra"</em>. Alexiévich muestra que la catástrofe no terminó en 1986: se prolongó en los cuerpos, en la memoria rota de una generación y en la desconfianza absoluta hacia toda autoridad técnica.</p>
+
+        <p>Para la ingeniería industrial, <em>Voces de Chernóbil</em> funciona como un caso forense de omisión sistémica. Cada testimonio contiene una falla técnica tipificable: ausencia de comités paritarios, escalercolapsadas, salidas trabadas, dosímetros defectuosos, EPI inexistentes. La obra prueba que la norma escrita en papel, cuando se ignora, se escribe después en la piel.</p>
+      </div>
+
+      <div class="callout">
+        <span class="callout-label">Advertencia metodológica</span>
+        <p>El resumen es punto de partida, no de llegada. El estudiante debe poder ampliar cada afirmación con ejemplos concretos del libro y vincularla con el artículo específico del Decreto Ejecutivo 2393 que la tipifica como no conformidad técnica.</p>
+      </div>
+    </section>
+
+    <!-- ============ 2. BANCO DE PREGUNTAS ============ -->
+    <section class="section" id="banco">
+      <div class="section-num">02 · Banco de Preguntas</div>
+      <h2>24 preguntas estructuradas en 3 niveles de profundidad</h2>
+      <p>El banco se organiza en cuatro ejes temáticos alineados con el Decreto Ejecutivo 2393. Cada eje contiene seis preguntas distribuidas en tres niveles: <strong>comprensión</strong> (reconocimiento de hechos del resumen), <strong>análisis</strong> (vínculo entre testimonio y norma) y <strong>síntesis crítica</strong> (formulación de medidas correctivas). El docente seleccionará las preguntas en clase según el ritmo del estudiante.</p>
+
+      <!-- EJE 1 -->
+      <div class="question-block" id="eje1">
+        <div class="question-header level-1">
+          <span class="level-badge l1">EJE 01</span>
+          <span class="axis-tag">Gobernanza y Obligaciones
+            <small>Art. 9 · 13 · 14 · 15 — Obligaciones del empleador, deberes del trabajador, comités paritarios y unidades técnicas</small>
+          </span>
+        </div>
+        <div class="question-body">
+          <ol class="question-list">
+            <li>Según el resumen, ¿qué cargos asumieron los operadores del reactor la noche del accidente y qué decisión técnica ejecutaron que desencadenó la explosión?
+              <span class="hint">Nivel 1 · Comprensión — Identificar agentes y acción causal.</span>
+            </li>
+            <li>Mencione dos omisiones organizacionales que, según los testimonios, impidieron proteger a los primeros bomberos acudientes al siniestro.
+              <span class="hint">Nivel 1 · Comprensión — Localizar fallas en la cadena de mando.</span>
+            </li>
+            <li>Explique cómo la ocultación de información por parte de los funcionarios vulnera simultáneamente el Art. 9 (obligaciones del empleador) y el Art. 13 (deberes del trabajador).
+              <span class="hint">Nivel 2 · Análisis — Cruzar relato con articulado.</span>
+            </li>
+            <li>Si en la central hubiera existido un Comité de Seguridad e Higiene empoderado (Art. 14), ¿qué tres acciones concretas podría haber tomado antes del 26 de abril para prevenir el siniestro?
+              <span class="hint">Nivel 2 · Análisis — Identificar funciones preventivas del comité.</span>
+            </li>
+            <li>Argumente por qué la ausencia de una Unidad Técnica de Seguridad con rigor analítico (Art. 15) convierte cualquier protocolo escrito en un "simulacro ritual" sin valor operativo.
+              <span class="hint">Nivel 3 · Síntesis crítica — Formular juicio técnico sobre la función de la UTS.</span>
+            </li>
+            <li>Proponga una estructura organizativa mínima —roles y responsabilidades— para una planta industrial ecuatoriana que garantice el cumplimiento articulado de los Art. 9, 13, 14 y 15.
+              <span class="hint">Nivel 3 · Síntesis crítica — Diseñar sistema de gestión preventiva.</span>
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- EJE 2 -->
+      <div class="question-block" id="eje2">
+        <div class="question-header level-2">
+          <span class="level-badge l2">EJE 02</span>
+          <span class="axis-tag">Infraestructura y Espacio de Trabajo
+            <small>Art. 21 · 23 · 26 — Estabilidad estructural, acabados de superficies y escaleras fijas</small>
+          </span>
+        </div>
+        <div class="question-body">
+          <ol class="question-list">
+            <li>Describa las condiciones físicas del entorno laboral que los testimonios mencionan al relatar el desplazamiento de los liquidadores sobre el techo del reactor.
+              <span class="hint">Nivel 1 · Comprensión — Reconocer condiciones del entorno descrito.</span>
+            </li>
+            <li>¿Qué elementos estructurales del libro aparecen repetidamente deteriorados o improvisados, y cómo se relacionan con los Art. 21 (estabilidad) y 23 (acabados)?
+              <span class="hint">Nivel 1 · Comprensión — Identificar deterioros materiales.</span>
+            </li>
+            <li>Analice por qué los turnos de "cuarenta segundos" en el techo del reactor pueden interpretarse como una admisión implícita de que la infraestructura era insegura desde su concepción.
+              <span class="hint">Nivel 2 · Análisis — Vincular duración de exposición con deficiencia estructural.</span>
+            </li>
+            <li>Si un ingeniero detecta pasarelas sin pasamanos en una planta ecuatoriana, ¿qué artículo del D.E. 2393 específico vulnera y qué norma técnica internacional citaría como referencia correctiva?
+              <span class="hint">Nivel 2 · Análisis — Articular norma nacional con referencia internacional (ISO 14122).</span>
+            </li>
+            <li>Justifique por qué el deterioro aparentemente "cosmético" de suelos, techos y escaleras (Art. 23 y 26) constituye técnicamente una falla de primer orden y no un detalle estético.
+              <span class="hint">Nivel 3 · Síntesis crítica — Reconceptualizar el riesgo estético.</span>
+            </li>
+            <li>Proponga un plan de mantenimiento preventivo trimestral para las superficies de tránsito y escaleras de una planta industrial, indicando puntos de inspección y criterios de rechazo.
+              <span class="hint">Nivel 3 · Síntesis crítica — Diseñar plan técnico accionable.</span>
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- EJE 3 -->
+      <div class="question-block" id="eje3">
+        <div class="question-header level-3">
+          <span class="level-badge l3">EJE 03</span>
+          <span class="axis-tag">Evacuación y Estrés Térmico
+            <small>Art. 33 · 54 — Vías de escape, señalización y límites de exposición a calor</small>
+          </span>
+        </div>
+        <div class="question-body">
+          <ol class="question-list">
+            <li>Mencione dos situaciones del libro en las que las vías de escape resultaron comprometidas o inoperantes durante la emergencia.
+              <span class="hint">Nivel 1 · Comprensión — Recordar escenas testimoniales.</span>
+            </li>
+            <li>¿Qué manifestaciones físicas describen los testimonios que evidencian exposición a estrés térmico o radiante extremo sin protección?
+              <span class="hint">Nivel 1 · Comprensión — Identificar síntomas en los relatos.</span>
+            </li>
+            <li>Explique cómo una salida trabada con cerradura mecánica vulnera el Art. 33 y calcule el ancho mínimo acumulado de salidas para una planta con 200 trabajadores (fórmula N/200).
+              <span class="hint">Nivel 2 · Análisis — Combinar interpretación normativa con cálculo.</span>
+            </li>
+            <li>Describa cómo aplicaría el índice TGBH (Art. 54) en una zona de planta con calor radiante y proponga un régimen trabajo-descanso para trabajo pesado.
+              <span class="hint">Nivel 2 · Análisis — Aplicar fórmula técnica a escenario real.</span>
+            </li>
+            <li>Argumente por qué una ruta de evacuación señalizada pero no despejada equivale técnicamente a su inexistencia, citando testimonios del libro que apoyen su afirmación.
+              <span class="hint">Nivel 3 · Síntesis crítica — Reformular el concepto de "cumplimiento parcial".</span>
+            </li>
+            <li>Diseñe un protocolo de verificación diaria de rutas de evacuación y registre los cinco elementos mínimos que deben comprobarse antes de iniciar cada turno.
+              <span class="hint">Nivel 3 · Síntesis crítica — Construir procedimiento auditable.</span>
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- EJE 4 -->
+      <div class="question-block" id="eje4">
+        <div class="question-header level-3">
+          <span class="level-badge l3">EJE 04</span>
+          <span class="axis-tag">Agentes Físicos y Radiaciones
+            <small>Art. 55 · 57 · 61 · 62 · 193 — Ruido, iluminación, radiaciones UV, ionizantes y medidas especiales</small>
+          </span>
+        </div>
+        <div class="question-body">
+          <ol class="question-list">
+            <li>Cite tres descripciones sensoriales del libro que evidencian exposición a radiaciones ionizantes (olor, sabor, visión, tacto).
+              <span class="hint">Nivel 1 · Comprensión — Recuperar detalles sensoriales del testimonio.</span>
+            </li>
+            <li>¿Qué fallas específicas mencionan los testimonios respecto a los dosímetros y qué implicancia tiene esto para la vigilancia epidemiológica del Art. 62?
+              <span class="hint">Nivel 1 · Comprensión — Localizar fallas de medición.</span>
+            </li>
+            <li>Explique cómo el "zumbido constante de turbinas en fallo" referido en los testimonios vulnera el Art. 55 y proponga el umbral máximo permisible en dB(A) y el tiempo de exposición.
+              <span class="hint">Nivel 2 · Análisis — Vincular síntoma con parámetro normativo cuantitativo.</span>
+            </li>
+            <li>Relacione el relato de "los niños jugando en arena radiactiva sin iluminación de emergencia" con el Art. 57 (iluminación) y el Art. 193 (medidas especiales de protección).
+              <span class="hint">Nivel 2 · Análisis — Cruzar dos artículos con una misma escena.</span>
+            </li>
+            <li>Argumente por qué la manipulación de los dosímetros —descrita en el libro— constituye un delito técnico y no una simple irregularidad administrativa, citando los Art. 62 y 193.
+              <span class="hint">Nivel 3 · Síntesis crítica — Reformular la gravedad jurídica de la manipulación.</span>
+            </li>
+            <li>Formule un programa de vigilancia radiológica para una planta industrial ecuatoriana que maneje fuentes ionizantes, indicando frecuencia de medición, límites de dosis y registro epidemiológico.
+              <span class="hint">Nivel 3 · Síntesis crítica — Diseñar sistema integral de vigilancia.</span>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 3. GUÍA DOCENTE ============ -->
+    <section class="section" id="docente">
+      <div class="section-num">03 · Guía para el Docente</div>
+      <h2>Dinámica de evaluación oral individual</h2>
+      <p>El taller está diseñado para ejecutarse en una sesión de clase de aproximadamente 90 minutos, en la que el docente entrevista individualmente a cada estudiante durante 5 a 7 minutos. La selección de preguntas se realiza al azar, asegurando que el estudiante no pueda preparar respuestas memorizadas para un único eje.</p>
+
+      <div class="teacher-guide">
+        <h3>Protocolo de aplicación</h3>
+
+        <h4>Preparación previa (10 min)</h4>
+        <ul>
+          <li>Imprimir el resumen y el banco de preguntas; entregarlos con una semana de anticipación.</li>
+          <li>Preparar un set de tarjetas numeradas (P01 a P24) para el sorteo aleatorio.</li>
+          <li>Disponer la rúbrica impresa para registro durante la entrevista.</li>
+        </ul>
+
+        <h4>Ejecución en clase (60–70 min)</h4>
+        <ul>
+          <li>Cada estudiante sortea <strong>tres preguntas</strong>: una de nivel 1 (comprensión), una de nivel 2 (análisis) y una de nivel 3 (síntesis crítica).</li>
+          <li>Tiene <strong>30 segundos</strong> para organizar mentalmente cada respuesta antes de hablar.</li>
+          <li>El docente puede formular <strong>una pregunta complementaria</strong> por nivel si la respuesta es incompleta o requiere profundización.</li>
+          <li>Se evalúa fluidez, precisión técnica, articulación con el D.E. 2393 y capacidad de síntesis crítica.</li>
+        </ul>
+
+        <h4>Criterios de conducción</h4>
+        <ul>
+          <li><strong>No interrumpir</strong> al estudiante durante la respuesta, salvo que se desvíe completamente del tema.</li>
+          <li><strong>No sugerir la respuesta</strong>: reformular la pregunta en otros términos antes de dar pistas.</li>
+          <li><strong>Registrar en tiempo real</strong> el desempeño en la rúbrica para evitar sesgos de memoria al final de la sesión.</li>
+          <li><strong>Indicar al final</strong> al estudiante dos fortalezas y dos aspectos a mejorar, en no más de un minuto.</li>
+        </ul>
+
+        <h4>Atención a respuestas frecuentes</h4>
+        <ul>
+          <li>Si el estudiante confunde <strong>niveles de radiación con niveles de ruido</strong>, redirigir al Art. 62 (radiaciones) vs. Art. 55 (ruido).</li>
+          <li>Si el estudiante cita el artículo pero no el testimonio, solicitarle un ejemplo concreto del libro.</li>
+          <li>Si el estudiante cita el testimonio pero no el artículo, pedirle que tipifique la no conformidad con el artículo exacto.</li>
+          <li>Si la medida correctiva es solo "entregar EPP", exigir jerarquía de controles: ingeniería, administrativos, EPP como última línea.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ 4. RÚBRICA ============ -->
+    <section class="section" id="rúbrica">
+      <div class="section-num">04 · Rúbrica de Evaluación Oral</div>
+      <h2>Escalas y puntajes por nivel de pregunta</h2>
+      <p>La rúbrica pondera los tres niveles de pregunta con valores crecientes, premiando la capacidad de síntesis crítica sobre la simple comprensión. El puntaje total se compone de tres rubros individuales más un cuarto rubro transversal de comunicación oral.</p>
+
+      <div class="eval-wrap">
+        <table class="eval-table">
+          <thead>
+            <tr>
+              <th style="width:22%;">Componente</th>
+              <th style="width:14%;">Nivel</th>
+              <th style="width:18%;">Excelente (100%)</th>
+              <th style="width:18%;">Satisfactorio (70%)</th>
+              <th style="width:18%;">En Desarrollo (40%)</th>
+              <th style="width:10%;">Puntaje</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Comprensión del testimonio</td>
+              <td><span class="pill l1">Nivel 1</span></td>
+              <td>Identifica hechos, personajes y acciones con precisión; cita el testimonio correcto.</td>
+              <td>Reconoce el hecho pero con imprecisiones menores de nombres o fechas.</td>
+              <td>Confunde hechos o no localiza el pasaje aludido.</td>
+              <td>2.0 pts</td>
+            </tr>
+            <tr>
+              <td>Análisis norma–testimonio</td>
+              <td><span class="pill l2">Nivel 2</span></td>
+              <td>Vincula el testimonio con el artículo exacto del D.E. 2393 y aplica correctamente fórmulas o umbrales.</td>
+              <td>Cita el artículo correcto pero no desarrolla la fórmula o el cálculo asociado.</td>
+              <td>Vincula con un artículo erróneo o no aplica parámetros cuantitativos.</td>
+              <td>3.0 pts</td>
+            </tr>
+            <tr>
+              <td>Síntesis crítica y propuesta</td>
+              <td><span class="pill l3">Nivel 3</span></td>
+              <td>Formula medida correctiva jerarquizada, ejecutable y fundamentada en norma técnica.</td>
+              <td>Propone control técnico aceptable pero centrado en EPP sin jerarquía de controles.</td>
+              <td>Da una respuesta genérica sin vincular al D.E. 2393 ni a la obra.</td>
+              <td>3.0 pts</td>
+            </tr>
+            <tr>
+              <td>Comunicación oral y rigor técnico</td>
+              <td><span class="pill l2">Transversal</span></td>
+              <td>Vocabulario técnico preciso, fluidez, estructura lógica y manejo del tiempo.</td>
+              <td>Claridad aceptable con vacíos de vocabulario o tiempos excedidos.</td>
+              <td>Dificultad para articular ideas o uso de lenguaje coloquial inadecuado.</td>
+              <td>2.0 pts</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <span class="callout-label">Nota de aprobación</span>
+        <p>La evaluación se considera aprobada con un mínimo de <strong>7,00 / 10</strong>. Estudiantes que obtengan menos de 2,0 pts en el rubro de síntesis crítica deberán repetir esa pregunta en una entrevista complementaria programada.</p>
+      </div>
+
+      <div class="callout">
+        <span class="callout-label">Registro docente</span>
+        <p>Se recomienda llevar una planilla de control con cuatro columnas: <strong>Pregunta sorteada · Artículo citado · Testimonio referido · Puntaje</strong>. Este registro permite identificar patrones de dificultad por estudiante y por eje temático al cierre del curso.</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="ornament">· · ·</div>
+  Taller 01 · Voces de Chernóbil<br>
+  Seguridad e Higiene Industrial · Ingeniería Industrial
+</footer>
+
+<script>
+  // Progress bar
+  const progress = document.getElementById('progress');
+  window.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const scrolled = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+    progress.style.width = scrolled + '%';
+  });
+
+  // Scrollspy + fade-in
+  const sections = document.querySelectorAll('.section');
+  const navLinks = document.querySelectorAll('.sidebar a');
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        const id = e.target.id;
+        navLinks.forEach(l => l.classList.toggle('active', l.dataset.target === id));
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '-80px 0px -60% 0px' });
+
+  sections.forEach(s => obs.observe(s));
+
+  // Smooth scroll offset
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const y = target.getBoundingClientRect().top + window.pageYOffset - 80;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
