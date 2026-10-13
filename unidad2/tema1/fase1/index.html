@@ -1,1 +1,659 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fase 1: Matriz VG y Memoria Técnica - Plantilla Editable</title>
+  <style>
+    /* RESET Y TIPOGRAFÍA BASE */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f1f5f9;
+      color: #334155;
+      line-height: 1.5;
+      padding: 20px 10px;
+    }
+    .wrapper {
+      max-width: 1060px;
+      margin: 0 auto;
+      background-color: #f8fafc;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
 
+    /* BARRA DE HERRAMIENTAS INTERACTIVA SUPERIOR */
+    .toolbar {
+      position: sticky;
+      top: 10px;
+      z-index: 100;
+      background: #0f172a;
+      border-radius: 10px;
+      padding: 12px 18px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .toolbar-title {
+      color: #f8fafc;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .btn-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    button {
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+      padding: 7px 14px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .btn-save { background-color: #10b981; color: #ffffff; }
+    .btn-save:hover { background-color: #059669; }
+    .btn-print { background-color: #2563eb; color: #ffffff; }
+    .btn-print:hover { background-color: #1d4ed8; }
+    .btn-export { background-color: #f59e0b; color: #ffffff; }
+    .btn-export:hover { background-color: #d97706; }
+    .btn-clear { background-color: #ef4444; color: #ffffff; }
+    .btn-clear:hover { background-color: #dc2626; }
+
+    /* ESTILOS DE ELEMENTOS EDITABLES */
+    [contenteditable="true"] {
+      border: 1px dashed #94a3b8;
+      border-radius: 4px;
+      padding: 6px 10px;
+      background-color: #ffffff;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+    [contenteditable="true"]:hover {
+      border-color: #2563eb;
+      background-color: #f0fdf4;
+    }
+    [contenteditable="true"]:focus {
+      border: 1.5px solid #2563eb;
+      background-color: #ffffff;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    /* BANNER PRINCIPAL */
+    .banner {
+      background-color: #0c1427;
+      border-radius: 12px;
+      padding: 26px 30px;
+      margin-bottom: 22px;
+      color: #ffffff;
+    }
+    .badge-pill {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+    }
+    .badge-red { background-color: #dc2626; color: #ffffff; }
+    .badge-dark { background-color: #1e293b; color: #94a3b8; border: 1px solid #334155; }
+
+    /* TARJETAS GENERALES */
+    .card {
+      background-color: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 20px 22px;
+      margin-bottom: 22px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+    .card-blue { border-left: 6px solid #2563eb; }
+    .card-cyan { border-top: 4px solid #0284c7; }
+    .card-emerald { border-top: 4px solid #10b981; }
+    .card-amber { border-left: 6px solid #f59e0b; }
+    .card-darkblue { border-left: 6px solid #1d4ed8; }
+
+    /* TABLAS */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      text-align: left;
+    }
+    th {
+      background-color: #0c1427;
+      color: #ffffff;
+      padding: 10px 8px;
+      font-weight: 700;
+    }
+    td {
+      padding: 10px 8px;
+      border-bottom: 1px solid #e2e8f0;
+      vertical-align: top;
+    }
+    .input-number {
+      width: 58px;
+      padding: 4px;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      outline: none;
+    }
+    .input-number:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+    }
+    .badge-status {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-align: center;
+    }
+    .status-ok { background-color: #dcfce7; color: #15803d; }
+    .status-bad { background-color: #fee2e2; color: #991b1b; }
+
+    /* ESTILOS DE IMPRESIÓN */
+    @media print {
+      body {
+        background-color: #ffffff;
+        padding: 0;
+      }
+      .wrapper {
+        border: none;
+        box-shadow: none;
+        max-width: 100%;
+        padding: 0;
+      }
+      .toolbar, .btn-group, .media-section {
+        display: none !important;
+      }
+      [contenteditable="true"] {
+        border: none !important;
+        padding: 0 !important;
+        background-color: transparent !important;
+      }
+      .input-number {
+        border: none !important;
+        background: transparent !important;
+      }
+      .card {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- BARRA DE ACCIONES / GUARDADO (GITHUB APP INTERACTION) -->
+  <div class="toolbar">
+    <span class="toolbar-title">⚡ Modo Estudiante Interactivo (GitHub Pages)</span>
+    <div class="btn-group">
+      <button type="button" class="btn-save" onclick="guardarDatos()">💾 Guardar Borrador</button>
+      <button type="button" class="btn-export" onclick="exportarJSON()">📤 Exportar JSON</button>
+      <button type="button" class="btn-print" onclick="window.print()">🖨️ Imprimir / PDF</button>
+      <button type="button" class="btn-clear" onclick="limpiarPlantilla()">🔄 Restablecer</button>
+    </div>
+  </div>
+
+  <!-- 1. HERO BANNER PRINCIPAL -->
+  <div class="banner">
+    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+      <span class="badge-pill badge-red">UNIDAD TEMÁTICA 2 • FASE 1 ABP</span>
+      <span class="badge-pill badge-dark">CASO FORENSE: PIPER ALPHA (1988)</span>
+    </div>
+    <h1 style="font-size: 1.45rem; font-weight: 800; margin: 0 0 10px 0;">
+      Diagnóstico de Vulnerabilidad Sistémica (V<sub>G</sub>) y Modelado de Amenazas
+    </h1>
+    <p style="font-size: 0.92rem; color: #94a3b8; margin: 0;">
+      <strong>Seguridad y Salud Ocupacional</strong> • Semestre 2026-2 • Ingeniería Industrial<br>
+      Plantilla oficial editable para el desarrollo de la Consigna 1 bajo Decreto Ejecutivo 255 y Acuerdo Ministerial MDT-2024-196 (Ecuador).
+    </p>
+  </div>
+
+  <!-- 2. DIRECTRICES OPERATIVAS -->
+  <div class="card card-blue">
+    <div style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin-bottom: 8px;">
+      Directrices de Trabajo para el Estudiante
+    </div>
+    <p style="font-size: 0.88rem; color: #475569; margin: 0 0 8px 0; text-align: justify;">
+      Edite directamente sobre los campos señalados. La tabla calcula automáticamente el valor del <strong>V<sub>G</sub></strong> al modificar los valores numéricos entre 0.0 y 1.0. Para obtener la calificación en rango <strong>Excelente (90–100%)</strong>, demuestre en el Plan de Reducción que cada escenario alcanza <strong>V<sub>G</sub> &lt; 0.5</strong> mediante controles de ingeniería.
+    </p>
+  </div>
+
+  <!-- 3. METADATOS Y CARÁTULA ACADÉMICA DEL ESTUDIANTE -->
+  <div class="card">
+    <div style="font-size: 0.95rem; font-weight: 700; color: #0f172a; margin-bottom: 14px; text-transform: uppercase; border-bottom: 1px solid #f1f5f9; padding-bottom: 6px;">
+      Datos de Control y Auditoría Académica
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
+      <div>
+        <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #64748b; text-transform: uppercase; margin-bottom: 4px;">Nombres del Estudiante:</label>
+        <div id="estudiante_nombre" contenteditable="true">Haga clic aquí para ingresar sus nombres y apellidos</div>
+      </div>
+      <div>
+        <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #64748b; text-transform: uppercase; margin-bottom: 4px;">Código de Matrícula / Cédula:</label>
+        <div id="estudiante_codigo" contenteditable="true">Ingrese su código estudiantil</div>
+      </div>
+      <div>
+        <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #64748b; text-transform: uppercase; margin-bottom: 4px;">Grupo / Paralelo:</label>
+        <div id="estudiante_grupo" contenteditable="true">Ingeniería Industrial • Presencial 1/3</div>
+      </div>
+      <div>
+        <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #64748b; text-transform: uppercase; margin-bottom: 4px;">Instalación Industrial Auditada:</label>
+        <div id="estudiante_planta" contenteditable="true">Ej. Terminal de Almacenamiento de GLP / Compresión de Gas</div>
+      </div>
+      <div style="grid-column: 1 / -1;">
+        <label style="display: block; font-size: 0.78rem; font-weight: 700; color: #64748b; text-transform: uppercase; margin-bottom: 4px;">Docente de Cátedra:</label>
+        <div id="docente_nombre" contenteditable="true">Nombre del Docente Evaluador</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. DOCUMENTO 1: MATRIZ DE RIESGO Y VULNERABILIDAD (8 COLUMNAS DINÁMICA) -->
+  <div class="card card-cyan">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+      <div>
+        <h2 style="font-size: 1.15rem; font-weight: 800; color: #0f172a; margin: 0;">
+          Documento 1: Matriz de Riesgo y Vulnerabilidad Sistémica
+        </h2>
+        <span style="font-size: 0.8rem; color: #64748b;">
+          Cálculo automatizado: <em>V</em><sub>G</sub> = (<em>V</em><sub>personas</sub> + <em>V</em><sub>recursos</sub> + <em>V</em><sub>sistemas</sub>) / 3
+        </span>
+      </div>
+      <span style="background-color: #e0f2fe; color: #0369a1; font-size: 0.72rem; font-weight: 700; padding: 4px 10px; border-radius: 6px;">
+        8 Columnas • Modelo Dinámico
+      </span>
+    </div>
+
+    <div style="overflow-x: auto; margin-top: 10px; border: 1px solid #cbd5e1; border-radius: 8px;">
+      <table id="matriz-vg">
+        <thead>
+          <tr>
+            <th style="width: 5%; text-align: center;">N.º</th>
+            <th style="width: 20%;">Descripción de la Amenaza</th>
+            <th style="width: 17%;">Evidencia Documental Auditada</th>
+            <th style="width: 8%; text-align: center;">V<sub>per</sub></th>
+            <th style="width: 8%; text-align: center;">V<sub>rec</sub></th>
+            <th style="width: 8%; text-align: center;">V<sub>sis</sub></th>
+            <th style="width: 10%; text-align: center;">V<sub>G</sub> Global</th>
+            <th style="width: 24%;">Plan de Reducción Ingenieril (Meta: V<sub>G</sub> &lt; 0.5)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- ESCENARIO 1 -->
+          <tr data-row="1">
+            <td style="text-align: center; font-weight: bold;">1</td>
+            <td>
+              <strong>Fuga en junta o brida sin ignición</strong><br>
+              <span style="font-size: 0.75rem; color: #64748b;">(Liberación incipiente por empaque o pernos)</span>
+            </td>
+            <td><div class="edit-cell" contenteditable="true">Registro de calibración PM-04, Bitácora PTW</div></td>
+            <td style="text-align: center;"><input type="number" step="0.1" min="0" max="1" value="0.7" class="input-number v-per" onchange="calcularFila(1)"></td>
+            <td style="text-align: center;"><input type="number" step="0.1" min="0" max="1" value="0.8" class="input-number v-rec" onchange="calcularFila(1)"></td>
+            <td style="text-align: center;"><input type="number" step="0.1" min="0" max="1" value="0.6" class="input-number v-sis" onchange="calcularFila(1)"></td>
+            <td style="text-align: center;">
+              <span class="vg-resul" style="font-weight: 800;">0.70</span><br>
+              <span class="badge-status status-bad status-tag">Inadmisible</span>
+            </td>
+            <td><div class="edit-cell" contenteditable="true">Implementación de prueba de estanqueidad previa y detectores ultrasónicos con parada de bomba.</div></td>
+          </tr>
+
+          <!-- ESCENARIO 2 -->
+          <tr data-row="2" style="background-color: #fafbfd;">
+            <td style="text-align: center; font-weight: bold;">2</td>
+            <td>
+              <strong>Conato de fuego clase B en bombas</strong><br>
+              <span style="font-size: 0.75rem; color: #64748b;">(Fuego de charco en área de bombas)</span>
+            </td>
+            <td><div class="edit-cell" contenteditable="true">Inspección NFPA 10 de extintores, simulacro anual</div></td>
+            <td style="text-align: center;"><input type="number" step="0.1" min="0" max="1" value="0.5" class="input-number v-per" onchange="calcularFila(2)"></td>
+            <td style="text-align: center;"><input type="number" step="0.1" min="0" max="1" value="0.7" class="input-number v-rec" onchange="calcularFila(2)"></td>
+            <td style="text-align: center;"><input type="number" step="0.1" min="0" max="1" value="0.6" class="input-number v-sis" onchange="calcularFila(2)"></td>
+            <td style="text-align: center;">
+              <span class="vg-resul" style="font-weight: 800;">0.60</span><br>
+              <span class="badge-status status-bad status-tag">Inadmisible</span>
+            </td>
+            <td><div class="edit-cell" contenteditable="true">Instalación de rociadores de espuma automática en cubeto y drenaje a fosa remota.</div></td>
+          </tr>
+
+          <!-- ESCENARIO 3 -->
+          <tr data-row="3">
+            <td style="text-align: center; font-weight: bold;">3</td>
+            <td>
+              <strong>Ruptura presurizada con VCE</strong><br>
+              <span style="font-size: 0.75rem; color: #64748b;">(Deflagración de nube de vapor)</span>
+            </td>
+            <td><div class="edit-cell" contenteditable="true">Estudio QRA 2024, registros predictivos de espesores</div></td>
+            <td style="text-align: center;"><input type="number" step="0.1" min="0" max="1" value="0.8" class="input-number v-per" onchange="calcularFila(3)"></td>
+            <td style="text-align: center;"><input type="number" step="0.1" min="0" max="1" value="0.9" class="input-number v-rec" onchange="calcularFila(3)"></td>
+            <td style="text-align: center;"><input type="number" step="0.1" min="0" max="1" value="0.7" class="input-number v-sis" onchange="calcularFila(3)"></td>
+            <td style="text-align: center;">
+              <span class="vg-resul" style="font-weight: 800;">0.80</span><br>
+              <span class="badge-status status-bad status-tag">Inadmisible</span>
+            </td>
+            <td><div class="edit-cell" contenteditable="true">Válvulas de despresurización de emergencia (Blowdown) hacia antorcha y detectores ópticos UV/IR.</div></td>
+          </tr>
+
+          <!-- ESCENARIO 4 -->
+          <tr data-row="4" style="background-color: #fafbfd;">
+            <td style="text-align: center; font-weight: bold;">4</td>
+            <td>
+              <strong>Colapso de cortafuegos y rotura de líneas</strong><br>
+              <span style="font-size: 0.75rem; color: #64748b;">(Pérdida de integridad de barreras pasivas)</span>
+            </td>
+            <td><div class="edit-cell" contenteditable="true">Plano de distribución arquitectónica, certificación RF</div></td>
+            <td style="text-align: center;"><input type="number" step="0.1" min="0" max="1" value="0.6" class="input-number v-per" onchange="calcularFila(4)"></td>
+            <td style="text-align: center;"><input type="number" step="0.1" min="0" max="1" value="0.8" class="input-number v-rec" onchange="calcularFila(4)"></td>
+            <td style="text-align: center;"><input type="number" step="0.1" min="0" max="1" value="0.5" class="input-number v-sis" onchange="calcularFila(4)"></td>
+            <td style="text-align: center;">
+              <span class="vg-resul" style="font-weight: 800;">0.63</span><br>
+              <span class="badge-status status-bad status-tag">Inadmisible</span>
+            </td>
+            <td><div class="edit-cell" contenteditable="true">Refuerzo estructural con muros contra explosión (Blast walls 0.6 bar) y sellado intumescente.</div></td>
+          </tr>
+
+          <!-- ESCENARIO 5 -->
+          <tr data-row="5">
+            <td style="text-align: center; font-weight: bold;">5</td>
+            <td>
+              <strong>Inoperatividad de bombas contra incendio</strong><br>
+              <span style="font-size: 0.75rem; color: #64748b;">(Bombas diésel trabadas en modo manual)</span>
+            </td>
+            <td><div class="edit-cell" contenteditable="true">Procedimiento MOC-2025, bitácora de cuarto de bombas</div></td>
+            <td style="text-align: center;"><input type="number" step="0.1" min="0" max="1" value="0.9" class="input-number v-per" onchange="calcularFila(5)"></td>
+            <td style="text-align: center;"><input type="number" step="0.1" min="0" max="1" value="1.0" class="input-number v-rec" onchange="calcularFila(5)"></td>
+            <td style="text-align: center;"><input type="number" step="0.1" min="0" max="1" value="0.8" class="input-number v-sis" onchange="calcularFila(5)"></td>
+            <td style="text-align: center;">
+              <span class="vg-resul" style="font-weight: 800;">0.90</span><br>
+              <span class="badge-status status-bad status-tag">Inadmisible</span>
+            </td>
+            <td><div class="edit-cell" contenteditable="true">Prohibición física de bypass del modo automático; doble bomba de respaldo con arranque automático.</div></td>
+          </tr>
+
+          <!-- ESCENARIO 6 (PEOR CASO CREÍBLE) -->
+          <tr data-row="6" style="background-color: #fef2f2;">
+            <td style="text-align: center; font-weight: 800; color: #991b1b;">6*</td>
+            <td>
+              <strong style="color: #991b1b;">Peor Caso: Inyección externa continua</strong><br>
+              <span style="font-size: 0.75rem; color: #b91c1c;">(Soplete sostenido sin válvulas SSIV / ESD remotas)</span>
+            </td>
+            <td><div class="edit-cell" contenteditable="true">Convenio de operación interplantas, manual de gasoducto</div></td>
+            <td style="text-align: center;"><input type="number" step="0.1" min="0" max="1" value="1.0" class="input-number v-per" onchange="calcularFila(6)"></td>
+            <td style="text-align: center;"><input type="number" step="0.1" min="0" max="1" value="1.0" class="input-number v-rec" onchange="calcularFila(6)"></td>
+            <td style="text-align: center;"><input type="number" step="0.1" min="0" max="1" value="1.0" class="input-number v-sis" onchange="calcularFila(6)"></td>
+            <td style="text-align: center;">
+              <span class="vg-resul" style="font-weight: 800;">1.00</span><br>
+              <span class="badge-status status-bad status-tag">Fallo Total</span>
+            </td>
+            <td><div class="edit-cell" contenteditable="true">Válvulas submarinas de cierre automático (SSIV) por caída de presión y sistema ESD cruzado vía SCADA.</div></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 5. DOCUMENTO 2: MEMORIA TÉCNICA JUSTIFICATIVA EDITABLE -->
+  <div class="card card-emerald">
+    <div style="font-size: 1.15rem; font-weight: 800; color: #0f172a; margin-bottom: 6px;">
+      Documento 2: Memoria Técnica Justificativa (Redacción Editable)
+    </div>
+    <span style="font-size: 0.8rem; color: #64748b; display: block; margin-bottom: 14px;">
+      Complete cada sección con el soporte técnico y documental de su centro de trabajo.
+    </span>
+
+    <!-- SECCIÓN A -->
+    <div style="margin-bottom: 16px;">
+      <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #0f172a; margin-bottom: 4px;">
+        Sección A: Caracterización de la Instalación y Filosofía Operacional
+      </label>
+      <div id="memoria_sec_a" contenteditable="true" style="min-height: 80px;">
+        Describa aquí: sustancia principal manipulada (CAS, frases H), capacidad de almacenamiento en tanques, presiones y temperaturas nominales de operación, cantidad de personal por turno y justificación técnica de la selección de los 6 escenarios creíbles.
+      </div>
+    </div>
+
+    <!-- SECCIÓN B -->
+    <div style="margin-bottom: 16px;">
+      <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #0f172a; margin-bottom: 4px;">
+        Sección B: Análisis Causal y Trazabilidad Probatoria de Puntuaciones
+      </label>
+      <div id="memoria_sec_b" contenteditable="true" style="min-height: 100px;">
+        Justifique celda por celda la asignación numérica de las tres dimensiones. Ejemplo: "En el Escenario 1, V_sis = 0.6 se sustenta en que el Procedimiento PTW-08 no exige prueba de torque controlado ni verificación hidrostática previa al arranque del equipo."
+      </div>
+    </div>
+
+    <!-- SECCIÓN C -->
+    <div>
+      <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #0f172a; margin-bottom: 4px;">
+        Sección C: Jerarquía Mandatoria de Controles del Plan de Reducción
+      </label>
+      <div id="memoria_sec_c" contenteditable="true" style="min-height: 90px;">
+        Especifique cómo las medidas de ingeniería reducen formalmente el índice final a VG &lt; 0.5. Detalle las intervenciones físicas prioritarias (válvulas automáticas SSIV, sectorización de muros cortafuegos H-120), seguidas de controles administrativos y dotación de SCBA.
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. LISTA DE VERIFICACIÓN PREVIA AL ENVÍO -->
+  <div class="card card-amber">
+    <div style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 10px;">
+      Lista de Chequeo de Autoverificación Previa al Envío (Nivel Excelente 90–100 %)
+    </div>
+    <div style="font-size: 0.85rem; color: #334155; display: flex; flex-direction: column; gap: 8px;">
+      <label><input type="checkbox" id="chk1"> Se encuentran desarrollados los 6 escenarios creíbles (marcando el Escenario 6 como peor caso).</label>
+      <label><input type="checkbox" id="chk2"> Las 18 puntuaciones asignadas cuentan con cita documental auditable en la instalación.</label>
+      <label><input type="checkbox" id="chk3"> El valor VG resultante se calculó como el promedio aritmético riguroso de las 3 dimensiones.</label>
+      <label><input type="checkbox" id="chk4"> El Plan de Reducción demuestra que los escenarios alcanzan un valor final VG &lt; 0.5 mediante ingeniería.</label>
+      <label><input type="checkbox" id="chk5"> La memoria técnica respeta las Secciones A, B y C con una extensión equivalente de 2 a 3 páginas.</label>
+      <label><input type="checkbox" id="chk6"> Se incorporaron las citas formales del DE 255, MDT-2024-196 e Informe Cullen en formato APA 7.ª edición.</label>
+    </div>
+  </div>
+
+  <!-- 7. RECURSOS DE ESTUDIO MULTIMEDIA EMBEBIDOS -->
+  <div class="card card-darkblue media-section">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; background-color: #eff6ff; color: #1d4ed8; border-radius: 50%; font-size: 13px; font-weight: bold;">🎬</span>
+        <h2 style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0;">
+          Material Audiovisual e Instrumento de Trabajo Incrustado
+        </h2>
+      </div>
+      <span style="background-color: #eff6ff; color: #1d4ed8; font-size: 0.72rem; font-weight: 700; padding: 3px 10px; border-radius: 6px;">
+        Recursos Oficiales Drive
+      </span>
+    </div>
+
+    <!-- 1. VIDEO MP4 (PRIMERO) -->
+    <div style="margin-bottom: 22px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+        <span style="font-size: 0.88rem; font-weight: 700; color: #0f172a;">▶ Video MP4: Auditoría_Industrial.mp4</span>
+        <span style="font-size: 0.7rem; font-weight: 700; color: #64748b; background-color: #f1f5f9; padding: 2px 8px; border-radius: 4px;">Reproductor Cloud</span>
+      </div>
+      <p style="font-size: 0.8rem; color: #475569; margin: 0 0 10px 0;">
+        Recurso audiovisual sobre auditoría de seguridad de procesos, diagnóstico de barreras operacionales y mitigación del efecto dominó en instalaciones de alto riesgo.
+      </p>
+      <div style="width: 100%; max-width: 820px; margin: 0 auto;">
+        <div style="border: 1px solid #cbd5e1; border-radius: 8px; overflow: hidden; background-color: #0f172a; position: relative; padding-bottom: 56.25%; height: 0;">
+          <iframe
+            style="position: absolute; top:0; left: 0; width: 100%; height: 100%; border: 0;"
+            title="Video Auditoria Industrial"
+            src="https://drive.google.com/file/d/1QLz_JPRgTORYwvtGwUytMa7-yiIGqnBg/preview"
+            allow="autoplay; fullscreen"
+            allowfullscreen="true"></iframe>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px;">
+        <span style="font-size: 0.75rem; color: #64748b;"><em>Archivo: Auditoría_Industrial.mp4 • Soporte audiovisual.</em></span>
+        <a style="font-size: 0.75rem; color: #1d4ed8; font-weight: 700; text-decoration: none;" href="https://drive.google.com/file/d/1QLz_JPRgTORYwvtGwUytMa7-yiIGqnBg/view?usp=sharing" target="_blank" rel="noopener noreferrer">⤓ Abrir en pestaña nueva</a>
+      </div>
+    </div>
+
+    <!-- 2. DOCUMENTO PDF (LUEGO DEL VIDEO) -->
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+        <span style="font-size: 0.88rem; font-weight: 700; color: #0f172a;">📄 Documento PDF: Brigadas_Fase1_Diagnostico_Vulnerabilidad_Sistemica_VG_y_Modelado_de_Amenazas_PiperAlpha.pdf</span>
+        <span style="font-size: 0.7rem; font-weight: 700; color: #dc2626; background-color: #fef2f2; padding: 2px 8px; border-radius: 4px;">Visor PDF</span>
+      </div>
+      <p style="font-size: 0.8rem; color: #475569; margin: 0 0 10px 0;">
+        Documento técnico oficial con el desarrollo metodológico completo de la Fase 1, bandas de calificación y memoria justificativa.
+      </p>
+      <div style="width: 100%; max-width: 820px; margin: 0 auto;">
+        <div style="border: 1px solid #cbd5e1; border-radius: 8px; overflow: hidden; background-color: #ffffff; position: relative; padding-bottom: 75%; height: 0;">
+          <iframe
+            style="position: absolute; top:0; left: 0; width: 100%; height: 100%; border: 0;"
+            title="Guia Tecnica Fase 1"
+            src="https://drive.google.com/file/d/171nHqlBbiWutLovXKeUFbLKhBuGaAIyj/preview"
+            allow="autoplay; fullscreen"
+            allowfullscreen="true"></iframe>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 6px;">
+        <span style="font-size: 0.75rem; color: #64748b;"><em>Archivo: Brigadas_Fase1_Diagnostico_Vulnerabilidad_Sistemica_VG_y_Modelado_de_Amenazas_PiperAlpha.pdf</em></span>
+        <a style="font-size: 0.75rem; color: #1d4ed8; font-weight: 700; text-decoration: none;" href="https://drive.google.com/file/d/171nHqlBbiWutLovXKeUFbLKhBuGaAIyj/view?usp=sharing" target="_blank" rel="noopener noreferrer">⤓ Abrir en pestaña nueva</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PIE DE TARJETA -->
+  <div style="text-align: center; font-size: 0.76rem; color: #64748b; margin-top: 20px; border-top: 1px solid #e2e8f0; padding-top: 12px;">
+    <strong>Plantilla Web Interactiva para GitHub Pages • Consigna 1: Matriz V<sub>G</sub> y Memoria</strong> • Seguridad y Salud Ocupacional • Semestre 2026-2
+  </div>
+
+</div>
+
+<!-- SCRIPT DE LÓGICA INTERACTIVA, CÁLCULO VG Y LOCALSTORAGE -->
+<script>
+  // Cálculo automático del índice VG en tiempo real
+  function calcularFila(n) {
+    const row = document.querySelector(`tr[data-row="${n}"]`);
+    if (!row) return;
+
+    const vPer = parseFloat(row.querySelector('.v-per').value) || 0;
+    const vRec = parseFloat(row.querySelector('.v-rec').value) || 0;
+    const vSis = parseFloat(row.querySelector('.v-sis').value) || 0;
+
+    const vg = (vPer + vRec + vSis) / 3;
+    const vgSpan = row.querySelector('.vg-resul');
+    const tagSpan = row.querySelector('.status-tag');
+
+    vgSpan.innerText = vg.toFixed(2);
+
+    if (vg >= 0.5) {
+      tagSpan.innerText = (n === 6 && vg >= 0.9) ? "Fallo Total" : "Inadmisible";
+      tagSpan.className = "badge-status status-bad status-tag";
+    } else {
+      tagSpan.innerText = "Aceptable";
+      tagSpan.className = "badge-status status-ok status-tag";
+    }
+  }
+
+  // Guardar datos en LocalStorage del navegador
+  function guardarDatos() {
+    const datos = {
+      nombre: document.getElementById('estudiante_nombre').innerHTML,
+      codigo: document.getElementById('estudiante_codigo').innerHTML,
+      grupo: document.getElementById('estudiante_grupo').innerHTML,
+      planta: document.getElementById('estudiante_planta').innerHTML,
+      docente: document.getElementById('docente_nombre').innerHTML,
+      memA: document.getElementById('memoria_sec_a').innerHTML,
+      memB: document.getElementById('memoria_sec_b').innerHTML,
+      memC: document.getElementById('memoria_sec_c').innerHTML,
+      filas: []
+    };
+
+    for (let i = 1; i <= 6; i++) {
+      const row = document.querySelector(`tr[data-row="${i}"]`);
+      datos.filas.push({
+        evidencia: row.querySelectorAll('.edit-cell')[0].innerHTML,
+        vPer: row.querySelector('.v-per').value,
+        vRec: row.querySelector('.v-rec').value,
+        vSis: row.querySelector('.v-sis').value,
+        plan: row.querySelectorAll('.edit-cell')[1].innerHTML
+      });
+    }
+
+    localStorage.setItem('fase1_borrador_vg', JSON.stringify(datos));
+    alert('✅ Borrador guardado exitosamente en este navegador.');
+  }
+
+  // Cargar datos al iniciar
+  window.addEventListener('DOMContentLoaded', () => {
+    const raw = localStorage.getItem('fase1_borrador_vg');
+    if (!raw) return;
+
+    try {
+      const datos = JSON.parse(raw);
+      if (datos.nombre) document.getElementById('estudiante_nombre').innerHTML = datos.nombre;
+      if (datos.codigo) document.getElementById('estudiante_codigo').innerHTML = datos.codigo;
+      if (datos.grupo) document.getElementById('estudiante_grupo').innerHTML = datos.grupo;
+      if (datos.planta) document.getElementById('estudiante_planta').innerHTML = datos.planta;
+      if (datos.docente) document.getElementById('docente_nombre').innerHTML = datos.docente;
+      if (datos.memA) document.getElementById('memoria_sec_a').innerHTML = datos.memA;
+      if (datos.memB) document.getElementById('memoria_sec_b').innerHTML = datos.memB;
+      if (datos.memC) document.getElementById('memoria_sec_c').innerHTML = datos.memC;
+
+      if (datos.filas && datos.filas.length === 6) {
+        datos.filas.forEach((f, idx) => {
+          const n = idx + 1;
+          const row = document.querySelector(`tr[data-row="${n}"]`);
+          if (row) {
+            row.querySelectorAll('.edit-cell')[0].innerHTML = f.evidencia;
+            row.querySelector('.v-per').value = f.vPer;
+            row.querySelector('.v-rec').value = f.vRec;
+            row.querySelector('.v-sis').value = f.vSis;
+            row.querySelectorAll('.edit-cell')[1].innerHTML = f.plan;
+            calcularFila(n);
+          }
+        });
+      }
+    } catch (e) {
+      console.error("Error al cargar borrador", e);
+    }
+  });
+
+  // Exportar datos a JSON descargable
+  function exportarJSON() {
+    guardarDatos();
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(localStorage.getItem('fase1_borrador_vg'));
+    const downloadAnchor = document.createElement('a');
+    downloadAnchor.setAttribute("href", dataStr);
+    downloadAnchor.setAttribute("download", "Entregable_Fase1_PiperAlpha.json");
+    document.body.appendChild(downloadAnchor);
+    downloadAnchor.click();
+    downloadAnchor.remove();
+  }
+
+  // Restablecer valores
+  function limpiarPlantilla() {
+    if (confirm('¿Está seguro de restablecer todos los campos a sus valores iniciales?')) {
+      localStorage.removeItem('fase1_borrador_vg');
+      location.reload();
+    }
+  }
+</script>
+
+</body>
+</html>
