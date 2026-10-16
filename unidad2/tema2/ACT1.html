@@ -1,0 +1,407 @@
+<div style="font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; line-height: 1.5; color: #2d3748; max-width: 100%; margin: 0 auto; padding: 10px;">
+
+    <!-- CABECERA AZUL MARINO / BADGE Y DATOS DE ASIGNATURA -->
+    <div style="background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%); color: #ffffff; padding: 25px 22px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); margin-bottom: 22px; border-left: 8px solid #00c6ff;">
+        <div style="display: inline-block; background-color: rgba(0, 198, 255, 0.2); color: #00c6ff; padding: 4px 12px; border-radius: 20px; font-size: 0.80rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; border: 1px solid rgba(0, 198, 255, 0.4);">
+            Ingeniería Industrial • Seguridad y Salud Ocupacional (2026-2)
+        </div>
+        <h1 style="font-size: 1.60rem; font-weight: 800; margin: 0 0 8px 0; color: #ffffff; letter-spacing: -0.5px; line-height: 1.25;">
+            CONSIGNA 2: MODELADO ANALÍTICO ASET vs. RSET EN UNA RUTA REAL (FORMATO DE ENTREGA)
+        </h1>
+        <div style="font-size: 0.90rem; color: #cfd8dc; font-weight: 500; display: flex; flex-wrap: wrap; gap: 14px;">
+            <span><strong>Marco Regulatorio:</strong> Dec. Ejecutivo 255 • Acuerdo MDT-2024-196</span>
+            <span>•</span>
+            <span><strong>Estándar:</strong> SFPE Handbook (5.ª Ed.)</span>
+            <span>•</span>
+            <span><strong>Evaluación:</strong> Criterio de Supervivencia ASET &ge; RSET</span>
+        </div>
+    </div>
+
+    <!-- TARJETA 1: REGISTRO DE DATOS DEL ESTUDIANTE Y CARACTERIZACIÓN DE LA RUTA -->
+    <div style="background-color: #ffffff; border-radius: 10px; border: 1px solid #e2e8f0; border-left: 6px solid #2c5364; padding: 20px 22px; margin-bottom: 22px; box-shadow: 0 2px 6px rgba(0,0,0,0.04);">
+        <div style="display: flex; align-items: center; margin-bottom: 14px;">
+            <span style="background-color: #e8f4fd; color: #006699; padding: 5px 12px; border-radius: 6px; font-weight: 700; font-size: 0.82rem; text-transform: uppercase;">
+                1. Identificación del Estudiante e Instalación Inspeccionada
+            </span>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px;">
+            <div>
+                <label style="display: block; font-size: 0.82rem; font-weight: 700; color: #475569; margin-bottom: 4px; text-transform: uppercase;">Apellidos y Nombres:</label>
+                <input type="text" placeholder="Apellidos y Nombres completos" style="width: 100%; box-sizing: border-box; padding: 8px 12px; font-size: 0.90rem; border: 1px solid #cbd5e1; border-radius: 6px; outline: none; background-color: #f8fafc;" />
+            </div>
+            <div>
+                <label style="display: block; font-size: 0.82rem; font-weight: 700; color: #475569; margin-bottom: 4px; text-transform: uppercase;">Código / Matrícula / Grupo:</label>
+                <input type="text" placeholder="Ej. IND-2026-XXXX / Grupo N.°" style="width: 100%; box-sizing: border-box; padding: 8px 12px; font-size: 0.90rem; border: 1px solid #cbd5e1; border-radius: 6px; outline: none; background-color: #f8fafc;" />
+            </div>
+            <div>
+                <label style="display: block; font-size: 0.82rem; font-weight: 700; color: #475569; margin-bottom: 4px; text-transform: uppercase;">Centro de Trabajo / Planta Evaluada:</label>
+                <input type="text" placeholder="Nombre de la instalación o edificio" style="width: 100%; box-sizing: border-box; padding: 8px 12px; font-size: 0.90rem; border: 1px solid #cbd5e1; border-radius: 6px; outline: none; background-color: #f8fafc;" />
+            </div>
+            <div>
+                <label style="display: block; font-size: 0.82rem; font-weight: 700; color: #475569; margin-bottom: 4px; text-transform: uppercase;">Denominación de la Ruta de Evacuación:</label>
+                <input type="text" placeholder="Ej. Ruta R-01 (Taller de Mecanizado a Salida Principal)" style="width: 100%; box-sizing: border-box; padding: 8px 12px; font-size: 0.90rem; border: 1px solid #cbd5e1; border-radius: 6px; outline: none; background-color: #f8fafc;" />
+            </div>
+        </div>
+    </div>
+
+    <!-- TARJETA 2: TABLA DE CÁLCULO EN BLANCO PARA RSET -->
+    <div style="background-color: #ffffff; border-radius: 10px; border: 1px solid #e2e8f0; border-left: 6px solid #00a8cc; padding: 20px 22px; margin-bottom: 22px; box-shadow: 0 2px 6px rgba(0,0,0,0.04);">
+        <div style="display: flex; align-items: center; margin-bottom: 12px;">
+            <span style="background-color: #e0f7fa; color: #00838f; padding: 5px 12px; border-radius: 6px; font-weight: 700; font-size: 0.82rem; text-transform: uppercase;">
+                2. Levantamiento Cuantitativo de Componentes RSET (Tiempo Requerido)
+            </span>
+        </div>
+
+        <p style="font-size: 0.88rem; color: #4a5568; margin-top: 0; margin-bottom: 12px; text-align: justify;">
+            Diligencie los campos con los valores obtenidos en campo. La formulación ejecutará la suma interactiva: 
+            <strong>RSET = T<sub>det</sub> + T<sub>ala</sub> + T<sub>reac</sub> + (D / V) + [N / (C &times; A<sub>e</sub>)]</strong>.
+        </p>
+
+        <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.86rem; text-align: left; min-width: 650px;">
+                <thead>
+                    <tr style="background-color: #203a43; color: #ffffff;">
+                        <th style="padding: 10px 12px; border: 1px solid #37474f; width: 22%;">Componente Analítico</th>
+                        <th style="padding: 10px 12px; border: 1px solid #37474f; width: 14%;">Tiempo (min)</th>
+                        <th style="padding: 10px 12px; border: 1px solid #37474f; width: 34%;">Parámetros de Medición en Sitio</th>
+                        <th style="padding: 10px 12px; border: 1px solid #37474f; width: 30%;">Sustento Documental / Norma Aplicada</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- T_det -->
+                    <tr style="background-color: #ffffff;">
+                        <td style="padding: 8px 12px; border: 1px solid #e2e8f0; font-weight: 700; color: #2c5364;">
+                            1. Detección (T<sub>det</sub>)
+                        </td>
+                        <td style="padding: 8px 12px; border: 1px solid #e2e8f0;">
+                            <input type="number" id="inp_tdet" step="0.01" placeholder="0.00" oninput="calcularModeloEvacuacion()" style="width: 90px; padding: 6px; border: 1px solid #cbd5e1; border-radius: 4px; font-weight: 700; text-align: center; background-color: #ffffff;" />
+                        </td>
+                        <td style="padding: 8px 12px; border: 1px solid #e2e8f0; color: #64748b; font-size: 0.82rem;">
+                            Tiempo de respuesta de sensores (humo / temperatura / llama).
+                        </td>
+                        <td style="padding: 8px 12px; border: 1px solid #e2e8f0;">
+                            <input type="text" placeholder="Ficha técnica / Curva HRR NFPA 72" style="width: 100%; box-sizing: border-box; padding: 5px; font-size: 0.82rem; border: 1px solid #e2e8f0; border-radius: 4px;" />
+                        </td>
+                    </tr>
+
+                    <!-- T_ala -->
+                    <tr style="background-color: #f8fafc;">
+                        <td style="padding: 8px 12px; border: 1px solid #e2e8f0; font-weight: 700; color: #2c5364;">
+                            2. Alarma (T<sub>ala</sub>)
+                        </td>
+                        <td style="padding: 8px 12px; border: 1px solid #e2e8f0;">
+                            <input type="number" id="inp_tala" step="0.01" placeholder="0.00" oninput="calcularModeloEvacuacion()" style="width: 90px; padding: 6px; border: 1px solid #cbd5e1; border-radius: 4px; font-weight: 700; text-align: center; background-color: #ffffff;" />
+                        </td>
+                        <td style="padding: 8px 12px; border: 1px solid #e2e8f0; color: #64748b; font-size: 0.82rem;">
+                            Retardo por verificación en panel y difusión de señal acústica/lumínica.
+                        </td>
+                        <td style="padding: 8px 12px; border: 1px solid #e2e8f0;">
+                            <input type="text" placeholder="Matriz causa-efecto del sistema de alarma" style="width: 100%; box-sizing: border-box; padding: 5px; font-size: 0.82rem; border: 1px solid #e2e8f0; border-radius: 4px;" />
+                        </td>
+                    </tr>
+
+                    <!-- T_reac -->
+                    <tr style="background-color: #ffffff;">
+                        <td style="padding: 8px 12px; border: 1px solid #e2e8f0; font-weight: 700; color: #2c5364;">
+                            3. Reacción (T<sub>reac</sub>)
+                        </td>
+                        <td style="padding: 8px 12px; border: 1px solid #e2e8f0;">
+                            <input type="number" id="inp_treac" step="0.01" placeholder="0.00" oninput="calcularModeloEvacuacion()" style="width: 90px; padding: 6px; border: 1px solid #cbd5e1; border-radius: 4px; font-weight: 700; text-align: center; background-color: #ffffff;" />
+                        </td>
+                        <td style="padding: 8px 12px; border: 1px solid #e2e8f0; color: #64748b; font-size: 0.82rem;">
+                            Tiempo hasta el cese de tareas e inicio efectivo del desplazamiento.
+                        </td>
+                        <td style="padding: 8px 12px; border: 1px solid #e2e8f0;">
+                            <input type="text" placeholder="Cronometrado en simulacros inopinados" style="width: 100%; box-sizing: border-box; padding: 5px; font-size: 0.82rem; border: 1px solid #e2e8f0; border-radius: 4px;" />
+                        </td>
+                    </tr>
+
+                    <!-- D / V -->
+                    <tr style="background-color: #f8fafc;">
+                        <td style="padding: 8px 12px; border: 1px solid #e2e8f0; font-weight: 700; color: #2c5364;">
+                            4. Marcha (D / V)
+                        </td>
+                        <td style="padding: 8px 12px; border: 1px solid #e2e8f0;">
+                            <input type="number" id="inp_tdv" step="0.01" placeholder="0.00" readonly style="width: 90px; padding: 6px; border: 1px solid #94a3b8; border-radius: 4px; font-weight: 800; background-color: #f1f5f9; text-align: center; color: #0f2027;" />
+                        </td>
+                        <td style="padding: 8px 12px; border: 1px solid #e2e8f0;">
+                            <div style="display: flex; gap: 6px; align-items: center; font-size: 0.80rem;">
+                                <span>Dist. D (m):</span>
+                                <input type="number" id="sub_d" placeholder="0" oninput="actualizarSubcalculos()" style="width: 60px; padding: 3px; border: 1px solid #cbd5e1; border-radius: 3px;" />
+                                <span>Vel. V (m/s):</span>
+                                <input type="number" id="sub_v" step="0.1" placeholder="1.0" oninput="actualizarSubcalculos()" style="width: 50px; padding: 3px; border: 1px solid #cbd5e1; border-radius: 3px;" />
+                            </div>
+                        </td>
+                        <td style="padding: 8px 12px; border: 1px solid #e2e8f0;">
+                            <input type="text" placeholder="Plano de evacuación ISO 23601 / SFPE" style="width: 100%; box-sizing: border-box; padding: 5px; font-size: 0.82rem; border: 1px solid #e2e8f0; border-radius: 4px;" />
+                        </td>
+                    </tr>
+
+                    <!-- N / (C * Ae) -->
+                    <tr style="background-color: #ffffff;">
+                        <td style="padding: 8px 12px; border: 1px solid #e2e8f0; font-weight: 700; color: #2c5364;">
+                            5. Flujo Vano [N / (C &times; A<sub>e</sub>)]
+                        </td>
+                        <td style="padding: 8px 12px; border: 1px solid #e2e8f0;">
+                            <input type="number" id="inp_tflujo" step="0.01" placeholder="0.00" readonly style="width: 90px; padding: 6px; border: 1px solid #94a3b8; border-radius: 4px; font-weight: 800; background-color: #f1f5f9; text-align: center; color: #0f2027;" />
+                        </td>
+                        <td style="padding: 8px 12px; border: 1px solid #e2e8f0;">
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px; font-size: 0.78rem;">
+                                <span>N (personas): <input type="number" id="sub_n" placeholder="0" oninput="actualizarSubcalculos()" style="width: 50px; padding: 2px; border: 1px solid #cbd5e1;" /></span>
+                                <span>C (p/min/m): <input type="number" id="sub_c" step="0.1" placeholder="1.3" oninput="actualizarSubcalculos()" style="width: 45px; padding: 2px; border: 1px solid #cbd5e1;" /></span>
+                                <span style="grid-column: span 2;">Ancho A<sub>e</sub> (m): <input type="number" id="sub_ae" step="0.01" placeholder="0.0" oninput="actualizarSubcalculos()" style="width: 50px; padding: 2px; border: 1px solid #cbd5e1;" /></span>
+                            </div>
+                        </td>
+                        <td style="padding: 8px 12px; border: 1px solid #e2e8f0;">
+                            <input type="text" placeholder="Aforo máximo legal / Ancho vano de salida" style="width: 100%; box-sizing: border-box; padding: 5px; font-size: 0.82rem; border: 1px solid #e2e8f0; border-radius: 4px;" />
+                        </td>
+                    </tr>
+
+                    <!-- TOTAL RSET -->
+                    <tr style="background-color: #edf2f7; font-weight: 800;">
+                        <td style="padding: 10px 12px; border: 1px solid #cbd5e1; color: #1e293b;">
+                            TIEMPO TOTAL REQUERIDO (RSET)
+                        </td>
+                        <td style="padding: 10px 12px; border: 1px solid #cbd5e1; color: #00838f; font-size: 1.05rem;" id="out_rset_val">
+                            0.00 min
+                        </td>
+                        <td colspan="2" style="padding: 10px 12px; border: 1px solid #cbd5e1; font-size: 0.82rem; color: #475569;">
+                            Suma acumulada de los 5 componentes temporales calculados.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- TARJETA 3: INGRESO DE ASET Y GRÁFICA COMPARATIVA -->
+    <div style="background-color: #ffffff; border-radius: 10px; border: 1px solid #e2e8f0; border-left: 6px solid #b45309; padding: 20px 22px; margin-bottom: 22px; box-shadow: 0 2px 6px rgba(0,0,0,0.04);">
+        <div style="display: flex; align-items: center; margin-bottom: 12px;">
+            <span style="background-color: #fef3c7; color: #92400e; padding: 5px 12px; border-radius: 6px; font-weight: 700; font-size: 0.82rem; text-transform: uppercase;">
+                3. Límite de Habitabilidad (ASET) y Cronología Comparativa
+            </span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 18px; align-items: center;">
+            <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 16px;">
+                <label style="display: block; font-size: 0.85rem; font-weight: 700; color: #1e293b; margin-bottom: 4px;">ASET ESTIMADO EN LA RUTA (minutos):</label>
+                <div style="display: flex; gap: 8px; align-items: center;">
+                    <input type="number" id="inp_aset" step="0.1" placeholder="0.0" oninput="calcularModeloEvacuacion()" style="width: 100px; padding: 7px; font-size: 1.05rem; font-weight: 800; border: 1px solid #cbd5e1; border-radius: 6px; color: #b91c1c; text-align: center; background-color: #ffffff;" />
+                    <span style="font-size: 0.85rem; color: #64748b;">Descenso de capa a 1.80 m / Gases IDLH</span>
+                </div>
+            </div>
+
+            <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 16px;">
+                <div style="font-size: 0.85rem; font-weight: 700; color: #1e293b; margin-bottom: 4px;">CRITERIOS DE CONFORMIDAD:</div>
+                <div style="font-size: 0.85rem; color: #334155;">
+                    Condición básica: <strong>RSET &le; ASET</strong><br>
+                    Exigencia legal (MDT-2024-196): <strong>FS = (ASET / RSET) &ge; 1.20</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- TIMELINE DINÁMICA APILADA -->
+        <div style="margin-top: 10px; margin-bottom: 10px;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.78rem; font-weight: 700; color: #64748b; margin-bottom: 4px;">
+                <span>0.0 min (Ignición)</span>
+                <span id="lbl_mid_scale">Cota RSET: 0.00 min</span>
+                <span style="color: #b91c1c;" id="lbl_aset_scale">LÍMITE ASET: 0.00 min</span>
+            </div>
+
+            <div style="width: 100%; height: 38px; background-color: #e2e8f0; border-radius: 6px; overflow: hidden; display: flex; position: relative; border: 1px solid #cbd5e1;">
+                <div id="bar_tdet" style="width: 0%; background-color: #1e293b; color: #fff; font-size: 0.70rem; font-weight: bold; display: flex; align-items: center; justify-content: center;" title="Detección">T_det</div>
+                <div id="bar_tala" style="width: 0%; background-color: #0284c7; color: #fff; font-size: 0.70rem; font-weight: bold; display: flex; align-items: center; justify-content: center;" title="Alarma">T_ala</div>
+                <div id="bar_treac" style="width: 0%; background-color: #f59e0b; color: #fff; font-size: 0.70rem; font-weight: bold; display: flex; align-items: center; justify-content: center;" title="Reacción">T_reac</div>
+                <div id="bar_tdv" style="width: 0%; background-color: #6366f1; color: #fff; font-size: 0.70rem; font-weight: bold; display: flex; align-items: center; justify-content: center;" title="Marcha (D/V)">D/V</div>
+                <div id="bar_tflujo" style="width: 0%; background-color: #4338ca; color: #fff; font-size: 0.70rem; font-weight: bold; display: flex; align-items: center; justify-content: center;" title="Flujo">Flujo</div>
+                <div id="bar_fs" style="width: 0%; background-color: #a7f3d0; color: #065f46; font-size: 0.70rem; font-weight: bold; display: none; align-items: center; justify-content: center;" title="Margen de Seguridad">+FS</div>
+            </div>
+
+            <!-- LEYENDA TÉCNICA -->
+            <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; font-size: 0.75rem; color: #475569;">
+                <span><span style="display: inline-block; width: 10px; height: 10px; background-color: #1e293b; border-radius: 2px;"></span> T_det</span>
+                <span><span style="display: inline-block; width: 10px; height: 10px; background-color: #0284c7; border-radius: 2px;"></span> T_ala</span>
+                <span><span style="display: inline-block; width: 10px; height: 10px; background-color: #f59e0b; border-radius: 2px;"></span> T_reac</span>
+                <span><span style="display: inline-block; width: 10px; height: 10px; background-color: #6366f1; border-radius: 2px;"></span> D/V</span>
+                <span><span style="display: inline-block; width: 10px; height: 10px; background-color: #4338ca; border-radius: 2px;"></span> Flujo N/(C&times;A<sub>e</sub>)</span>
+                <span><span style="display: inline-block; width: 10px; height: 10px; background-color: #a7f3d0; border: 1px solid #059669; border-radius: 2px;"></span> Margen Seguridad</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- TARJETA 4: DICTAMEN TÉCNICO Y PROPUESTA DE REDISEÑO -->
+    <div style="background-color: #ffffff; border-radius: 10px; border: 1px solid #e2e8f0; border-left: 6px solid #27ae60; padding: 20px 22px; margin-bottom: 22px; box-shadow: 0 2px 6px rgba(0,0,0,0.04);">
+        <div style="display: flex; align-items: center; margin-bottom: 12px;">
+            <span style="background-color: #eafaf1; color: #27ae60; padding: 5px 12px; border-radius: 6px; font-weight: 700; font-size: 0.82rem; text-transform: uppercase;">
+                4. Dictamen de Aptitud y Medidas de Rediseño de Ingeniería
+            </span>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-bottom: 14px;">
+            <div style="font-size: 0.95rem; font-weight: 700; color: #1e293b;">
+                ESTADO DE LA RUTA:
+            </div>
+            <div id="box_dictamen_badge" style="background-color: #f1f5f9; color: #64748b; border: 1px solid #cbd5e1; padding: 6px 16px; border-radius: 20px; font-weight: 800; font-size: 0.90rem; text-transform: uppercase;">
+                PENDIENTE DE CÁLCULO
+            </div>
+        </div>
+
+        <div id="txt_dictamen_obs" style="font-size: 0.88rem; color: #64748b; margin-bottom: 14px; text-align: justify;">
+            Ingrese los valores métricos de RSET y la cota de ASET para generar el dictamen técnico y el cálculo del Factor de Seguridad (FS).
+        </div>
+
+        <div style="border-top: 1px dashed #cbd5e1; padding-top: 12px;">
+            <label style="display: block; font-size: 0.84rem; font-weight: 700; color: #1e293b; margin-bottom: 6px;">
+                Propuesta de Rediseño de Ingeniería (obligatoria si FS &lt; 1.20 o para optimización de ruta):
+            </label>
+            <textarea placeholder="Describa las acciones correctivas cuantificadas para abatir el componente crítico (Ej. Presurización de caja de escaleras para dilatar ASET, ensanchamiento del vano Ae para mitigar cuello de botella, o instalación de cableado ignífugo para asegurar T_ala)..." rows="4" style="width: 100%; box-sizing: border-box; padding: 8px 12px; font-size: 0.86rem; border: 1px solid #cbd5e1; border-radius: 6px; font-family: inherit; outline: none; background-color: #f8fafc;"></textarea>
+        </div>
+    </div>
+
+    <!-- TARJETA 5: RÚBRICA DE EVALUACIÓN ACADÉMICA -->
+    <div style="background-color: #f8fafc; border-radius: 10px; border: 1px solid #e2e8f0; padding: 18px 22px;">
+        <h4 style="font-size: 0.85rem; text-transform: uppercase; color: #64748b; margin-top: 0; margin-bottom: 10px; font-weight: 700; letter-spacing: 0.5px;">
+            Rúbrica de Verificación Analítica (Ponderación Consigna 2: 35%)
+        </h4>
+        <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.80rem; text-align: left;">
+                <thead>
+                    <tr style="background-color: #e2e8f0; color: #334155;">
+                        <th style="padding: 6px 10px; border: 1px solid #cbd5e1;">Criterio</th>
+                        <th style="padding: 6px 10px; border: 1px solid #cbd5e1;">Excelente (90 - 100%)</th>
+                        <th style="padding: 6px 10px; border: 1px solid #cbd5e1;">Aceptable (70 - 89%)</th>
+                        <th style="padding: 6px 10px; border: 1px solid #cbd5e1;">Insuficiente (&lt; 70%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 6px 10px; border: 1px solid #cbd5e1; font-weight: 700;">Desglose y Fuentes</td>
+                        <td style="padding: 6px 10px; border: 1px solid #cbd5e1;">5 componentes justificados con medición real y respaldo normativo.</td>
+                        <td style="padding: 6px 10px; border: 1px solid #cbd5e1;">Calcula valores pero con fuentes teóricas genéricas.</td>
+                        <td style="padding: 6px 10px; border: 1px solid #cbd5e1;">Omite sumandos o presenta inconsistencias de unidades.</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 6px 10px; border: 1px solid #cbd5e1; font-weight: 700;">Criterio ASET/RSET</td>
+                        <td style="padding: 6px 10px; border: 1px solid #cbd5e1;">Compara frente a umbrales SFPE (CO, visibilidad, temp.) y calcula FS.</td>
+                        <td style="padding: 6px 10px; border: 1px solid #cbd5e1;">Establece ASET arbitrario sin sustentar el descenso de capa.</td>
+                        <td style="padding: 6px 10px; border: 1px solid #cbd5e1;">Confunde la condición de supervivencia: aprueba con RSET &gt; ASET.</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 6px 10px; border: 1px solid #cbd5e1; font-weight: 700;">Rediseño Técnico</td>
+                        <td style="padding: 6px 10px; border: 1px solid #cbd5e1;">Propuesta cuantificada sobre el sumando crítico con enfoque de ingeniería.</td>
+                        <td style="padding: 6px 10px; border: 1px solid #cbd5e1;">Propuestas meramente procedimentales sin impacto cuantitativo.</td>
+                        <td style="padding: 6px 10px; border: 1px solid #cbd5e1;">Sin medidas de mitigación técnica.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<!-- SCRIPT DE CÁLCULO DINÁMICO EN LÍNEA -->
+<script>
+function actualizarSubcalculos() {
+    var d = parseFloat(document.getElementById('sub_d').value) || 0;
+    var v = parseFloat(document.getElementById('sub_v').value) || 0;
+    var n = parseFloat(document.getElementById('sub_n').value) || 0;
+    var c = parseFloat(document.getElementById('sub_c').value) || 0;
+    var ae = parseFloat(document.getElementById('sub_ae').value) || 0;
+
+    var tdv = (v > 0) ? (d / v) / 60.0 : 0;
+    document.getElementById('inp_tdv').value = tdv > 0 ? tdv.toFixed(2) : '';
+
+    var tflujo = (c * ae > 0) ? n / (c * ae) : 0;
+    document.getElementById('inp_tflujo').value = tflujo > 0 ? tflujo.toFixed(2) : '';
+
+    calcularModeloEvacuacion();
+}
+
+function calcularModeloEvacuacion() {
+    var tdet = parseFloat(document.getElementById('inp_tdet').value) || 0;
+    var tala = parseFloat(document.getElementById('inp_tala').value) || 0;
+    var treac = parseFloat(document.getElementById('inp_treac').value) || 0;
+    var tdv = parseFloat(document.getElementById('inp_tdv').value) || 0;
+    var tflujo = parseFloat(document.getElementById('inp_tflujo').value) || 0;
+    var aset = parseFloat(document.getElementById('inp_aset').value) || 0;
+
+    var rset = tdet + tala + treac + tdv + tflujo;
+    document.getElementById('out_rset_val').innerText = rset.toFixed(2) + ' min';
+
+    var badge = document.getElementById('box_dictamen_badge');
+    var obs = document.getElementById('txt_dictamen_obs');
+
+    if (rset === 0 && aset === 0) {
+        badge.style.backgroundColor = '#f1f5f9';
+        badge.style.color = '#64748b';
+        badge.style.borderColor = '#cbd5e1';
+        badge.innerText = 'PENDIENTE DE CÁLCULO';
+        obs.innerText = 'Ingrese los valores métricos de RSET y la cota de ASET para generar el dictamen técnico y el cálculo del Factor de Seguridad (FS).';
+        actualizarBarra(0, 0, 0, 0, 0, 0, 0);
+        return;
+    }
+
+    var fs = (rset > 0) ? (aset / rset) : 0;
+
+    if (aset > 0 && rset <= aset && fs >= 1.20) {
+        badge.style.backgroundColor = '#d1fae5';
+        badge.style.color = '#065f46';
+        badge.style.borderColor = '#10b981';
+        badge.innerText = 'RUTA TÉCNICAMENTE APTA (FS = ' + fs.toFixed(2) + ')';
+        obs.innerText = 'El tiempo requerido de salida segura (' + rset.toFixed(2) + ' min) es inferior al tiempo disponible (' + aset.toFixed(2) + ' min) y cumple con el Factor de Seguridad reglamentario mínimo de 1.20 prescrito por el Acuerdo Ministerial MDT-2024-196.';
+    } else if (aset > 0 && rset <= aset && fs < 1.20) {
+        badge.style.backgroundColor = '#fef3c7';
+        badge.style.color = '#92400e';
+        badge.style.borderColor = '#f59e0b';
+        badge.innerText = 'RUTA CON MARGEN CRÍTICO (FS = ' + fs.toFixed(2) + ' < 1.20)';
+        obs.innerText = 'Aunque RSET (' + rset.toFixed(2) + ' min) <= ASET (' + aset.toFixed(2) + ' min), no alcanza el margen preventivo del 20% (FS < 1.20). Se exigen correcciones de ingeniería para ampliar vanos o presurizar rutas.';
+    } else if (aset > 0 && rset > aset) {
+        badge.style.backgroundColor = '#fee2e2';
+        badge.style.color = '#991b1b';
+        badge.style.borderColor = '#ef4444';
+        badge.innerText = 'RUTA INVIABLE / NO APTA (RSET > ASET)';
+        obs.innerText = '¡COLAPSO DEL SISTEMA DE EVACUACIÓN! El tiempo requerido (' + rset.toFixed(2) + ' min) supera la habitabilidad de la ruta (' + aset.toFixed(2) + ' min). Se replicaría el fallo forense de Piper Alpha por inhalación de gases y sobreexposición térmica.';
+    } else {
+        badge.style.backgroundColor = '#f1f5f9';
+        badge.style.color = '#64748b';
+        badge.style.borderColor = '#cbd5e1';
+        badge.innerText = 'DATOS INCOMPLETOS';
+        obs.innerText = 'Defina tanto los componentes de RSET como el valor de ASET para concluir la aptitud técnica de la ruta.';
+    }
+
+    actualizarBarra(tdet, tala, treac, tdv, tflujo, rset, aset);
+}
+
+function actualizarBarra(tdet, tala, treac, tdv, tflujo, rset, aset) {
+    var baseMax = Math.max(rset, aset) * 1.05;
+    if (baseMax <= 0) baseMax = 1.0;
+
+    document.getElementById('bar_tdet').style.width = ((tdet / baseMax) * 100).toFixed(2) + '%';
+    document.getElementById('bar_tala').style.width = ((tala / baseMax) * 100).toFixed(2) + '%';
+    document.getElementById('bar_treac').style.width = ((treac / baseMax) * 100).toFixed(2) + '%';
+    document.getElementById('bar_tdv').style.width = ((tdv / baseMax) * 100).toFixed(2) + '%';
+    document.getElementById('bar_tflujo').style.width = ((tflujo / baseMax) * 100).toFixed(2) + '%';
+
+    var barFs = document.getElementById('bar_fs');
+    if (aset > rset && rset > 0) {
+        barFs.style.display = 'flex';
+        barFs.style.width = (((aset - rset) / baseMax) * 100).toFixed(2) + '%';
+        barFs.style.backgroundColor = '#a7f3d0';
+        barFs.style.color = '#065f46';
+        barFs.innerText = '+' + (aset - rset).toFixed(1) + 'm';
+    } else if (rset > aset && aset > 0) {
+        barFs.style.display = 'flex';
+        barFs.style.width = (((rset - aset) / baseMax) * 100).toFixed(2) + '%';
+        barFs.style.backgroundColor = '#fecaca';
+        barFs.style.color = '#991b1b';
+        barFs.innerText = 'DEFICIT';
+    } else {
+        barFs.style.display = 'none';
+        barFs.style.width = '0%';
+    }
+
+    document.getElementById('lbl_mid_scale').innerText = 'Cota RSET: ' + rset.toFixed(2) + ' min';
+    document.getElementById('lbl_aset_scale').innerText = 'LÍMITE ASET: ' + aset.toFixed(2) + ' min';
+}
+</script>
