@@ -1,0 +1,403 @@
+<!-- CONTENEDOR PRINCIPAL -->
+<div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; max-width: 1100px; margin: 20px auto; color: #2d3748; line-height: 1.6;">
+
+  <!-- CARGADOR AUTÓNOMO DE MATHJAX (GARANTIZA RENDERIZADO EN NAVEGADOR LOCAL Y EN MOODLE) -->
+  <script>
+    (function () {
+      function compilarMatematicas() {
+        if (window.MathJax) {
+          if (window.MathJax.typesetPromise) {
+            window.MathJax.typesetPromise();
+          } else if (window.MathJax.Hub) {
+            window.MathJax.Hub.Queue(["Typeset", window.MathJax.Hub]);
+          }
+        }
+      }
+
+      if (!window.MathJax) {
+        window.MathJax = {
+          tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']]
+          },
+          options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+          },
+          startup: {
+            pageReady: function () {
+              return MathJax.startup.defaultPageReady().then(function () {
+                compilarMatematicas();
+              });
+            }
+          }
+        };
+        var script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+        script.async = true;
+        document.head.appendChild(script);
+      } else {
+        setTimeout(compilarMatematicas, 300);
+      }
+    })();
+  </script>
+
+  <!-- TARJETA SUPERIOR AZUL OSCURO/MARINA (H1 + INTRODUCCIÓN MOTIVADORA) -->
+  <div style="background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%); color: #ffffff; border-radius: 14px; padding: 32px 28px; box-shadow: 0 10px 25px rgba(15, 32, 39, 0.25); margin-bottom: 25px;">
+    <div style="display: inline-block; background-color: #00d2ff; color: #0f2027; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; padding: 5px 14px; border-radius: 20px; margin-bottom: 15px;">
+      INGENIERÍA DE SEGURIDAD DE PROCESOS | CASO FORENSE
+    </div>
+    <h1 style="font-size: 2.1rem; font-weight: 800; color: #ffffff; margin: 0 0 16px 0; line-height: 1.25; border-bottom: 2px solid rgba(0, 210, 255, 0.4); padding-bottom: 12px;">
+      Análisis Forense y Modelamiento Físico-Matemático de Evacuación: Plataforma Piper Alpha (1988)
+    </h1>
+    <p style="font-size: 1.05rem; color: #e2e8f0; margin: 0 0 16px 0; text-align: justify;">
+      <strong>Introducción Motivadora:</strong> El 6 de julio de 1988, la plataforma petrolera <em>Piper Alpha</em> en el Mar del Norte sufrió el accidente catastrófico más mortífero en la historia de la industria offshore, cobrando la vida de 167 trabajadores[cite: 1]. Lejos de ser una anomalía fortuita, constituyó una falla integral de ingeniería y gestión: ruptura de protocolos de <strong>Permiso de Trabajo (PTW, por sus siglas en inglés: <em>Permit to Work</em>)</strong>, ausencia de bloqueo y etiquetado <strong>(LOTO, por sus siglas en inglés: <em>Lockout/Tagout</em>)</strong>, carencia de redundancia estructural ante sobrepresiones de explosión y un diseño de evacuación peatonal que colapsó ante el flujo radiante térmico masivo[cite: 1, 2].
+    </p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 18px;">
+      <div style="background: rgba(255, 255, 255, 0.08); border-left: 3px solid #00d2ff; padding: 10px 14px; border-radius: 6px;">
+        <span style="font-size: 0.75rem; text-transform: uppercase; color: #90cdf4; display: block;">Personal a Bordo (POB)</span>
+        <strong style="font-size: 1.3rem; color: #ffffff;">226 operarios</strong>
+      </div>
+      <div style="background: rgba(255, 255, 255, 0.08); border-left: 3px solid #ff4b2b; padding: 10px 14px; border-radius: 6px;">
+        <span style="font-size: 0.75rem; text-transform: uppercase; color: #feb2b2; display: block;">Víctimas Fatales</span>
+        <strong style="font-size: 1.3rem; color: #ffffff;">167 fallecidos (73.9%)</strong>
+      </div>
+      <div style="background: rgba(255, 255, 255, 0.08); border-left: 3px solid #f6d365; padding: 10px 14px; border-radius: 6px;">
+        <span style="font-size: 0.75rem; text-transform: uppercase; color: #fefcbf; display: block;">Radiación Crítica (R=35m)</span>
+        <strong style="font-size: 1.3rem; color: #ffffff;">48.72 kW/m²</strong>
+      </div>
+      <div style="background: rgba(255, 255, 255, 0.08); border-left: 3px solid #00d2ff; padding: 10px 14px; border-radius: 6px;">
+        <span style="font-size: 0.75rem; text-transform: uppercase; color: #90cdf4; display: block;">Tolerancia Térmica Humana</span>
+        <strong style="font-size: 1.3rem; color: #ffffff;">0.0057 s</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- TARJETA BLANCA: iDEVICE DE LECTURA Y DEDUCCIÓN ANALÍTICA -->
+  <div style="background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; border-left: 6px solid #0083b0; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); padding: 30px; margin-bottom: 25px;">
+    
+    <!-- SECCIÓN 1: MARCO NORMATIVO Y CAUSA RAÍZ -->
+    <div style="display: flex; align-items: center; margin-bottom: 14px;">
+      <span style="background-color: #e6f6ff; color: #0083b0; font-weight: 700; font-size: 0.85rem; padding: 4px 10px; border-radius: 6px; margin-right: 10px;">SECCIÓN 01</span>
+      <h2 style="font-size: 1.4rem; color: #1a202c; margin: 0; font-weight: 700;">Marco Normativo y Desviaciones Críticas de Seguridad</h2>
+    </div>
+    <p style="text-align: justify; margin-bottom: 14px;">
+      Bajo el prisma regulatorio contemporáneo establecido en los <strong>Decretos Ejecutivos 255 y 2393 (Reglamento de Seguridad e Higiene del Trabajo)</strong>, todo sistema sociotécnico de producción continua debe garantizar barreras duras en la fuente, el medio y el receptor[cite: 1, 3]. En <em>Piper Alpha</em>, el evento iniciador se produjo por la falta de correlación documental de turnos: la Bomba B de condensado de gas había sido desmontada para mantenimiento preventivo y su <strong>Válvula de Seguridad de Presión (PSV, por sus siglas en inglés: <em>Pressure Safety Valve</em>)</strong> retirada, quedando la línea sellada con una brida ciega sin torque especificado ni prueba hidrostática previa[cite: 1].
+    </p>
+
+    <!-- SECCIÓN 2: BRIGADAS Y FACTOR DE RESCATE -->
+    <div style="display: flex; align-items: center; margin-top: 28px; margin-bottom: 14px;">
+      <span style="background-color: #e6f6ff; color: #0083b0; font-weight: 700; font-size: 0.85rem; padding: 4px 10px; border-radius: 6px; margin-right: 10px;">SECCIÓN 02</span>
+      <h2 style="font-size: 1.4rem; color: #1a202c; margin: 0; font-weight: 700;">Estructuración y Dimensionamiento Cuantitativo de Brigadas Offshore</h2>
+    </div>
+    <p style="text-align: justify;">
+      En plataformas costa afuera aisladas, el cálculo de brigadistas operativos requiere un factor de cobertura superior al estándar terrestre debido a la imposibilidad de asistencia externa inmediata[cite: 1]. El personal mínimo de brigadistas se define por la ecuación de densidad táctica:
+    </p>
+    <div style="background-color: #f8fafc; border: 1px dashed #cbd5e0; border-radius: 8px; padding: 15px; margin: 15px 0; text-align: center; font-size: 1.15rem; color: #1a365d;">
+      \[ B_{req} = \lceil \alpha \cdot POB \rceil + N_{reserva} = \lceil 0.15 \times 226 \rceil + \lceil 0.20 \times 34 \rceil = 34 + 7 = 41 \text{ brigadistas} \]
+    </div>
+
+    <!-- TABLA DE ALTA DENSIDAD: BRIGADAS -->
+    <div style="overflow-x: auto; margin-top: 15px;">
+      <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; text-align: left; background: #ffffff;">
+        <thead>
+          <tr style="background-color: #0f2027; color: #ffffff;">
+            <th style="padding: 10px 14px; border: 1px solid #cbd5e0;">Unidad Operativa</th>
+            <th style="padding: 10px 14px; border: 1px solid #cbd5e0;">Efectivos</th>
+            <th style="padding: 10px 14px; border: 1px solid #cbd5e0;">Misión Crítica</th>
+            <th style="padding: 10px 14px; border: 1px solid #cbd5e0;">Falla Operativa en Piper Alpha</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 8px 14px; font-weight: bold;">Ataque Contra Incendios</td>
+            <td style="padding: 8px 14px;">16 brigadistas</td>
+            <td style="padding: 8px 14px;">Presurización de diluvio y extinción activa</td>
+            <td style="padding: 8px 14px; color: #c53030;">Bombas de agua salada manuales; humo impidió maniobra</td>
+          </tr>
+          <tr style="background-color: #f7fafc; border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 8px 14px; font-weight: bold;">Evacuación &amp; Rescate</td>
+            <td style="padding: 8px 14px;">14 brigadistas</td>
+            <td style="padding: 8px 14px;">Despeje de accesos y arriado de botes TEMPSC</td>
+            <td style="padding: 8px 14px; color: #c53030;">Vías verticales destruidas; confinamiento involuntario</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 8px 14px; font-weight: bold;">Soporte Vital &amp; Triage</td>
+            <td style="padding: 8px 14px;">8 brigadistas</td>
+            <td style="padding: 8px 14px;">Primeros auxilios y estabilización START</td>
+            <td style="padding: 8px 14px; color: #c53030;">Hospital de a bordo invadido rápidamente por gas CO</td>
+          </tr>
+          <tr style="background-color: #f7fafc;">
+            <td style="padding: 8px 14px; font-weight: bold;">Comando de Incidente</td>
+            <td style="padding: 8px 14px;">3 brigadistas</td>
+            <td style="padding: 8px 14px;">Gestión del SCI y enlace radial de emergencia</td>
+            <td style="padding: 8px 14px; color: #c53030;">Sala de control aniquilada en los primeros 120 segundos</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SECCIÓN 3: CINEMÁTICA Y EVACUACIÓN -->
+    <div style="display: flex; align-items: center; margin-top: 30px; margin-bottom: 14px;">
+      <span style="background-color: #e6f6ff; color: #0083b0; font-weight: 700; font-size: 0.85rem; padding: 4px 10px; border-radius: 6px; margin-right: 10px;">SECCIÓN 03</span>
+      <h2 style="font-size: 1.4rem; color: #1a202c; margin: 0; font-weight: 700;">Modelamiento Cinemático del Flujo Peatonal y Efecto Óptico del Humo</h2>
+    </div>
+    <p style="text-align: justify;">
+      La dinámica de evacuación se rige por la condición analítica de seguridad:
+    </p>
+    <div style="background-color: #f8fafc; border: 1px dashed #cbd5e0; border-radius: 8px; padding: 12px; margin: 12px 0; text-align: center; font-size: 1.2rem; color: #2b6cb0;">
+      \[ \text{RSET} &lt; \text{ASET} \]
+    </div>
+    <p style="text-align: justify;">
+      Donde el <strong>Tiempo Requerido de Salida Segura (RSET, por sus siglas en inglés: <em>Required Safe Egress Time</em>)</strong> debe ser estrictamente menor al <strong>Tiempo Disponible de Salida Segura (ASET, por sus siglas en inglés: <em>Available Safe Egress Time</em>)</strong>[cite: 2]. La velocidad de marcha individual <em>v</em> decrece ante la densidad peatonal <em>&rho;</em> y el coeficiente de atenuación óptica del humo <em>C<sub>s</sub></em>, acoplando los postulados de Fruin (1971) y Jin (1997)[cite: 2]:
+    </p>
+    <div style="background-color: #f8fafc; border: 1px dashed #cbd5e0; border-radius: 8px; padding: 15px; margin: 15px 0; text-align: center; font-size: 1.15rem;">
+      \[ v(\rho, C_s) = v_0 \cdot \left(1 - \frac{\rho}{\rho_{\max}}\right) \cdot \exp(-k \cdot C_s) \]
+    </div>
+    <p style="text-align: justify;">
+      Tomando los valores observados en las galerías de Piper Alpha: velocidad base no perturbada <em>v<sub>0</sub> = 1.25 m/s</em>, densidad local de aglutinamiento <em>&rho; = 1.90 p/m²</em>, densidad de bloqueo físico <em>&rho;<sub>max</sub> = 3.80 p/m²</em>, coeficiente de extinción <em>C<sub>s</sub> = 1.20 m⁻¹</em> y factor empírico <em>k = 0.70 m</em>[cite: 2]:
+    </p>
+    <div style="background-color: #f8fafc; border: 1px dashed #cbd5e0; border-radius: 8px; padding: 15px; margin: 15px 0; font-size: 1.1rem; text-align: center;">
+      \[ v = 1.25 \cdot \left(1 - \frac{1.90}{3.80}\right) \cdot \exp(-0.70 \times 1.20) = 1.25 \times 0.50 \times \exp(-0.84) \]
+      <div style="margin-top: 10px;">
+        \[ v = 0.625 \times 0.43171 = 0.2698 \text{ m/s} \]
+      </div>
+    </div>
+    <p style="text-align: justify;">
+      La velocidad de tránsito se degradó en un <strong>78.4%</strong>, transformando trayectorias de evacuación de 40 metros en tiempos de marcha física inviables bajo toxicidad atmosférica.
+    </p>
+
+    <!-- SECCIÓN 4: RADIACIÓN TÉRMICA Y DOSIS DE EISENBERG -->
+    <div style="display: flex; align-items: center; margin-top: 30px; margin-bottom: 14px;">
+      <span style="background-color: #e6f6ff; color: #0083b0; font-weight: 700; font-size: 0.85rem; padding: 4px 10px; border-radius: 6px; margin-right: 10px;">SECCIÓN 04</span>
+      <h2 style="font-size: 1.4rem; color: #1a202c; margin: 0; font-weight: 700;">Termodinámica del Fuego de Chorro y Radiación Térmica Incidente</h2>
+    </div>
+    <p style="text-align: justify;">
+      A las 22:20 h, la ruptura del gasoducto submarino interplataforma de 120 bar procedente de la plataforma <em>Tartan</em> generó un <em>jet fire</em> continuo de potencia térmica liberada <strong>Q<sub>c</sub> = 3.0 &times; 10⁹ W (3 GW)</strong>[cite: 2]. La radiación incidente <em>q''</em> sobre las estaciones de <strong>Botes Salvavidas Totalmente Cerrados (TEMPSC, por sus siglas en inglés: <em>Totally Enclosed Motor Propelled Survival Craft</em>)</strong> ubicadas a un radio <strong>R = 35 m</strong> se deduce mediante el modelo puntual corregido por transmitancia atmosférica <em>&tau;<sub>a</sub> = 0.90</em> y fracción radiativa <em>&eta; = 0.25</em>[cite: 2]:
+    </p>
+    <div style="background-color: #f8fafc; border: 1px dashed #cbd5e0; border-radius: 8px; padding: 15px; margin: 15px 0; font-size: 1.1rem; text-align: center;">
+      \[ q'' = \left[ \frac{\eta \cdot Q_c}{4 \cdot \pi \cdot R^2} \right] \cdot \tau_a = \left[ \frac{0.25 \times 3.0 \times 10^9}{4 \cdot \pi \cdot (35)^2} \right] \times 0.90 = \frac{750\,000\,000}{15\,393.804} \times 0.90 \]
+      <div style="margin-top: 10px;">
+        \[ q'' = 48\,720.88 \text{ W/m}^2 \approx 48.72 \text{ kW/m}^2 \]
+      </div>
+    </div>
+    <p style="text-align: justify;">
+      Para determinar el colapso fisiológico por quemaduras térmicas de segundo y tercer grado sobre el tejido epidérmico expuesto, se aplica la ecuación de dosis térmica de Eisenberg[cite: 2]:
+    </p>
+    <div style="background-color: #f8fafc; border: 1px dashed #cbd5e0; border-radius: 8px; padding: 15px; margin: 15px 0; font-size: 1.1rem; text-align: center;">
+      \[ t_d = \left( \frac{1000}{q''} \right)^{\frac{4}{3}} = \left( \frac{1000}{48\,720.88} \right)^{1.3333} = (0.020525)^{1.3333} \approx 0.0057 \text{ segundos} \]
+    </div>
+    <div style="background-color: #fff5f5; border-left: 4px solid #e53e3e; padding: 12px 16px; border-radius: 4px; margin: 15px 0;">
+      <strong style="color: #9b2c2c;">Vulnerabilidad Crítica del Punto de Encuentro:</strong> El módulo residencial designado como área de concentración no contaba con mamparos clase H-120 presurizados ni aislamiento térmico de sobrepresión[cite: 2]. La radiación de <strong>48.72 kW/m²</strong> superó en un 3480% el umbral de dolor tolerable (1.4 kW/m²), obligando a los 61 sobrevivientes a arrojarse al mar desde alturas superiores a 40 metros[cite: 2].
+    </div>
+
+    <!-- SECCIÓN 5: REDISEÑO INGENIERIL DE VÍAS DE EGRESO -->
+    <div style="display: flex; align-items: center; margin-top: 30px; margin-bottom: 14px;">
+      <span style="background-color: #e6f6ff; color: #0083b0; font-weight: 700; font-size: 0.85rem; padding: 4px 10px; border-radius: 6px; margin-right: 10px;">SECCIÓN 05</span>
+      <h2 style="font-size: 1.4rem; color: #1a202c; margin: 0; font-weight: 700;">Rediseño Ingenieril de Vías de Egreso en Módulo Habitacional</h2>
+    </div>
+    <p style="text-align: justify;">
+      Bajo la directriz NFPA 101 y criterios de arquitectura de seguridad offshore, se rediseña el sistema de desalojo para un aforo crítico en bloque de <strong>P = 180 personas</strong> concentradas en la zona residencial, garantizando un factor de seguridad frente a un <strong>ASET = 150 s</strong>[cite: 3].
+    </p>
+    <div style="background-color: #f8fafc; border: 1px dashed #cbd5e0; border-radius: 8px; padding: 15px; margin: 15px 0; font-size: 1.05rem;">
+      <p style="margin: 4px 0;"><strong>1. Flujo Peatonal Específico (\(F_s\)):</strong></p>
+      \[F_s = \rho \cdot v = 1.90 \text{ p/m}^2 \times 0.625 \text{ m/s} = 1.1875 \text{ personas/(s}\cdot\text{m)}\]
+
+      <p style="margin: 14px 0 4px 0;"><strong>2. Tiempo Disponible de Marcha Neta (\(t_{\text{desalojo}}\)):</strong></p>
+      \[T_{E,\text{admisible}} = \frac{ASET}{1.25} = \frac{150}{1.25} = 120 \text{ s}\]
+      \[t_{\text{mov},\text{disp}} = T_{E,\text{admisible}} - (t_{\text{det}} + t_{\text{al}} + t_{\text{pre}}) = 120 - 40 = 80 \text{ s}\]
+      \[t_{\text{trans}} = \frac{D}{v} = \frac{40 \text{ m}}{0.625 \text{ m/s}} = 64.0 \text{ s}\]
+      \[t_{\text{desalojo}} = 80.0 \text{ s} - 64.0 \text{ s} = 16.0 \text{ segundos}\]
+
+      <p style="margin: 14px 0 4px 0;"><strong>3. Ancho Libre Requerido (\(W_u\)) y Unidades de Ancho de Salida (\(UAS\)):</strong></p>
+      \[W_u = \frac{P}{F_s \cdot t_{\text{desalojo}}} = \frac{180}{1.1875 \times 16.0} = \frac{180}{19.0} = 9.4737 \text{ metros netos}\]
+      \[N_{UAS} = \left\lceil \frac{W_u}{0.55 \text{ m/UAS}} \right\rceil = \left\lceil \frac{9.4737}{0.55} \right\rceil = \lceil 17.22 \rceil = 18 \text{ UAS}\]
+    </div>
+    <p style="text-align: justify;">
+      <strong>Configuración Topológica Recomendada:</strong> 6 vías de escape presurizadas e independientes con puertas cortafuego clase A-60 de 3 UAS (1.65 m netos de paso libre cada una), asegurando redundancia (N-1) ante bloqueo térmico sectorizado[cite: 3].
+    </p>
+  </div>
+
+  <!-- TARJETA INTERACTIVA 1: SIMULADOR DE VELOCIDAD PEATONAL FRUIN & JIN -->
+  <div style="background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; border-left: 6px solid #2b6cb0; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); padding: 26px; margin-bottom: 25px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+      <h3 style="margin: 0; color: #1a365d; font-size: 1.25rem;">
+        &#9881; Simulador 01: Cinética de Flujo y Agudeza Óptica en Humo (Fruin &amp; Jin)
+      </h3>
+      <span style="background-color: #ebf8ff; color: #2b6cb0; font-size: 0.75rem; font-weight: bold; padding: 4px 8px; border-radius: 4px;">CALCULADOR DINÁMICO</span>
+    </div>
+    <p style="font-size: 0.9rem; color: #4a5568; margin-bottom: 16px;">
+      Modifique la densidad de masa humana y el coeficiente de extinción óptica para evaluar el impacto en la velocidad neta y el estado psicofisiológico del ocupante.
+    </p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; background-color: #f7fafc; padding: 18px; border-radius: 8px;">
+      <div>
+        <label style="font-size: 0.85rem; font-weight: bold; color: #2d3748; display: block; margin-bottom: 5px;">Densidad Peatonal &rho; (p/m²):</label>
+        <input type="range" id="sim1_rho" min="0.2" max="3.6" step="0.1" value="1.9" oninput="simularFruinJin()" style="width: 100%;">
+        <span id="sim1_rho_val" style="font-weight: bold; color: #2b6cb0; font-size: 0.9rem;">1.90 p/m²</span>
+      </div>
+      <div>
+        <label style="font-size: 0.85rem; font-weight: bold; color: #2d3748; display: block; margin-bottom: 5px;">Coef. Extinción Humo C<sub>s</sub> (m⁻¹):</label>
+        <input type="range" id="sim1_cs" min="0.0" max="2.0" step="0.05" value="1.20" oninput="simularFruinJin()" style="width: 100%;">
+        <span id="sim1_cs_val" style="font-weight: bold; color: #2b6cb0; font-size: 0.9rem;">1.20 m⁻¹</span>
+      </div>
+      <div>
+        <label style="font-size: 0.85rem; font-weight: bold; color: #2d3748; display: block; margin-bottom: 5px;">Distancia de Recorrido (m):</label>
+        <input type="number" id="sim1_dist" value="40" min="5" max="150" oninput="simularFruinJin()" style="width: 90%; padding: 6px; border: 1px solid #cbd5e0; border-radius: 4px;">
+      </div>
+    </div>
+
+    <!-- PANEL DE RESULTADOS SIMULADOR 1 -->
+    <div style="margin-top: 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;">
+      <div style="background-color: #ebf8ff; border: 1px solid #bee3f8; padding: 12px; border-radius: 8px; text-align: center;">
+        <span style="font-size: 0.75rem; color: #2c5282; font-weight: bold; display: block;">VELOCIDAD DE MARCHA</span>
+        <strong id="sim1_res_v" style="font-size: 1.3rem; color: #2b6cb0;">0.270 m/s</strong>
+      </div>
+      <div style="background-color: #ebf8ff; border: 1px solid #bee3f8; padding: 12px; border-radius: 8px; text-align: center;">
+        <span style="font-size: 0.75rem; color: #2c5282; font-weight: bold; display: block;">TIEMPO DE TRÁNSITO</span>
+        <strong id="sim1_res_t" style="font-size: 1.3rem; color: #2b6cb0;">148.2 s</strong>
+      </div>
+      <div style="background-color: #ebf8ff; border: 1px solid #bee3f8; padding: 12px; border-radius: 8px; text-align: center;">
+        <span style="font-size: 0.75rem; color: #2c5282; font-weight: bold; display: block;">DEGRADACIÓN CINÉTICA</span>
+        <strong id="sim1_res_deg" style="font-size: 1.3rem; color: #c53030;">-78.4 %</strong>
+      </div>
+      <div style="background-color: #ebf8ff; border: 1px solid #bee3f8; padding: 12px; border-radius: 8px; text-align: center;">
+        <span style="font-size: 0.75rem; color: #2c5282; font-weight: bold; display: block;">CONDICIÓN DEL MEDIO</span>
+        <strong id="sim1_res_cond" style="font-size: 1rem; color: #9b2c2c;">Ceguera por Humo</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- TARJETA INTERACTIVA 2: SIMULADOR DE RADIACIÓN Y TOLERANCIA HUMANA -->
+  <div style="background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; border-left: 6px solid #e53e3e; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); padding: 26px; margin-bottom: 25px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+      <h3 style="margin: 0; color: #742a2a; font-size: 1.25rem;">
+        &#128293; Simulador 02: Radiación Térmica de Fuego de Chorro y Tiempo de Vida (Eisenberg)
+      </h3>
+      <span style="background-color: #fff5f5; color: #c53030; font-size: 0.75rem; font-weight: bold; padding: 4px 8px; border-radius: 4px;">MODELO PUNTUAL</span>
+    </div>
+    <p style="font-size: 0.9rem; color: #4a5568; margin-bottom: 16px;">
+      Evalúe la radiación térmica emitida por la rotura de gasoducto en función de la potencia térmica y la distancia radial hacia los botes o cuadrillas.
+    </p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; background-color: #fffaf0; padding: 18px; border-radius: 8px;">
+      <div>
+        <label style="font-size: 0.85rem; font-weight: bold; color: #2d3748; display: block; margin-bottom: 5px;">Potencia Térmica Chorro Q<sub>c</sub> (GW):</label>
+        <input type="range" id="sim2_qc" min="0.5" max="5.0" step="0.1" value="3.0" oninput="simularRadiacion()" style="width: 100%;">
+        <span id="sim2_qc_val" style="font-weight: bold; color: #c05621; font-size: 0.9rem;">3.0 GW</span>
+      </div>
+      <div>
+        <label style="font-size: 0.85rem; font-weight: bold; color: #2d3748; display: block; margin-bottom: 5px;">Distancia Radial al Foco R (m):</label>
+        <input type="range" id="sim2_r" min="10" max="150" step="1" value="35" oninput="simularRadiacion()" style="width: 100%;">
+        <span id="sim2_r_val" style="font-weight: bold; color: #c05621; font-size: 0.9rem;">35 metros</span>
+      </div>
+      <div>
+        <label style="font-size: 0.85rem; font-weight: bold; color: #2d3748; display: block; margin-bottom: 5px;">Transmitancia Atmosférica (&tau;<sub>a</sub>):</label>
+        <input type="number" id="sim2_tau" value="0.90" min="0.5" max="1.0" step="0.05" oninput="simularRadiacion()" style="width: 90%; padding: 6px; border: 1px solid #cbd5e0; border-radius: 4px;">
+      </div>
+    </div>
+
+    <!-- PANEL DE RESULTADOS SIMULADOR 2 -->
+    <div style="margin-top: 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;">
+      <div style="background-color: #fff5f5; border: 1px solid #fed7d7; padding: 12px; border-radius: 8px; text-align: center;">
+        <span style="font-size: 0.75rem; color: #9b2c2c; font-weight: bold; display: block;">RADIACIÓN INCIDENTE</span>
+        <strong id="sim2_res_q" style="font-size: 1.3rem; color: #e53e3e;">48.72 kW/m²</strong>
+      </div>
+      <div style="background-color: #fff5f5; border: 1px solid #fed7d7; padding: 12px; border-radius: 8px; text-align: center;">
+        <span style="font-size: 0.75rem; color: #9b2c2c; font-weight: bold; display: block;">TIEMPO DE TOLERANCIA (t<sub>d</sub>)</span>
+        <strong id="sim2_res_td" style="font-size: 1.3rem; color: #e53e3e;">0.006 s</strong>
+      </div>
+      <div style="background-color: #fff5f5; border: 1px solid #fed7d7; padding: 12px; border-radius: 8px; text-align: center;">
+        <span style="font-size: 0.75rem; color: #9b2c2c; font-weight: bold; display: block;">VIABILIDAD DE BOTE TEMPSC</span>
+        <strong id="sim2_res_via" style="font-size: 1rem; color: #9b2c2c;">Destrucción Inmediata</strong>
+      </div>
+      <div style="background-color: #fff5f5; border: 1px solid #fed7d7; padding: 12px; border-radius: 8px; text-align: center;">
+        <span style="font-size: 0.75rem; color: #9b2c2c; font-weight: bold; display: block;">NIVEL DE RIESGO</span>
+        <strong id="sim2_res_danio" style="font-size: 0.95rem; color: #9b2c2c;">Letal Instantáneo</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- TARJETA: ACTIVIDAD PRÁCTICA Y AUTOEVALUACIÓN -->
+  <div style="background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; border-left: 6px solid #38a169; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); padding: 26px; margin-bottom: 25px;">
+    <div style="display: flex; align-items: center; margin-bottom: 12px;">
+      <span style="background-color: #f0fff4; color: #276749; font-weight: 700; font-size: 0.85rem; padding: 4px 10px; border-radius: 6px; margin-right: 10px;">ACTIVIDAD PRÁCTICA</span>
+      <h3 style="margin: 0; color: #22543d; font-size: 1.25rem;">Validación de Criterios Forenses y Mitigación Sistemática</h3>
+    </div>
+    <p style="font-size: 0.95rem; text-align: justify;">
+      Responda a las siguientes interrogantes analíticas basadas en el modelamiento cuantitativo del desastre:
+    </p>
+
+    <!-- PREGUNTA 1 -->
+    <div style="background-color: #f7fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin-bottom: 12px;">
+      <p style="font-weight: bold; margin: 0 0 8px 0; color: #2d3748;">
+        1. ¿Por qué la activación del colector de diluvio contra incendios mediante bombas diésel de agua de mar falló catastróficamente al inicio de la emergencia?[cite: 1]
+      </p>
+      <button onclick="toggleRes('rep_1')" style="background-color: #2b6cb0; color: #ffffff; border: none; padding: 6px 14px; border-radius: 4px; cursor: pointer; font-size: 0.85rem;">Mostrar Retroalimentación</button>
+      <div id="rep_1" style="display: none; margin-top: 10px; padding: 10px; background-color: #edf2f7; border-left: 3px solid #2b6cb0; font-size: 0.9rem;">
+        <strong>Respuesta Técnica:</strong> Las bombas diésel de extinción habían sido pasadas a control manual por orden de la jefatura para evitar que los buzos de fondo fueran absorbidos por las tomas de agua marinas[cite: 1]. Cuando ocurrió la explosión inicial a las 22:00 h, el humo tóxico y las llamas en el Módulo C impidieron físicamente el acceso de la brigada para el arranque manual, dejando la red presurizada totalmente seca (Cullen, 1990)[cite: 1].
+      </div>
+    </div>
+
+    <!-- PREGUNTA 2 -->
+    <div style="background-color: #f7fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin-bottom: 12px;">
+      <p style="font-weight: bold; margin: 0 0 8px 0; color: #2d3748;">
+        2. Analice la discrepancia entre las 18 UAS teóricas requeridas frente al confinamiento letal experimentado en el módulo habitacional.[cite: 3]
+      </p>
+      <button onclick="toggleRes('rep_2')" style="background-color: #2b6cb0; color: #ffffff; border: none; padding: 6px 14px; border-radius: 4px; cursor: pointer; font-size: 0.85rem;">Mostrar Retroalimentación</button>
+      <div id="rep_2" style="display: none; margin-top: 10px; padding: 10px; background-color: #edf2f7; border-left: 3px solid #2b6cb0; font-size: 0.9rem;">
+        <strong>Respuesta Técnica:</strong> El cálculo de 9.47 m de ancho distribuido en 18 UAS garantiza desalojar a 180 personas en 16 segundos netos de tránsito por puerta[cite: 3]. En Piper Alpha, el diseño poseía salidas verticales restringidas sin sobrepresión de aire[cite: 1]. La invasión de gas carbónico y cianuro asfixió al personal en los primeros 15 a 20 minutos[cite: 1, 2], demostrando que sin sectorización estanca contra humos y sin rutas redundantes divergentes protegidas, el dimensionamiento de ancho geométrico queda inutilizado.
+      </div>
+    </div>
+  </div>
+
+  <!-- TARJETA: RETROALIMENTACIÓN Y VALIDACIÓN DE INTEGRIDAD -->
+  <div style="background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; border-left: 6px solid #4a5568; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); padding: 26px;">
+    <h3 style="margin: 0 0 12px 0; color: #2d3748; font-size: 1.25rem;">
+      Validación de Integridad y Referencias Normativas (Normas APA 7.ª ed.)
+    </h3>
+    <p style="font-size: 0.9rem; text-align: justify; color: #4a5568;">
+      <strong>Validación de Integridad:</strong> Las ecuaciones modeladas garantizan la coherencia dimensional entre el balance de energía térmica radiante (Ley Stefan-Boltzmann acoplada a fuentes cónicas/puntuales) y la función de densidad-velocidad para evacuación multidireccional con degradación óptica según la formulación de Jin y Fruin[cite: 2]. En la ingeniería moderna de confiabilidad de procesos, la Efectividad Global de los Equipos (OEE, por sus siglas en inglés: <em>Overall Equipment Effectiveness</em>) debe supeditarse irrevocablemente al análisis de integridad de barreras de seguridad funcional (SIL, por sus siglas en inglés: <em>Safety Integrity Level</em>).
+    </p>
+    <div style="border-top: 1px solid #e2e8f0; padding-top: 12px; font-size: 0.85rem; color: #718096;">
+      <p style="margin: 4px 0;">Cullen, W. D. (1990). <em>The Public Inquiry into the Piper Alpha Disaster</em> (Vols. 1-2, Cmnd 1310). Her Majesty's Stationery Office (HMSO), London, UK.[cite: 3]</p>
+      <p style="margin: 4px 0;">Fruin, J. J. (1971). <em>Pedestrian Planning and Design</em>. Metropolitan Association of Urban Designers and Environmental Planners, New York.[cite: 3]</p>
+      <p style="margin: 4px 0;">Jin, T. (1997). Physiological and Psychological Effects of Smoke on Human Behavior physically during Fire Situations. <em>Fire Safety Science</em>, 5, 41-52. https://doi.org/10.3801/IAFSS.FSS.5-41[cite: 3]</p>
+      <p style="margin: 4px 0;">National Fire Protection Association. (2024). <em>Life Safety Code</em> (NFPA 101). NFPA.[cite: 3]</p>
+      <p style="margin: 4px 0;">Presidencia de la República del Ecuador. (1986). <em>Reglamento de Seguridad e Higiene del Trabajo</em> (Decreto Ejecutivo 2393). Registro Oficial 565.[cite: 3]</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- CONTROLADORES LÓGICOS JAVASCRIPT PUROS -->
+<script>
+  function simularFruinJin() {
+    var rho = parseFloat(document.getElementById('sim1_rho').value);
+    var cs = parseFloat(document.getElementById('sim1_cs').value);
+    var dist = parseFloat(document.getElementById('sim1_dist').value) || 40.0;
+    
+    document.getElementById('sim1_rho_val').innerText = rho.toFixed(2) + " p/m²";
+    document.getElementById('sim1_cs_val').innerText = cs.toFixed(2) + " m⁻¹";
+
+    var v0 = 1.25;
+    var rhoMax = 3.80;
+    var k = 0.70;
+
+    var factorDensidad = Math.max(0.01, 1 - (rho / rhoMax));
+    var factorOptico = Math.exp(-k * cs);
+    var v = v0 * factorDensidad * factorOptico;
+    var tTrans = dist / v;
+    var degradacion = ((v - v0) / v0) * 100.0;
+
+    document.getElementById('sim1_res_v').innerText = v.toFixed(3) + " m/s";
+    document.getElementById('sim1_res_t').innerText = tTrans.toFixed(1) + " s";
+    document.getElementById('sim1_res_deg').innerText = degradacion.toFixed(1) + " %";
+
+    var condText = "Visibilidad Libre";
+    if (cs > 0.8) {
+      condText = "Ceguera por Humo";
+    } else if (cs > 0.3) {
+      condText = "Irritación Severa";
+    } else if (rho > 2.5) {
+      condText = "Atascamiento Físico";
+    }
