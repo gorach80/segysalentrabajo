@@ -1,0 +1,478 @@
+<!-- CONTENEDOR PRINCIPAL -->
+<div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; max-width: 1100px; margin: 20px auto; color: #2d3748; line-height: 1.6;">
+
+  <!-- INYECTOR ROBUSTO Y AUTÓNOMO DE MATHJAX -->
+  <script>
+    (function () {
+      function compilarLaTeX() {
+        if (window.MathJax) {
+          if (window.MathJax.typesetPromise) {
+            window.MathJax.typesetPromise();
+          } else if (window.MathJax.Hub) {
+            window.MathJax.Hub.Queue(["Typeset", window.MathJax.Hub]);
+          }
+        }
+      }
+
+      if (!window.MathJax) {
+        window.MathJax = {
+          tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']]
+          },
+          options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+          },
+          startup: {
+            pageReady: function () {
+              return MathJax.startup.defaultPageReady().then(function () {
+                compilarLaTeX();
+              });
+            }
+          }
+        };
+        var scr = document.createElement('script');
+        scr.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+        scr.async = true;
+        document.head.appendChild(scr);
+      } else {
+        setTimeout(compilarLaTeX, 300);
+      }
+    })();
+  </script>
+
+  <!-- TARJETA SUPERIOR AZUL OSCURO/MARINA (H1 + INTRODUCCIÓN MOTIVADORA) -->
+  <div style="background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%); color: #ffffff; border-radius: 14px; padding: 32px 28px; box-shadow: 0 10px 25px rgba(15, 32, 39, 0.25); margin-bottom: 25px;">
+    <div style="display: inline-block; background-color: #00d2ff; color: #0f2027; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; padding: 5px 14px; border-radius: 20px; margin-bottom: 15px;">
+      INGENIERÍA CONTRA INCENDIOS | TERMODINÁMICA FORENSE OFFSHORE
+    </div>
+    <h1 style="font-size: 2.1rem; font-weight: 800; color: #ffffff; margin: 0 0 16px 0; line-height: 1.25; border-bottom: 2px solid rgba(0, 210, 255, 0.4); padding-bottom: 12px;">
+      Tema 3: Brigadas de Prevención y Combate de Incendios: Protección de Activos y Sistemas Fijos - Caso Piper Alpha (1988)
+    </h1>
+    <p style="font-size: 1.05rem; color: #e2e8f0; margin: 0 0 16px 0; text-align: justify;">
+      <strong>Introducción Motivadora:</strong> La catástrofe ocurrida el 6 de julio de 1988 en la plataforma <em>Piper Alpha</em> demostró los límites termodinámicos infranqueables del combate manual contra incendios en ausencia de sistemas fijos de mitigación presurizados. La termodinámica forense evidencia que un incendio de chorro continuo alimentado por gas condensado de alta presión aniquila la capacidad humana en segundos. El rediseño analítico de sistemas de diluvio marino y la preservación del límite de fluencia del acero estructural no constituyen medidas complementarias, sino la primera y única barrera dura que preserva la vida y la Efectividad Global de los Equipos (OEE, por sus siglas en inglés: <em>Overall Equipment Effectiveness</em>) en instalaciones costa afuera.
+    </p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 18px;">
+      <div style="background: rgba(255, 255, 255, 0.08); border-left: 3px solid #ff4b2b; padding: 10px 14px; border-radius: 6px;">
+        <span style="font-size: 0.75rem; text-transform: uppercase; color: #feb2b2; display: block;">Tasa de Calor Fuga (Jet Fire)</span>
+        <strong style="font-size: 1.3rem; color: #ffffff;">\(3.97\text{ GW}\)</strong>
+      </div>
+      <div style="background: rgba(255, 255, 255, 0.08); border-left: 3px solid #e53e3e; padding: 10px 14px; border-radius: 6px;">
+        <span style="font-size: 0.75rem; text-transform: uppercase; color: #feb2b2; display: block;">Diluvio Suministrado Real</span>
+        <strong style="font-size: 1.3rem; color: #ffffff;">\(0\text{ L/min}\)</strong>
+      </div>
+      <div style="background: rgba(255, 255, 255, 0.08); border-left: 3px solid #00d2ff; padding: 10px 14px; border-radius: 6px;">
+        <span style="font-size: 0.75rem; text-transform: uppercase; color: #90cdf4; display: block;">Demanda NFPA Rediseñada</span>
+        <strong style="font-size: 1.3rem; color: #ffffff;">\(28\,380\text{ L/min}\)</strong>
+      </div>
+      <div style="background: rgba(255, 255, 255, 0.08); border-left: 3px solid #f6d365; padding: 10px 14px; border-radius: 6px;">
+        <span style="font-size: 0.75rem; text-transform: uppercase; color: #fefcbf; display: block;">Colapso de Fluencia (\(\sigma_y\))</span>
+        <strong style="font-size: 1.3rem; color: #ffffff;">\(550^\circ\text{C}\) (14 min)</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- TARJETA BLANCA: iDEVICE DE LECTURA Y DEDUCCIÓN ANALÍTICA -->
+  <div style="background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; border-left: 6px solid #0083b0; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); padding: 30px; margin-bottom: 25px;">
+    
+    <!-- SECCIÓN 1: MARCO NORMATIVO Y PROTECCIÓN ACTIVA -->
+    <div style="display: flex; align-items: center; margin-bottom: 14px;">
+      <span style="background-color: #e6f6ff; color: #0083b0; font-weight: 700; font-size: 0.85rem; padding: 4px 10px; border-radius: 6px; margin-right: 10px;">SECCIÓN 01</span>
+      <h2 style="font-size: 1.4rem; color: #1a202c; margin: 0; font-weight: 700;">Marco Normativo y Fallas de Protección Activa en Piper Alpha</h2>
+    </div>
+    <p style="text-align: justify; margin-bottom: 14px;">
+      En el marco técnico-legal del <strong>Decreto Ejecutivo 2393</strong> (Reglamento de Seguridad e Higiene del Trabajo, Art. 160-163) y las normativas del <strong>Decreto Ejecutivo 255</strong> (Reglamento del Seguro General de Riesgos del Trabajo), las instalaciones de alto riesgo hidrocarburífero deben mantener barreras activas de neutralización en la fuente. En <em>Piper Alpha</em>, el sistema de diluvio (<em>deluge system</em>) fue conmutado a modo exclusivamente manual para salvaguardar a buzos de fondo comercial de ser succionados por los colectores de agua de mar durante las faenas de buceo diurnas. No obstante, al concluir la jornada de inmersión, el sistema no fue reconmutado a modo automático.
+    </p>
+    <p style="text-align: justify; margin-bottom: 14px;">
+      Al suscitarse la fuga no controlada de condensado de gas licuado en la Bomba B por ausencia de su <strong>Válvula de Seguridad de Presión (PSV, por sus siglas en inglés: <em>Pressure Safety Valve</em>)</strong>, sobrevino la ignición primaria. La radiación térmica masiva bloqueó físicamente el acceso del personal de guardia al tablero de arranque manual de las bombas diésel de agua de mar, impidiendo la presurización de la red de diluvio y dejando el colector contra incendios en cero caudal absoluto.
+    </p>
+
+    <!-- SECCIÓN 2: BRIGADAS OFFSHORE (NFPA 600 / API RP 14G) -->
+    <div style="display: flex; align-items: center; margin-top: 28px; margin-bottom: 14px;">
+      <span style="background-color: #e6f6ff; color: #0083b0; font-weight: 700; font-size: 0.85rem; padding: 4px 10px; border-radius: 6px; margin-right: 10px;">SECCIÓN 02</span>
+      <h2 style="font-size: 1.4rem; color: #1a202c; margin: 0; font-weight: 700;">Clasificación Operacional de Brigadas Offshore (NFPA 600 / API RP 14G)</h2>
+    </div>
+    <p style="text-align: justify;">
+      Conforme a los estándares internacionales <strong>NFPA 600</strong> (<em>Standard on Facility Fire Brigades</em>) y <strong>API RP 14G</strong> (<em>Recommended Practice for Fire Prevention and Control on Open Type Offshore Production Platforms</em>), las cuadrillas en instalaciones marinas deben clasificarse como <em>Brigada Industrial Avanzada de Hidrocarburos</em>. Esto exige equipamiento con trajes aluminizados de aproximación térmica y <strong>Equipos de Respiración Autónoma (SCBA, por sus siglas en inglés: <em>Self-Contained Breathing Apparatus</em>)</strong> de presión positiva (Cullen, 1990).
+    </p>
+    <div style="background-color: #f8fafc; border: 1px dashed #cbd5e0; border-radius: 8px; padding: 15px; margin: 15px 0; text-align: center; font-size: 1.15rem; color: #1a365d;">
+      \[ N_{B,\text{incendio}} = 2 \text{ líneas} \times 3 \text{ pitoneros} + 2 \text{ operadores bombeo/espuma} + 1 \text{ jefe SCI} = 9 \text{ brigadistas activos/guardia} \]
+    </div>
+
+    <!-- TABLA DE ALTA DENSIDAD: ESTADO VS ESTÁNDAR -->
+    <div style="overflow-x: auto; margin-top: 15px;">
+      <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; text-align: left; background: #ffffff;">
+        <thead>
+          <tr style="background-color: #0f2027; color: #ffffff;">
+            <th style="padding: 10px 14px; border: 1px solid #cbd5e0;">Componente Técnico</th>
+            <th style="padding: 10px 14px; border: 1px solid #cbd5e0;">Estado en Piper Alpha (1988)</th>
+            <th style="padding: 10px 14px; border: 1px solid #cbd5e0;">Estándar NFPA 15 / API RP 14G</th>
+            <th style="padding: 10px 14px; border: 1px solid #cbd5e0;">Impacto en Disponibilidad de Activos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 8px 14px; font-weight: bold;">Arranque Bombas de Agua</td>
+            <td style="padding: 8px 14px; color: #c53030;">Manual bloqueado (evitar succión buzos)</td>
+            <td style="padding: 8px 14px;">Arranque automático dual por caída de presión</td>
+            <td style="padding: 8px 14px;">Pérdida instantánea de la red de refrigeración</td>
+          </tr>
+          <tr style="background-color: #f7fafc; border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 8px 14px; font-weight: bold;">Toberas de Rociadores</td>
+            <td style="padding: 8px 14px; color: #c53030;">Obstruidas con sarro y óxido marino</td>
+            <td style="padding: 8px 14px;">Pruebas de flujo y purga trimestral con aire</td>
+            <td style="padding: 8px 14px;">Incapacidad de dispersión homogénea de niebla</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 8px 14px; font-weight: bold;">Aislamiento de Ductos</td>
+            <td style="padding: 8px 14px; color: #c53030;">Inexistente (líneas Tartan y Claymore abiertas)</td>
+            <td style="padding: 8px 14px;">Válvulas Submarinas (SSIV) fail-safe automáticas</td>
+            <td style="padding: 8px 14px;">Alimentación de 3 GW continuo durante 1 hora</td>
+          </tr>
+          <tr style="background-color: #f7fafc;">
+            <td style="padding: 8px 14px; font-weight: bold;">Muros Cortafuego</td>
+            <td style="padding: 8px 14px; color: #c53030;">Clase A (diseñados para celulosa común)</td>
+            <td style="padding: 8px 14px;">Mamparos H-120 para fuego de hidrocarburo</td>
+            <td style="padding: 8px 14px;">Fractura estructural de tabiques a los 90 s</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SECCIÓN 3: TERMODINÁMICA Y DESCARGA EN ORIFICIO -->
+    <div style="display: flex; align-items: center; margin-top: 30px; margin-bottom: 14px;">
+      <span style="background-color: #e6f6ff; color: #0083b0; font-weight: 700; font-size: 0.85rem; padding: 4px 10px; border-radius: 6px; margin-right: 10px;">SECCIÓN 03</span>
+      <h2 style="font-size: 1.4rem; color: #1a202c; margin: 0; font-weight: 700;">Termodinámica del Fuego de Hidrocarburos y Fuga en Orificio</h2>
+    </div>
+    <p style="text-align: justify;">
+      La fuga accidental de condensado presurizado a través de la brida ciega sin torque se rige por la hidrodinámica de fluidos subenfriados con descompresión isoentálpica (Drysdale, 2011). Con una presión manométrica \(P_0 = 4.5\text{ MPa}\), presión atmosférica de descarga \(P_{atm} = 0.1\text{ MPa}\) (\(\Delta P = 4.40\times 10^6\text{ Pa}\)), densidad de hidrocarburo líquido \(\rho_{fluido} = 580\text{ kg/m}^3\), diámetro de orificio \(d_0 = 0.0508\text{ m}\) (\(2\text{ pulgadas}\)) y coeficiente de descarga \(C_d = 0.62\):
+    </p>
+    <div style="background-color: #f8fafc; border: 1px dashed #cbd5e0; border-radius: 8px; padding: 15px; margin: 15px 0;">
+      <p style="margin: 0 0 6px 0;"><strong>Área del Orificio de Fuga (\(A_0\)):</strong></p>
+      \[ A_0 = \frac{\pi \cdot d_0^2}{4} = \frac{\pi \cdot (0.0508)^2}{4} = 2.0268 \times 10^{-3} \text{ m}^2 \]
+      
+      <p style="margin: 12px 0 6px 0;"><strong>Flujo Másico Descargado (\(\dot{m}_{fuga}\)):</strong></p>
+      \[ \dot{m}_{fuga} = C_d \cdot A_0 \cdot \sqrt{2 \cdot \rho_{fluido} \cdot \Delta P} \]
+      \[ \dot{m}_{fuga} = 0.62 \times (2.0268 \times 10^{-3}) \times \sqrt{2 \times 580 \times (4.40 \times 10^6)} \]
+      \[ \dot{m}_{fuga} = 1.2566 \times 10^{-3} \times \sqrt{5.104 \times 10^9} = 1.2566 \times 10^{-3} \times 71\,442.28 = 89.768 \text{ kg/s} \]
+
+      <p style="margin: 12px 0 6px 0;"><strong>Potencia Térmica Total Liberada (\(\dot{Q}_{jet}\)):</strong></p>
+      <p style="font-size: 0.95rem; margin: 0 0 4px 0;">Considerando un calor de combustión inferior \(\Delta H_c = 46\,500\text{ kJ/kg}\) y una eficiencia de combustión difusiva turbulenta \(\eta_c = 0.95\):</p>
+      \[ \dot{Q}_{jet} = \eta_c \cdot \dot{m}_{fuga} \cdot \Delta H_c = 0.95 \times 89.768\text{ kg/s} \times 46\,500\text{ kJ/kg} = 3\,965\,477 \text{ kW} \approx 3.97 \text{ GW} \]
+    </div>
+
+    <!-- SECCIÓN 4: COLAPSO DEL ACERO ESTRUCTURAL -->
+    <div style="display: flex; align-items: center; margin-top: 30px; margin-bottom: 14px;">
+      <span style="background-color: #e6f6ff; color: #0083b0; font-weight: 700; font-size: 0.85rem; padding: 4px 10px; border-radius: 6px; margin-right: 10px;">SECCIÓN 04</span>
+      <h2 style="font-size: 1.4rem; color: #1a202c; margin: 0; font-weight: 700;">Pérdida de Resistencia Mecánica del Acero Estructural</h2>
+    </div>
+    <p style="text-align: justify;">
+      El acero estructural pierde el \(50\%\) de su límite elástico de fluencia (\(\sigma_y\)) y experimenta degradación crítica de su módulo de elasticidad al superar la temperatura crítica \(T_{crit} = 550^\circ\text{C}\) (\(823.15\text{ K}\)). La tasa de calentamiento térmico transitorio para un perfil de acero no protegido con masividad \(H_p / A = 120\text{ m}^{-1}\) inmerso en una masa de gases a \(T_g = 1000^\circ\text{C}\) (\(1273.15\text{ K}\)) se deduce mediante el balance acoplado convectivo-radiativo (Purkiss &amp; Li, 2007):
+    </p>
+    <div style="background-color: #f8fafc; border: 1px dashed #cbd5e0; border-radius: 8px; padding: 15px; margin: 15px 0;">
+      \[ \frac{dT_s}{dt} = \left[ \frac{1}{\rho_s \cdot c_s \cdot \left(\frac{V_s}{A_s}\right)} \right] \cdot \left[ h_c \cdot (T_g - T_s) + \sigma \cdot \varepsilon_{res} \cdot (T_g^4 - T_s^4) \right] \]
+      <p style="font-size: 0.9rem; color: #4a5568; margin-top: 8px;">
+        Donde \(\frac{A_s}{V_s} = \frac{H_p}{A} = 120\text{ m}^{-1}\), \(\rho_s = 7850\text{ kg/m}^3\), \(c_s \approx 600\text{ J/(kg}\cdot\text{K)}\), \(h_c = 50\text{ W/(m}^2\cdot\text{K)}\), constante de Stefan-Boltzmann \(\sigma = 5.6704\times 10^{-8}\text{ W/(m}^2\cdot\text{K}^4)\) y emisividad resultante \(\varepsilon_{res} = 0.70\).
+      </p>
+      \[ t(T_s = 550^\circ\text{C}) = 14.0 \text{ minutos} \]
+    </div>
+    <div style="background-color: #fff5f5; border-left: 4px solid #e53e3e; padding: 12px 16px; border-radius: 4px; margin: 15px 0;">
+      <strong style="color: #9b2c2c;">Inviabilidad del Combate Manual Directo:</strong> Una potencia térmica de \(3.97\text{ GW}\) proyectó flujos de radiación térmica incidentes superiores a \(100\text{ kW/m}^2\) sobre el Módulo C. Es físicamente imposible el despliegue de brigadistas con líneas manuales de manguera bajo este umbral de sobrepresión e hipertermia; la red fija de diluvio automático constituye la única salvaguarda de ingeniería capaz de disipar el calor latente y mantener el acero a menos de \(220^\circ\text{C}\).
+    </div>
+
+    <!-- SECCIÓN 5: REDISEÑO HIDRÁULICO DEL SISTEMA DE DILUVIO -->
+    <div style="display: flex; align-items: center; margin-top: 30px; margin-bottom: 14px;">
+      <span style="background-color: #e6f6ff; color: #0083b0; font-weight: 700; font-size: 0.85rem; padding: 4px 10px; border-radius: 6px; margin-right: 10px;">SECCIÓN 05</span>
+      <h2 style="font-size: 1.4rem; color: #1a202c; margin: 0; font-weight: 700;">Rediseño Hidráulico del Sistema de Diluvio (Módulo C)</h2>
+    </div>
+    <p style="text-align: justify;">
+      Conforme a los estándares <strong>NFPA 15</strong> (<em>Standard for Water Spray Fixed Systems for Fire Protection</em>) y API RP 14G, se dimensiona la demanda de enfriamiento simultáneo para el área de bombeo de condensado (\(A_{piso} = 900\text{ m}^2\) con densidad de diseño \(14.3\text{ L/(min}\cdot\text{m}^2)\)) y recipientes a presión (\(A_{equipos} = 1150\text{ m}^2\) con densidad \(10.2\text{ L/(min}\cdot\text{m}^2)\)), con adición de monitores marinos:
+    </p>
+    <div style="background-color: #f8fafc; border: 1px dashed #cbd5e0; border-radius: 8px; padding: 15px; margin: 15px 0; font-size: 1.05rem;">
+      <p style="margin: 4px 0;"><strong>1. Caudal Total de Rediseño (\(Q_T\)):</strong></p>
+      \[ Q_T = (900\text{ m}^2 \times 14.3\text{ L/min/m}^2) + (1150\text{ m}^2 \times 10.2\text{ L/min/m}^2) + 3780\text{ L/min (monitores)} \]
+      \[ Q_T = 12\,870 + 11\,730 + 3780 = 28\,380 \text{ L/min} = 0.4730 \text{ m}^3\text{/s} \]
+
+      <p style="margin: 14px 0 4px 0;"><strong>2. Dimensionamiento del Colector Principal y Velocidad de Flujo (\(v\)):</strong></p>
+      <p style="font-size: 0.95rem; margin: 0 0 4px 0;">Para tubería de acero inoxidable Schedule 40 de \(350\text{ mm}\) (\(14\text{ pulg}\)) con diámetro interior \(D_{int} = 0.3356\text{ m}\):</p>
+      \[ A = \frac{\pi \cdot D_{int}^2}{4} = \frac{\pi \cdot (0.3356)^2}{4} = 0.08846 \text{ m}^2 \]
+      \[ v = \frac{Q_T}{A} = \frac{0.4730\text{ m}^3\text{/s}}{0.08846\text{ m}^2} = 5.347 \text{ m/s} \quad (\text{Cumple límite hidrodinámico } v < 6.0\text{ m/s}) \]
+
+      <p style="margin: 14px 0 4px 0;"><strong>3. Pérdida de Carga por Fricción (Ecuación de Hazen-Williams):</strong></p>
+      <p style="font-size: 0.95rem; margin: 0 0 4px 0;">Con coeficiente de rugosidad \(C = 130\), longitud equivalente \(L = 140\text{ m}\) y densidad de agua de mar \(\rho_{sw} = 1025\text{ kg/m}^3\):</p>
+      \[ h_f = 10.67 \cdot \frac{L \cdot Q_T^{1.852}}{C^{1.852} \cdot D_{int}^{4.87}} = 10.67 \times \left[ \frac{140.0 \times (0.4730)^{1.852}}{(130)^{1.852} \times (0.3356)^{4.87}} \right] = 9.35 \text{ m.c.a.} \quad (\Delta P_f \approx 0.94\text{ bar}) \]
+
+      <p style="margin: 14px 0 4px 0;"><strong>4. Altura Manométrica Total (\(H_{bomba}\)) y Potencia Diésel Requerida:</strong></p>
+      \[ H_{bomba} = \Delta z + h_f + h_r = 32.0\text{ m (elevación)} + 9.35\text{ m} + 24.86\text{ m (presión residual } 2.5\text{ bar)} = 66.21 \text{ m.c.a.} \approx 6.66 \text{ bar} \]
+      \[ P_{hidr} = \frac{\rho_{sw} \cdot g \cdot Q_T \cdot H_{bomba}}{1000} = \frac{1025 \times 9.8066 \times 0.4730 \times 66.21}{1000} = 314.9 \text{ kW} \]
+      \[ P_{motor} = 1.20 \cdot \left(\frac{P_{hidr}}{\eta_{bomba}}\right) = 1.20 \times \left(\frac{314.9\text{ kW}}{0.72}\right) = 524.8 \text{ kW} \approx 704 \text{ HP} \]
+    </div>
+    <p style="text-align: justify;">
+      <strong>Selección de Arquitectura Mecánica:</strong> Arreglo redundante \((1+1)\) con 2 motobombas diésel de \(750\text{ HP}\) de acoplamiento directo, certificadas bajo <strong>NFPA 20</strong>, ubicadas en el nivel de sub-cubierta opuesto al cuadrante de gas.
+    </p>
+  </div>
+
+  <!-- TARJETA INTERACTIVA 1: SIMULADOR DE DESCARGA Y POTENCIA TÉRMICA -->
+  <div style="background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; border-left: 6px solid #2b6cb0; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); padding: 26px; margin-bottom: 25px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+      <h3 style="margin: 0; color: #1a365d; font-size: 1.25rem;">
+        &#9881; Simulador 01: Dinámica de Descarga en Orificio y Potencia Térmica Liberada
+      </h3>
+      <span style="background-color: #ebf8ff; color: #2b6cb0; font-size: 0.75rem; font-weight: bold; padding: 4px 8px; border-radius: 4px;">HIDROCARBUROS LÍQUIDOS</span>
+    </div>
+    <p style="font-size: 0.9rem; color: #4a5568; margin-bottom: 16px;">
+      Modifique la presión de la línea y el diámetro de brecha en la brida para cuantificar el caudal másico de condensado y la potencia liberada por el fuego de chorro (<em>jet fire</em>).
+    </p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; background-color: #f7fafc; padding: 18px; border-radius: 8px;">
+      <div>
+        <label style="font-size: 0.85rem; font-weight: bold; color: #2d3748; display: block; margin-bottom: 5px;">Presión de Operación \(P_0\) (MPa):</label>
+        <input type="range" id="sim1_p" min="1.0" max="8.0" step="0.1" value="4.5" oninput="simularFugaJet()" style="width: 100%;">
+        <span id="sim1_p_val" style="font-weight: bold; color: #2b6cb0; font-size: 0.9rem;">4.5 MPa</span>
+      </div>
+      <div>
+        <label style="font-size: 0.85rem; font-weight: bold; color: #2d3748; display: block; margin-bottom: 5px;">Diámetro Orificio \(d_0\) (pulgadas):</label>
+        <input type="range" id="sim1_d" min="0.5" max="4.0" step="0.25" value="2.0" oninput="simularFugaJet()" style="width: 100%;">
+        <span id="sim1_d_val" style="font-weight: bold; color: #2b6cb0; font-size: 0.9rem;">2.0 pulgadas</span>
+      </div>
+      <div>
+        <label style="font-size: 0.85rem; font-weight: bold; color: #2d3748; display: block; margin-bottom: 5px;">Densidad Fluido \(\rho\) (kg/m³):</label>
+        <input type="number" id="sim1_rho" value="580" min="400" max="900" step="10" oninput="simularFugaJet()" style="width: 90%; padding: 6px; border: 1px solid #cbd5e0; border-radius: 4px;">
+      </div>
+    </div>
+
+    <!-- PANEL DE RESULTADOS SIMULADOR 1 -->
+    <div style="margin-top: 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;">
+      <div style="background-color: #ebf8ff; border: 1px solid #bee3f8; padding: 12px; border-radius: 8px; text-align: center;">
+        <span style="font-size: 0.75rem; color: #2c5282; font-weight: bold; display: block;">CAUDAL MÁSICO (\(\dot{m}\))</span>
+        <strong id="sim1_res_m" style="font-size: 1.3rem; color: #2b6cb0;">89.77 kg/s</strong>
+      </div>
+      <div style="background-color: #ebf8ff; border: 1px solid #bee3f8; padding: 12px; border-radius: 8px; text-align: center;">
+        <span style="font-size: 0.75rem; color: #2c5282; font-weight: bold; display: block;">POTENCIA TÉRMICA</span>
+        <strong id="sim1_res_q" style="font-size: 1.3rem; color: #c53030;">3.97 GW</strong>
+      </div>
+      <div style="background-color: #ebf8ff; border: 1px solid #bee3f8; padding: 12px; border-radius: 8px; text-align: center;">
+        <span style="font-size: 0.75rem; color: #2c5282; font-weight: bold; display: block;">EQUIV. DILUVIO REQUERIDO</span>
+        <strong id="sim1_res_dil" style="font-size: 1.3rem; color: #2b6cb0;">28 380 L/min</strong>
+      </div>
+      <div style="background-color: #ebf8ff; border: 1px solid #bee3f8; padding: 12px; border-radius: 8px; text-align: center;">
+        <span style="font-size: 0.75rem; color: #2c5282; font-weight: bold; display: block;">AMENAZA ESTRUCTURAL</span>
+        <strong id="sim1_res_riesgo" style="font-size: 1rem; color: #9b2c2c;">Colapso Inminente</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- TARJETA INTERACTIVA 2: SIMULADOR DE CALENTAMIENTO Y PÉRDIDA DE FLUENCIA -->
+  <div style="background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; border-left: 6px solid #e53e3e; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); padding: 26px; margin-bottom: 25px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+      <h3 style="margin: 0; color: #742a2a; font-size: 1.25rem;">
+        &#128293; Simulador 02: Cinética de Calentamiento del Acero y Tiempo al Colapso (\(550^\circ\text{C}\))
+      </h3>
+      <span style="background-color: #fff5f5; color: #c53030; font-size: 0.75rem; font-weight: bold; padding: 4px 8px; border-radius: 4px;">PURKISS &amp; LI MODEL</span>
+    </div>
+    <p style="font-size: 0.9rem; color: #4a5568; margin-bottom: 16px;">
+      Simule la temperatura alcanzada por las vigas estructurales del Módulo C en función de la temperatura del fuego de gases y la operatividad del sistema de diluvio.
+    </p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; background-color: #fffaf0; padding: 18px; border-radius: 8px;">
+      <div>
+        <label style="font-size: 0.85rem; font-weight: bold; color: #2d3748; display: block; margin-bottom: 5px;">Temperatura Gases \(T_g\) (°C):</label>
+        <input type="range" id="sim2_tg" min="600" max="1200" step="25" value="1000" oninput="simularAcero()" style="width: 100%;">
+        <span id="sim2_tg_val" style="font-weight: bold; color: #c05621; font-size: 0.9rem;">1000 °C</span>
+      </div>
+      <div>
+        <label style="font-size: 0.85rem; font-weight: bold; color: #2d3748; display: block; margin-bottom: 5px;">Masividad Perfil \(H_p/A\) (m⁻¹):</label>
+        <input type="range" id="sim2_hp" min="60" max="220" step="10" value="120" oninput="simularAcero()" style="width: 100%;">
+        <span id="sim2_hp_val" style="font-weight: bold; color: #c05621; font-size: 0.9rem;">120 m⁻¹</span>
+      </div>
+      <div>
+        <label style="font-size: 0.85rem; font-weight: bold; color: #2d3748; display: block; margin-bottom: 5px;">Estado Sistema de Diluvio:</label>
+        <select id="sim2_dil" onchange="simularAcero()" style="width: 100%; padding: 6px; border: 1px solid #cbd5e0; border-radius: 4px; font-size: 0.85rem;">
+          <option value="0">Desactivado (0 L/min - Piper Alpha Real)</option>
+          <option value="1">Rediseño Activo (28 380 L/min - NFPA 15)</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- PANEL DE RESULTADOS SIMULADOR 2 -->
+    <div style="margin-top: 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;">
+      <div style="background-color: #fff5f5; border: 1px solid #fed7d7; padding: 12px; border-radius: 8px; text-align: center;">
+        <span style="font-size: 0.75rem; color: #9b2c2c; font-weight: bold; display: block;">TIEMPO AL COLAPSO (\(550^\circ\text{C}\))</span>
+        <strong id="sim2_res_tcol" style="font-size: 1.3rem; color: #e53e3e;">14.0 min</strong>
+      </div>
+      <div style="background-color: #fff5f5; border: 1px solid #fed7d7; padding: 12px; border-radius: 8px; text-align: center;">
+        <span style="font-size: 0.75rem; color: #9b2c2c; font-weight: bold; display: block;">TEMP. MÁXIMA ESTRUCTURA</span>
+        <strong id="sim2_res_ts" style="font-size: 1.3rem; color: #e53e3e;">980 °C</strong>
+      </div>
+      <div style="background-color: #fff5f5; border: 1px solid #fed7d7; padding: 12px; border-radius: 8px; text-align: center;">
+        <span style="font-size: 0.75rem; color: #9b2c2c; font-weight: bold; display: block;">RESISTENCIA RESIDUAL (\(\sigma_y\))</span>
+        <strong id="sim2_res_flu" style="font-size: 1.3rem; color: #c53030;">&lt; 10 %</strong>
+      </div>
+      <div style="background-color: #fff5f5; border: 1px solid #fed7d7; padding: 12px; border-radius: 8px; text-align: center;">
+        <span style="font-size: 0.75rem; color: #9b2c2c; font-weight: bold; display: block;">ESTADO ESTRUCTURAL</span>
+        <strong id="sim2_res_cond" style="font-size: 1rem; color: #9b2c2c;">Fractura del Jacket</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- TARJETA: ACTIVIDAD PRÁCTICA Y AUTOEVALUACIÓN -->
+  <div style="background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; border-left: 6px solid #38a169; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); padding: 26px; margin-bottom: 25px;">
+    <div style="display: flex; align-items: center; margin-bottom: 12px;">
+      <span style="background-color: #f0fff4; color: #276749; font-weight: 700; font-size: 0.85rem; padding: 4px 10px; border-radius: 6px; margin-right: 10px;">ACTIVIDAD PRÁCTICA</span>
+      <h3 style="margin: 0; color: #22543d; font-size: 1.25rem;">Validación de Criterios Forenses y Mitigación Sistemática</h3>
+    </div>
+    <p style="font-size: 0.95rem; text-align: justify;">
+      Analice críticamente las siguientes cuestiones técnicas basadas en las especificaciones de proceso y diseño hidráulico:
+    </p>
+
+    <!-- PREGUNTA 1 -->
+    <div style="background-color: #f7fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin-bottom: 12px;">
+      <p style="font-weight: bold; margin: 0 0 8px 0; color: #2d3748;">
+        1. Desde el punto de vista de la ingeniería de confiabilidad de plantas químicas y petroleras, ¿por qué fue un error inadmisible conmutar las bombas de diluvio a modo manual para proteger a los buzos comerciales?
+      </p>
+      <button onclick="toggleRes('rep_p1')" style="background-color: #2b6cb0; color: #ffffff; border: none; padding: 6px 14px; border-radius: 4px; cursor: pointer; font-size: 0.85rem;">Mostrar Retroalimentación</button>
+      <div id="rep_p1" style="display: none; margin-top: 10px; padding: 10px; background-color: #edf2f7; border-left: 3px solid #2b6cb0; font-size: 0.9rem;">
+        <strong>Respuesta Técnica:</strong> La seguridad de buceo debió resolverse aislando físicamente las rejillas de toma de agua de mar en el cuadrante de inmersión o programando interbloqueos temporales enclavados al sistema de control del buceo. Desactivar el arranque automático de toda la plataforma transfirió el riesgo de un accidente puntual a una vulnerabilidad de colapso catastrófico global, anulando la protección activa requerida por API RP 14G y el D.E. 2393.
+      </div>
+    </div>
+
+    <!-- PREGUNTA 2 -->
+    <div style="background-color: #f7fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin-bottom: 12px;">
+      <p style="font-weight: bold; margin: 0 0 8px 0; color: #2d3748;">
+        2. ¿Cuál es el rol de las Válvulas de Aislamiento Submarino (SSIV, por sus siglas en inglés: <em>Subsea Isolation Valves</em>) en la mitigación del calentamiento del acero estructural?
+      </p>
+      <button onclick="toggleRes('rep_p2')" style="background-color: #2b6cb0; color: #ffffff; border: none; padding: 6px 14px; border-radius: 4px; cursor: pointer; font-size: 0.85rem;">Mostrar Retroalimentación</button>
+      <div id="rep_p2" style="display: none; margin-top: 10px; padding: 10px; background-color: #edf2f7; border-left: 3px solid #2b6cb0; font-size: 0.9rem;">
+        <strong>Respuesta Técnica:</strong> En Piper Alpha, los ductos interplataforma de <em>Tartan</em> y <em>Claymore</em> continuaron alimentando hidrocarburos a 120 bar durante más de una hora, aportando \(3\text{ GW}\) constantes. El cierre automático <em>fail-safe</em> mediante SSIV en menos de 45 segundos agota el inventario combustible presente en la superestructura, limitando la duración del incendio de chorro antes de que la estructura alcance los 14 minutos críticos del colapso térmico a \(550^\circ\text{C}\).
+      </div>
+    </div>
+  </div>
+
+  <!-- TARJETA: VALIDACIÓN DE INTEGRIDAD Y REFERENCIAS (APA 7.ª ED.) -->
+  <div style="background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; border-left: 6px solid #4a5568; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); padding: 26px; margin-bottom: 25px;">
+    <h3 style="margin: 0 0 12px 0; color: #2d3748; font-size: 1.25rem;">
+      Validación de Integridad y Referencias Normativas (Normas APA 7.ª ed.)
+    </h3>
+    <p style="font-size: 0.9rem; text-align: justify; color: #4a5568;">
+      <strong>Validación de Integridad:</strong> El balance térmico e hidrodinámico garantiza estricta consistencia dimensional: la potencia del <em>jet fire</em> (\(\text{W} = \text{J/s}\)) obtenida mediante descarga en orificio subcrítico se acopla con el flujo calórico radiante absorbido por la masividad del acero (\(H_p/A\)). En sistemas sociotécnicos offshore, el OEE no puede alcanzarse descuidando los sistemas instrumentados de seguridad (SIS, por sus siglas en inglés: <em>Safety Instrumented Systems</em>) y su <strong>Nivel de Integridad de Seguridad (SIL, por sus siglas en inglés: <em>Safety Integrity Level</em>)</strong>.
+    </p>
+    <div style="border-top: 1px solid #e2e8f0; padding-top: 12px; font-size: 0.85rem; color: #718096;">
+      <p style="margin: 4px 0;">American Petroleum Institute. (2019). <em>Recommended Practice for Fire Prevention and Control on Open Type Offshore Production Platforms</em> (API RP 14G). API Publishing Services.</p>
+      <p style="margin: 4px 0;">Cullen, W. D. (1990). <em>The Public Inquiry into the Piper Alpha Disaster</em> (Vols. 1-2, Cmnd 1310). Her Majesty's Stationery Office (HMSO), London, UK.</p>
+      <p style="margin: 4px 0;">Drysdale, D. (2011). <em>An Introduction to Fire Dynamics</em> (3rd ed.). John Wiley &amp; Sons, Chichester.</p>
+      <p style="margin: 4px 0;">National Fire Protection Association. (2022). <em>Standard for Water Spray Fixed Systems for Fire Protection</em> (NFPA 15). NFPA.</p>
+      <p style="margin: 4px 0;">National Fire Protection Association. (2022). <em>Standard on Facility Fire Brigades</em> (NFPA 600). NFPA.</p>
+      <p style="margin: 4px 0;">Presidencia de la República del Ecuador. (1986). <em>Reglamento de Seguridad e Higiene del Trabajo</em> (Decreto Ejecutivo 2393). Registro Oficial 565.</p>
+      <p style="margin: 4px 0;">Purkiss, J. A., &amp; Li, L. Y. (2007). <em>Fire Safety Engineering Design of Structures</em>. CRC Press, Taylor &amp; Francis Group.</p>
+    </div>
+  </div>
+
+  <!-- TARJETA: RECURSOS MULTIMEDIA (VIDEO PRIMERO, LUEGO PDF) -->
+  <div style="background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; border-left: 6px solid #805ad5; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); padding: 26px; margin-bottom: 25px;">
+    <div style="display: flex; align-items: center; margin-bottom: 16px;">
+      <span style="background-color: #faf5ff; color: #6b46c1; font-weight: 700; font-size: 0.85rem; padding: 4px 10px; border-radius: 6px; margin-right: 10px;">RECURSOS DIDÁCTICOS</span>
+      <h3 style="margin: 0; color: #44337a; font-size: 1.25rem;">Material Audiovisual y Documentación Técnica de Soporte</h3>
+    </div>
+
+    <!-- 1. VIDEO PRIMERO -->
+    <div style="margin-bottom: 26px;">
+      <h4 style="font-size: 1.05rem; color: #2d3748; margin: 0 0 10px 0; display: flex; align-items: center;">
+        <span style="margin-right: 8px;">&#127916;</span> 1. Registro Audiovisual Forense: Piper Alpha - Colapso Térmico
+      </h4>
+      <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid #cbd5e0; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        <iframe src="https://drive.google.com/file/d/1hlmMg9qLM9rA1xI-KaIGGXvlJ398D0yw/preview" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allow="autoplay" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <!-- 2. PDF LUEGO -->
+    <div>
+      <h4 style="font-size: 1.05rem; color: #2d3748; margin: 0 0 10px 0; display: flex; align-items: center;">
+        <span style="margin-right: 8px;">&#128196;</span> 2. Documento Técnico Guía: Tema 3 - Brigadas de Prevención y Combate de Incendios
+      </h4>
+      <div style="width: 100%; height: 600px; border-radius: 8px; overflow: hidden; border: 1px solid #cbd5e0; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        <iframe src="https://drive.google.com/file/d/1yL1Qem20eeB8ar6g5iHMMeAOwpSmF3aG/preview" style="width: 100%; height: 100%; border: none;" allow="autoplay"></iframe>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- CONTROLADORES LÓGICOS JAVASCRIPT PUROS -->
+<script>
+  function simularFugaJet() {
+    var p_mpa = parseFloat(document.getElementById('sim1_p').value);
+    var d_pulg = parseFloat(document.getElementById('sim1_d').value);
+    var rho = parseFloat(document.getElementById('sim1_rho').value) || 580.0;
+
+    document.getElementById('sim1_p_val').innerText = p_mpa.toFixed(1) + " MPa";
+    document.getElementById('sim1_d_val').innerText = d_pulg.toFixed(2) + " pulgadas";
+
+    var d_m = d_pulg * 0.0254;
+    var a0 = (Math.PI * Math.pow(d_m, 2)) / 4.0;
+    var cd = 0.62;
+    var deltaP = Math.max(0, (p_mpa - 0.1) * 1.0e6);
+
+    var m_dot = cd * a0 * Math.sqrt(2.0 * rho * deltaP);
+    var eta_c = 0.95;
+    var deltaHc = 46500.0; // kJ/kg
+    var pot_kw = eta_c * m_dot * deltaHc;
+    var pot_gw = pot_kw / 1.0e6;
+
+    var diluvioLmin = (pot_gw / 3.97) * 28380.0;
+
+    document.getElementById('sim1_res_m').innerText = m_dot.toFixed(2) + " kg/s";
+    document.getElementById('sim1_res_q').innerText = pot_gw.toFixed(2) + " GW";
+    document.getElementById('sim1_res_dil').innerText = Math.round(diluvioLmin).toLocaleString() + " L/min";
+
+    if (pot_gw > 2.5) {
+      document.getElementById('sim1_res_riesgo').innerText = "Colapso Inminente";
+      document.getElementById('sim1_res_riesgo').style.color = "#9b2c2c";
+    } else if (pot_gw > 1.0) {
+      document.getElementById('sim1_res_riesgo').innerText = "Fuego Severo";
+      document.getElementById('sim1_res_riesgo').style.color = "#c05621";
+    } else {
+      document.getElementById('sim1_res_riesgo').innerText = "Mitigable";
+      document.getElementById('sim1_res_riesgo').style.color = "#276749";
+    }
+  }
+
+  function simularAcero() {
+    var tg = parseFloat(document.getElementById('sim2_tg').value);
+    var hp = parseFloat(document.getElementById('sim2_hp').value);
+    var dilActivo = parseInt(document.getElementById('sim2_dil').value);
+
+    document.getElementById('sim2_tg_val').innerText = tg.toFixed(0) + " °C";
+    document.getElementById('sim2_hp_val').innerText = hp.toFixed(0) + " m⁻¹";
+
+    if (dilActivo === 1) {
+      document.getElementById('sim2_res_tcol').innerText = "Sin Colapso";
+      document.getElementById('sim2_res_tcol').style.color = "#276749";
+      document.getElementById('sim2_res_ts').innerText = "185 °C";
+      document.getElementById('sim2_res_ts').style.color = "#276749";
+      document.getElementById('sim2_res_flu').innerText = "> 95 %";
+      document.getElementById('sim2_res_flu').style.color = "#276749";
+      document.getElementById('sim2_res_cond').innerText = "Estructura Estable";
+      document.getElementById('sim2_res_cond').style.color = "#276749";
+    } else {
+      var tcol = 14.0 * (120.0 / hp) * (1000.0 / tg);
+      var ts_max = Math.min(tg, tg * 0.98);
+      document.getElementById('sim2_res_tcol').innerText = tcol.toFixed(1) + " min";
+      document.getElementById('sim2_res_tcol').style.color = "#e53e3e";
+      document.getElementById('sim2_res_ts').innerText = ts_max.toFixed(0) + " °C";
+      document.getElementById('sim2_res_ts').style.color = "#e53e3e";
+      document.getElementById('sim2_res_flu').innerText = "< 10 %";
+      document.getElementById('sim2_res_flu').style.color = "#c53030";
+      document.getElementById('sim2_res_cond').innerText = "Fractura del Jacket";
+      document.getElementById('sim2_res_cond').style.color = "#9b2c2c";
+    }
+  }
+
+  function toggleRes(id) {
+    var el = document.getElementById(id);
+    if (el.style.display === "none" || el.style.display === "") {
+      el.style.display = "block";
+    } else {
+      el.style.display = "none";
+    }
+  }
+</script>
