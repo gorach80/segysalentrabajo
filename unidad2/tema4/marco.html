@@ -1,0 +1,477 @@
+<!-- CONTENEDOR PRINCIPAL -->
+<div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; max-width: 1100px; margin: 20px auto; color: #2d3748; line-height: 1.6;">
+
+  <!-- INYECTOR ROBUSTO Y AUTÓNOMO DE MATHJAX -->
+  <script>
+    (function () {
+      function compilarLaTeX() {
+        if (window.MathJax) {
+          if (window.MathJax.typesetPromise) {
+            window.MathJax.typesetPromise();
+          } else if (window.MathJax.Hub) {
+            window.MathJax.Hub.Queue(["Typeset", window.MathJax.Hub]);
+          }
+        }
+      }
+
+      if (!window.MathJax) {
+        window.MathJax = {
+          tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']]
+          },
+          options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+          },
+          startup: {
+            pageReady: function () {
+              return MathJax.startup.defaultPageReady().then(function () {
+                compilarLaTeX();
+              });
+            }
+          }
+        };
+        var scr = document.createElement('script');
+        scr.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+        scr.async = true;
+        document.head.appendChild(scr);
+      } else {
+        setTimeout(compilarLaTeX, 300);
+      }
+    })();
+  </script>
+
+  <!-- TARJETA SUPERIOR AZUL OSCURO/MARINA (H1 + INTRODUCCIÓN MOTIVADORA) -->
+  <div style="background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%); color: #ffffff; border-radius: 14px; padding: 32px 28px; box-shadow: 0 10px 25px rgba(15, 32, 39, 0.25); margin-bottom: 25px;">
+    <div style="display: inline-block; background-color: #00d2ff; color: #0f2027; font-weight: 800; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; padding: 5px 14px; border-radius: 20px; margin-bottom: 15px;">
+      SEGURIDAD DE PROCESOS | TELECOMUNICACIONES CRÍTICAS Y AHP
+    </div>
+    <h1 style="font-size: 2.1rem; font-weight: 800; color: #ffffff; margin: 0 0 16px 0; line-height: 1.25; border-bottom: 2px solid rgba(0, 210, 255, 0.4); padding-bottom: 12px;">
+      Tema 4: Brigadas de Comunicación y Análisis General de Vulnerabilidad - Caso Forense Piper Alpha (1988)
+    </h1>
+    <p style="font-size: 1.05rem; color: #e2e8f0; margin: 0 0 16px 0; text-align: justify;">
+      <strong>Introducción Motivadora:</strong> El desastre de la plataforma petrolera <em>Piper Alpha</em> (6 de julio de 1988, 167 víctimas fatales) demostró empíricamente que la destrucción simultánea de los canales de telecomunicación paraliza en el acto cualquier <strong>Sistema de Comando de Incidentes (SCI)</strong>. Cuando la sobrepresión inicial cercenó las bandejas eléctricas y silenció el sistema de megafonía general en el segundo cero, se generó un Punto Único de Falla (SPOF, por sus siglas en inglés: <em>Single Point of Failure</em>) topológico. La ausencia de órdenes de evacuación y la incomunicación con las plataformas adyacentes sentenciaron la vida del personal en los dormitorios. En plantas industriales complejas, la Efectividad Global de los Equipos (OEE, por sus siglas en inglés: <em>Overall Equipment Effectiveness</em>) debe estar sustentada en arquitecturas redundantes de comunicación a prueba de fallos (*fail-safe*).
+    </p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 18px;">
+      <div style="background: rgba(255, 255, 255, 0.08); border-left: 3px solid #ff4b2b; padding: 10px 14px; border-radius: 6px;">
+        <span style="font-size: 0.75rem; text-transform: uppercase; color: #feb2b2; display: block;">Falla Total Megafonía PA/GA</span>
+        <strong style="font-size: 1.3rem; color: #ffffff;">\(t = 0\text{ s}\)</strong>
+      </div>
+      <div style="background: rgba(255, 255, 255, 0.08); border-left: 3px solid #00d2ff; padding: 10px 14px; border-radius: 6px;">
+        <span style="font-size: 0.75rem; text-transform: uppercase; color: #90cdf4; display: block;">Margen RF a Buque Tharos</span>
+        <strong style="font-size: 1.3rem; color: #ffffff;">\(+38.38\text{ dB}\)</strong>
+      </div>
+      <div style="background: rgba(255, 255, 255, 0.08); border-left: 3px solid #f6d365; padding: 10px 14px; border-radius: 6px;">
+        <span style="font-size: 0.75rem; text-transform: uppercase; color: #fefcbf; display: block;">Peso Vulnerabilidad Física (\(W_F\))</span>
+        <strong style="font-size: 1.3rem; color: #ffffff;">\(69.1\%\)</strong>
+      </div>
+      <div style="background: rgba(255, 255, 255, 0.08); border-left: 3px solid #e53e3e; padding: 10px 14px; border-radius: 6px;">
+        <span style="font-size: 0.75rem; text-transform: uppercase; color: #feb2b2; display: block;">Vulnerabilidad Global (\(V_G\))</span>
+        <strong style="font-size: 1.3rem; color: #ffffff;">\(86.18\%\) (Crítica)</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- TARJETA BLANCA: iDEVICE DE LECTURA Y DEDUCCIÓN ANALÍTICA -->
+  <div style="background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; border-left: 6px solid #0083b0; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); padding: 30px; margin-bottom: 25px;">
+    
+    <!-- SECCIÓN 1: MARCO NORMATIVO Y RUPTURA DE CANALES -->
+    <div style="display: flex; align-items: center; margin-bottom: 14px;">
+      <span style="background-color: #e6f6ff; color: #0083b0; font-weight: 700; font-size: 0.85rem; padding: 4px 10px; border-radius: 6px; margin-right: 10px;">SECCIÓN 01</span>
+      <h2 style="font-size: 1.4rem; color: #1a202c; margin: 0; font-weight: 700;">Marco Normativo y Ruptura de Canales de Mando en Piper Alpha</h2>
+    </div>
+    <p style="text-align: justify; margin-bottom: 14px;">
+      Conforme a los mandatos técnicos del <strong>Decreto Ejecutivo 2393</strong> (Reglamento de Seguridad e Higiene del Trabajo, Art. 160-164) y las resoluciones del <strong>Decreto Ejecutivo 255</strong> (Reglamento del Seguro General de Riesgos del Trabajo), las instalaciones de alto riesgo deben garantizar la operatividad de canales de transmisión acústica y electromagnética inmunes al colapso del proceso. En Piper Alpha, la explosión inicial en el Módulo C arrancó de cuajo las bandejas eléctricas y los tendidos de control, destruyendo la Sala de Control centralizada. El sistema de megafonía y alarma general <strong>(PA/GA, por sus siglas en inglés: <em>Public Address and General Alarm</em>)</strong> quedó inoperativo instantáneamente a \(t=0\text{ s}\), impidiendo la activación de la alarma de zafarrancho de abandono (Cullen, 1990).
+    </p>
+
+    <!-- SECCIÓN 2: INCOMUNICACIÓN EXTERNA Y TOPOLOGÍA EN SERIE -->
+    <div style="display: flex; align-items: center; margin-top: 28px; margin-bottom: 14px;">
+      <span style="background-color: #e6f6ff; color: #0083b0; font-weight: 700; font-size: 0.85rem; padding: 4px 10px; border-radius: 6px; margin-right: 10px;">SECCIÓN 02</span>
+      <h2 style="font-size: 1.4rem; color: #1a202c; margin: 0; font-weight: 700;">Incomunicación Externa y Confiabilidad Topológica de Sistemas</h2>
+    </div>
+    <p style="text-align: justify;">
+      La dependencia jerárquica de comunicaciones verbales por radio sin protocolos directos de <strong>Parada de Emergencia (ESD, por sus siglas en inglés: <em>Emergency Shutdown</em>)</strong> impidió alertar de forma vinculante a las plataformas satélites <em>Tartan</em> y <em>Claymore</em>. Los superintendentes de estas instalaciones continuaron bombeando hidrocarburos a 120 bar durante más de una hora, alimentando el incendio de chorro continuo. Desde el enfoque de los <strong>Diagramas de Bloques de Confiabilidad (RBD, por sus siglas en inglés: <em>Reliability Block Diagrams</em>)</strong>, el sistema de alerta presentó una arquitectura en serie estricta:
+    </p>
+    <div style="background-color: #f8fafc; border: 1px dashed #cbd5e0; border-radius: 8px; padding: 15px; margin: 15px 0; text-align: center; font-size: 1.15rem; color: #1a365d;">
+      \[ R_{serie}(t) = R_{sensores} \times R_{cables} \times R_{control} \times R_{PAGA} = R_{sensores} \times 0 \times R_{control} \times R_{PAGA} = 0 \quad (\text{SPOF}) \]
+    </div>
+
+    <!-- TABLA DE ALTA DENSIDAD: ESTADO VS NORMATIVA -->
+    <div style="overflow-x: auto; margin-top: 15px;">
+      <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; text-align: left; background: #ffffff;">
+        <thead>
+          <tr style="background-color: #0f2027; color: #ffffff;">
+            <th style="padding: 10px 14px; border: 1px solid #cbd5e0;">Subsistema Crítico</th>
+            <th style="padding: 10px 14px; border: 1px solid #cbd5e0;">Estado en Piper Alpha (1988)</th>
+            <th style="padding: 10px 14px; border: 1px solid #cbd5e0;">Exigencia Normativa (NFPA / API)</th>
+            <th style="padding: 10px 14px; border: 1px solid #cbd5e0;">Efecto Forense en el Siniestro</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 8px 14px; font-weight: bold;">Megafonía Interna (PA/GA)</td>
+            <td style="padding: 8px 14px; color: #c53030;">Cableado simple destruido por la explosión inicial</td>
+            <td style="padding: 8px 14px;">Cables ignífugos IEC 60331 con doble ruta disjunta</td>
+            <td style="padding: 8px 14px;">Personal sin aviso en dormitorios esperando órdenes</td>
+          </tr>
+          <tr style="background-color: #f7fafc; border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 8px 14px; font-weight: bold;">Enlace de Parada Externa</td>
+            <td style="padding: 8px 14px; color: #c53030;">Vía voz dependiente de autorización de gerencia</td>
+            <td style="padding: 8px 14px;">Válvulas Submarinas (SSIV) fail-safe automáticas</td>
+            <td style="padding: 8px 14px;">Plataformas Tartan y Claymore mantuvieron el flujo</td>
+          </tr>
+          <tr style="border-bottom: 1px solid #e2e8f0;">
+            <td style="padding: 8px 14px; font-weight: bold;">Radios Tácticas de Brigada</td>
+            <td style="padding: 8px 14px; color: #c53030;">Frecuencias saturadas sin protocolo SCI asignado</td>
+            <td style="padding: 8px 14px;">Canales tácticos enlazados con repetidor con UPS</td>
+            <td style="padding: 8px 14px;">Imposibilidad de coordinar barridos hacia botes</td>
+          </tr>
+          <tr style="background-color: #f7fafc;">
+            <td style="padding: 8px 14px; font-weight: bold;">Alimentación Eléctrica</td>
+            <td style="padding: 8px 14px; color: #c53030;">Baterías ubicadas en proximidad a módulos de gas</td>
+            <td style="padding: 8px 14px;">Autonomía \(\ge 4\text{ h}\) aislada de áreas clasificadas</td>
+            <td style="padding: 8px 14px;">Colapso de instrumental y telemetría de proceso</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SECCIÓN 3: PRESUPUESTO DE ENLACE DE RADIOFRECUENCIA -->
+    <div style="display: flex; align-items: center; margin-top: 30px; margin-bottom: 14px;">
+      <span style="background-color: #e6f6ff; color: #0083b0; font-weight: 700; font-size: 0.85rem; padding: 4px 10px; border-radius: 6px; margin-right: 10px;">SECCIÓN 03</span>
+      <h2 style="font-size: 1.4rem; color: #1a202c; margin: 0; font-weight: 700;">Presupuesto de Enlace de Radiofrecuencia (Link Budget Offshore)</h2>
+    </div>
+    <p style="text-align: justify;">
+      Se modela la propagación en banda marina de <strong>Frecuencia Ultra Alta (UHF, por sus siglas en inglés: <em>Ultra High Frequency</em>)</strong> a \(f = 457.5\text{ MHz}\) entre el transceptor portátil de emergencia operado en el helideck y la estación receptora del buque de apoyo y rescate <em>MSV Tharos</em> posicionado a \(d = 1.8\text{ km}\). Con potencia transmisora \(P_{tx} = 5.0\text{ W} = 36.99\text{ dBm}\), ganancia transmisora \(G_{tx} = 2.15\text{ dBi}\), pérdidas de conectores en transmisión \(L_{tx} = 0.85\text{ dB}\), ganancia en recepción \(G_{rx} = 6.50\text{ dBi}\), pérdidas en recepción \(L_{rx} = 1.65\text{ dB}\), sensibilidad del receptor \(S_{rx} = -108.0\text{ dBm}\) y margen por desvanecimiento marino multipath \(M_s = 22.0\text{ dB}\) (Rappaport, 2002):
+    </p>
+    <div style="background-color: #f8fafc; border: 1px dashed #cbd5e0; border-radius: 8px; padding: 15px; margin: 15px 0;">
+      <p style="margin: 0 0 6px 0;"><strong>Pérdida en el Espacio Libre (FSPL, por sus siglas en inglés: <em>Free Space Path Loss</em>):</strong></p>
+      \[ \text{FSPL} = 32.45 + 20 \cdot \log_{10}(d_{[\text{km}]}) + 20 \cdot \log_{10}(f_{[\text{MHz}]}) \]
+      \[ \text{FSPL} = 32.45 + 20 \cdot \log_{10}(1.80) + 20 \cdot \log_{10}(457.5) = 32.45 + 5.105 + 53.208 = 90.763 \text{ dB} \]
+
+      <p style="margin: 12px 0 6px 0;"><strong>Potencia Recibida en Terminales del Receptor (\(P_{rx}\)):</strong></p>
+      \[ P_{rx} = P_{tx} + G_{tx} - L_{tx} - \text{FSPL} + G_{rx} - L_{rx} - M_s \]
+      \[ P_{rx} = 36.99 + 2.15 - 0.85 - 90.763 + 6.50 - 1.65 - 22.0 = -69.623 \text{ dBm} \]
+
+      <p style="margin: 12px 0 6px 0;"><strong>Margen de Enlace Disponible (\(\Delta M\)):</strong></p>
+      \[ \Delta M = P_{rx} - S_{rx} = -69.623\text{ dBm} - (-108.0\text{ dBm}) = +38.377 \text{ dB} \]
+    </div>
+    <p style="text-align: justify;">
+      <strong>Veredicto Forense de Comunicaciones:</strong> El canal electromagnético era completamente viable (\(\Delta M > 0\)). El colapso del flujo de rescate obedeció a la falta de canalizaciones protegidas en anillo disjunto y a la centralización ciega de las decisiones operacionales en una sala física no compartimentada.
+    </p>
+
+    <!-- SECCIÓN 4: MODELAMIENTO MULTICRITERIO AHP -->
+    <div style="display: flex; align-items: center; margin-top: 30px; margin-bottom: 14px;">
+      <span style="background-color: #e6f6ff; color: #0083b0; font-weight: 700; font-size: 0.85rem; padding: 4px 10px; border-radius: 6px; margin-right: 10px;">SECCIÓN 04</span>
+      <h2 style="font-size: 1.4rem; color: #1a202c; margin: 0; font-weight: 700;">Análisis de Vulnerabilidad por Proceso Jerárquico Analítico (AHP)</h2>
+    </div>
+    <p style="text-align: justify;">
+      Bajo el método del <strong>Proceso Jerárquico Analítico (AHP, por sus siglas en inglés: <em>Analytic Hierarchy Process</em>)</strong> de Saaty (1980) y la norma <strong>ISO 31010</strong>, se descomponen las dimensiones del siniestro en Criterio Físico-Estructural (\(C_1\)), Criterio Operacional-Procedimental (\(C_2\)) y Criterio Humano-Conductual (\(C_3\)).
+    </p>
+    <div style="background-color: #f8fafc; border: 1px dashed #cbd5e0; border-radius: 8px; padding: 15px; margin: 15px 0;">
+      <p style="margin: 0 0 6px 0;"><strong>1. Matriz de Comparación Pareada (\(A\)):</strong></p>
+      \[ A = \begin{pmatrix} 1 & 4 & 6 \\ 1/4 & 1 & 3 \\ 1/6 & 1/3 & 1 \end{pmatrix} \]
+
+      <p style="margin: 12px 0 6px 0;"><strong>2. Media Geométrica Fila (\(r_i\)) y Vector de Pesos Propios (\(W\)):</strong></p>
+      \[ r_1 = \sqrt[3]{1 \times 4 \times 6} = \sqrt[3]{24} \approx 2.8845 \]
+      \[ r_2 = \sqrt[3]{0.25 \times 1 \times 3} = \sqrt[3]{0.75} \approx 0.9086 \]
+      \[ r_3 = \sqrt[3]{0.1667 \times 0.3333 \times 1} = \sqrt[3]{0.05556} \approx 0.3816 \]
+      \[ \sum r_i = 2.8845 + 0.9086 + 0.3816 = 4.1747 \]
+      \[ W = \left[ \frac{2.8845}{4.1747}, \frac{0.9086}{4.1747}, \frac{0.3816}{4.1747} \right]^T = [0.6910, 0.2176, 0.0914]^T \]
+
+      <p style="margin: 12px 0 6px 0;"><strong>3. Consistencia de Juicios Matemáticos (\(\lambda_{\max}, CI, CR\)):</strong></p>
+      \[ A \cdot W = \begin{pmatrix} 1 & 4 & 6 \\ 0.25 & 1 & 3 \\ 0.1667 & 0.3333 & 1 \end{pmatrix} \begin{pmatrix} 0.6910 \\ 0.2176 \\ 0.0914 \end{pmatrix} = \begin{pmatrix} 2.1098 \\ 0.6646 \\ 0.2791 \end{pmatrix} \]
+      \[ \lambda_{\max} = \frac{1}{3} \left[ \frac{2.1098}{0.6910} + \frac{0.6646}{0.2176} + \frac{0.2791}{0.0914} \right] = \frac{1}{3} [3.0533 + 3.0542 + 3.0536] = 3.0537 \]
+      \[ CI = \frac{\lambda_{\max} - n}{n - 1} = \frac{3.0537 - 3}{2} = 0.02685 \]
+      \[ CR = \frac{CI}{RI_{(n=3)}} = \frac{0.02685}{0.58} = 0.0463 \quad (4.63\% < 10.0\% \Rightarrow \text{Matriz Consistente}) \]
+    </div>
+
+    <!-- SECCIÓN 5: VULNERABILIDAD GLOBAL FORENSE -->
+    <div style="display: flex; align-items: center; margin-top: 30px; margin-bottom: 14px;">
+      <span style="background-color: #e6f6ff; color: #0083b0; font-weight: 700; font-size: 0.85rem; padding: 4px 10px; border-radius: 6px; margin-right: 10px;">SECCIÓN 05</span>
+      <h2 style="font-size: 1.4rem; color: #1a202c; margin: 0; font-weight: 700;">Evaluación de la Vulnerabilidad Global Forense (\(V_G\))</h2>
+    </div>
+    <p style="text-align: justify;">
+      Asignando los índices empíricos de degradación forense evaluados tras la tragedia: Vulnerabilidad Física \(V_1 = 0.92\) (cables destruidos, falta de mamparos H-120), Vulnerabilidad Operacional \(V_2 = 0.85\) (fallas en Permiso de Trabajo PTW y parada de ductos) y Vulnerabilidad Humana \(V_3 = 0.45\) (estrés extremo y ausencia de entrenamiento en barridos con visibilidad cero):
+    </p>
+    <div style="background-color: #f8fafc; border: 1px dashed #cbd5e0; border-radius: 8px; padding: 15px; margin: 15px 0; font-size: 1.05rem;">
+      \[ V_G = \sum_{i=1}^3 W_i \cdot V_i = (0.6910 \times 0.92) + (0.2176 \times 0.85) + (0.0914 \times 0.45) \]
+      \[ V_G = 0.63572 + 0.18496 + 0.04113 = 0.86181 \approx 86.18\% \]
+    </div>
+    <div style="background-color: #fff5f5; border-left: 4px solid #e53e3e; padding: 12px 16px; border-radius: 4px; margin: 15px 0;">
+      <strong style="color: #9b2c2c;">Dictamen de Vulnerabilidad Global:</strong> Piper Alpha operaba con una vulnerabilidad crítica inadmisible (\(86.18\% > 75\%\)), gobernada en un \(73.8\%\) exclusivamente por deficiencias de diseño físico-estructural (\(0.6357 / 0.8618\)). Las capacitaciones humanas son incapaces de neutralizar fallas físicas de canalización sin redundancia topológica.
+    </div>
+  </div>
+
+  <!-- TARJETA INTERACTIVA 1: SIMULADOR DE LINK BUDGET UHF -->
+  <div style="background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; border-left: 6px solid #2b6cb0; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); padding: 26px; margin-bottom: 25px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+      <h3 style="margin: 0; color: #1a365d; font-size: 1.25rem;">
+        &#9881; Simulador 01: Balance de Enlace de Radiofrecuencia Marino (Link Budget UHF)
+      </h3>
+      <span style="background-color: #ebf8ff; color: #2b6cb0; font-size: 0.75rem; font-weight: bold; padding: 4px 8px; border-radius: 4px;">PROPAGACIÓN MARINA</span>
+    </div>
+    <p style="font-size: 0.9rem; color: #4a5568; margin-bottom: 16px;">
+      Ajuste la potencia del radiotransmisor táctico, la distancia al buque de rescate y el desvanecimiento para calcular el margen de enlace electromagnético (\(\Delta M\)).
+    </p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; background-color: #f7fafc; padding: 18px; border-radius: 8px;">
+      <div>
+        <label style="font-size: 0.85rem; font-weight: bold; color: #2d3748; display: block; margin-bottom: 5px;">Potencia Transmisor \(P_{tx}\) (W):</label>
+        <input type="range" id="sim1_ptx" min="1.0" max="25.0" step="0.5" value="5.0" oninput="simularLinkBudget()" style="width: 100%;">
+        <span id="sim1_ptx_val" style="font-weight: bold; color: #2b6cb0; font-size: 0.9rem;">5.0 W (36.99 dBm)</span>
+      </div>
+      <div>
+        <label style="font-size: 0.85rem; font-weight: bold; color: #2d3748; display: block; margin-bottom: 5px;">Distancia al Buque \(d\) (km):</label>
+        <input type="range" id="sim1_dist" min="0.5" max="10.0" step="0.1" value="1.8" oninput="simularLinkBudget()" style="width: 100%;">
+        <span id="sim1_dist_val" style="font-weight: bold; color: #2b6cb0; font-size: 0.9rem;">1.8 km</span>
+      </div>
+      <div>
+        <label style="font-size: 0.85rem; font-weight: bold; color: #2d3748; display: block; margin-bottom: 5px;">Frecuencia Portadora (MHz):</label>
+        <input type="number" id="sim1_freq" value="457.5" step="0.5" oninput="simularLinkBudget()" style="width: 90%; padding: 6px; border: 1px solid #cbd5e0; border-radius: 4px;">
+      </div>
+    </div>
+
+    <!-- PANEL DE RESULTADOS SIMULADOR 1 -->
+    <div style="margin-top: 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;">
+      <div style="background-color: #ebf8ff; border: 1px solid #bee3f8; padding: 12px; border-radius: 8px; text-align: center;">
+        <span style="font-size: 0.75rem; color: #2c5282; font-weight: bold; display: block;">PÉRDIDA ESPACIO LIBRE</span>
+        <strong id="sim1_res_fspl" style="font-size: 1.3rem; color: #2b6cb0;">90.76 dB</strong>
+      </div>
+      <div style="background-color: #ebf8ff; border: 1px solid #bee3f8; padding: 12px; border-radius: 8px; text-align: center;">
+        <span style="font-size: 0.75rem; color: #2c5282; font-weight: bold; display: block;">POTENCIA RECIBIDA</span>
+        <strong id="sim1_res_prx" style="font-size: 1.3rem; color: #2b6cb0;">-69.62 dBm</strong>
+      </div>
+      <div style="background-color: #ebf8ff; border: 1px solid #bee3f8; padding: 12px; border-radius: 8px; text-align: center;">
+        <span style="font-size: 0.75rem; color: #2c5282; font-weight: bold; display: block;">MARGEN DE ENLACE (\(\Delta M\))</span>
+        <strong id="sim1_res_margin" style="font-size: 1.3rem; color: #276749;">+38.38 dB</strong>
+      </div>
+      <div style="background-color: #ebf8ff; border: 1px solid #bee3f8; padding: 12px; border-radius: 8px; text-align: center;">
+        <span style="font-size: 0.75rem; color: #2c5282; font-weight: bold; display: block;">VIABILIDAD DE ENLACE</span>
+        <strong id="sim1_res_status" style="font-size: 1rem; color: #276749;">Canal RF Óptimo</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- TARJETA INTERACTIVA 2: SIMULADOR DE VULNERABILIDAD GLOBAL AHP -->
+  <div style="background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; border-left: 6px solid #e53e3e; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); padding: 26px; margin-bottom: 25px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
+      <h3 style="margin: 0; color: #742a2a; font-size: 1.25rem;">
+        &#128737; Simulador 02: Cuantificación de Vulnerabilidad Integral Multicriterio (AHP)
+      </h3>
+      <span style="background-color: #fff5f5; color: #c53030; font-size: 0.75rem; font-weight: bold; padding: 4px 8px; border-radius: 4px;">MODELO SAATY</span>
+    </div>
+    <p style="font-size: 0.9rem; color: #4a5568; margin-bottom: 16px;">
+      Modifique los índices de vulnerabilidad sectoriales para evaluar el impacto en la Vulnerabilidad Global (\(V_G\)) y la dominancia del diseño físico en plantas de proceso.
+    </p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; background-color: #fffaf0; padding: 18px; border-radius: 8px;">
+      <div>
+        <label style="font-size: 0.85rem; font-weight: bold; color: #2d3748; display: block; margin-bottom: 5px;">Vulnerabilidad Física \(V_1\) (0 a 1):</label>
+        <input type="range" id="sim2_v1" min="0.05" max="1.0" step="0.01" value="0.92" oninput="simularAHP()" style="width: 100%;">
+        <span id="sim2_v1_val" style="font-weight: bold; color: #c05621; font-size: 0.9rem;">0.92</span>
+      </div>
+      <div>
+        <label style="font-size: 0.85rem; font-weight: bold; color: #2d3748; display: block; margin-bottom: 5px;">Vulnerabilidad Operacional \(V_2\) (0 a 1):</label>
+        <input type="range" id="sim2_v2" min="0.05" max="1.0" step="0.01" value="0.85" oninput="simularAHP()" style="width: 100%;">
+        <span id="sim2_v2_val" style="font-weight: bold; color: #c05621; font-size: 0.9rem;">0.85</span>
+      </div>
+      <div>
+        <label style="font-size: 0.85rem; font-weight: bold; color: #2d3748; display: block; margin-bottom: 5px;">Vulnerabilidad Humana \(V_3\) (0 a 1):</label>
+        <input type="range" id="sim2_v3" min="0.05" max="1.0" step="0.01" value="0.45" oninput="simularAHP()" style="width: 100%;">
+        <span id="sim2_v3_val" style="font-weight: bold; color: #c05621; font-size: 0.9rem;">0.45</span>
+      </div>
+    </div>
+
+    <!-- PANEL DE RESULTADOS SIMULADOR 2 -->
+    <div style="margin-top: 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;">
+      <div style="background-color: #fff5f5; border: 1px solid #fed7d7; padding: 12px; border-radius: 8px; text-align: center;">
+        <span style="font-size: 0.75rem; color: #9b2c2c; font-weight: bold; display: block;">VULNERABILIDAD GLOBAL (\(V_G\))</span>
+        <strong id="sim2_res_vg" style="font-size: 1.3rem; color: #e53e3e;">86.18 %</strong>
+      </div>
+      <div style="background-color: #fff5f5; border: 1px solid #fed7d7; padding: 12px; border-radius: 8px; text-align: center;">
+        <span style="font-size: 0.75rem; color: #9b2c2c; font-weight: bold; display: block;">APORTE FACTOR FÍSICO</span>
+        <strong id="sim2_res_apf" style="font-size: 1.3rem; color: #e53e3e;">73.8 %</strong>
+      </div>
+      <div style="background-color: #fff5f5; border: 1px solid #fed7d7; padding: 12px; border-radius: 8px; text-align: center;">
+        <span style="font-size: 0.75rem; color: #9b2c2c; font-weight: bold; display: block;">RATIO CONSISTENCIA (CR)</span>
+        <strong id="sim2_res_cr" style="font-size: 1.3rem; color: #276749;">4.63 %</strong>
+      </div>
+      <div style="background-color: #fff5f5; border: 1px solid #fed7d7; padding: 12px; border-radius: 8px; text-align: center;">
+        <span style="font-size: 0.75rem; color: #9b2c2c; font-weight: bold; display: block;">NIVEL DE RIESGO</span>
+        <strong id="sim2_res_clasif" style="font-size: 1rem; color: #9b2c2c;">Crítica Inadmisible</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- TARJETA: ACTIVIDAD PRÁCTICA Y AUTOEVALUACIÓN -->
+  <div style="background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; border-left: 6px solid #38a169; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); padding: 26px; margin-bottom: 25px;">
+    <div style="display: flex; align-items: center; margin-bottom: 12px;">
+      <span style="background-color: #f0fff4; color: #276749; font-weight: 700; font-size: 0.85rem; padding: 4px 10px; border-radius: 6px; margin-right: 10px;">ACTIVIDAD PRÁCTICA</span>
+      <h3 style="margin: 0; color: #22543d; font-size: 1.25rem;">Validación de Criterios Forenses y Mitigación Sistemática</h3>
+    </div>
+    <p style="font-size: 0.95rem; text-align: justify;">
+      Analice técnicamente los siguientes cuestionamientos de ingeniería de procesos y telecomunicaciones críticas:
+    </p>
+
+    <!-- PREGUNTA 1 -->
+    <div style="background-color: #f7fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin-bottom: 12px;">
+      <p style="font-weight: bold; margin: 0 0 8px 0; color: #2d3748;">
+        1. Si el margen de enlace de radiofrecuencia con el buque de rescate era óptimo (\(+38.38\text{ dB}\)), ¿por qué no se coordinó el abandono de la plataforma por botes TEMPSC?
+      </p>
+      <button onclick="toggleRes('rep_t4_1')" style="background-color: #2b6cb0; color: #ffffff; border: none; padding: 6px 14px; border-radius: 4px; cursor: pointer; font-size: 0.85rem;">Mostrar Retroalimentación</button>
+      <div id="rep_t4_1" style="display: none; margin-top: 10px; padding: 10px; background-color: #edf2f7; border-left: 3px solid #2b6cb0; font-size: 0.9rem;">
+        <strong>Respuesta Técnica:</strong> La existencia de propagación electromagnética libre en el exterior no compensa la rotura de la arquitectura física interna. La destrucción de las bandejas eléctricas aisló a la Sala de Control, el sistema PA/GA quedó mudo en \(t=0\text{ s}\) y las brigadas en los pasillos interiores no contaban con enlace táctico punto a punto presurizado ni repetidores con respaldo de energía ininterrumpida (UPS). La señal externa no podía ser redistribuida internamente para dar la orden de zafarrancho (Cullen, 1990).
+      </div>
+    </div>
+
+    <!-- PREGUNTA 2 -->
+    <div style="background-color: #f7fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin-bottom: 12px;">
+      <p style="font-weight: bold; margin: 0 0 8px 0; color: #2d3748;">
+        2. ¿Qué demuestra la ponderación matricial AHP (\(W_F = 0.6910\)) respecto a las políticas de seguridad basadas predominantemente en capacitación de personal?
+      </p>
+      <button onclick="toggleRes('rep_t4_2')" style="background-color: #2b6cb0; color: #ffffff; border: none; padding: 6px 14px; border-radius: 4px; cursor: pointer; font-size: 0.85rem;">Mostrar Retroalimentación</button>
+      <div id="rep_t4_2" style="display: none; margin-top: 10px; padding: 10px; background-color: #edf2f7; border-left: 3px solid #2b6cb0; font-size: 0.9rem;">
+        <strong>Respuesta Técnica:</strong> La rigurosidad matemática del AHP evidencia que el \(69.1\%\) del riesgo radica en la vulnerabilidad física de los sistemas pasivos y activos (mamparos ignífugos, válvulas de aislamiento submarino SSIV, cableado mineral pirorresistente IEC 60331 y arquitectura de anillo redundante). Entrenar operarios en brigadas (factor humano, \(W_H = 0.0914\)) es inútil si la infraestructura física colapsa en el segundo cero; la ingeniería de confiabilidad exige controles duros en el diseño antes de depender del comportamiento humano.
+      </div>
+    </div>
+  </div>
+
+  <!-- TARJETA: RETROALIMENTACIÓN Y VALIDACIÓN DE INTEGRIDAD (APA 7.ª ED.) -->
+  <div style="background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; border-left: 6px solid #4a5568; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); padding: 26px; margin-bottom: 25px;">
+    <h3 style="margin: 0 0 12px 0; color: #2d3748; font-size: 1.25rem;">
+      Validación de Integridad y Referencias Normativas (Normas APA 7.ª ed.)
+    </h3>
+    <p style="font-size: 0.9rem; text-align: justify; color: #4a5568;">
+      <strong>Validación de Integridad:</strong> El análisis de telecomunicaciones marinas cumple con las especificaciones de propagación de la recomendación UIT-R P.525 y los postulados de confiabilidad en redes críticas estipulados en API RP 14J y NFPA 1225. La consistencia lógica del modelo multicriterio AHP (\(CR = 4.63\% < 10.0\%\)) valida matemáticamente la jerarquización de factores en la matriz de Saaty. La optimización y el OEE de plantas químicas e hidrocarburíferas exigen la implementación irrevocable de canalizaciones redundantes disjuntas para evitar paradas catastróficas por puntos únicos de falla.
+    </p>
+    <div style="border-top: 1px solid #e2e8f0; padding-top: 12px; font-size: 0.85rem; color: #718096;">
+      <p style="margin: 4px 0;">American Petroleum Institute. (2019). <em>Recommended Practice for Design and Hazards Analysis for Offshore Production Facilities</em> (API RP 14J). API Publishing Services.</p>
+      <p style="margin: 4px 0;">Cullen, W. D. (1990). <em>The Public Inquiry into the Piper Alpha Disaster</em> (Vols. 1-2). Department of Energy, HMSO, London.</p>
+      <p style="margin: 4px 0;">International Organization for Standardization. (2019). <em>Risk management — Risk assessment techniques</em> (ISO 31010:2019). ISO.</p>
+      <p style="margin: 4px 0;">National Fire Protection Association. (2022). <em>Standards for Emergency Services Communications</em> (NFPA 1225). NFPA.</p>
+      <p style="margin: 4px 0;">Presidencia de la República del Ecuador. (1986). <em>Reglamento de Seguridad e Higiene del Trabajo</em> (Decreto Ejecutivo 2393). Registro Oficial 565.</p>
+      <p style="margin: 4px 0;">Rappaport, T. S. (2002). <em>Wireless Communications: Principles and Practice</em> (2nd ed.). Prentice Hall, Upper Saddle River, NJ.</p>
+      <p style="margin: 4px 0;">Saaty, T. L. (1980). <em>The Analytic Hierarchy Process: Planning, Priority Setting, Resource Allocation</em>. McGraw-Hill, New York.</p>
+    </div>
+  </div>
+
+  <!-- TARJETA: RECURSOS DIDÁCTICOS MULTIMEDIA (VIDEO PRIMERO, LUEGO PDF) -->
+  <div style="background-color: #ffffff; border-radius: 12px; border: 1px solid #e2e8f0; border-left: 6px solid #805ad5; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); padding: 26px; margin-bottom: 25px;">
+    <div style="display: flex; align-items: center; margin-bottom: 16px;">
+      <span style="background-color: #faf5ff; color: #6b46c1; font-weight: 700; font-size: 0.85rem; padding: 4px 10px; border-radius: 6px; margin-right: 10px;">RECURSOS DIDÁCTICOS</span>
+      <h3 style="margin: 0; color: #44337a; font-size: 1.25rem;">Material Audiovisual y Documentación Técnica de Soporte</h3>
+    </div>
+
+    <!-- 1. VIDEO PRIMERO -->
+    <div style="margin-bottom: 26px;">
+      <h4 style="font-size: 1.05rem; color: #2d3748; margin: 0 0 10px 0; display: flex; align-items: center;">
+        <span style="margin-right: 8px;">&#127916;</span> 1. Registro Audiovisual Forense: Ingeniería Forense - Caso Piper Alpha
+      </h4>
+      <div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; border: 1px solid #cbd5e0; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        <iframe src="https://drive.google.com/file/d/1kCwey9XNR0iI4-TBIUukPNiEOLmHp06O/preview" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" allow="autoplay" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <!-- 2. PDF LUEGO -->
+    <div>
+      <h4 style="font-size: 1.05rem; color: #2d3748; margin: 0 0 10px 0; display: flex; align-items: center;">
+        <span style="margin-right: 8px;">&#128196;</span> 2. Documento Técnico Guía: Tema 4 - Brigadas de Comunicación y Análisis General de Vulnerabilidad
+      </h4>
+      <div style="width: 100%; height: 600px; border-radius: 8px; overflow: hidden; border: 1px solid #cbd5e0; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+        <iframe src="https://drive.google.com/file/d/1aRlZUvxuVQv8QhzFrxEWtPk7b9rE9xPk/preview" style="width: 100%; height: 100%; border: none;" allow="autoplay"></iframe>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- CONTROLADORES LÓGICOS JAVASCRIPT PUROS -->
+<script>
+  function simularLinkBudget() {
+    var ptx_w = parseFloat(document.getElementById('sim1_ptx').value);
+    var d_km = parseFloat(document.getElementById('sim1_dist').value);
+    var f_mhz = parseFloat(document.getElementById('sim1_freq').value) || 457.5;
+
+    var ptx_dbm = 10.0 * Math.log10(ptx_w * 1000.0);
+    document.getElementById('sim1_ptx_val').innerText = ptx_w.toFixed(1) + " W (" + ptx_dbm.toFixed(2) + " dBm)";
+    document.getElementById('sim1_dist_val').innerText = d_km.toFixed(1) + " km";
+
+    var fspl = 32.45 + (20.0 * Math.log10(d_km)) + (20.0 * Math.log10(f_mhz));
+    var gtx = 2.15;
+    var ltx = 0.85;
+    var grx = 6.50;
+    var lrx = 1.65;
+    var ms = 22.0;
+    var srx = -108.0;
+
+    var prx = ptx_dbm + gtx - ltx - fspl + grx - lrx - ms;
+    var deltaM = prx - srx;
+
+    document.getElementById('sim1_res_fspl').innerText = fspl.toFixed(2) + " dB";
+    document.getElementById('sim1_res_prx').innerText = prx.toFixed(2) + " dBm";
+    document.getElementById('sim1_res_margin').innerText = (deltaM >= 0 ? "+" : "") + deltaM.toFixed(2) + " dB";
+
+    if (deltaM >= 20.0) {
+      document.getElementById('sim1_res_margin').style.color = "#276749";
+      document.getElementById('sim1_res_status').innerText = "Canal RF Óptimo";
+      document.getElementById('sim1_res_status').style.color = "#276749";
+    } else if (deltaM >= 0.0) {
+      document.getElementById('sim1_res_margin').style.color = "#c05621";
+      document.getElementById('sim1_res_status').innerText = "Marginal / Inestable";
+      document.getElementById('sim1_res_status').style.color = "#c05621";
+    } else {
+      document.getElementById('sim1_res_margin').style.color = "#9b2c2c";
+      document.getElementById('sim1_res_status').innerText = "Enlace Caído (Sin Señal)";
+      document.getElementById('sim1_res_status').style.color = "#9b2c2c";
+    }
+  }
+
+  function simularAHP() {
+    var v1 = parseFloat(document.getElementById('sim2_v1').value);
+    var v2 = parseFloat(document.getElementById('sim2_v2').value);
+    var v3 = parseFloat(document.getElementById('sim2_v3').value);
+
+    document.getElementById('sim2_v1_val').innerText = v1.toFixed(2);
+    document.getElementById('sim2_v2_val').innerText = v2.toFixed(2);
+    document.getElementById('sim2_v3_val').innerText = v3.toFixed(2);
+
+    var w1 = 0.6910;
+    var w2 = 0.2176;
+    var w3 = 0.0914;
+
+    var aporteFisico = w1 * v1;
+    var aporteOperacional = w2 * v2;
+    var aporteHumano = w3 * v3;
+
+    var vg = aporteFisico + aporteOperacional + aporteHumano;
+    var pctAporteFisico = (aporteFisico / vg) * 100.0;
+
+    document.getElementById('sim2_res_vg').innerText = (vg * 100.0).toFixed(2) + " %";
+    document.getElementById('sim2_res_apf').innerText = pctAporteFisico.toFixed(1) + " %";
+    document.getElementById('sim2_res_cr').innerText = "4.63 %";
+
+    if (vg >= 0.75) {
+      document.getElementById('sim2_res_vg').style.color = "#e53e3e";
+      document.getElementById('sim2_res_clasif').innerText = "Crítica Inadmisible";
+      document.getElementById('sim2_res_clasif').style.color = "#9b2c2c";
+    } else if (vg >= 0.50) {
+      document.getElementById('sim2_res_vg').style.color = "#c05621";
+      document.getElementById('sim2_res_clasif').innerText = "Vulnerabilidad Alta";
+      document.getElementById('sim2_res_clasif').style.color = "#c05621";
+    } else {
+      document.getElementById('sim2_res_vg').style.color = "#276749";
+      document.getElementById('sim2_res_clasif').innerText = "Rango Aceptable";
+      document.getElementById('sim2_res_clasif').style.color = "#276749";
+    }
+  }
+
+  function toggleRes(id) {
+    var el = document.getElementById(id);
+    if (el.style.display === "none" || el.style.display === "") {
+      el.style.display = "block";
+    } else {
+      el.style.display = "none";
+    }
+  }
+</script>
