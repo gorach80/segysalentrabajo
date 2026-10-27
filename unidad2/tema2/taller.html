@@ -1,0 +1,188 @@
+<!-- Contenedor Maestro Autoportante -->
+<div id="upse_taller_wrapper" style="font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #1e293b; background-color: #f8fafc; padding: 24px; border-radius: 12px; max-width: 950px; margin: 0 auto; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
+
+  <!-- H1: Título Jerárquico -->
+  <h1 style="color: #0f172a; font-size: 26px; font-weight: 800; border-bottom: 3px solid #0284c7; padding-bottom: 12px; margin-top: 0; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.5px;">
+    Taller Aplicado: Modelamiento Físico-Matemático de Evacuación y Seguridad de Procesos (Caso Piper Alpha)
+  </h1>
+
+  <!-- Tarjeta Superior: Introducción Motivadora -->
+  <div style="background-color: #0f172a; color: #f8fafc; border-radius: 10px; padding: 20px 24px; margin-bottom: 24px; box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.3);">
+    <div style="display: inline-block; background-color: #0284c7; color: #ffffff; font-size: 11px; font-weight: 700; text-transform: uppercase; padding: 4px 10px; border-radius: 6px; letter-spacing: 1px; margin-bottom: 10px;">
+      UPSE | Facultad de Ciencias de la Ingeniería | Tiempo Estimado: 20 min
+    </div>
+    <h2 style="color: #ffffff; font-size: 18px; margin: 0 0 10px 0; font-weight: 600;">
+      Contextualización Forense y Desafío de Ingeniería
+    </h2>
+    <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #cbd5e1; text-align: justify;">
+      Estimados estudiantes de la Universidad Estatal Península de Santa Elena (UPSE), el siniestro de la plataforma offshore Piper Alpha (6 de julio de 1988) demostró que la gestión de riesgos exige modelamiento cuantitativo estricto[cite: 1]. La coexistencia de fallas en el Permiso de Trabajo (PTW, por sus siglas en inglés: <em>Permit to Work</em>)[cite: 1], la reactivación de líneas sin Válvula de Seguridad de Presión (PSV, por sus siglas en inglés: <em>Pressure Safety Valve</em>)[cite: 1], y el colapso del Tiempo Disponible de Escape Seguro (ASET, por sus siglas en inglés: <em>Available Safe Egress Time</em>) frente al Tiempo Requerido de Escape Seguro (RSET, por sus siglas en inglés: <em>Required Safe Egress Time</em>)[cite: 2] resultaron en 167 víctimas fatales[cite: 1]. En este taller de 20 minutos, aplicarán modelos analíticos de cinemática peatonal y dosis de radiación térmica para auditar las vías de evacuación bajo el marco de los Decretos Ejecutivos D.E. 255 y D.E. 2393[cite: 1, 3].
+    </p>
+  </div>
+
+  <!-- iDevice de Lectura: Tarjeta Blanca con Indicador Lateral -->
+  <div style="background-color: #ffffff; border-radius: 8px; border: 1px solid #e2e8f0; border-left: 6px solid #0284c7; padding: 22px; margin-bottom: 24px; box-shadow: 0 2px 4px rgba(0,0,0,0.02);">
+    <h3 style="color: #0369a1; font-size: 16px; margin-top: 0; margin-bottom: 12px; font-weight: 700; text-transform: uppercase;">
+      iDevice de Lectura: Fundamento Físico-Matemático y Parámetros Operativos
+    </h3>
+    <p style="font-size: 13.5px; line-height: 1.6; margin-bottom: 14px; color: #334155; text-align: justify;">
+      Considere las variables forenses documentadas para el módulo habitacional y la ruta de escape hacia las embarcaciones de salvamento[cite: 2, 3]:
+    </p>
+    <ul style="font-size: 13px; line-height: 1.7; color: #334155; margin-bottom: 16px; padding-left: 20px;">
+      <li><strong>Cinemática Peatonal Acoplada (Fruin & Jin):</strong> Velocidad no perturbada \( v_0 = 1.25\text{ m/s} \), densidad peatonal en pasillos \( \rho = 1.90\text{ p/m}^2 \), densidad máxima admisible \( \rho_{\max} = 3.80\text{ p/m}^2 \), coeficiente de extinción óptica del humo \( C_s = 1.20\text{ m}^{-1} \) y factor experimental de Jin \( k = 0.70\text{ m} \)[cite: 2].</li>
+      <li><strong>Radiación Térmica en Botes Salvavidas (TEMPSC):</strong> Potencia calórica liberada por el ducto Tartan \( Q_c = 3.0\times 10^9\text{ W} \)[cite: 2], fracción radiativa de llama \( \eta = 0.25 \)[cite: 2], transmisividad atmosférica \( \tau_a = 0.90 \)[cite: 2] y distancia radial a la estación de arriado \( R = 35\text{ m} \)[cite: 2].</li>
+      <li><strong>Criterio de Tolerancia Humana (Eisenberg):</strong> Relación entre flujo incidente y tiempo crítico de exposición: \( t_d = \left(\frac{1000}{q''}\right)^{4/3} \) (segundos para \( q'' \) en \( \text{W/m}^2 \))[cite: 2].</li>
+    </ul>
+    
+    <div style="background-color: #f1f5f9; border-radius: 6px; padding: 12px 16px; font-size: 13px; color: #0f172a;">
+      <strong>Formulaciones Teóricas en Bloque:</strong>
+      <div style="margin: 10px 0; text-align: center; overflow-x: auto;">
+        \[ v(\rho, C_s) = v_0 \cdot \left(1 - \frac{\rho}{\rho_{\max}}\right) \cdot \exp(-k \cdot C_s) \]
+      </div>
+      <div style="margin: 10px 0; text-align: center; overflow-x: auto;">
+        \[ q'' = \left[ \frac{\eta \cdot Q_c}{4 \cdot \pi \cdot R^2} \right] \cdot \tau_a \]
+      </div>
+    </div>
+  </div>
+
+  <!-- Actividad Práctica: Taller Cuantitativo (20 minutos) -->
+  <div style="background-color: #ffffff; border-radius: 8px; border: 1px solid #cbd5e1; padding: 22px; margin-bottom: 24px;">
+    <h3 style="color: #0f172a; font-size: 17px; margin-top: 0; margin-bottom: 14px; font-weight: 700;">
+      Actividad Práctica: Auditoría Forense y Modelamiento Cuantitativo (20 minutos)
+    </h3>
+    <p style="font-size: 13.5px; color: #475569; margin-bottom: 16px;">
+      Desarrolle los siguientes tres ejercicios aplicando rigor analítico y balance de unidades:
+    </p>
+
+    <div style="margin-bottom: 16px; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 14px;">
+      <strong style="color: #0284c7; font-size: 14px;">Fase 1 (6 min) — Degradación Cinemática de Evacuación:</strong>
+      <p style="font-size: 13px; margin: 6px 0 0 0; color: #334155;">
+        Calcule analíticamente la velocidad final resultante \( v \) del personal en el corredor habitacional y determine de manera aislada el factor de reducción introducido por la opacidad del humo \( \exp(-k \cdot C_s) \)[cite: 2].
+      </p>
+    </div>
+
+    <div style="margin-bottom: 16px; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 14px;">
+      <strong style="color: #0284c7; font-size: 14px;">Fase 2 (7 min) — Termodinámica y Supervivencia en Botes TEMPSC:</strong>
+      <p style="font-size: 13px; margin: 6px 0 0 0; color: #334155;">
+        Deduzca el flujo de radiación térmica \( q'' \) recibido en la zona de embarque (\( R = 35\text{ m} \)) y verifique el tiempo disponible de soporte vital \( t_d \) mediante la ecuación de Eisenberg[cite: 2]. Compare el flujo resultante contra el umbral de dolor tolerable estándar (\( 1.4\text{ kW/m}^2 \))[cite: 2].
+      </p>
+    </div>
+
+    <div style="margin-bottom: 10px; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 14px;">
+      <strong style="color: #0284c7; font-size: 14px;">Fase 3 (7 min) — Dimensionamiento de Vías y UAS (NFPA 101 / D.E. 2393):</strong>
+      <p style="font-size: 13px; margin: 6px 0 0 0; color: #334155;">
+        Para evacuar \( P = 180\text{ personas} \) con flujo específico \( F_s = 1.1875\text{ personas/(s}\cdot\text{m)} \) en una ventana admisible de desalojo \( t_{\text{desalojo}} = 16.0\text{ s} \), determine el ancho total \( W_u \) y la cantidad entera de Unidades de Ancho de Salida (UAS, módulo de \( 0.55\text{ m} \)) requeridas[cite: 3].
+      </p>
+    </div>
+  </div>
+
+  <!-- Sección de Validación y Solución Protegida por Contraseña -->
+  <div style="background-color: #f8fafc; border: 2px dashed #94a3b8; border-radius: 8px; padding: 22px; text-align: center;">
+    <h3 style="color: #1e293b; font-size: 16px; margin-top: 0; margin-bottom: 8px; font-weight: 700;">
+      Control de Acceso a la Retroalimentación Técnica
+    </h3>
+    <p style="font-size: 13px; color: #64748b; margin-bottom: 16px;">
+      Ingrese la clave institucional suministrada por el docente para desbloquear la solución detallada y las deducciones analíticas:
+    </p>
+
+    <div style="display: inline-flex; gap: 8px; justify-content: center; align-items: center; margin-bottom: 14px;">
+      <input type="password" id="upse_token_pwd" placeholder="Contraseña docente" style="padding: 9px 14px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; width: 180px; outline: none; text-align: center;" />
+      <button onclick="validarAccesoTaller()" style="background-color: #0284c7; color: #ffffff; border: none; padding: 9px 18px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer;">
+        Verificar Solución
+      </button>
+    </div>
+    <div id="upse_error_msg" style="color: #dc2626; font-size: 12px; font-weight: 600; display: none;">Contraseña no válida. Consulte con el docente en clase.</div>
+
+    <!-- Contenedor de Solución / Retroalimentación -->
+    <div id="upse_solucion_container" style="display: none; text-align: left; margin-top: 20px; background-color: #ffffff; border: 1px solid #bbf7d0; border-left: 6px solid #16a34a; border-radius: 6px; padding: 20px;">
+      <div style="display: inline-block; background-color: #dcfce7; color: #15803d; font-size: 11px; font-weight: 700; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; margin-bottom: 12px;">
+        Acceso Concedido — Solución Oficial
+      </div>
+      <h4 style="color: #166534; font-size: 16px; margin: 0 0 14px 0; font-weight: 700;">
+        Retroalimentación y Memoria de Cálculo
+      </h4>
+
+      <p style="font-size: 13.5px; font-weight: 700; color: #0f172a; margin-bottom: 4px;">1. Resolución Cinemática (Jin & Fruin):</p>
+      <div style="font-size: 13px; line-height: 1.6; color: #334155; margin-bottom: 14px;">
+        Factor de reducción por densidad física[cite: 2]:
+        \[ 1 - \frac{\rho}{\rho_{\max}} = 1 - \frac{1.90}{3.80} = 0.50 \]
+        Factor de pérdida visual por opacidad de humo[cite: 2]:
+        \[ \exp(-k \cdot C_s) = \exp(-0.70 \cdot 1.20) = \exp(-0.84) \approx 0.4317 \]
+        Velocidad cinemática acoplada[cite: 2]:
+        \[ v = 1.25 \cdot 0.50 \cdot 0.4317 = 0.2698\text{ m/s} \]
+        <em>Validación de Integridad:</em> La velocidad del flujo peatonal sufre una degradación del \( 78.42\% \) respecto a la condición normal de diseño (\( 1.25\text{ m/s} \))[cite: 2], comprobando el colapso funcional del desalojo antes de que las vías queden bloqueadas térmicamente.
+      </div>
+
+      <p style="font-size: 13.5px; font-weight: 700; color: #0f172a; margin-bottom: 4px;">2. Resolución Termodinámica y Dosis de Eisenberg:</p>
+      <div style="font-size: 13px; line-height: 1.6; color: #334155; margin-bottom: 14px;">
+        Cálculo del flujo de radiación térmica incidente a \( R = 35\text{ m} \)[cite: 2]:
+        \[ q'' = \left[ \frac{0.25 \cdot (3.0 \times 10^9)}{4 \cdot \pi \cdot 35^2} \right] \cdot 0.90 = \left[ \frac{750\,000\,000}{15\,393.80} \right] \cdot 0.90 = 48\,721.24\text{ W/m}^2 \approx 48.72\text{ kW/m}^2 \]
+        Tiempo crítico de tolerancia fisiológica según Eisenberg[cite: 2]:
+        \[ t_d = \left( \frac{1000}{48\,721.24} \right)^{4/3} = (0.020525)^{1.3333} \approx 0.0057\text{ segundos} \]
+        <em>Conclusión técnica:</em> La radiación recibida superó en un \( 3480\% \) el límite de dolor humano de \( 1.4\text{ kW/m}^2 \)[cite: 2], demostrando que sin mamparos presurizados clase H-120 el embarque en los botes TEMPSC era físicamente imposible[cite: 2].
+      </div>
+
+      <p style="font-size: 13.5px; font-weight: 700; color: #0f172a; margin-bottom: 4px;">3. Dimensionamiento Mecánico de Salidas de Evacuación:</p>
+      <div style="font-size: 13px; line-height: 1.6; color: #334155; margin-bottom: 14px;">
+        Ancho útil neto requerido[cite: 3]:
+        \[ W_u = \frac{P}{F_s \cdot t_{\text{desalojo}}} = \frac{180}{1.1875 \cdot 16.0} = \frac{180}{19.0} = 9.4737\text{ metros} \]
+        Determinación de Unidades de Ancho de Salida (UAS) normalizadas[cite: 3]:
+        \[ N_{\text{UAS}} = \left\lceil \frac{9.4737\text{ m}}{0.55\text{ m/UAS}} \right\rceil = \lceil 17.22 \rceil = 18\text{ UAS} \]
+        <em>Distribución Arquitectónica:</em> 6 salidas dobles de 3 UAS (\( 1.65\text{ m} \) libres cada una), provistas de sellado hermético y compuertas automáticas bajo norma NFPA 101 y D.E. 2393[cite: 3].
+      </div>
+
+      <div style="border-top: 1px solid #bbf7d0; padding-top: 12px; font-size: 12.5px; color: #166534;">
+        <strong>Marco Normativo:</strong> D.E. 2393 (Reglamento de Seguridad e Higiene del Trabajo, Ecuador)[cite: 1, 3], NFPA 101 (Life Safety Code)[cite: 3] e Informe Oficial Lord Cullen (1990)[cite: 1, 3].
+      </div>
+    </div>
+  </div>
+
+  <!-- Inyector Asíncrono de MathJax y Manejador de Eventos DOM -->
+  <script>
+    (function ensureMathJaxLoaded() {
+      // 1. Configuración de delimitadores antes de cargar MathJax
+      if (!window.MathJax) {
+        window.MathJax = {
+          tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']]
+          },
+          options: {
+            processHtmlClass: 'upse_taller_wrapper'
+          },
+          startup: {
+            typeset: true
+          }
+        };
+        // 2. Inyección dinámica del script si no está provisto por el host de Moodle
+        var script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+        script.async = true;
+        document.head.appendChild(script);
+      } else if (window.MathJax.typesetPromise) {
+        // Si ya estaba cargado, compilar las fórmulas iniciales visibles
+        window.MathJax.typesetPromise();
+      }
+    })();
+
+    function validarAccesoTaller() {
+      var input = document.getElementById('upse_token_pwd');
+      var sol = document.getElementById('upse_solucion_container');
+      var err = document.getElementById('upse_error_msg');
+      
+      if (input && input.value.trim() === '2026') {
+        sol.style.display = 'block';
+        if (err) err.style.display = 'none';
+        
+        // Re-compilar dinámicamente el contenedor recién expuesto
+        if (window.MathJax && window.MathJax.typesetPromise) {
+          window.MathJax.typesetPromise([sol]).catch(function (e) {
+            console.error('Error al renderizar fórmulas:', e);
+          });
+        }
+      } else {
+        if (err) err.style.display = 'block';
+        if (sol) sol.style.display = 'none';
+      }
+    }
+  </script>
+</div>
