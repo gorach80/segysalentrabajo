@@ -1,0 +1,282 @@
+<!-- CONTENEDOR MAESTRO AUTOPORTANTE (COMPATIBLE CON ATTO Y TINYMCE) -->
+<div style="font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #1e293b; background-color: #f8fafc; padding: 24px; border-radius: 12px; max-width: 1000px; margin: 0 auto; line-height: 1.6; box-sizing: border-box;">
+
+  <!-- a) TÍTULO H1 FORMAL Y TÉCNICO -->
+  <h1 style="color: #0f172a; font-size: 25px; font-weight: 800; text-align: center; margin-top: 0; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 3px solid #0284c7; padding-bottom: 12px;">
+    Ingeniería de Telecomunicaciones Críticas, Confiabilidad Topológica y Análisis Multicriterio de Vulnerabilidad: Caso Forense Piper Alpha (1988)
+  </h1>
+
+  <!-- b) INTRODUCCIÓN MOTIVADORA (TARJETA SUPERIOR) -->
+  <div style="background-color: #0f172a; color: #cbd5e1; border-radius: 10px; padding: 22px; margin-bottom: 24px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px;">
+      <span style="background-color: #0284c7; color: #ffffff; padding: 4px 12px; border-radius: 9999px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+        FACULTAD DE INGENIERÍA | UPSE
+      </span>
+      <span style="background-color: #334155; color: #38bdf8; padding: 4px 12px; border-radius: 9999px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">
+        DURACIÓN: 20 MINUTOS
+      </span>
+    </div>
+    <p style="margin: 0 0 12px 0; font-size: 14.5px; text-align: justify; color: #cbd5e1;">
+      El desastre de la plataforma marina <em>Piper Alpha</em> (6 de julio de 1988, 167 víctimas mortales) demostró empíricamente que la ruptura instantánea de las redes de telecomunicaciones y control paraliza de inmediato el Sistema de Comando de Incidentes (<strong>SCI</strong>). La sobrepresión de la explosión inicial en el Módulo C destruyó las bandejas eléctricas principales y la Sala de Control, anulando el sistema de Megafonía y Alarma General (<strong>PA/GA</strong>, <em>Public Address and General Alarm</em>) en el segundo cero (\(t=0\)). Esto provocó el confinamiento no asistido del personal en el bloque habitacional e impidió activar las Paradas de Emergencia (<strong>ESD</strong>, <em>Emergency Shutdown</em>), extendiendo el bombeo a 120 bar desde plataformas satélites por más de una hora.
+    </p>
+    <p style="margin: 0; font-size: 14px; text-align: justify; color: #94a3b8;">
+      Bajo el marco del <strong>Decreto Ejecutivo 2393</strong> (Art. 160-164), el <strong>Decreto Ejecutivo 255</strong> y los estándares <strong>NFPA 1225</strong>, <strong>API RP 14J</strong> e <strong>ISO 31010</strong>, los sistemas de evacuación y parada deben diseñarse libres de Puntos Únicos de Falla (<strong>SPOF</strong>, <em>Single Point of Failure</em>). El desafío cuantitativo de este taller exige verificar el margen de enlace de radiofrecuencia (<em>Link Budget</em>) en banda marina UHF, modelar la confiabilidad topológica de redes disjuntas y evaluar matricialmente la vulnerabilidad global mediante el Proceso Jerárquico Analítico (<strong>AHP</strong>, <em>Analytic Hierarchy Process</em>).
+    </p>
+  </div>
+
+  <!-- c) iDEVICE DE LECTURA (TARJETA DE FUNDAMENTO) -->
+  <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-left: 6px solid #0284c7; border-radius: 10px; padding: 22px; margin-bottom: 24px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);">
+    <h3 style="margin-top: 0; color: #0284c7; font-size: 17px; font-weight: 700; display: flex; align-items: center; gap: 8px;">
+      Fundamento Físico-Matemático y Modelos de Confiabilidad Topológica
+    </h3>
+    <p style="font-size: 13.5px; color: #475569; margin-bottom: 14px; text-align: justify;">
+      De acuerdo con la recomendación UIT-R (Rappaport, 2002) y la teoría multicriterio de Saaty (1980), se extraen los modelos analíticos para la radiopropagación marina, confiabilidad por Diagramas de Bloques (<strong>RBD</strong>, <em>Reliability Block Diagram</em>) y la matriz de consistencia:
+    </p>
+
+    <!-- Fórmulas rectoras -->
+    <div style="background-color: #f1f5f9; padding: 14px; border-radius: 8px; margin-bottom: 14px; border: 1px solid #cbd5e1; font-size: 13.5px;">
+      <p style="margin: 0 0 6px 0; font-weight: 600; color: #0f172a;">1. Radiopropagación en Espacio Libre (FSPL) y Potencia de Recepción (\(P_{rx}\)):</p>
+      \[ \text{FSPL [dB]} = 32.45 + 20 \log_{10}(d_{\text{[km]}}) + 20 \log_{10}(f_{\text{[MHz]}}) \]
+      \[ P_{rx} = P_{tx} + G_{tx} - L_{tx} - \text{FSPL} + G_{rx} - L_{rx} - M_s \quad \longrightarrow \quad \Delta M = P_{rx} - S_{rx} \]
+      <p style="margin: 10px 0 6px 0; font-weight: 600; color: #0f172a;">2. Topologías de Confiabilidad (Serie vs. Doble Anillo Disjunto):</p>
+      \[ R_{\text{serie}}(t) = R_1 \times R_2 \times \dots \times R_n \quad \Longleftrightarrow \quad R_{\text{anillo}}(t) = 1 - (1 - R_{\text{canal}})^2 \]
+      <p style="margin: 10px 0 6px 0; font-weight: 600; color: #0f172a;">3. Consistencia Matricial AHP y Vulnerabilidad Global Forense (\(V_G\)):</p>
+      \[ r_i = \sqrt[n]{\prod_{j=1}^n a_{ij}}, \quad W_i = \frac{r_i}{\sum r_k}, \quad \text{CI} = \frac{\lambda_{\max} - n}{n - 1}, \quad \text{CR} = \frac{\text{CI}}{\text{RI}} \quad (\text{para } n=3, \; \text{RI}=0.58) \]
+      \[ V_G = \sum_{i=1}^n W_i \cdot V_i = (W_F \cdot V_F) + (W_O \cdot V_O) + (W_H \cdot V_H) \]
+    </div>
+
+    <!-- Parámetros tabulados -->
+    <div style="overflow-x: auto;">
+      <table style="width: 100%; border-collapse: collapse; font-size: 12.5px; text-align: left;">
+        <thead>
+          <tr style="background-color: #0f172a; color: #ffffff;">
+            <th style="padding: 8px 10px; border: 1px solid #cbd5e1;">Parámetro / Variable</th>
+            <th style="padding: 8px 10px; border: 1px solid #cbd5e1;">Símbolo</th>
+            <th style="padding: 8px 10px; border: 1px solid #cbd5e1;">Magnitud Operacional</th>
+            <th style="padding: 8px 10px; border: 1px solid #cbd5e1;">Descripción Técnica</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background-color: #ffffff;">
+            <td style="padding: 6px 10px; border: 1px solid #e2e8f0; font-weight: 600;">Frecuencia / Distancia RF</td>
+            <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">\(f \;/\; d\)</td>
+            <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">\(457.5\text{ MHz (UHF)} \;/\; 1.8\text{ km}\)</td>
+            <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">Enlace táctico Helideck a Buque <em>MSV Tharos</em></td>
+          </tr>
+          <tr style="background-color: #f8fafc;">
+            <td style="padding: 6px 10px; border: 1px solid #e2e8f0; font-weight: 600;">Potencia Tx / Sensibilidad Rx</td>
+            <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">\(P_{tx} \;/\; S_{rx}\)</td>
+            <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">\(5.0\text{ W (36.99 dBm)} \;/\; -108.0\text{ dBm}\)</td>
+            <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">Transmisor portátil brigada y receptor naval</td>
+          </tr>
+          <tr style="background-color: #ffffff;">
+            <td style="padding: 6px 10px; border: 1px solid #e2e8f0; font-weight: 600;">Ganancias y Pérdidas de Línea</td>
+            <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">\(G_{tx}, G_{rx} \;/\; L_{tx}, L_{rx}\)</td>
+            <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">\(2.15, 6.50\text{ dBi} \;/\; 0.85, 1.65\text{ dB}\)</td>
+            <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">Patrones de antena y atenuación de conectores</td>
+          </tr>
+          <tr style="background-color: #f8fafc;">
+            <td style="padding: 6px 10px; border: 1px solid #e2e8f0; font-weight: 600;">Margen por Desvanecimiento</td>
+            <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">\(M_s\)</td>
+            <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">\(22.0\text{ dB}\)</td>
+            <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">Protección contra reflexión en superficie marina</td>
+          </tr>
+          <tr style="background-color: #ffffff;">
+            <td style="padding: 6px 10px; border: 1px solid #e2e8f0; font-weight: 600;">Matriz Comparativa de Saaty</td>
+            <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">\(A\)</td>
+            <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">\(C_1\text{ (Físico)}, \; C_2\text{ (Oper.),} \; C_3\text{ (Hum.)}\)</td>
+            <td style="padding: 6px 10px; border: 1px solid #e2e8f0;">Juicios de expertos ante catástrofe costa afuera</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- d) ACTIVIDAD PRÁCTICA (TALLER APLICADO EN 3 FASES CRONOMETRADAS) -->
+  <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 22px; margin-bottom: 24px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);">
+    <h3 style="margin-top: 0; color: #0f172a; font-size: 18px; font-weight: 700; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;">
+      Guía Experimental de Resolución Cuantitativa (20 Minutos)
+    </h3>
+
+    <!-- Fase 1 -->
+    <div style="margin-bottom: 18px; padding: 14px; background-color: #f8fafc; border-radius: 8px; border-left: 4px solid #0284c7;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+        <strong style="color: #0f172a; font-size: 14px;">FASE 1: Auditoría de Radiopropagación y Link Budget Marino (6 min)</strong>
+        <span style="font-size: 11px; background-color: #e0f2fe; color: #0369a1; padding: 2px 8px; border-radius: 4px; font-weight: 700;">6 MIN</span>
+      </div>
+      <p style="margin: 0; font-size: 13.5px; color: #475569; text-align: justify;">
+        A partir de la frecuencia de enlace en banda marina UHF (\(f = 457.5\text{ MHz}\)) y una distancia radial \(d = 1.8\text{ km}\) hacia el buque de soporte <em>MSV Tharos</em>: (a) Calcule la pérdida de trayectoria en el espacio libre (\(\text{FSPL}\)). (b) Deduzca la potencia efectiva recibida (\(P_{rx}\)) integrando una potencia \(P_{tx} = 36.99\text{ dBm}\), \(G_{tx} = 2.15\text{ dBi}\), \(G_{rx} = 6.50\text{ dBi}\), pérdidas de inserción acumuladas de \(2.50\text{ dB}\) y un margen de desvanecimiento por reflexión marina \(M_s = 22.0\text{ dB}\). (c) Verifique si el margen disponible (\(\Delta M\)) satisface la sensibilidad de umbral \(S_{rx} = -108.0\text{ dBm}\) y redacte el veredicto forense.
+      </p>
+    </div>
+
+    <!-- Fase 2 -->
+    <div style="margin-bottom: 18px; padding: 14px; background-color: #f8fafc; border-radius: 8px; border-left: 4px solid #ef4444;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+        <strong style="color: #0f172a; font-size: 14px;">FASE 2: Modelación Topológica RBD y Análisis de Falla Catastrófica (6 min)</strong>
+        <span style="font-size: 11px; background-color: #fee2e2; color: #b91c1c; padding: 2px 8px; border-radius: 4px; font-weight: 700;">6 MIN</span>
+      </div>
+      <p style="margin: 0; font-size: 13.5px; color: #475569; text-align: justify;">
+        Evalúe la confiabilidad del sistema de comunicación y mando: (a) Formule la ecuación analítica del modelo en serie estricto que operaba en <em>Piper Alpha</em> y demuestre matemáticamente el efecto del colapso de las bandejas eléctricas principales en el Módulo C (\(R_{\text{cables}} = 0\)). (b) Compare este resultado frente a la arquitectura de rediseño en Doble Anillo Geográficamente Disjunto exigida por API RP 14J, asumiendo una confiabilidad por canal individual de \(R_c = 0.92\) trazado por rutas físicas opuestas (Mamparo H-120 y Bajo Cubierta).
+      </p>
+    </div>
+
+    <!-- Fase 3 -->
+    <div style="padding: 14px; background-color: #f8fafc; border-radius: 8px; border-left: 4px solid #10b981;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+        <strong style="color: #0f172a; font-size: 14px;">FASE 3: Evaluación Multicriterio AHP y Vulnerabilidad Global Forense (8 min)</strong>
+        <span style="font-size: 11px; background-color: #d1fae5; color: #047857; padding: 2px 8px; border-radius: 4px; font-weight: 700;">8 MIN</span>
+      </div>
+      <p style="margin: 0; font-size: 13.5px; color: #475569; text-align: justify;">
+        Dada la matriz de comparaciones pareadas de Saaty para las dimensiones de vulnerabilidad \(A = \begin{pmatrix} 1 & 4 & 6 \\ 0.25 & 1 & 3 \\ 0.1667 & 0.3333 & 1 \end{pmatrix}\): (a) Calcule la media geométrica de cada fila (\(r_i\)) y normalice el vector de prioridades \(W = [W_F, W_O, W_H]^T\). (b) Verifique la relación de consistencia (\(\text{CR}\)) con \(\lambda_{\max} = 3.0537\) e índice aleatorio \(\text{RI} = 0.58\). (c) Calcule el índice de Vulnerabilidad Global (\(V_G\)) empleando los niveles de vulnerabilidad específica observados: Físico (\(V_F = 0.92\)), Operacional (\(V_O = 0.85\)) y Humano (\(V_H = 0.45\)), emitiendo el diagnóstico de ingeniería.
+      </p>
+    </div>
+  </div>
+
+  <!-- e) RETROALIMENTACIÓN / SOLUCIÓN PROTEGIDA POR CONTRASEÑA -->
+  <div style="background-color: #ffffff; border: 2px solid #cbd5e1; border-radius: 10px; padding: 22px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
+    <h3 style="margin-top: 0; color: #0f172a; font-size: 17px; font-weight: 700;">
+      Validación de Respuestas y Memoria de Cálculo
+    </h3>
+    <p style="font-size: 13.5px; color: #64748b; margin-bottom: 14px;">
+      Ingrese la clave de autorización técnica institucional para desbloquear la memoria de cálculo analítica:
+    </p>
+
+    <!-- Formulario interactivo inline -->
+    <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 16px; flex-wrap: wrap;">
+      <input type="password" id="inputPassComms" placeholder="Ingrese contraseña" style="padding: 10px 14px; border: 1.5px solid #cbd5e1; border-radius: 6px; font-size: 14px; outline: none; width: 220px; box-sizing: border-box;" />
+      <button type="button" onclick="desbloquearSolucionComms()" style="background-color: #0284c7; color: #ffffff; padding: 10px 18px; border: none; border-radius: 6px; font-size: 14px; font-weight: 700; cursor: pointer; transition: background-color 0.2s;">
+        Validar y Desbloquear
+      </button>
+      <span id="errorMsgComms" style="color: #ef4444; font-size: 13px; font-weight: 600; display: none;">Contraseña incorrecta. Verifique con el docente.</span>
+    </div>
+
+    <!-- Contenedor Oculto con Solución Detallada -->
+    <div id="solucionContenedorComms" style="display: none; border-top: 2px dashed #cbd5e1; padding-top: 20px; margin-top: 15px;">
+      <div style="background-color: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 6px; padding: 12px; margin-bottom: 20px;">
+        <strong style="color: #065f46; font-size: 14px;">Acceso Concedido:</strong> Auditoría cuantitativa, balances de radiopropagación y consistencia AHP verificados.
+      </div>
+
+      <!-- Memoria Fase 1 -->
+      <h4 style="color: #0284c7; font-size: 15px; margin-bottom: 6px;">Solución Detallada - Fase 1: Presupuesto de Enlace RF (Link Budget)</h4>
+      <p style="font-size: 13.5px; color: #334155; margin: 0 0 8px 0;">
+        1. Pérdida en el espacio libre (\(\text{FSPL}\)) conforme al modelo UIT-R / Rappaport:
+      </p>
+      \[ \text{FSPL} = 32.45 + 20 \log_{10}(1.8) + 20 \log_{10}(457.5) \]
+      \[ \text{FSPL} = 32.45 + 5.1055 + 53.2079 = 90.7634\text{ dB} \approx 90.76\text{ dB} \]
+      <p style="font-size: 13.5px; color: #334155; margin: 8px 0;">
+        2. Potencia de recepción efectiva en el buque <em>MSV Tharos</em>:
+      </p>
+      \[ P_{rx} = P_{tx} + G_{tx} - L_{tx} - \text{FSPL} + G_{rx} - L_{rx} - M_s \]
+      \[ P_{rx} = 36.99 + 2.15 - 0.85 - 90.76 + 6.50 - 1.65 - 22.00 = -69.62\text{ dBm} \]
+      <p style="font-size: 13.5px; color: #334155; margin: 8px 0;">
+        3. Margen de desvanecimiento dinámico (\(\Delta M\)):
+      </p>
+      \[ \Delta M = P_{rx} - S_{rx} = -69.62\text{ dBm} - (-108.00\text{ dBm}) = +38.38\text{ dB} \]
+      <p style="font-size: 13px; color: #475569; background-color: #f8fafc; padding: 10px; border-radius: 6px; border-left: 3px solid #0284c7;">
+        <strong>Diagnóstico Forense RF:</strong> Un margen de \(+38.38\text{ dB}\) garantiza un canal de radiofrecuencia plenamente viable. El fracaso de las brigadas no se debió a restricciones electromagnéticas, sino a la falta de canalizaciones protegidas, carencia de repetidores redundantes con alimentación ininterrumpida (UPS) y la inexistencia de protocolos operacionales bajo SCI.
+      </p>
+
+      <!-- Memoria Fase 2 -->
+      <h4 style="color: #0284c7; font-size: 15px; margin-top: 18px; margin-bottom: 6px;">Solución Detallada - Fase 2: Confiabilidad Topológica de Sistemas de Alerta</h4>
+      <p style="font-size: 13.5px; color: #334155; margin: 0 0 8px 0;">
+        1. Topología original de <em>Piper Alpha</em> (Configuración en Serie Estricta):
+      </p>
+      \[ R_{\text{sys}} = R_{\text{sensores}} \times R_{\text{cables}} \times R_{\text{control}} \times R_{PA/GA} \]
+      \[ R_{\text{sys}} = R_{\text{sensores}} \times 0 \times R_{\text{control}} \times R_{PA/GA} = 0 \quad (\text{Pérdida Total e Instantánea de Mando}) \]
+      <p style="font-size: 13.5px; color: #334155; margin: 8px 0;">
+        2. Arquitectura de rediseño en Doble Anillo Geográficamente Disjunto (API RP 14J / NFPA 1225):
+      </p>
+      \[ R_{\text{red}} = 1 - (1 - R_{\text{canal}})^2 = 1 - (1 - 0.92)^2 = 1 - (0.08)^2 = 1 - 0.0064 = 0.9936 \quad (99.36\%) \]
+      <p style="font-size: 13px; color: #475569; background-color: #f8fafc; padding: 10px; border-radius: 6px; border-left: 3px solid #ef4444;">
+        <strong>Conclusión de Red:</strong> La topología en anillo geográficamente disjunto (separando la Ruta Norte tras un mamparo H-120 y la Ruta Sur bajo cubierta) incrementa la disponibilidad del sistema de alarma al \(99.36\%\), erradicando el SPOF que silenció la megafonía.
+      </p>
+
+      <!-- Memoria Fase 3 -->
+      <h4 style="color: #0284c7; font-size: 15px; margin-top: 18px; margin-bottom: 6px;">Solución Detallada - Fase 3: Proceso Jerárquico Analítico (AHP)</h4>
+      <p style="font-size: 13.5px; color: #334155; margin: 0 0 8px 0;">
+        1. Cálculo de las medias geométricas de las filas (\(r_i\)):
+      </p>
+      \[ r_1 = \sqrt[3]{1 \times 4 \times 6} = \sqrt[3]{24} = 2.8845 \]
+      \[ r_2 = \sqrt[3]{0.25 \times 1 \times 3} = \sqrt[3]{0.75} = 0.9086 \]
+      \[ r_3 = \sqrt[3]{0.1667 \times 0.3333 \times 1} = \sqrt[3]{0.05556} = 0.3816 \]
+      \[ \sum_{k=1}^3 r_k = 2.8845 + 0.9086 + 0.3816 = 4.1747 \]
+      <p style="font-size: 13.5px; color: #334155; margin: 8px 0;">
+        2. Vector de prioridades normalizado (\(W\)):
+      </p>
+      \[ W_F = \frac{2.8845}{4.1747} = 0.6910 \quad (69.10\%) \]
+      \[ W_O = \frac{0.9086}{4.1747} = 0.2176 \quad (21.76\%) \]
+      \[ W_H = \frac{0.3816}{4.1747} = 0.0914 \quad (9.14\%) \]
+      <p style="font-size: 13.5px; color: #334155; margin: 8px 0;">
+        3. Comprobación del Ratio de Consistencia (\(\text{CR}\)) con \(\lambda_{\max} = 3.0537\) e \(\text{RI} = 0.58\):
+      </p>
+      \[ \text{CI} = \frac{\lambda_{\max} - n}{n - 1} = \frac{3.0537 - 3}{2} = 0.02685 \]
+      \[ \text{CR} = \frac{\text{CI}}{\text{RI}} = \frac{0.02685}{0.58} = 0.0463 \quad (4.63\% < 10.0\% \implies \text{Matriz Plenamente Consistente}) \]
+      <p style="font-size: 13.5px; color: #334155; margin: 8px 0;">
+        4. Evaluación de la Vulnerabilidad Global Forense (\(V_G\)):
+      </p>
+      \[ V_G = (0.6910 \times 0.92) + (0.2176 \times 0.85) + (0.0914 \times 0.45) \]
+      \[ V_G = 0.6357 + 0.1850 + 0.0411 = 0.8618 \quad (86.18\%) \]
+
+      <!-- Validación de Integridad -->
+      <div style="background-color: #f1f5f9; border-left: 4px solid #0284c7; padding: 14px; border-radius: 6px; margin-top: 18px;">
+        <h5 style="margin: 0 0 6px 0; color: #0f172a; font-size: 14px; text-transform: uppercase;">
+          Validación de Integridad y Conclusiones Técnicas
+        </h5>
+        <ul style="margin: 0; padding-left: 18px; font-size: 13px; color: #334155;">
+          <li><strong>Condición Crítica Inadmisible:</strong> La plataforma presentaba una vulnerabilidad global del \(86.18\%\) (\(> 75\%\)), gobernada en un \(73.8\%\) (\(0.6357 / 0.8618\)) por deficiencias físicas estructurales.</li>
+          <li><strong>Límites del Factor Humano y OEE:</strong> La capacitación del personal (dimensión humana, \(W_H = 9.14\%\)) resulta ineficaz si la infraestructura física (\(W_F = 69.10\%\)) colapsa de forma instantánea.</li>
+          <li><strong>Enclavamientos Submarinos Automatizados:</strong> De acuerdo con el D.E. 2393 y la indagación Cullen (1990), las Válvulas de Aislamiento Submarino (<strong>SSIV</strong>, <em>Subsea Isolation Valves</em>) deben poseer lógica <em>fail-safe</em> e independizarse de autorizaciones jerárquicas telefónicas para cerrar en menos de 45 segundos.</li>
+          <li><strong>Canalizaciones Ignífugas:</strong> Los bucles de detección y alarma deben emplear cableado bajo estándar IEC 60331 montado sobre rutas físicamente segregadas y soportadas con mamparos estructurales H-120.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- INYECTOR ASÍNCRONO NO DESTRUCTIVO DE MATHJAX Y LÓGICA DE VALIDACIÓN -->
+  <script>
+    function desbloquearSolucionComms() {
+      var passInput = document.getElementById('inputPassComms').value;
+      var errBox = document.getElementById('errorMsgComms');
+      var container = document.getElementById('solucionContenedorComms');
+
+      // Clave configurada: 2026
+      if (passInput === '2026') {
+        container.style.display = 'block';
+        errBox.style.display = 'none';
+
+        // Recompilación matemática asíncrona sobre el contenedor desbloqueado
+        if (window.MathJax && window.MathJax.typesetPromise) {
+          window.MathJax.typesetPromise([container]).catch(function (err) {
+            console.error('Error al renderizar MathJax:', err);
+          });
+        }
+      } else {
+        errBox.style.display = 'inline';
+      }
+    }
+
+    // Comprobador dinámico y cargador asíncrono de MathJax 3
+    (function () {
+      if (!window.MathJax) {
+        window.MathJax = {
+          tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+          },
+          options: {
+            ignoreHtmlClass: 'tex2jax_ignore',
+            processHtmlClass: 'tex2jax_process'
+          }
+        };
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.id = 'MathJax-script';
+        script.async = true;
+        script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+        document.head.appendChild(script);
+      }
+    })();
+  </script>
+</div>
+<!-- FIN DEL COMPONENTE MOODLE -->
