@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unidad Temática 3: Riesgos Laborales - Subtema 3.1 Riesgo Físico</title>
+<style>
+  /* Estilos base para asegurar responsividad e interacción limpia sin dependencias externas */
+  .ut3-container {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: #1e293b;
+    line-height: 1.5;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 16px;
+    background-color: #f1f5f9;
+  }
+  .tab-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #cbd5e1;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .tab-link {
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #475569;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .tab-link:hover {
+    background-color: #e2e8f0;
+    color: #0f172a;
+  }
+  .tab-link.active {
+    background-color: #1d4ed8;
+    color: #ffffff;
+    border-color: #1e40af;
+    box-shadow: 0 2px 4px rgba(29, 78, 216, 0.25);
+  }
+  .tab-panel {
+    display: none;
+    animation: fadeIn 0.25s ease-in-out;
+  }
+  .tab-panel.active {
+    display: block;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .calc-input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-top: 4px;
+    box-sizing: border-box;
+  }
+  .calc-textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 13px;
+    font-family: inherit;
+    margin-top: 6px;
+    resize: vertical;
+    box-sizing: border-box;
+  }
+  .btn-action {
+    background-color: #0f172a;
+    color: #ffffff;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  .btn-action:hover {
+    background-color: #1d4ed8;
+  }
+  .formula-box {
+    background-color: #0f172a;
+    color: #f8fafc;
+    font-family: 'Consolas', 'Courier New', monospace;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    margin: 8px 0;
+    overflow-x: auto;
+    border-left: 4px solid #38bdf8;
+  }
+</style>
+</head>
+<body style="margin: 0; background-color: #f1f5f9;">
+
+<div class="ut3-container">
+
+  <!-- ENCABEZADO PRINCIPAL (H1) -->
+  <div style="background-color: #112240; border-radius: 12px; padding: 24px; color: #ffffff; margin-bottom: 20px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+    <span style="background-color: #1d4ed8; color: #ffffff; padding: 4px 12px; border-radius: 9999px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; margin-bottom: 12px;">UNIDAD TEMÁTICA # 3 • RIESGOS LABORALES • SUBTEMA 3.1</span>
+    <h1 style="color: #ffffff; font-size: 25px; font-weight: 800; margin: 0 0 8px 0; letter-spacing: -0.025em;">Riesgo Físico: Identificación y Modelización de Fuentes Fijas y Móviles de Ruido y Vibración</h1>
+    <p style="color: #94a3b8; font-size: 14px; margin: 0;">Cuantificación matemática de la exposición ocupacional (L<sub>EX,8h</sub>, A(8) y VDV) bajo Decreto Ejecutivo 2393, ISO 9612, ISO 5349-1 e ISO 2631-1.</p>
+  </div>
+
+  <!-- BARRA DE NAVEGACIÓN POR PESTAÑAS CON RUTAS URL INDEPENDIENTES (HASH ROUTING) -->
+  <nav class="tab-nav" aria-label="Navegación de contenidos de la Unidad Temática 3">
+    <a href="#/3-1-fundamentos-fuentes" data-route="/3-1-fundamentos-fuentes" class="tab-link active" onclick="navigateTab(event, '/3-1-fundamentos-fuentes')">
+      <span>1.</span> 3.1 Fundamentos y Fuentes
+    </a>
+    <a href="#/3-1-modelado-matematico" data-route="/3-1-modelado-matematico" class="tab-link" onclick="navigateTab(event, '/3-1-modelado-matematico')">
+      <span>2.</span> 3.1 Modelado y Protocolo
+    </a>
+    <a href="#/3-1-simulador-evaluacion" data-route="/3-1-simulador-evaluacion" class="tab-link" onclick="navigateTab(event, '/3-1-simulador-evaluacion')">
+      <span>3.</span> 3.1 Laboratorio Interactivo
+    </a>
+    <a href="#/3-2-caso-estudio-4-fases" data-route="/3-2-caso-estudio-4-fases" class="tab-link" onclick="navigateTab(event, '/3-2-caso-estudio-4-fases')" style="border-left: 3px solid #059669;">
+      <span>4.</span> Caso de Estudio (4 Fases - Tema 3.2)
+    </a>
+  </nav>
+
+  <!-- INDICADOR DE RUTA URL ACTIVA -->
+  <div style="background-color: #e2e8f0; border-radius: 6px; padding: 6px 12px; margin-bottom: 18px; font-size: 11.5px; color: #334155; display: flex; justify-content: space-between; align-items: center;">
+    <span><strong>Ruta URL Activa:</strong> <code id="current-url-display" style="color: #1d4ed8; font-weight: bold;">#/3-1-fundamentos-fuentes</code></span>
+    <span style="color: #64748b;">Estado sincronizado con historial del navegador</span>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- PESTAÑA 1: #/3-1-fundamentos-fuentes                                  -->
+  <!-- ===================================================================== -->
+  <section id="panel-/3-1-fundamentos-fuentes" class="tab-panel active">
+    
+    <!-- INTRODUCCIÓN MOTIVADORA Y RESULTADOS DE APRENDIZAJE (RdA) -->
+    <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-left: 5px solid #2563eb; border-radius: 10px; padding: 20px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+      <div style="display: flex; align-items: center; margin-bottom: 10px;">
+        <span style="background-color: #dbeafe; color: #1d4ed8; border-radius: 50%; width: 22px; height: 22px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: bold; margin-right: 10px;">✓</span>
+        <h2 style="font-size: 17px; font-weight: 700; color: #0f172a; margin: 0;">Introducción Motivadora y Resultado de Aprendizaje (RdA 3.1)</h2>
+      </div>
+      <p style="font-size: 13.5px; color: #334155; margin: 0 0 12px 0;">
+        En los entornos industriales contemporáneos, la energía mecánica no controlada se manifiesta como ruido y vibración, responsables de la <strong>Pérdida Auditiva Inducida por Ruido (PAIR)</strong> y de patologías osteoarticulares y vasculares irreversibles. Dominar la física de propagación y la metrología ocupacional permite al especialista en <strong>Seguridad y Salud en el Trabajo (SST)</strong> transitar de inspecciones subjetivas a diagnósticos cuantitativos auditables, optimizando la <strong>Efectividad Global de los Equipos (OEE)</strong> mediante intervenciones en la fuente dominante.
+      </p>
+      <ul style="margin: 0; padding-left: 20px; font-size: 13.5px; color: #334155;">
+        <li style="margin-bottom: 4px;"><strong>RdA 3.1:</strong> Identifica las fuentes fijas y móviles de ruido y vibración en los lugares de trabajo, cuantifica la exposición diaria normalizada (<em>L<sub>EX,8h</sub></em>, <em>A(8)</em> y <em>VDV</em>) y emite un veredicto técnico trazable conforme al marco normativo ecuatoriano e internacional.</li>
+      </ul>
+    </div>
+
+    <!-- iDEVICE DE LECTURA: TARJETAS DE CLASIFICACIÓN OPERATIVA (FUENTES FIJAS VS MÓVILES) -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 16px; margin-bottom: 20px;">
+      
+      <!-- Fuentes Fijas -->
+      <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <h3 style="font-size: 16px; font-weight: 700; color: #0f172a; margin: 0;">Fuentes Fijas de Ruido y Vibración</h3>
+          <span style="background-color: #e0f2fe; color: #0369a1; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600;">CAMPO ESTACIONARIO</span>
+        </div>
+        <p style="font-size: 13px; color: #475569; margin: 0 0 14px 0;">Equipos anclados o estacionarios que mantienen una posición geométrica invariable durante la jornada laboral (compresores de tornillo, bombas centrífugas, prensas hidráulicas, sistemas de ventilación).</p>
+        
+        <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px;">
+          <span style="font-size: 12px; font-weight: 700; color: #0369a1; text-transform: uppercase; display: block; margin-bottom: 6px;">Criterios Técnicos de Caracterización:</span>
+          <ul style="margin: 0; padding-left: 16px; font-size: 12.5px; color: #334155;">
+            <li style="margin-bottom: 4px;"><strong>Geometría estable:</strong> Permite trazar mapas de isolíneas de Nivel de Presión Sonora (<em>L<sub>pA</sub></em>) y delimitar zonas rojas (&gt; 85 dB(A)).</li>
+            <li style="margin-bottom: 4px;"><strong>Transmisión estructural:</strong> La vibración se propaga por bancadas y losas si carecen de aisladores elastoméricos (<em>silentblocs</em>).</li>
+            <li><strong>Estrategia de medición:</strong> Sonómetro integrador Clase 1 (IEC 61672-1) en trípode a <em>r</em> &ge; 2 veces la mayor dimensión de la fuente.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Fuentes Móviles -->
+      <div style="background-color: #ffffff; border: 1px solid #059669; border-radius: 10px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+          <h3 style="font-size: 16px; font-weight: 700; color: #065f46; margin: 0;">Fuentes Móviles de Ruido y Vibración</h3>
+          <span style="background-color: #d1fae5; color: #065f46; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600;">GEOMETRÍA DINÁMICA</span>
+        </div>
+        <p style="font-size: 13px; color: #475569; margin: 0 0 14px 0;">Maquinaria autopropulsada o herramientas portátiles cuya posición varía continuamente respecto al receptor (montacargas, vehículos de arrastre, martillos neumáticos, amoladoras).</p>
+        
+        <div style="background-color: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 12px;">
+          <span style="font-size: 12px; font-weight: 700; color: #065f46; text-transform: uppercase; display: block; margin-bottom: 6px;">Criterios Técnicos de Caracterización:</span>
+          <ul style="margin: 0; padding-left: 16px; font-size: 12.5px; color: #334155;">
+            <li style="margin-bottom: 4px;"><strong>Variabilidad espacial:</strong> Altera la distancia fuente-receptor (<em>r</em>) y exige cronometraje de itinerarios o dosimetría personal.</li>
+            <li style="margin-bottom: 4px;"><strong>Exposición biomecánica directa:</strong> Transmite vibración Mano-Brazo (<em>W<sub>h</sub></em>: 6.3–1250 Hz) o Cuerpo Completo (<em>W<sub>k</sub></em>: 0.5–80 Hz).</li>
+            <li><strong>Estrategia de medición:</strong> Emisión en estacionario a distancia normalizada más integración temporal por tareas (ISO 9612).</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- VARIABLES CRÍTICAS Y MARCO NORMATIVO -->
+    <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.05); margin-bottom: 20px;">
+      <div style="padding: 16px 20px; border-bottom: 1px solid #e2e8f0;">
+        <h3 style="font-size: 16px; font-weight: 700; color: #0f172a; margin: 0;">Sistema de Evaluación: Variables Críticas (Entrada-Estado-Salida) y Marco Legal</h3>
+      </div>
+      <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 13px;">
+          <thead>
+            <tr style="background-color: #111e2e; color: #ffffff;">
+              <th style="padding: 12px 16px; border-right: 1px solid #1e293b;">Norma / Instrumento</th>
+              <th style="padding: 12px 16px; border-right: 1px solid #1e293b;">Ámbito de Aplicación</th>
+              <th style="padding: 12px 16px; border-right: 1px solid #1e293b;">Parámetro y Criterio Límite</th>
+              <th style="padding: 12px 16px; background-color: #063928;">Rol en Evaluación Ocupacional</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid #e2e8f0;">
+              <td style="padding: 12px 16px; font-weight: 700; background-color: #f8fafc;">Decreto Ejecutivo 2393 (Ecuador, 1986)</td>
+              <td style="padding: 12px 16px;">Reglamento de Seguridad y Salud de los Trabajadores</td>
+              <td style="padding: 12px 16px;"><strong>85 dB(A)</strong> para jornada de 8 h; tasa de intercambio <strong>3 dB</strong>.</td>
+              <td style="padding: 12px 16px;">Límite legal obligatorio para el veredicto de cumplimiento auditivo.</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #e2e8f0;">
+              <td style="padding: 12px 16px; font-weight: 700; background-color: #f8fafc;">ISO 9612:2009</td>
+              <td style="padding: 12px 16px;">Acústica: Exposición al ruido en el trabajo</td>
+              <td style="padding: 12px 16px;">Nivel de exposición diario normalizado <strong>L<sub>EX,8h</sub></strong>.</td>
+              <td style="padding: 12px 16px;">Metodología de muestreo por tareas, función o jornada completa.</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #e2e8f0;">
+              <td style="padding: 12px 16px; font-weight: 700; background-color: #f8fafc;">ISO 5349-1:2001 / ACGIH</td>
+              <td style="padding: 12px 16px;">Vibración Mano-Brazo (MB)</td>
+              <td style="padding: 12px 16px;"><em>a<sub>hv</sub></em> triaxial filtro <em>W<sub>h</sub></em>; <strong>A(8) &le; 2.0 m/s²</strong> (TLV) / 5.0 m/s² (VLE).</td>
+              <td style="padding: 12px 16px;">Evaluación de herramientas portátiles (martillos neumáticos).</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #e2e8f0;">
+              <td style="padding: 12px 16px; font-weight: 700; background-color: #f8fafc;">ISO 2631-1:1997 / ACGIH</td>
+              <td style="padding: 12px 16px;">Vibración Cuerpo Completo (CC)</td>
+              <td style="padding: 12px 16px;">Filtro <em>W<sub>k</sub></em>; <strong>A(8) &le; 0.5 m/s²</strong>; Precaución <strong>VDV: 9.1–14.4 m/s<sup>1.75</sup></strong>.</td>
+              <td style="padding: 12px 16px;">Evaluación de operadores de vehículos industriales (montacargas).</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px 16px; font-weight: 700; background-color: #f8fafc;">OSHA 29 CFR 1910.95</td>
+              <td style="padding: 12px 16px;">Conservación auditiva y atenuación EPP</td>
+              <td style="padding: 12px 16px;">TWA 90 dB(A) (tasa 5 dB); corrección <strong>(NRR - 7) / 2</strong>.</td>
+              <td style="padding: 12px 16px;">Cálculo de atenuación real de protectores auditivos (<em>L<sub>prot</sub></em>).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- PESTAÑA 2: #/3-1-modelado-matematico                                  -->
+  <!-- ===================================================================== -->
+  <section id="panel-/3-1-modelado-matematico" class="tab-panel">
+
+    <!-- FLUJO SECUENCIAL DEL PROTOCOLO EN 7 FASES -->
+    <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 20px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+      <h2 style="font-size: 17px; font-weight: 800; color: #0f172a; margin: 0 0 6px 0;">Protocolo Algorítmico de Identificación y Evaluación (7 Fases)</h2>
+      <p style="font-size: 13px; color: #64748b; margin: 0 0 16px 0;">Secuencia metrológica auditada desde el inventario de fuentes hasta el cierre de ciclo por jerarquía de controles.</p>
+      
+      <div style="display: flex; justify-content: space-between; align-items: stretch; flex-wrap: wrap; gap: 10px;">
+        <div style="flex: 1; min-width: 180px; border: 1px solid #94a3b8; border-radius: 8px; padding: 12px; background-color: #f8fafc;">
+          <strong style="display: block; font-size: 12.5px; color: #0f172a; margin-bottom: 4px;">Fases 1–2: Inventario</strong>
+          <span style="font-size: 11.5px; color: #475569;">Diagramas de flujo, turnos, clasificación fija/móvil y datos de potencia <em>L<sub>W</sub></em>.</span>
+        </div>
+        <span style="font-size: 18px; color: #2563eb; font-weight: bold; align-self: center;">➔</span>
+        <div style="flex: 1; min-width: 180px; border: 1.5px solid #2563eb; border-radius: 8px; padding: 12px; background-color: #eff6ff;">
+          <strong style="display: block; font-size: 12.5px; color: #1e40af; margin-bottom: 4px;">Fases 3–4: Metrología</strong>
+          <span style="font-size: 11.5px; color: #334155;">Calibración pre/post (IEC 61672), medición <em>L<sub>pA</sub></em> en campo lejano y cronometraje.</span>
+        </div>
+        <span style="font-size: 18px; color: #059669; font-weight: bold; align-self: center;">➔</span>
+        <div style="flex: 1; min-width: 180px; border: 1.5px solid #059669; border-radius: 8px; padding: 12px; background-color: #f0fdf4;">
+          <strong style="display: block; font-size: 12.5px; color: #065f46; margin-bottom: 4px;">Fases 5–7: Cálculo y Control</strong>
+          <span style="font-size: 11.5px; color: #334155;">Isolíneas, cálculo de <em>L<sub>EX,8h</sub></em>, <em>A(8)</em>, <em>VDV</em> y jerarquía de controles.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DEDUCCIÓN RIGUROSA DE ECUACIONES GOBERNANTES -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 16px; margin-bottom: 20px;">
+      
+      <!-- Ecuaciones Acústicas -->
+      <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 20px;">
+        <h3 style="font-size: 15.5px; font-weight: 700; color: #0f172a; margin: 0 0 8px 0;">1. Divergencia Esférica y Suma Incoherente</h3>
+        <p style="font-size: 12.5px; color: #475569; margin: 0 0 8px 0;">En campo libre (<em>r</em> &ge; 1 m, impedancia &rho;<sub>0</sub>c &approx; 415 Pa·s/m a 20 °C), la potencia <em>W</em> se distribuye sobre esferas de área 4&pi;<em>r</em>², donde 10·log<sub>10</sub>(4&pi;) = 10.99 &approx; 11:</p>
+        <div class="formula-box">
+          L<sub>p</sub>(r) = L<sub>W</sub> - 20·log<sub>10</sub>(r) - 11 &nbsp;&nbsp;[dB(A)]<br>
+          L<sub>p,tot</sub> = 10·log<sub>10</sub>( &Sigma; 10<sup>L<sub>p,i</sub> / 10</sup> )
+        </div>
+        <p style="font-size: 12px; color: #64748b; margin: 6px 0 0 0;"><strong>Principio de dominancia:</strong> Dos fuentes iguales incrementan +3 dB; una fuente 10 dB menor aporta apenas +0.4 dB.</p>
+      </div>
+
+      <!-- Ecuaciones Dosimetría y Vibración -->
+      <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 20px;">
+        <h3 style="font-size: 15.5px; font-weight: 700; color: #0f172a; margin: 0 0 8px 0;">2. Dosimetría (L<sub>EX,8h</sub>) y Vibración (A(8), VDV)</h3>
+        <p style="font-size: 12.5px; color: #475569; margin: 0 0 8px 0;">Normalización energética a jornada de referencia <em>T<sub>0</sub></em> = 8 h y evaluación de cuarta potencia para choques mecánicos:</p>
+        <div class="formula-box">
+          L<sub>EX,8h</sub> = 10·log<sub>10</sub>[ (1/8) &Sigma; t<sub>i</sub>·10<sup>L<sub>p,i</sub>/10</sup> ]<br>
+          D (%) = &Sigma; [ C<sub>i</sub> / (8 / 2<sup>(L<sub>i</sub> - 85)/3</sup>) ] × 100<br>
+          A(8) = a<sub>w</sub>·&radic;(T<sub>e</sub> / 8) &nbsp;|&nbsp; VDV &approx; a<sub>w</sub>·(3600·T<sub>e</sub>)<sup>1/4</sup>
+        </div>
+        <p style="font-size: 12px; color: #64748b; margin: 6px 0 0 0;"><strong>Atenuación EPP (OSHA):</strong> L<sub>prot</sub> = L<sub>EX,8h</sub> - (NRR - 7) / 2.</p>
+      </div>
+
+    </div>
+
+    <!-- CASO PRÁCTICO RESUELTO DEL INFORME DOCTORAL -->
+    <div style="background-color: #ffffff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 20px;">
+      <h3 style="font-size: 16px; font-weight: 700; color: #0f172a; margin: 0 0 10px 0;">Síntesis del Caso de Referencia: Planta Metalmecánica (Validación de Integridad)</h3>
+      <p style="font-size: 13px; color: #334155; margin: 0 0 12px 0;">
+        Evaluación de operario de mantenimiento (<em>T<sub>e</sub></em> = 8.0 h) expuesto a tres fuentes acústicas: <strong>S<sub>1</sub> Compresor fijo</strong> (<em>L<sub>W</sub></em> = 105 dB(A), <em>r</em> = 2.0 m), <strong>S<sub>2</sub> Bomba fija</strong> (<em>L<sub>W</sub></em> = 100 dB(A), <em>r</em> = 3.0 m) y <strong>S<sub>3</sub> Montacargas móvil</strong> (<em>L<sub>W</sub></em> = 96 dB(A), <em>r</em> = 2.5 m), junto con exposición a vibración mano-brazo y cuerpo completo.
+      </p>
+      <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 12.5px; text-align: left;">
+          <thead>
+            <tr style="background-color: #1e293b; color: #ffffff;">
+              <th style="padding: 10px 14px;">Indicador Evaluado</th>
+              <th style="padding: 10px 14px;">Resultado Calculado</th>
+              <th style="padding: 10px 14px;">Criterio Normativo</th>
+              <th style="padding: 10px 14px;">Veredicto e Intervención Prioritaria</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid #e2e8f0;">
+              <td style="padding: 10px 14px; font-weight: 600;">Nivel Total en Sala (L<sub>p,tot</sub>)</td>
+              <td style="padding: 10px 14px;"><strong>88.8 dB(A)</strong> (S<sub>1</sub> aporta 81.9%)</td>
+              <td style="padding: 10px 14px;">Estado intermedio</td>
+              <td style="padding: 10px 14px; color: #b91c1c; font-weight: 600;">Fuente dominante S<sub>1</sub> requiere encapsulamiento (-5 dB).</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #e2e8f0;">
+              <td style="padding: 10px 14px; font-weight: 600;">Exposición Diaria (L<sub>EX,8h</sub> / Dosis)</td>
+              <td style="padding: 10px 14px;"><strong>87.8 dB(A)</strong> / <strong>189.5%</strong></td>
+              <td style="padding: 10px 14px;">&le; 85 dB(A) / &le; 100%</td>
+              <td style="padding: 10px 14px; color: #b91c1c; font-weight: 600;">INCUMPLE DE 2393 (Factor de exceso 1.89x).</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #e2e8f0;">
+              <td style="padding: 10px 14px; font-weight: 600;">Nivel Protegido (Orejera NRR 27)</td>
+              <td style="padding: 10px 14px;"><strong>77.8 dB(A)</strong></td>
+              <td style="padding: 10px 14px;">&lt; 85 dB(A)</td>
+              <td style="padding: 10px 14px; color: #047857; font-weight: 600;">Cumple solo como barrera residual de última jerarquía.</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #e2e8f0;">
+              <td style="padding: 10px 14px; font-weight: 600;">Vibración Mano-Brazo A(8)<sub>MB</sub></td>
+              <td style="padding: 10px 14px;"><strong>2.68 m/s²</strong> (<em>a<sub>hv</sub></em>=4.8, 2.5 h)</td>
+              <td style="padding: 10px 14px;">&le; 2.0 m/s² (ACGIH TLV)</td>
+              <td style="padding: 10px 14px; color: #b91c1c; font-weight: 600;">INCUMPLE (+34%). Limitar tiempo de gatillo y rotar.</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px 14px; font-weight: 600;">Vibración Cuerpo Completo A(8) / VDV</td>
+              <td style="padding: 10px 14px;"><strong>0.67 m/s²</strong> / <strong>11.21 m/s<sup>1.75</sup></strong></td>
+              <td style="padding: 10px 14px;">&le; 0.5 m/s² / &lt; 9.1 m/s<sup>1.75</sup></td>
+              <td style="padding: 10px 14px; color: #b45309; font-weight: 600;">INCUMPLE A(8) (+34%) y VDV en Zona de Precaución.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- PESTAÑA 3: #/3-1-simulador-evaluacion                                 -->
+  <!-- ===================================================================== -->
+  <section id="panel-/3-1-simulador-evaluacion" class="tab-panel">
+    
+    <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-left: 5px solid #0284c7; border-radius: 10px; padding: 20px; margin-bottom: 20px;">
+      <h2 style="font-size: 17px; font-weight: 800; color: #0f172a; margin: 0 0 6px 0;">Actividad Práctica Interactiva: Simulador de Exposición Físico-Ocupacional</h2>
+      <p style="font-size: 13px; color: #475569; margin: 0;">Modifique los parámetros de potencia sonora (<em>L<sub>W</sub></em>), distancia fuente-receptor (<em>r</em>) y aceleración triaxial para verificar el principio de dominancia acústica y el cumplimiento normativo en tiempo real.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 20px;">
+      
+      <!-- Parámetros Fuente Fija 1 -->
+      <div style="background-color: #ffffff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 16px;">
+        <h3 style="font-size: 14px; font-weight: 700; color: #0369a1; margin: 0 0 10px 0;">Fuente Fija S<sub>1</sub> (Ej. Compresor)</h3>
+        <label style="font-size: 12px; font-weight: 600; display: block; margin-bottom: 8px;">
+          Potencia Sonora L<sub>W1</sub> [dB(A)]:
+          <input type="number" id="sim-lw1" class="calc-input" value="105" step="0.5">
+        </label>
+        <label style="font-size: 12px; font-weight: 600; display: block;">
+          Distancia Operario r<sub>1</sub> [m] (&ge; 1 m):
+          <input type="number" id="sim-r1" class="calc-input" value="2.0" min="1" step="0.1">
+        </label>
+      </div>
+
+      <!-- Parámetros Fuente Móvil 2 -->
+      <div style="background-color: #ffffff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 16px;">
+        <h3 style="font-size: 14px; font-weight: 700; color: #065f46; margin: 0 0 10px 0;">Fuente Móvil S<sub>2</sub> (Ej. Montacargas)</h3>
+        <label style="font-size: 12px; font-weight: 600; display: block; margin-bottom: 8px;">
+          Potencia Sonora L<sub>W2</sub> [dB(A)]:
+          <input type="number" id="sim-lw2" class="calc-input" value="96" step="0.5">
+        </label>
+        <label style="font-size: 12px; font-weight: 600; display: block;">
+          Distancia Media r<sub>2</sub> [m] (&ge; 1 m):
+          <input type="number" id="sim-r2" class="calc-input" value="2.5" min="1" step="0.1">
+        </label>
+      </div>
+
+      <!-- Parámetros Tiempo, EPP y Vibración -->
+      <div style="background-color: #ffffff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 16px;">
+        <h3 style="font-size: 14px; font-weight: 700; color: #92400e; margin: 0 0 10px 0;">Jornada, EPP y Vibración</h3>
+        <label style="font-size: 12px; font-weight: 600; display: block; margin-bottom: 8px;">
+          Tiempo Exposición T<sub>e</sub> [h] / NRR Orejera [dB]:
+          <div style="display: flex; gap: 8px;">
+            <input type="number" id="sim-te" class="calc-input" value="8.0" min="0.5" max="12" step="0.5" title="Horas de exposición">
+            <input type="number" id="sim-nrr" class="calc-input" value="27" min="0" max="35" step="1" title="NRR del protector">
+          </div>
+        </label>
+        <label style="font-size: 12px; font-weight: 600; display: block;">
+          Aceleración Mano-Brazo a<sub>hv</sub> [m/s²] (en 2.5 h):
+          <input type="number" id="sim-ahv" class="calc-input" value="4.8" min="0" step="0.1">
+        </label>
+      </div>
+
+    </div>
+
+    <div style="text-align: right; margin-bottom: 16px;">
+      <button type="button" class="btn-action" onclick="ejecutarSimulacion()">Calcular Modelización y Emitir Veredicto</button>
+    </div>
+
+    <!-- PANEL DE RESULTADOS Y RETROALIMENTACIÓN AUTOMÁTICA -->
+    <div id="sim-output" style="background-color: #f8fafc; border: 1px solid #94a3b8; border-radius: 10px; padding: 18px;">
+      <h4 style="font-size: 14px; font-weight: 700; color: #0f172a; margin: 0 0 10px 0;">Retroalimentación Técnica y Validación de Integridad:</h4>
+      <div id="sim-results-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; font-size: 13px;">
+        <!-- Se llena dinámicamente al cargar o hacer clic -->
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- PESTAÑA 4: #/3-2-caso-estudio-4-fases (DESARROLLADO POR EL ESTUDIANTE)-->
+  <!-- ===================================================================== -->
+  <section id="panel-/3-2-caso-estudio-4-fases" class="tab-panel">
+
+    <!-- ENCABEZADO DEL CASO DE ESTUDIO (TEMA 3.2) -->
+    <div style="background-color: #064e3b; border-radius: 10px; padding: 20px; color: #ffffff; margin-bottom: 20px;">
+      <span style="background-color: #10b981; color: #064e3b; padding: 3px 10px; border-radius: 9999px; font-size: 11px; font-weight: 800; text-transform: uppercase; display: inline-block; margin-bottom: 8px;">TALLER APLICADO ESTUDIANTIL • TEMA 3.2</span>
+      <h2 style="font-size: 19px; font-weight: 800; margin: 0 0 6px 0;">Caso de Estudio en 4 Fases: Control Operativo, Señalética y Evaluación Integral de Riesgos en Operaciones Logísticas</h2>
+      <p style="font-size: 13px; color: #d1fae5; margin: 0;">
+        <strong>Escenario Operativo:</strong> En una terminal logística e industrial, un operador de patio realiza el trasvase de solventes inflamables (UN 1263) junto a una estación de bombeo fija (<em>L<sub>W</sub></em> = 102 dB(A), <em>r</em> = 2.0 m) y conduce un montacargas diésel (<em>L<sub>W</sub></em> = 97 dB(A), <em>a<sub>w</sub></em> = 1.15 m/s² durante 3.5 h) sobre pavimento irregular. Desarrolle secuencialmente las <strong>4 fases</strong> aplicando los criterios normativos del Tema 3.2 (NTE INEN 2266, NTE INEN 4397, NFPA 704, OSHA 29 CFR, DE 2393 e ISO 2631-1).
+      </p>
+    </div>
+
+    <!-- FASE 1 -->
+    <div style="background-color: #ffffff; border: 1px solid #cbd5e1; border-left: 5px solid #2563eb; border-radius: 10px; padding: 18px; margin-bottom: 16px;">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="font-size: 15px; font-weight: 700; color: #1e40af; margin: 0;">Fase 1: Diagnóstico de Peligros, Rotulación y Compatibilidad (Tema 3.2)</h3>
+        <span style="font-size: 11px; font-weight: 700; color: #2563eb; background: #eff6ff; padding: 3px 8px; border-radius: 4px;">25% Ponderación</span>
+      </div>
+      <p style="font-size: 12.5px; color: #475569; margin: 8px 0;">
+        <strong>Consigna para el estudiante:</strong> Identifique los requisitos obligatorios de señalización (placas DOT, diamante NFPA 704, número UN y Fichas de Datos de Seguridad - FDS bajo SGA / NTE INEN 2266 y 4397) para la unidad de transporte y acopio, además de clasificar las fuentes fijas y móviles de energía física presentes en el área.
+      </p>
+      <textarea id="fase1-input" class="calc-textarea" rows="4" placeholder="Redacte aquí su desarrollo técnico de la Fase 1 (criterios NFPA 704, NTE INEN 2266/4397, inventario de fuentes fijas y móviles)..."></textarea>
+    </div>
+
+    <!-- FASE 2 -->
+    <div style="background-color: #ffffff; border: 1px solid #cbd5e1; border-left: 5px solid #059669; border-radius: 10px; padding: 18px; margin-bottom: 16px;">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="font-size: 15px; font-weight: 700; color: #065f46; margin: 0;">Fase 2: Cuantificación Matemática de Exposición y Cumplimiento Normativo</h3>
+        <span style="font-size: 11px; font-weight: 700; color: #059669; background: #ecfdf5; padding: 3px 8px; border-radius: 4px;">25% Ponderación</span>
+      </div>
+      <p style="font-size: 12.5px; color: #475569; margin: 8px 0;">
+        <strong>Consigna para el estudiante:</strong> Calcule el nivel de presión sonora total <em>L<sub>p,tot</sub></em> combinando la bomba fija (<em>L<sub>W</sub></em> = 102 dB(A) a 2 m) y el montacargas (<em>L<sub>W</sub></em> = 97 dB(A) a 2.5 m), determine la aceleración diaria de cuerpo completo <em>A(8)<sub>CC</sub></em> y el Valor de Dosis de Vibración (<em>VDV</em>) para 3.5 h (12,600 s), y contraste frente a DE 2393 e ISO 2631-1.
+      </p>
+      <textarea id="fase2-input" class="calc-textarea" rows="4" placeholder="Escriba aquí sus ecuaciones, despejes numéricos (Lp1, Lp2, Lp_tot, A(8) y VDV) y el veredicto de cumplimiento..."></textarea>
+    </div>
+
+    <!-- FASE 3 -->
+    <div style="background-color: #ffffff; border: 1px solid #cbd5e1; border-left: 5px solid #d97706; border-radius: 10px; padding: 18px; margin-bottom: 16px;">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="font-size: 15px; font-weight: 700; color: #92400e; margin: 0;">Fase 3: Selección de Barreras, EPP y Control de Trasvase Antiestático (Tema 3.2)</h3>
+        <span style="font-size: 11px; font-weight: 700; color: #d97706; background: #fffbeb; padding: 3px 8px; border-radius: 4px;">25% Ponderación</span>
+      </div>
+      <p style="font-size: 12.5px; color: #475569; margin: 8px 0;">
+        <strong>Consigna para el estudiante:</strong> Especifique el protocolo de puesta a tierra y enlace equipotencial (<em>bonding</em>) para evitar ignición durante el trasvase, seleccione el elastómero adecuado de guantes (Nitrilo, Vitón o Butilo) y calcule el nivel auditivo protegido <em>L<sub>prot</sub></em> aplicando la corrección OSHA (NRR - 7)/2 con orejeras de NRR 29 dB.
+      </p>
+      <textarea id="fase3-input" class="calc-textarea" rows="4" placeholder="Detallar protocolo de bonding, selección química de EPP (OSHA 29 CFR 1910.1200) y cálculo de L_prot..."></textarea>
+    </div>
+
+    <!-- FASE 4 -->
+    <div style="background-color: #ffffff; border: 1px solid #cbd5e1; border-left: 5px solid #dc2626; border-radius: 10px; padding: 18px; margin-bottom: 18px;">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3 style="font-size: 15px; font-weight: 700; color: #991b1b; margin: 0;">Fase 4: Plan de Contingencia, Jerarquía de Controles y Optimización (OEE)</h3>
+        <span style="font-size: 11px; font-weight: 700; color: #dc2626; background: #fef2f2; padding: 3px 8px; border-radius: 4px;">25% Ponderación</span>
+      </div>
+      <p style="font-size: 12.5px; color: #475569; margin: 8px 0;">
+        <strong>Consigna para el estudiante:</strong> Integre las medidas de control en la fuente y medio (encapsulamiento de bomba, nivelación de vía, suspensión neumática en montacargas), rotación administrativa de tiempos de conducción y protocolo de respuesta ante derrames (cubetos de retención y absorbentes inertes bajo guía MAE).
+      </p>
+      <textarea id="fase4-input" class="calc-textarea" rows="4" placeholder="Desarrolle la jerarquía de controles, el plan de mitigación de derrames y las métricas de verificación..."></textarea>
+    </div>
+
+    <!-- CONTROLES DE GUARDADO Y VALIDACIÓN DEL ESTUDIANTE -->
+    <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; background-color: #ffffff; padding: 16px; border-radius: 10px; border: 1px solid #cbd5e1;">
+      <div style="display: flex; gap: 10px;">
+        <button type="button" class="btn-action" onclick="guardarCasoEstudio()" style="background-color: #059669;">Guardar Avance Local</button>
+        <button type="button" class="btn-action" onclick="validarEntregaEstudiante()">Generar Reporte Consolidado</button>
+      </div>
+      <span id="estado-guardado" style="font-size: 12.5px; font-weight: 600; color: #475569;">Estado: Pendiente de desarrollo por el estudiante.</span>
+    </div>
+
+    <!-- REPORTE GENERADO PARA ENTREGA EN PLATAFORMA -->
+    <div id="reporte-estudiante-box" style="display: none; margin-top: 16px; background-color: #ffffff; border: 1px solid #059669; border-radius: 10px; padding: 18px;">
+      <h4 style="font-size: 14px; font-weight: 700; color: #065f46; margin: 0 0 8px 0;">Vista Previa de Entrega Académica (Lista para copiar en Moodle / UPSE)</h4>
+      <pre id="reporte-estudiante-texto" style="white-space: pre-wrap; font-family: 'Segoe UI', sans-serif; font-size: 12.5px; color: #1e293b; background: #f8fafc; padding: 12px; border-radius: 6px; border: 1px solid #e2e8f0; margin: 0;"></pre>
+    </div>
+
+  </section>
+
+  <!-- METODOLOGÍA, EVALUACIÓN Y REFERENCIAS APA 7.ª ED. -->
+  <div style="background-color: #ffffff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 20px; margin-top: 24px;">
+    <h3 style="font-size: 15px; font-weight: 700; color: #0f172a; margin: 0 0 12px 0;">Metodología, Sistema de Evaluación y Referencias Bibliográficas (APA 7.ª ed.)</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; font-size: 12.5px; color: #475569; margin-bottom: 14px;">
+      <div>
+        <strong style="color: #1e293b; display: block; margin-bottom: 4px;">Estrategia Metodológica:</strong>
+        Horas de Acompañamiento Docente (ACD), aprendizaje colaborativo, simulación cuantitativa y estudio de caso autónomo apoyado en entornos virtuales (Moodle, Zoom y Teams).
+      </div>
+      <div>
+        <strong style="color: #1e293b; display: block; margin-bottom: 4px;">Técnicas de Evaluación:</strong>
+        <ul style="margin: 0; padding-left: 16px;">
+          <li>Inmediata: Control interactivo en sesión sincrónica.</li>
+          <li>Continua: Resolución del Caso de Estudio en 4 Fases.</li>
+          <li>Especial: Talleres aplicados de higiene industrial.</li>
+        </ul>
+      </div>
+    </div>
+    <div style="border-top: 1px solid #e2e8f0; padding-top: 12px; font-size: 12px; color: #475569;">
+      <strong style="color: #0f172a; display: block; margin-bottom: 6px;">Referencias Bibliográficas:</strong>
+      <ul style="margin: 0; padding-left: 18px; line-height: 1.6;">
+        <li>Bies, D. A., &amp; Hansen, C. H. (2009). <em>Engineering noise control: Theory and practice</em> (4.ª ed.). CRC Press.</li>
+        <li>Decreto Ejecutivo No. 2393. (1986, 21 de noviembre). <em>Reglamento de seguridad y salud de los trabajadores y mejoramiento del medio ambiente de trabajo</em>. Registro Oficial No. 195. República del Ecuador.</li>
+        <li>Griffin, M. J. (1990). <em>Handbook of human vibration</em>. Academic Press.</li>
+        <li>International Organization for Standardization. (1997). <em>ISO 2631-1:1997. Mechanical vibration and shock — Evaluation of human exposure to whole-body vibration — Part 1: General requirements</em>. ISO.</li>
+        <li>International Organization for Standardization. (2001). <em>ISO 5349-1:2001. Mechanical vibration — Measurement and evaluation of human exposure to hand-transmitted vibration — Part 1: General requirements</em>. ISO.</li>
+        <li>International Organization for Standardization. (2009). <em>ISO 9612:2009. Acoustics — Determination of occupational noise exposure — Engineering method</em>. ISO.</li>
+        <li>Occupational Safety and Health Administration. (1983). <em>Occupational noise exposure (29 CFR Part 1910.95)</em>. U.S. Department of Labor.</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Rutas válidas independientes mediante Hash URL Routing (#/ruta)
+  const VALID_ROUTES = [
+    '/3-1-fundamentos-fuentes',
+    '/3-1-modelado-matematico',
+    '/3-1-simulador-evaluacion',
+    '/3-2-caso-estudio-4-fases'
+  ];
+
+  function activateRoute(route) {
+    const targetRoute = VALID_ROUTES.includes(route) ? route : VALID_ROUTES[0];
+    
+    // Actualizar pestañas activas
+    document.querySelectorAll('.tab-link').forEach(link => {
+      if (link.getAttribute('data-route') === targetRoute) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+
+    // Mostrar panel correspondiente
+    document.querySelectorAll('.tab-panel').forEach(panel => {
+      if (panel.id === 'panel-' + targetRoute) {
+        panel.classList.add('active');
+      } else {
+        panel.classList.remove('active');
+      }
+    });
+
+    // Actualizar indicador visual de ruta URL independiente
+    const urlDisplay = document.getElementById('current-url-display');
+    if (urlDisplay) {
+      urlDisplay.textContent = '#' + targetRoute;
+    }
+  }
+
+  function navigateTab(event, route) {
+    if (event) event.preventDefault();
+    if (window.location.hash !== '#' + route) {
+      window.history.pushState({ route: route }, '', '#' + route);
+    }
+    activateRoute(route);
+  }
+
+  // Escuchar cambios en el historial del navegador (botones Atrás/Adelante)
+  window.addEventListener('hashchange', () => {
+    const currentHash = window.location.hash.replace('#', '');
+    activateRoute(currentHash);
+  });
+
+  // Simulador interactivo de Acústica y Vibración
+  function ejecutarSimulacion() {
+    const lw1 = parseFloat(document.getElementById('sim-lw1').value) || 0;
+    const r1 = Math.max(1, parseFloat(document.getElementById('sim-r1').value) || 1);
+    const lw2 = parseFloat(document.getElementById('sim-lw2').value) || 0;
+    const r2 = Math.max(1, parseFloat(document.getElementById('sim-r2').value) || 1);
+    const te = Math.max(0.1, parseFloat(document.getElementById('sim-te').value) || 8);
+    const nrr = parseFloat(document.getElementById('sim-nrr').value) || 0;
+    const ahv = parseFloat(document.getElementById('sim-ahv').value) || 0;
+
+    // 1. Divergencia esférica: Lp(r) = Lw - 20*log10(r) - 11
+    const lp1 = lw1 - 20 * Math.log10(r1) - 11;
+    const lp2 = lw2 - 20 * Math.log10(r2) - 11;
+
+    // 2. Suma energética incoherente
+    const e1 = Math.pow(10, lp1 / 10);
+    const e2 = Math.pow(10, lp2 / 10);
+    const lpTot = 10 * Math.log10(e1 + e2);
+    const pctS1 = ((e1 / (e1 + e2)) * 100).toFixed(1);
+
+    // 3. Normalización a 8 horas (LEX,8h) y Dosis diaria
+    const lex8h = lpTot + 10 * Math.log10(te / 8.0);
+    const tPerm = 8.0 / Math.pow(2, (lpTot - 85) / 3);
+    const dosis = (te / tPerm) * 100;
+
+    // 4. Atenuación OSHA: Lprot = LEX,8h - (NRR - 7)/2
+    const atenuacionReal = Math.max(0, (nrr - 7) / 2);
+    const lProt = lex8h - atenuacionReal;
+
+    // 5. Vibración Mano-Brazo A(8) para 2.5 h de exposición
+    const a8Mb = ahv * Math.sqrt(2.5 / 8.0);
+
+    const cumpleRuido = lex8h <= 85.0;
+    const cumpleVib = a8Mb <= 2.0;
+
+    const resultsHtml = `
+      <div style="background:#fff; padding:12px; border-radius:8px; border:1px solid #e2e8f0;">
+        <span style="font-size:11px; color:#64748b; display:block;">NIVEL TOTAL EN PUESTO (L<sub>p,tot</sub>)</span>
+        <strong style="font-size:18px; color:#0f172a;">${lpTot.toFixed(1)} dB(A)</strong>
+        <span style="font-size:11.5px; color:#0369a1; display:block; margin-top:4px;">S<sub>1</sub>: ${lp1.toFixed(1)} dB (${pctS1}% energía) | S<sub>2</sub>: ${lp2.toFixed(1)} dB</span>
+      </div>
+      <div style="background:#fff; padding:12px; border-radius:8px; border:1px solid ${cumpleRuido ? '#10b981' : '#ef4444'};">
+        <span style="font-size:11px; color:#64748b; display:block;">EXPOSICIÓN DIARIA (L<sub>EX,8h</sub> / DOSIS)</span>
+        <strong style="font-size:18px; color:${cumpleRuido ? '#047857' : '#b91c1c'};">${lex8h.toFixed(1)} dB(A) (${dosis.toFixed(1)}%)</strong>
+        <span style="font-size:11.5px; color:${cumpleRuido ? '#047857' : '#b91c1c'}; display:block; margin-top:4px;">${cumpleRuido ? 'CUMPLE DE 2393 (≤ 85 dB)' : 'INCUMPLE DE 2393 (> 85 dB)'}</span>
+      </div>
+      <div style="background:#fff; padding:12px; border-radius:8px; border:1px solid #e2e8f0;">
+        <span style="font-size:11px; color:#64748b; display:block;">NIVEL PROTEGIDO CON EPP (L<sub>prot</sub>)</span>
+        <strong style="font-size:18px; color:#0f172a;">${lProt.toFixed(1)} dB(A)</strong>
+        <span style="font-size:11.5px; color:#475569; display:block; margin-top:4px;">Atenuación OSHA: -${atenuacionReal.toFixed(1)} dB</span>
+      </div>
+      <div style="background:#fff; padding:12px; border-radius:8px; border:1px solid ${cumpleVib ? '#10b981' : '#ef4444'};">
+        <span style="font-size:11px; color:#64748b; display:block;">VIBRACIÓN MANO-BRAZO A(8)<sub>MB</sub></span>
+        <strong style="font-size:18px; color:${cumpleVib ? '#047857' : '#b91c1c'};">${a8Mb.toFixed(2)} m/s²</strong>
+        <span style="font-size:11.5px; color:${cumpleVib ? '#047857' : '#b91c1c'}; display:block; margin-top:4px;">${cumpleVib ? 'CUMPLE TLV (≤ 2.0 m/s²)' : 'INCUMPLE TLV (> 2.0 m/s²)'}</span>
+      </div>
+    `;
+    document.getElementById('sim-results-grid').innerHTML = resultsHtml;
+  }
+
+  // Persistencia local y generación de reporte para el Caso de Estudio en 4 Fases (Tema 3.2)
+  function guardarCasoEstudio() {
+    const datos = {
+      f1: document.getElementById('fase1-input').value,
+      f2: document.getElementById('fase2-input').value,
+      f3: document.getElementById('fase3-input').value,
+      f4: document.getElementById('fase4-input').value
+    };
+    localStorage.setItem('ut3_caso_estudio_3_2', JSON.stringify(datos));
+    const status = document.getElementById('estado-guardado');
+    status.textContent = 'Estado: Avance guardado correctamente en el navegador (' + new Date().toLocaleTimeString() + ').';
+    status.style.color = '#047857';
+  }
+
+  function validarEntregaEstudiante() {
+    guardarCasoEstudio();
+    const f1 = document.getElementById('fase1-input').value.trim() || '[Pendiente de completar Fase 1]';
+    const f2 = document.getElementById('fase2-input').value.trim() || '[Pendiente de completar Fase 2]';
+    const f3 = document.getElementById('fase3-input').value.trim() || '[Pendiente de completar Fase 3]';
+    const f4 = document.getElementById('fase4-input').value.trim() || '[Pendiente de completar Fase 4]';
+
+    const consolidado = 
+`ENTREGA ACADÉMICA - UNIDAD TEMÁTICA # 3 (TEMA 3.2 Y 3.1)
+CASO DE ESTUDIO EN 4 FASES: OPERACIONES LOGÍSTICAS E INDUSTRIALES
+------------------------------------------------------------------
+FASE 1: DIAGNÓSTICO DE PELIGROS, ROTULACIÓN Y COMPATIBILIDAD
+${f1}
+
+FASE 2: CUANTIFICACIÓN MATEMÁTICA DE EXPOSICIÓN (RUIDO Y VIBRACIÓN)
+${f2}
+
+FASE 3: SELECCIÓN DE BARRERAS, EPP Y CONTROL ANTIESTÁTICO
+${f3}
+
+FASE 4: PLAN DE CONTINGENCIA, JERARQUÍA DE CONTROLES Y OEE
+${f4}`;
+
+    document.getElementById('reporte-estudiante-texto').textContent = consolidado;
+    document.getElementById('reporte-estudiante-box').style.display = 'block';
+  }
+
+  // Inicialización al cargar la página
+  document.addEventListener('DOMContentLoaded', () => {
+    const initialHash = window.location.hash.replace('#', '');
+    if (VALID_ROUTES.includes(initialHash)) {
+      activateRoute(initialHash);
+    } else {
+      window.history.replaceState({ route: VALID_ROUTES[0] }, '', '#' + VALID_ROUTES[0]);
+      activateRoute(VALID_ROUTES[0]);
+    }
+    ejecutarSimulacion();
+
+    // Recuperar progreso guardado del estudiante si existe
+    const saved = localStorage.getItem('ut3_caso_estudio_3_2');
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (parsed.f1) document.getElementById('fase1-input').value = parsed.f1;
+        if (parsed.f2) document.getElementById('fase2-input').value = parsed.f2;
+        if (parsed.f3) document.getElementById('fase3-input').value = parsed.f3;
+        if (parsed.f4) document.getElementById('fase4-input').value = parsed.f4;
+      } catch (e) {}
+    }
+  });
+</script>
+
+</body>
+</html>
